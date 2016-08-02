@@ -1,1 +1,207 @@
-Hellow
+
+<!DOCTYPE html>
+<html lang="en" class="branding ">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cradle PHP</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        
+        
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
+        <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
+        
+        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
+        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+    </head>
+
+    <body>
+    	<header>
+        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
+        </div>
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="header">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/docs/install.html">Getting Started</a></li>
+                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
+            
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+        </header>
+        <section class="body">
+            <div class="container">
+                
+                <div class="home">
+    <center class="splash"><img src="/www/images/newtons-cradle-large.jpg" width="50%" /></center>
+    
+    <h1>Cradle PHP</h1>
+    <center class="source">
+    	<em>
+        	in 6 reasons.
+        </em>
+    </center>
+    <h2>1. It's a Meta Framework powered by English</h2>
+
+<pre class="code line-numbers language-php"><code>&lt;?php
+cradle()->get(
+    '/foo/bar', 
+    'Get Foo Bar from database',
+    array(
+        'Foo Bar data Found',
+        'Render Foo Bar template',
+        'Render with Custom Page'
+    ),
+    array(
+        'Foo Bar data Not Found',
+        'Flash error',
+        'Redirect to homepage',
+    )
+);
+</code></pre>
+
+    <h2>2. Where You Can Use Any Controller</h2>
+    
+<pre class="code line-numbers language-php"><code>&lt;?php
+cradle()->get(
+    '/foo/bar', 
+    'Controller@method',
+    'Controller::method'
+);
+
+</code></pre>
+
+    <h2>3. And Use Any Framework</h2>
+    
+<pre class="code line-numbers language-php"><code>&lt;?php
+/**
+ * Hello Laravel !
+ */
+$app->get('/', cradle()->export('Get Foo Bar from database'));
+
+</code></pre>
+
+    <h2>4. And Easily Troubleshoot</h2>
+    
+<pre class="code line-numbers language-php"><code>&lt;?php
+cradle()->post(
+    '/signup', 
+    'Validate sign up',
+    array(
+    	'All Good ?',
+        'Insert to Database',
+        'debug://WTH Am I here ?'
+        //'Send an email',
+        function($request, $response) {
+       		//Try sending mail manually ...
+        }
+        'Render Login',
+        'Render Custom Page'
+    )
+);
+
+</code></pre>
+
+    <h2>5. And Flat Program</h2>
+    
+<pre class="code line-numbers language-php"><code>&lt;?php
+cradle()
+	->post('/signup', 'Validate sign up')
+    ->flow(
+    	'Validate sign up',
+        'Prepare Data',
+        include('path/to/callback.php')
+    );
+
+...
+
+//path/to/callback.php
+return function($request, $response) {
+	//look Ma no classes!
+	$response->setContent('valid');
+    //fork a process
+    $this->triggerEvent('All Good ?', $request, $response);
+};
+
+</code></pre>
+
+    <h2>6. And Redistribute as a Composer Package</h2>
+    <center class="source">
+    	<em>
+        	<a href="https://github.com/CradlePHP/objects/blob/master/address/.cradle">(Source)</a>
+        </em>
+    </center>
+
+<pre class="code line-numbers language-php"><code>&lt;?php
+
+cradle()
+	->register('cradlephp/objects/address')
+    ->post(
+        '/address/create', 
+        'cradle-address-create-prepare',
+        'cradle-address-create-validate',
+        array(
+            'cradle-address-create-202',
+        	'cradle-address-create-task',
+            'Flash success',
+            'Render with Custom Page'
+        )
+    );
+
+</code></pre>
+
+<center class="call-to-action">
+	<a class="btn btn-warning" href="/docs/install.html">Get Started</a>
+</center>
+</div>
+            </div>
+        </section>
+        <footer>
+        	<div class="container">
+	<div class="top clearfix">
+        <div class="left pull-left">
+            <div>
+                <div class="logo pull-left"><img src="/www/images/logo-square.png" /></div>
+                <div class="title">Cradle PHP</div>
+                <ul>
+                    <li><a href="https://github.com/CradlePHP/Cradle">GitHub</a></li>
+                    <li><a href="https://packagist.org/packages/cradlephp/cradle">Packagist</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="middle pull-right">
+            <ul>
+                <li><a href="/docs/intro.html">Getting Started</a></li>
+                <li><a href="/docs/install.html">Install</a></li>
+                <li><a href="/">Documentation</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="masthead">
+    	<center class="copy">&copy; Cradle PHP 2016</center>
+    </div>
+</div>
+        </footer>
+        <script type="text/javascript" src="/www/scripts/prism.js"></script>
+    </body>
+</html>
