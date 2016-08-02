@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en" class="branding ">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cradle PHP</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        
+        
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+        
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
+        <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
+        
+        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
+        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+    </head>
+
+    <body>
+    	<header>
+        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
+        </div>
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="header">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/docs/install.html">Getting Started</a></li>
+                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
+            
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+        </header>
+        <section class="body">
+            <div class="container">
+                
+                <div class="documentation">
+    <div class="row">
+        <div class="left col-xs-12 col-md-2">
+    <h5>Getting Started</h5>
+    <ul>
+        <li><a href="/docs/install.html">Install</a></li>
+        <li><a href="/docs/intro.html">Introduction</a></li>
+    </ul>
+
+    <h5>Features</h5>
+    <ul>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+        <li><a href="/docs/events.html">Events</a></li>
+        <li><a href="/docs/flows.html">Flows</a></li>
+        <li><a href="/docs/routing.html">Routing</a></li>
+        <li><a href="/docs/middleware.html">Middleware</a></li>
+        <li><a href="/docs/request.html">Request</a></li>
+        <li><a href="/docs/response.html">Response</a></li>
+        <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/integration.html">Integration</a></li>
+        <li><a href="/docs/packages.html">Packages</a></li>
+    </ul>
+</div>
+        <div class="right col-xs-12 col-md-10">
+        	<h1>Piping</h1>
+            
+            <p>With all of the concepts so far with events, flows, routing, middleware, requests 
+            and responses we can create a new methodology called <strong>Event Pipes</strong>. 
+            This concept deals with passing the <code class="language-php">$request</code> and
+            <code class="language-php">$response</code> to each handler till all handlers had a 
+            chance to deal with it. At the end, The HTTP Handler will decide how to output it 
+            based on the final response. Piping works out because <strong>you choose</strong> 
+            the events that should fire off versus a random piece of code, which is how most 
+            implement events.</p>
+            
+            <p>In summary, each handler just uses the 
+            <code class="language-php">$request</code> object and incrementally populates the
+            <code class="language-php">$response</code> object. This implies a rule of eticique 
+            that each handler should follow.</p>
+            
+            <a name="rules"></a>
+            <ol>
+            	<li>Data to be processed should exist in 
+                	<code class="language-php">$request->post</code>.
+                    So you need to actively move data to this property
+                    before processing (even $_GET and URL variables).
+                </li>
+                <li>The above implies that a step should not process any data to 
+                be saved unless it is in the <code class="language-php">$request->post</code>.
+                </li>
+                <li>Results are pushed to <code class="language-php">$response->body</code>.
+                	This can be an array or string, but you should do steps that populate 
+                    an array result before steps that populate a string result. The usual
+                    suspects for this are steps that render a template.
+                </li>	
+                <li>Steps that populate an array result should populate it using the following format below.
+<pre class="code line-numbers language-php"><code>&lt;?php
+array(
+    'error' => false,
+    'message' => 'A message',
+    'validation' => array(
+        'post_title' => 'Cannot be empty'
+    )
+    'results' => array(
+        'post_title' => 'A Title named Foo Bar'
+    )
+)
+</code></pre>
+                </li>
+                <li>Steps that populate an array result and/or validation should soft push in order for other 
+                steps to further add on to the results.</li>
+            </ol>
+            
+        </div>
+        
+    </div>
+</div>
+            </div>
+        </section>
+        <footer>
+        	<div class="container">
+	<div class="top clearfix">
+        <div class="left pull-left">
+            <div>
+                <div class="logo pull-left"><img src="/www/images/logo-square.png" /></div>
+                <div class="title">Cradle PHP</div>
+                <ul>
+                    <li><a href="https://github.com/CradlePHP/Cradle">GitHub</a></li>
+                    <li><a href="https://packagist.org/packages/cradlephp/cradle">Packagist</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="middle pull-right">
+            <ul>
+                <li><a href="/docs/intro.html">Getting Started</a></li>
+                <li><a href="/docs/install.html">Install</a></li>
+                <li><a href="/">Documentation</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="masthead">
+    	<center class="copy">&copy; Cradle PHP 2016</center>
+    </div>
+</div>
+        </footer>
+        <script type="text/javascript" src="/www/scripts/prism.js"></script>
+    </body>
+</html>
