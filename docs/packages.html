@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en" class="branding ">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cradle PHP</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        
+        
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+        
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
+        <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
+        
+        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
+        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+    </head>
+
+    <body>
+    	<header>
+        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
+        </div>
+        
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="header">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/docs/install.html">Getting Started</a></li>
+                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
+            
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+        </header>
+        <section class="body">
+            <div class="container">
+                
+                <div class="documentation">
+    <div class="row">
+        <div class="left col-xs-12 col-md-2">
+    <h5>Getting Started</h5>
+    <ul>
+        <li><a href="/docs/install.html">Install</a></li>
+        <li><a href="/docs/intro.html">Introduction</a></li>
+    </ul>
+
+    <h5>Features</h5>
+    <ul>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+        <li><a href="/docs/events.html">Events</a></li>
+        <li><a href="/docs/flows.html">Flows</a></li>
+        <li><a href="/docs/routing.html">Routing</a></li>
+        <li><a href="/docs/middleware.html">Middleware</a></li>
+        <li><a href="/docs/request.html">Request</a></li>
+        <li><a href="/docs/response.html">Response</a></li>
+        <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/integration.html">Integration</a></li>
+        <li><a href="/docs/packages.html">Packages</a></li>
+    </ul>
+</div>
+        <div class="right col-xs-12 col-md-10">
+        	<h1>Writing a Package</h1>
+            
+            <h2><code class="language-php">.cradle</code></h2>
+            
+            <p>In your <code class="language-php">/vendor/</code> folder create a folder called 
+            <code class="language-php">my/package</code>. You can call this whatever you like, 
+            and ideally it should match how you named your GitHub repository for example if your
+            repository is located at <code class="language-php">http://github.com/my/package</code>,
+            the folder should be <code class="language-php">my/package</code>.
+            For this example we will be using <code class="language-php">my/package</code>.</p>
+            
+            <p>At the root of your <code class="language-php">my/package</code> folder, create a file 
+            called <code class="language-php">.cradle</code>, open it up and add the following code.</p>
+            
+<pre class="code line-numbers language-php"><code>&lt;?php
+$cradle->flow(
+    'Do something',
+    'debug://I am doing something'
+);
+
+</code></pre>
+
+			<p>The importance of this file is that when you register this package, your 
+            <code class="language-php">.cradle</code> file will be called. This file is suppose to 
+            bootstrap everything that is needed in order for your package to work. From within your
+            <code class="language-php">my/package</code> folder you are free to decide on the folder 
+            structure because in the <code class="language-php">.cradle</code> file you will be 
+            linking each event handler manually like in the example below.</p>
+            
+            <pre class="code line-numbers language-php"><code>&lt;?php
+$cradle->flow(
+    'Do something',
+    include(__DIR__ . '/i/am/doing/something.php')
+);
+
+</code></pre>
+
+			<p>Don't add in the code above yet, for now go to your 
+            <code class="language-php">/public/index.php</code>
+            make sure it looks like the following.</p>
+            
+            <pre class="code line-numbers language-php"><code>
+return cradle()
+	//add routes here
+	->get('/something', 'Do something')
+	
+    //...
+	
+	//add packages here
+	->register('my/package')
+    
+	//start rendering
+	->render();
+
+</code></pre>
+		
+        	<p>If you go to your browser and open up 
+            <a href="http://127.0.0.1/something">http://127.0.0.1/something</a>,
+            you will see that your package triggered. From here you can customize 
+            your package however you like then follow instructions to submit it to 
+            <a href="https://packagist.org/">Packagist</a>, if you would like for 
+            all to use. Composer also has a provision for 
+            <a href="https://getcomposer.org/doc/05-repositories.md">private 
+            repositories</a> you can look at as well.</p>
+
+        </div>
+    </div>
+</div>
+			
+            
+            </div>
+        </section>
+        <footer>
+        	<div class="container">
+	<div class="top clearfix">
+        <div class="left pull-left">
+            <div>
+                <div class="logo pull-left"><img src="/www/images/logo-square.png" /></div>
+                <div class="title">Cradle PHP</div>
+                <ul>
+                    <li><a href="https://github.com/CradlePHP/Cradle">GitHub</a></li>
+                    <li><a href="https://packagist.org/packages/cradlephp/cradle">Packagist</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="middle pull-right">
+            <ul>
+                <li><a href="/docs/intro.html">Getting Started</a></li>
+                <li><a href="/docs/install.html">Install</a></li>
+                <li><a href="/">Documentation</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="masthead">
+    	<center class="copy">&copy; Cradle PHP 2016</center>
+    </div>
+</div>
+        </footer>
+        <script type="text/javascript" src="/www/scripts/prism.js"></script>
+    </body>
+</html>
