@@ -7,6 +7,8 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
+        
+        
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
         
@@ -52,127 +54,79 @@
         <section class="body">
             <div class="container">
                 
-                <div class="home">
-    <center class="splash"><img src="/www/images/newtons-cradle-large.jpg" /></center>
-    
-    <h1>Cradle PHP</h1>
-    <center class="source">
-    	<em>
-        	in 6 reasons.
-        </em>
-    </center>
-    <h2>1. It's a Meta Framework powered by English</h2>
+                <div class="documentation">
+    <div class="row">
+        <div class="left col-xs-12 col-md-2">
+    <h5>Getting Started</h5>
+    <ul>
+        <li><a href="/docs/install.html">Install</a></li>
+        <li><a href="/docs/intro.html">Introduction</a></li>
+    </ul>
 
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->get(
-    '/foo/bar', 
-    'Get Foo Bar from database',
-    array(
-        'Foo Bar data Found',
-        'Render Foo Bar template',
-        'Render with Custom Page'
-    ),
-    array(
-        'Foo Bar data Not Found',
-        'Flash error',
-        'Redirect to homepage',
-    )
-);
-</code></pre>
+    <h5>Features</h5>
+    <ul>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+        <li><a href="/docs/events.html">Events</a></li>
+        <li><a href="/docs/flows.html">Flows</a></li>
+        <li><a href="/docs/routing.html">Routing</a></li>
+        <li><a href="/docs/middleware.html">Middleware</a></li>
+        <li><a href="/docs/request.html">Request</a></li>
+        <li><a href="/docs/response.html">Response</a></li>
+        <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/integration.html">Integration</a></li>
+        <li><a href="/docs/packages.html">Packages</a></li>
+    </ul>
+</div>
+        <div class="right col-xs-12 col-md-10">
+        	<h1>Install</h1>
+            
+            <ul>
+            	<li><i class="fa fa-arrow-right"></i><a href="#requirements">Server Requirements</a></li>
+            	<li><i class="fa fa-arrow-right"></i><a href="#install">Installation</a></li>
+            	<li><i class="fa fa-arrow-right"></i><a href="#load">Load the Page</a></li>
+            </ul>
+        
+        	<a name="requirements"></a>
+            <h2><i class="fa fa-arrow-down"></i> Server Requirements</h2>
+            
+            <p>The following are needed in order to successfully install Cradle. Please make sure your sever meets the following requirements.</p>
+            
+            <ul>
+            	<li>PHP >= 5.6</li>
+                <li>PDO PHP Extension</li>
+                <li>Composer</li>
+            </ul>
+            
+        	<a name="install"></a>
+            <h2><i class="fa fa-arrow-down"></i> Installation</h2>
 
-    <h2>2. Where You Can Use Any Controller</h2>
-    
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->get(
-    '/foo/bar', 
-    'Controller@method',
-    'Controller::method'
-);
+			<p>Issue the Composer create-project command in your terminal:</p>
 
-</code></pre>
-
-    <h2>3. And Use Any Framework</h2>
-    
-<pre class="code line-numbers language-php"><code>&lt;?php
-/**
- * Hello Laravel !
- */
-$app->get('/', cradle()->export('Get Foo Bar from database'));
-
-</code></pre>
-
-    <h2>4. And Easily Troubleshoot</h2>
-    
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->post(
-    '/signup', 
-    'Validate sign up',
-    array(
-    	'All Good ?',
-        'Insert to Database',
-        'debug://WTH Am I here ?'
-        //'Send an email',
-        function($request, $response) {
-       		//Try sending mail manually ...
-        }
-        'Render Login',
-        'Render Custom Page'
-    )
-);
+<pre class="code line-numbers language-php"><code>
+$ composer create-project cradlephp/cradle &lt;project folder name&gt;
 
 </code></pre>
 
-    <h2>5. And Flat Program</h2>
-    
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()
-	->post('/signup', 'Validate sign up')
-    ->flow(
-    	'Validate sign up',
-        'Prepare Data',
-        include('path/to/callback.php')
-    );
-
-...
-
-//path/to/callback.php
-return function($request, $response) {
-	//look Ma no classes!
-	$response->setContent('valid');
-    //fork a process
-    $this->triggerEvent('All Good ?', $request, $response);
-};
+			<p>Then go <code class="language-php">cd &lt;project folder name&gt;/public</code> and run the following.</p>
+            
+            <pre class="code line-numbers language-php"><code>
+$ php -S localhost:8000
 
 </code></pre>
-
-    <h2>6. And Redistribute as a Composer Package</h2>
-    <center class="source">
-    	<em>
-        	<a href="https://github.com/CradlePHP/objects/blob/master/address/.cradle">(Source)</a>
-        </em>
-    </center>
-
-<pre class="code line-numbers language-php"><code>&lt;?php
-
-cradle()
-	->register('cradlephp/objects/address')
-    ->post(
-        '/address/create', 
-        'cradle-address-create-prepare',
-        'cradle-address-create-validate',
-        array(
-            'cradle-address-create-202',
-        	'cradle-address-create-task',
-            'Flash success',
-            'Render with Custom Page'
-        )
-    );
-
-</code></pre>
-
-<center class="call-to-action">
-	<a class="btn btn-warning" href="/docs/install.html">Get Started</a>
-</center>
+            
+            <p>Optionally, you can configure your application's document / web root to the public directory.</p> 
+            
+            <a name="load"></a>
+			<h2><i class="fa fa-arrow-down"></i> Load the Page</h2>
+			
+            <p>Open your browser to <code class="language-php">http://localhost:8000</code> 
+            and you should see the following.</p>
+            
+            <pre class="well">Welcome to Cradle!
+Now remove this process flow :)</pre>
+            
+        </div>
+    </div>
 </div>
             </div>
         </section>
