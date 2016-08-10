@@ -7,6 +7,8 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
+        
+        
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		
         <link rel="icon" type="image/png" href="/favicon.png" />
@@ -64,7 +66,7 @@
         	in 6 reasons.
         </em>
     </center>
-    <h2>1. It's a Meta Framework powered by English</h2>
+    <h2>1. It's Pseudo Coding Powered by English</h2>
 
 <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->get(
@@ -125,7 +127,7 @@ cradle()->post(
 
 </code></pre>
 
-    <h2>5. And Flat Program</h2>
+    <h2>5. And Unopinionated</h2>
     
 <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
@@ -149,23 +151,18 @@ return function($request, $response) {
 </code></pre>
 
     <h2>6. And Redistribute as a Composer Package</h2>
-    <center class="source">
-    	<em>
-        	<a href="https://github.com/cblanquera/cradle-auth/blob/master/address/.cradle">(Source)</a>
-        </em>
-    </center>
 
 <pre class="code line-numbers language-php"><code>&lt;?php
 
 cradle()
-	->register('cblanquera/address')
+	->register('cblanquera/cradle-auth')
     ->post(
-        '/address/create', 
-        'cradle-address-create-prepare',
-        'cradle-address-create-validate',
+        '/auth/create', 
+        Flow::auth()->create->prepare,
+        Flow::auth()->create->valid,
         array(
-            'cradle-address-create-202',
-        	'cradle-address-create-task',
+        	Flow::auth()->create->yes,
+        	Flow::auth()->create->task,
             'Flash success',
             'Render with Custom Page'
         )
@@ -200,6 +197,8 @@ cradle()
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
+        
+        
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>

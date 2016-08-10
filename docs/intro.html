@@ -95,7 +95,7 @@
             
             <h3>Welcome to Cradle!</h3>
             
-            <p>The two main goals of this micro framework is to clearly translate business process flows to 
+            <p>The two main goals of this meta framework is to clearly translate business process flows to 
             applied logic and design process by steps to encourage bundling features into packages for reuse.</p>
             
             <h3>The Problem</h3>
@@ -345,29 +345,30 @@ $request->set('post', 'path', 'to', 'key', 'and the value');
 //get anything
 $request->set('post', 'path', 'to', 'key'); //--> 'and the value'
 
-//sets $response->body['error'] and $response->body['message']
+//sets $response->json['error'] and $response->json['message']
 $response->setError(false, 'A message');
 
-//soft sets $response->body['validation'];
+//soft sets $response->json['validation'];
 $response->addValidation('post_title', 'Cannot be empty');
 
-//soft sets $response->body['results'];
+//soft sets $response->json['results'];
 $response->setResults('some', 'path', 'to', 'key', 'and the value');
 
 //hard sets $response->body
 $response->setContent('Im a string!');
 
 //soft set anything
-$response->set('body', 'results', 'path', 'to', 'key', 'and the value');
+$response->set('json', 'results', 'path', 'to', 'key', 'and the value');
 
 //get anything
-$response->set('body', 'results', 'path', 'to', 'key'); //--> 'and the value'
+$response->set('json', 'results', 'path', 'to', 'key'); //--> 'and the value'
 
 </code></pre>
 
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> If an array is left in the 
-            <code class="language-php">$response->body</code>. The HTTP handler will auto convert 
-            this to JSON format (If you are using Cradle's Router).</div>
+            <div class="alert alert-info"><i class="fa fa-info-circle"></i> If there is no content set,
+            Cradle will json encode the <code class="language-php">$response->json</code> data in the response 
+            and if there is no <code class="language-php">$response->json</code>, a 404 exception
+            will be thrown.</div>
  
             <a name="system"></a>
             <h2><i class="fa fa-arrow-down"></i> File System</h2>
@@ -393,29 +394,41 @@ $response->set('body', 'results', 'path', 'to', 'key'); //--> 'and the value'
             <p>There are two choices on where to put your custom code. The first one is putting it in 
             the <code class="language-php">vendor</code> folder following how composer works ie. 
             <code class="language-php">author/package</code>. If you choose this direction, then you 
-            can access your code by the following.</p>
+            can initialize and setup access points to your code by the following.</p>
             
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->register('author/package');
 
 </code></pre>
+			
+            <p>Inside of this folder, create a <code class="language-php">.cradle</code> file. This file
+            is simply PHP that gives you a <code class="language-php">$cradle</code> variable to work with.
+            The following example shows what can possibly be put in.</p>
+            
+            <h6><code class="language-php">vendor/package/.cradle</code></h6>
+            <pre class="code line-numbers language-php"><code>&lt;?php
+$cradle
+	->preprocess(__DIR__ . '/some/bootstrap.php')
+    ->on('foobar', function($request, $response) {
+    	//do something
+    });
+
+</code></pre>
+
 
 			<p>The other way is putting it in your current project root folder, but it should still 
             follow how composer works ie. <code class="language-php">author/package</code>. 
-            If you choose this direction, then you can access your code by the following.</p>
+            If you choose this direction, then you can initialize and setup access points to your code 
+            by the following.</p>
 			
             <h6>Notice the starting back slash.</h6>
         	<pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->register('/author/package');
 
 </code></pre>
-        
-        	<p>When you register your package, Cradle will look for a 
-            <code class="language-php">.cradle</code> file which you can put any valid PHP including your 
-            process flows. A sample on how this file looks like can be found <a href="https://github.com/CradlePHP/objects/blob/master/address/.cradle">here</a>.
             
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Cradle doesn't have a requirement of a 
-            particular file structure within packages, besides the optional
+            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Cradle is unopinionated in packages, 
+            meaning it doesn't have a requirement of a particular file structure within packages, besides the optional
             <code class="language-php">.cradle</code> file nor do other packages care about the structure since 
             steps are defined by events. So feel free to decide on how you want to structure your packages.</div>
 			
@@ -484,19 +497,6 @@ cradle()
 
 </code></pre>
 
-			<h6>Protocols</h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php    
-cradle()    
-    //define a protocol to be used as above (or below)
-    ->protocol('foobar', function($event, $request, $response) {})
-    //trigger explicitly a protocol
-    ->triggerProtocol('foobar', 'step4', ...$args)
-    
-    //registers a package
-    ->register('author/package');
-
-</code></pre>
-
 			<h6>Packages</h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
@@ -555,10 +555,43 @@ cradle()->flow(
     'redirect://some/path',
     //queues an arbitrary task with $_POST data
     'queue://some task'
-    //sends the me data in $_SESSION to $_POST
-	'session://me-to-post',
-    //sends the body results to $_SESSION
-	'session://results-to-me'
+);
+
+</code></pre>
+
+			<h6>Flow Helpers</h6>
+			<pre class="code line-numbers language-php"><code>&lt;?php
+use Cradle\Framework\Flow;
+
+cradle()->flow(
+	//forwards data from request->stage to response->json->results
+	Flow::forward(),
+	//forwards data from response->json->results to request->stage
+	Flow::reset(),
+    //it just outputs whatever is given
+	Flow::log()->debug('something'),
+    //performs a header redirect
+    Flow::session()->redirect('/foo/bar'),
+    //Sets up the flash message
+    Flow::session()->flash('Something went wrong', 'error'),
+    //Wrapper to flash
+    Flow::session()->error('Something went wrong'),
+    //Wrapper to flash
+    Flow::session()->success('Successful'),
+    //Wrapper to flash
+    Flow::session()->info('Hello'),
+    //processes file/s coming from a base64 input
+    //must wrap key into a file array like
+    // like file[profile_image]=??
+    // and file[0]=??
+    Flow::file()->fromBase64Field(),
+    //processes file/s coming from a link input
+    //must wrap key into a file array like
+    // like file[profile_image]=??
+    // and file[0]=??
+    Flow::file()->fromLinkField()
+    //processes file/s coming from a link input
+    Flow::file()->fromFileInput()
 );
 
 </code></pre>
@@ -588,6 +621,8 @@ cradle()->flow(
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
+        
+        
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>

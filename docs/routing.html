@@ -88,6 +88,7 @@
             	<li><i class="fa fa-arrow-right"></i><a href="#methods">Request Methods</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#paths">Request Paths</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#handlers">Route Handlers</a></li>
+            	<li><i class="fa fa-arrow-right"></i><a href="#app">Mini Apps</a></li>
             </ul>
         
         	<a name="basic"></a>
@@ -173,6 +174,7 @@ cradle()->all('/some/path/', function($request, $response) {});
         	<a name="paths"></a>
             <h2><i class="fa fa-arrow-down"></i> Request Paths</h2>
             
+            <h3>Star Variables</h3>
 			<p>With paths, they can also be expressed with wildcards by adding 
             a <code class="language-php">*</code> as in the following.</p>
             
@@ -215,6 +217,17 @@ cradle()->all('**', function($request, $response) {});
             This will call the handler on every request. You may not want that.
             </div>
             
+            <h3>Binding Parameters</h3>
+            
+            <p>You can also use binding in routing if you care about the name of the dynamic 
+            paths being passed. The following shows how this can be done.</p>
+            
+            <pre class="code line-numbers language-php"><code>&lt;?php
+cradle()->get('/some/:name/stuff', function($request, $response) {
+	echo $request->getStage('name');
+});
+
+</code></pre>
             <a name="handlers"></a>
             <h2><i class="fa fa-arrow-down"></i> Route Handlers</h2>
             
@@ -270,9 +283,9 @@ return function($request, $response) {
     
     //Trigger a fork
     if($good) {
-    	$this->trigger('A Good Event', $request, $response);
+    	$this->triggerSubflow('A Good Event', $request, $response);
     } else {
-    	$this->trigger('A Bad Event', $request, $response);
+    	$this->triggerSubflow('A Bad Event', $request, $response);
     }
 };
 
@@ -283,7 +296,38 @@ return function($request, $response) {
             <code class="language-php">$response</code> should always be at 
             the start of your arguments for consistency with other packages.
             </div>
-                  
+            
+            <a name="app"></a>
+            <h2><i class="fa fa-arrow-down"></i> Mini Apps</h2>
+            
+            <p>If your routing with flows gets too large in one file, you can optionally 
+            split up those routes in mini app files. In a new file, the following is possible.</p>
+            
+            <pre class="code line-numbers language-php"><code>&lt;?php
+
+use Cradle\Framework\App;
+use Cradle\Framework\Flow;
+
+$app = App::i()
+	->get('/search', 'Profile Search Page')
+	->get('/detail/:id', 'Profile Detail Page');
+
+return cradle()->app('/profile', $app);
+
+</code></pre>
+
+			<p>Mini apps, in the above example match <code class="language-php">/profile/search</code> to 
+            <code class="language-php">'Profile Search Page'</code>. Mini apps are just like the global
+            <code class="language-php">cradle()</code> but there are a few things that need to be understood
+            about them.</p>
+            
+            <ol>
+            	<li>Mini Apps have their own routing tables.</li>
+                <li>Events are still global</li>
+                <li>Pre Processors are triggered globally <em>(not with the mini app middleware)</em></li>
+                <li>Errors are triggered globally <em>(not with the mini app middleware)</em></li>
+                <li>Post Processors are triggered globally <em>(not with the mini app middleware)</em></li>
+            </ol>
         </div>
     </div>
 </div>
@@ -310,6 +354,8 @@ return function($request, $response) {
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
+        
+        
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>

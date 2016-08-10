@@ -172,17 +172,17 @@ return function() {
     
     //Trigger a fork
     if($good) {
-    	$this->trigger('A Good Event');
+    	$this->triggerSubflow('A Good Event');
     } else {
-    	$this->trigger('A Bad Event');
+    	$this->triggerSubflow('A Bad Event');
     }
 };
 
 </code></pre>
             
-            <p>The above example shows two events being triggered called  
+            <p>The above example shows two subflows being triggered called  
             <code class="language-php">'A Good Event'</code> and
-            <code class="language-php">'A Bad Event'</code>. With these events we can 
+            <code class="language-php">'A Bad Event'</code>. With these subflows we can 
             now apply a fork. The following shows how this can be done.</p>
 
             <h6>Applying a Fork</h6>
@@ -284,6 +284,8 @@ return array(
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
+        
+        
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>

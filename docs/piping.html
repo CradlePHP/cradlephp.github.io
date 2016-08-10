@@ -100,12 +100,14 @@
             <a name="rules"></a>
             <ol>
             	<li>Data to be processed should exist in 
-                	<code class="language-php">$request->post</code>.
-                    So you need to actively move data to this property
-                    before processing (even $_GET and URL variables).
+                	<code class="language-php">$request->stage</code>.
+                    This property is similar to <code class="language-php">$_REQUEST</code>,
+                    in that the <code class="language-php">$_GET</code>,
+                    <code class="language-php">$_POST</code> and <strong>binded URL 
+                    parameters</strong> are already populated respectively in that order.
                 </li>
                 <li>The above implies that a step should not process any data to 
-                be saved unless it is in the <code class="language-php">$request->post</code>.
+                be saved unless it is in the <code class="language-php">$request->stage</code>.
                 </li>
                 <li>Results are pushed to <code class="language-php">$response->body</code>.
                 	This can be an array or string, but you should do steps that populate 
@@ -157,6 +159,8 @@ array(
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
+        
+        
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
