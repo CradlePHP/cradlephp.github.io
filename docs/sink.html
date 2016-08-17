@@ -12,7 +12,7 @@
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
         <link rel="icon" type="image/png" href="/favicon.png" />
-		<link rel="icon" type="image/gif" href="/favicon.gif" />
+        <link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
@@ -27,8 +27,8 @@
     </head>
 
     <body>
-    	<header>
-        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+        <header>
+            <nav class="navbar navbar-default navbar-branding navbar-static-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -81,96 +81,78 @@
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Middleware</h1>
+            <h1>Kitchen Sink Install</h1>
 
             <ul>
-            	<li><i class="fa fa-arrow-right"></i><a href="#intro">Introduction</a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#pre">Pre-Processing </a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#error">Error Processing</a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#post">Post Processing</a></li>
+                <li><i class="fa fa-arrow-right"></i><a href="#requirements">Server Requirements</a></li>
+                <li><i class="fa fa-arrow-right"></i><a href="#install">Installation</a></li>
+                <li><i class="fa fa-arrow-right"></i><a href="#load">Load the Page</a></li>
             </ul>
 
-            <a name="intro"></a>
-            <h2><i class="fa fa-arrow-down"></i> Introduction</h2>
+            <p>Optionally you can take a look at the full setup and learn backwards. The kitchen sink
+            features various 3rd party packages useful for mid to complicated projects. The kitchen sink
+            will update periodically as new and useful packages are available.</p>
 
-            <p>Middleware is a concept of allowing pieces of functionality to be
-            injected anywhere at your discretion. Almost like plugins or extensions,
-            the popularity of middleware came from third party vendors being able to
-            quickly plug into applications.</p>
+            <a name="requirements"></a>
+            <h2><i class="fa fa-arrow-down"></i> Server Requirements</h2>
 
-            <p><a href="/docs/routing.html">Routes</a> is a kind of middleware
-            interface because you can add functionality using the include method
-            explained before.</p>
+            <p>The following are needed in order to successfully install the kitchen
+            sink. Please make sure your sever meets the following requirements.</p>
 
-            <h6>Routing Middleware Interface</h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->get('/some/path', include('/some/event/handler'));
+            <ul>
+                <li>PHP >= 5.6</li>
+                <li>PDO PHP Extension</li>
+                <li>RabbitMQ</li>
+                <li>Composer</li>
+            </ul>
 
-</code></pre>
+            <a name="install"></a>
+            <h2><i class="fa fa-arrow-down"></i> Installation</h2>
 
-			<p>There are other areas where you may need to plug in to other than the
-            time of routing for example before and after the routing and during an error.</p>
+            <p>Issue the Composer create-project command in your terminal:</p>
 
-            <a name="pre"></a>
-            <h2>Pre-Processing</h2>
-			<p>Middleware can be inserted before routing with the following example.</p>
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->preprocess(function($request, $response) {
-	//Do something before routing
-});
+<pre class="code line-numbers language-php"><code>
+$ composer create-project -s dev cradlephp/kitchen-sink &lt;project folder name&gt;
 
 </code></pre>
 
-            <p>Like routing, a <code class="language-php">$request</code> and a
-            <code class="language-php">$response</code> will be passed. The usual
-            activity for a <code class="language-php">->preprocess()</code> would
-            be populating the <code class="language-php">$request</code> further,
-            presetting a <code class="language-php">$response</code> and/or adding
-            more avaialble methods. The <a href="/docs/bootstrap.html">Bootstrap</a>
-            heavily uses <code class="language-php">->preprocess()</code> for example.</p>
+            <p>Open <code class="language-php">&lt;project folder name&gt;/config/services.php</code>
+            and update the PDO connection information with a new sandbox database (MySQL). Also give a
+            sample email address and password to test the mail functions as well as signup for
+            <a href="https://www.google.com/recaptcha/" target="_blank">Google Captcha</a> and provide
+            the tokens in this same file.</p>
 
-            <a name="error"></a>
-			<h2>Error Processing</h2>
+            <p>Next open up terminal again and run
+            <code class="language-php">cd &lt;project folder name&gt;</code> and run the following.</p>
 
-			<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->error(function($request, $response, $error) {
-	//Do something because there was an error
-});
+            <pre class="code line-numbers language-php"><code>
+$ vendor/bin/cradle cblanquera/cradle-schema install
 
 </code></pre>
 
-			<p>With error processors, like pre-processors a <code class="language-php">$request</code> and a
-            <code class="language-php">$response</code> will be passed. A third argument called
-            <code class="language-php">$error</code> will also be passed which will be an
-            <strong>Exception</strong> object. Error processors should be treated as a last ditch
-            effort to report the error to the user in a nice way.</p>
+            <p>It will ask you which schema to install. type
+            <code class="language-php">app</code>. Repeat this step for
+            <code class="language-php">profile</code>,
+            <code class="language-php">auth</code> and
+            <code class="language-php">file</code>.</p>
 
-            <div class="alert alert-danger"><i class="fa fa-times-circle"></i>
-            Because errors that happen in an error handler will throw that error if not caught again.
-            </div>
+            <p>Then go
+            <code class="language-php">cd &lt;project folder name&gt;/public</code>
+            and run the following.</p>
 
-            <p><a href="http://cradle.openovate.dev/docs/bootstrap.html#errors">Bootstrap: Errors</a>
-            presets what happens whens there's an error and your free to change/remove/add on to it.
-
-            <a name="post"></a>
-			<h2>Post Processing</h2>
-
-			<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->postprocess(function($request, $response, $error) {
-	//Do something after the connection is closed
-});
+            <pre class="code line-numbers language-php"><code>
+$ bower install
+$ php -S localhost:8000
 
 </code></pre>
 
-			<p>Post processors are like pre-processors except that it waits till the user has received a
-            response and the connection is closed before being activated. This is a nice feature where you
-            can do short time consuming tasks if you do not have access to a queue available.</p>
+            <p>Optionally, you can configure your application's document / web root to the public directory.</p>
 
+            <a name="load"></a>
+            <h2><i class="fa fa-arrow-down"></i> Load the Page</h2>
 
-            <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>
-            A caveat about post-processors is that writing to sessions will no longer be available. You can
-            write to it, but on refresh, it won't remember it like if it was still open.
-            </div>
+            <p>Open your browser to <code class="language-php">http://localhost:8000</code>
+            and you should see the application running.</p>
 
         </div>
     </div>
@@ -178,8 +160,8 @@ cradle()->postprocess(function($request, $response, $error) {
             </div>
         </section>
         <footer>
-        	<div class="container">
-	<div class="top clearfix">
+            <div class="container">
+    <div class="top clearfix">
         <div class="left pull-left">
             <div>
                 <div class="logo pull-left"><img src="/www/images/logo-square.png" /></div>
@@ -200,7 +182,7 @@ cradle()->postprocess(function($request, $response, $error) {
         </div>
     </div>
     <div class="masthead">
-    	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
+        <center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
 <a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
 <a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
 <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>

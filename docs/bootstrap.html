@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8" />
         <title>Cradle PHP</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        
-        
+
+
+
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		
+
         <link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        
+
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-        
+
         <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
         <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
     </head>
@@ -40,7 +40,7 @@
             </button>
             <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                 <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/intro.html">Documentation</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-            
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -56,19 +56,18 @@
         </header>
         <section class="body">
             <div class="container">
-                
+
                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
     <h5>Getting Started</h5>
     <ul>
-        <li><a href="/docs/install.html">Install</a></li>
-        <li><a href="/docs/intro.html">Introduction</a></li>
+        <li><a href="/docs/install.html">Basic Install</a></li>
+        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
     </ul>
 
     <h5>Features</h5>
     <ul>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/events.html">Events</a></li>
         <li><a href="/docs/flows.html">Flows</a></li>
         <li><a href="/docs/routing.html">Routing</a></li>
@@ -76,13 +75,14 @@
         <li><a href="/docs/request.html">Request</a></li>
         <li><a href="/docs/response.html">Response</a></li>
         <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/integration.html">Integration</a></li>
         <li><a href="/docs/packages.html">Packages</a></li>
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Bootstrap</h1>
-            
+
             <ul>
             	<li><i class="fa fa-arrow-right"></i><a href="#bootstrap"><code class="language-php">boostrap.php</code></a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#paths"><code class="language-php">boostrap/paths.php</code></a></li>
@@ -91,16 +91,15 @@
             	<li><i class="fa fa-arrow-right"></i><a href="#services"><code class="language-php">boostrap/services.php</code></a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#i18n"><code class="language-php">boostrap/i18n.php</code></a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#timezone"><code class="language-php">boostrap/timezone.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#queue"><code class="language-php">boostrap/queue.php</code></a></li>
             </ul>
-        
+
         	<a name="bootstrap"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">boostrap.php</code></h2>
-            
-            <p>If you open <code class="language-php">bootstrap.php</code> in your project root folder, 
-            you will see a set of preprocessors called bootstrap files, each are located in the 
+
+            <p>If you open <code class="language-php">bootstrap.php</code> in your project root folder,
+            you will see a set of preprocessors called bootstrap files, each are located in the
             <code class="language-php">/bootstrap/</code> folder.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 return cradle()
 	//now bootstrap
@@ -113,25 +112,25 @@ return cradle()
 	->preprocess(include('bootstrap/queue.php'))
 
 </code></pre>
-			
-            <p>These were put on the project level in the case you need you modify them for your project needs. 
-            You are free to add custom preprocessors here as well. But, you want to becareful in removing these 
+
+            <p>These were put on the project level in the case you need you modify them for your project needs.
+            You are free to add custom preprocessors here as well. But, you want to becareful in removing these
             preprocessors as some are needed by other packages and by other bootstrap files.</p>
-            
+
             <a name="paths"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">paths.php</code></h2>
-            
-            <p>This file provides two methods, 
-            <code class="language-php">cradle()->package('global')->path('key name');</code></a> 
-            and <code class="language-php">cradle()->package('global')->config('key name');</code></a>. 
-            While <code class="language-php">path('key name')</code> Simply returns the absolute path, 
+
+            <p>This file provides two methods,
+            <code class="language-php">cradle()->package('global')->path('key name');</code></a>
+            and <code class="language-php">cradle()->package('global')->config('key name');</code></a>.
+            While <code class="language-php">path('key name')</code> Simply returns the absolute path,
             <code class="language-php">config('key name')</code> returns the value set found in the
-            <code class="language-php">/config/</code> folder. 
-            <code class="language-php">config('settings')</code> will return the data returned in 
+            <code class="language-php">/config/</code> folder.
+            <code class="language-php">config('settings')</code> will return the data returned in
             <code class="language-php">/config/settings.php</code> for example.
-            You can add extra paths in <code class="language-php">paths.php</code> between the 
+            You can add extra paths in <code class="language-php">paths.php</code> between the
             following code.</p>
-            
+
             <h6>Adding a custom path</h6>
             <pre class="code line-numbers language-php"><code>
 $paths = array(
@@ -149,14 +148,14 @@ $paths = array(
 
 			<a name="debug"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">debug.php</code></h2>
-            
-            <p>This file simply chooses whether to show errors or not based on your 
+
+            <p>This file simply chooses whether to show errors or not based on your
             <code class="language-php">'debug_mode'</code> found in
             <code class="language-php">/config/settings.php</code>.
-            It also provides a protocol called 
+            It also provides a protocol called
             <code class="language-php">debug://Put anything here</code>
             which you can put in your flow to help troubleshoot problems.</p>
-            
+
             <h6>Debug Usage</h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->flow(
@@ -168,30 +167,30 @@ cradle()->flow(
 );
 
 </code></pre></p>
-		
-        	<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Make sure to remove these 
+
+        	<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Make sure to remove these
             debugs in production mode.</div>
-            
+
             <a name="errors"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">errors.php</code></h2>
-            
-            <p>This file handles how to output errors based on the content type and the 
+
+            <p>This file handles how to output errors based on the content type and the
             <code class="language-php">'debug_mode'</code> found in
             <code class="language-php">/config/settings.php</code>.
             It provides additional methods for rendering an output which you can optionally
             use to make custom error messages. You are free to modify this to fit your project
             needs as there are no real dependancies on this.</p>
-            
+
             <a name="services"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">services.php</code></h2>
-            
-            <p>This file utilizes services as defined in 
+
+            <p>This file utilizes services as defined in
             <code class="language-php">/config/services.php</code>.
-            The configuration file should return a key/value set of services of native drivers and connections. 
-            When available,  we want to use native drivers like PDO or sockets rather than a particular ORM to 
-            allow packages to remain agnostic. This makes it possible for one package to use doctorine and 
+            The configuration file should return a key/value set of services of native drivers and connections.
+            When available,  we want to use native drivers like PDO or sockets rather than a particular ORM to
+            allow packages to remain agnostic. This makes it possible for one package to use doctorine and
             another package to use eloquent under the same connection for example.</p>
-            
+
             <h6><code class="language-php">/config/services.php</code></h6>
             <pre class="code line-numbers language-php"><code>&lt;?php //-->
 
@@ -204,118 +203,59 @@ return array (
 
 </code></pre>
             <p>Services can be accessed using the following.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 cradle()->package('global')->service('&lt;key name&gt;');
 
 </code></pre>
-            
-            <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> When configuring this file 
-            it's important to have a <code class="language-php">main-sql</code> and a 
-            <code class="language-php">main-queue</code> value set in order for other packages to access 
+
+            <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> When configuring this file
+            it's important to have a <code class="language-php">main-sql</code> and a
+            <code class="language-php">main-queue</code> value set in order for other packages to access
             these resources.</div>
-            
-            <p>Both the <code class="language-php">main-sql</code> and a 
+
+            <p>Both the <code class="language-php">main-sql</code> and a
             <code class="language-php">main-queue</code> are used in two additional global methods called
             <code class="language-php">cradle()->package('global')->sql();</code> and
-            <code class="language-php">cradle()->package('global')->queue('task name', array());</code> in 
-            which <code class="language-php">->sql()</code> is used by cradle object packages and 
-            <code class="language-php">->queue()</code> is used by 
+            <code class="language-php">cradle()->package('global')->queue('task name', array());</code> in
+            which <code class="language-php">->sql()</code> is used by cradle object packages and
+            <code class="language-php">->queue()</code> is used by
             <code class="language-php">/bootstrap/queue.php</code>. You are free to create custom service
             methods for your project needs.</p>
-            
+
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> You can use any ORM like
-            Doctorine or Eloquent if you wish for your own packages, but to be fair, let other 
+            Doctorine or Eloquent if you wish for your own packages, but to be fair, let other
             packages decide what to use.</div>
-            
+
             <a name="i18n"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">i18n.php</code></h2>
-            
+
             <p>This file adds translation capabilities to your application by providing a method called
             <code class="language-php">cradle()->package('global')->translate('An English Phrase');</code>.
-            When this is called it will call on 
+            When this is called it will call on
             <code class="language-php">/config/settings.php</code> to find out what the default language is
-            and <code class="language-php">/config/i18n/en_US.php</code> to figure out what the translation 
+            and <code class="language-php">/config/i18n/en_US.php</code> to figure out what the translation
             should be.</p>
-            
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Given that 
-            <code class="language-php">'en_US'</code> is your default 
-            <code class="language-php">'i18n'</code> value in 
+
+            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Given that
+            <code class="language-php">'en_US'</code> is your default
+            <code class="language-php">'i18n'</code> value in
             <code class="language-php">/config/settings.php</code>.</div>
-            
-            <p>You can also use binded values to work with this method as in,  
-            <code class="language-php">->translate('It costs %s. buy now?', $price);</code>. 
+
+            <p>You can also use binded values to work with this method as in,
+            <code class="language-php">->translate('It costs %s. buy now?', $price);</code>.
             This works exactly how <code class="language-php">sprintf()</code> works.</p>
-            
-            <p>You are free to modify the specifics of translating in this file according 
+
+            <p>You are free to modify the specifics of translating in this file according
             to your project needs.</p>
-            
+
             <a name="timezone"></a>
             <h2><i class="fa fa-arrow-down"></i> <code class="language-php">timezone.php</code></h2>
-            
-            <p>This file simply set the system timezone which is set in 
-            <code class="language-php">/config/settings.php</code>. There are no other 
+
+            <p>This file simply set the system timezone which is set in
+            <code class="language-php">/config/settings.php</code>. There are no other
             reasons why this exists.</p>
-            
-            <a name="queue"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">queue.php</code></h2>
-            
-            <p>This file defines two major things. First it defines a method for queing tasks called
-            <code class="language-php">cradle()->package('global')->queue('A task name', array())</code>
-            which a <code class="language-php">'A task name'</code> is a flow process which you can define 
-            in <code class="language-php">/bootstrap.php</code>.</p>
-            
-            <pre class="code line-numbers language-html"><code>
-return cradle()
-	//now bootstrap
-	->preprocess(include('bootstrap/paths.php'))
-	->preprocess(include('bootstrap/debug.php'))
-	->preprocess(include('bootstrap/errors.php'))
-	->preprocess(include('bootstrap/services.php'))
-	->preprocess(include('bootstrap/i18n.php'))
-	->preprocess(include('bootstrap/timezone.php'))
-	->preprocess(include('bootstrap/queue.php'))
-	->preprocess(include('bootstrap/handlebars.php'))
-	
-    ->flow(
-    	'A task name',
-        'Save to Database',
-        'Send an email'
-    )
-    
-    //... OR ... 
-    ->on('A task name', function() {})
-    
-	->register('cradlephp/objects/sql');
 
-</code></pre>
-            
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> You don't have to predefine a flow or event 
-            because you can technically queue arbitrary flows/events. If they are not defined, it simply will do 
-            nothing.</div>
-            
-            <p>The second major thing it does is provides a protocol called
-            <code class="language-php">queue://Send Email</code>, which is used like in the following.</p>
-            
-			<h6>Queue Usage</h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->flow(
-	'Signup Flow',
-    'Send to Database',
-    'queue://Send Email',
-    'Redirect to Home Page'
-);
-
-</code></pre>
-
-			<p>Inside of the <code class="language-php">/bootstrap/queue.php</code>
-            file you notice that we are using <code class="language-php">PhpAmqpLib</code>.
-            This is because it's the official library of RabbitMQ which is what this queue is
-            defined for. Currently there are no native PHP drivers or classes we can rely on.</p>
-            
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Though any AMQP queue should work.</div>
-            
-            
         </div>
     </div>
 </div>
@@ -334,7 +274,7 @@ cradle()->flow(
                 </ul>
             </div>
         </div>
-        
+
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/intro.html">Getting Started</a></li>

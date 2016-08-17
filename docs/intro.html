@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8" />
         <title>Cradle PHP</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        
-        
+
+
+
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		
+
         <link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        
+
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-        
+
         <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
         <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
     </head>
@@ -40,7 +40,7 @@
             </button>
             <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                 <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/intro.html">Documentation</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-            
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -56,19 +56,18 @@
         </header>
         <section class="body">
             <div class="container">
-                
+
                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
     <h5>Getting Started</h5>
     <ul>
-        <li><a href="/docs/install.html">Install</a></li>
-        <li><a href="/docs/intro.html">Introduction</a></li>
+        <li><a href="/docs/install.html">Basic Install</a></li>
+        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
     </ul>
 
     <h5>Features</h5>
     <ul>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/events.html">Events</a></li>
         <li><a href="/docs/flows.html">Flows</a></li>
         <li><a href="/docs/routing.html">Routing</a></li>
@@ -76,53 +75,54 @@
         <li><a href="/docs/request.html">Request</a></li>
         <li><a href="/docs/response.html">Response</a></li>
         <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/integration.html">Integration</a></li>
         <li><a href="/docs/packages.html">Packages</a></li>
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Introduction</h1>
-            
+
             <ul>
             	<li><i class="fa fa-arrow-right"></i><a href="#why">What is this?</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#how">How It Works</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#system">File System</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#cheat">Cheat Sheet</a></li>
             </ul>
-        
+
         	<a name="why"></a>
             <h2><i class="fa fa-arrow-down"></i> What is this?</h2>
-            
+
             <h3>Welcome to Cradle!</h3>
-            
-            <p>The two main goals of this meta framework is to clearly translate business process flows to 
+
+            <p>The two main goals of this meta framework is to clearly translate business process flows to
             applied logic and design process by steps to encourage bundling features into packages for reuse.</p>
-            
+
             <h3>The Problem</h3>
-            
-            <p>When you receive project requirements usually the first thing that is coded up are the models, 
-            or maybe the front end... both of which are acceptable starting points. Most can attest to the situation 
+
+            <p>When you receive project requirements usually the first thing that is coded up are the models,
+            or maybe the front end... both of which are acceptable starting points. Most can attest to the situation
             of project requirements changing during the development of a project. Starting with models,
-            you can waste time building specific logic if it changed and if you went the front end route, you 
+            you can waste time building specific logic if it changed and if you went the front end route, you
             would have wasted time building out pages that is no longer needed.</p>
-            
-            <p>The other problem is when working in a team it's more than likely that at least one member doesn't 
+
+            <p>The other problem is when working in a team it's more than likely that at least one member doesn't
             fully understand the project requirements and/or the project direction and may end up writing something
             that is not needed or worse, totally off.</p>
-            
-            <p>Under changing requirements it is also common that code coupling happens. The lead developer would 
+
+            <p>Under changing requirements it is also common that code coupling happens. The lead developer would
             need to sift through code in order to figure out which pieces of code are needed and which aren't.
             Who wants to really spend their day doing that?</p>
-            
+
             <p>An example of changing requirements could be a sign up flow that at first may seem like the following.</p>
-            
+
             <ol>
             	<li>Render the Signup form</li>
             	<li>On submit, validate</li>
                 <li>On valid, insert to the database</li>
                 <li>Redirect to login</li>
             </ol>
-            
+
             <p>And let's say that your team work flow to make this happen looks like the following.</p>
             <ol>
                 <li>Create a CRUD for users</li>
@@ -136,9 +136,9 @@
                 <li>Work on test suites</li>
             </ol>
 
-            <p>Then, somewhere between developing this, a new requirement to change this to send an email verification 
+            <p>Then, somewhere between developing this, a new requirement to change this to send an email verification
             is given which implies the following.</p>
-            
+
             <ol>
             	<li>Add a validation flag to the model</li>
             	<li>Add functions to the model supporting a verified user</li>
@@ -155,44 +155,44 @@
                 <li>Flash a success message and redirect</li>
                 <li>Work on test suites</li>
            	</ol>
-            
-            <p>The common mistake made here during development is that this may seem like one process 
+
+            <p>The common mistake made here during development is that this may seem like one process
             flow when there are quite a few including the following. The reason why it matters because
             it's a deciding factor on where to put the code.</p>
-            
+
             <ul>
             	<li><strong>Signup Page Flow</strong> - What happens if they are already logged in ? Or a robot ?</li>
             	<li><strong>Form Submission Flow</strong> - Is the data valid ? What to we do if not and if good ?</li>
             	<li><strong>Email Verification Flow</strong> - How do we know what hash to apply? What if it wasn't sent? </li>
-            	<li><strong>Hash Verification Flow</strong> - What if the hash is not valid ?</li> 
+            	<li><strong>Hash Verification Flow</strong> - What if the hash is not valid ?</li>
             </ul>
-            
-            <p>Solutions for these questions are pretty obvious and can be coded up fairly quick, but when 
+
+            <p>Solutions for these questions are pretty obvious and can be coded up fairly quick, but when
             something goes wrong you need to follow the rabbit hole down till you find the problem because yes
             there is a place for everything, but is there a place where it's all documented ?</p>
-            
+
             <h3>The Answer</h3>
-            
+
             <p>The recommended development cycle used on Cradle looks like the following.</p>
-            
+
             <ol>
             	<li>Create all the process flows.</li>
             	<li>Assign to developers each step of each flow.</li>
             	<li>Package the steps that are reusable on other projects.</li>
             </ol>
-            
+
             <p>The recommended debug cycle used on Cradle looks like the following.</p>
-            
+
             <ol>
             	<li>Find the URL that is failing.</li>
             	<li>Find the main flow.</li>
             	<li>Comment out the last step following upwards till you find the problem.</li>
                 <li>Fix the step.</li>
             </ol>
-            
+
             <p>With Cradle you start arbitrarily setting up the process flow first as in the following and YES
-            you are free to use english (or your language) and it is encouraged.</p> 
-            
+            you are free to use english (or your language) and it is encouraged.</p>
+
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
 	->flow(
@@ -217,7 +217,7 @@ cradle()
         )
     )
 	->flow(
-    	'Email Verification Flow',        
+    	'Email Verification Flow',
         'Gather Signup Email Data'
         'Bind Signup Email Data with Email Template',
         'Send Signup Email off'
@@ -239,35 +239,35 @@ cradle()
     );
 
 </code></pre>
-            
+
             <div class="alert alert-warning">
-            	<i class="fa fa-exclamation-triangle"></i> 
-            	These are events, so use unique names. In the example above, <strong>LINE 21</strong> 
+            	<i class="fa fa-exclamation-triangle"></i>
+            	These are events, so use unique names. In the example above, <strong>LINE 21</strong>
                 calls on <strong>LINE 4</strong>.
             </div>
-            
-            <p>This indirectly solves how to resend a verification email by calling 
-            <code class="language-php">'Email Verification Flow'</code> directly and 
-            without re-jiggering up the code. To make these flows more tangible, you 
+
+            <p>This indirectly solves how to resend a verification email by calling
+            <code class="language-php">'Email Verification Flow'</code> directly and
+            without re-jiggering up the code. To make these flows more tangible, you
             should link these up with a route.</p>
-            
+
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
 	->get('/', 'Home Page Flow')
 	->get('/signup', 'Signup Page Flow')
 	->post('/signup', 'Form Submission Flow')
 	->get('/verify', 'Hash Verification Flow');
-    
+
 </code></pre>
-            
-            <p>After this is done, you can then assign each step, one at a time to each developer in your team. 
-            If the project requirements change, it's as simple as removing or adding steps in the flows. If there 
+
+            <p>After this is done, you can then assign each step, one at a time to each developer in your team.
+            If the project requirements change, it's as simple as removing or adding steps in the flows. If there
             is an error it's also as simple as commenting out each step till you find the culprit.</p>
-            
-            <p>There are other elegant ways to define steps which we will cover in 
-            <a href="#choices">later documentation</a>, but the following is 
+
+            <p>There are other elegant ways to define steps which we will cover in
+            <a href="#choices">later documentation</a>, but the following is
             the most easiest way to understand how to do it.</p>
-            
+
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->on('Create User in Database (Not verified)', function($request, $response) {
 	//do the code to insert user in database
@@ -276,15 +276,15 @@ cradle()->on('Create User in Database (Not verified)', function($request, $respo
 </code></pre>
 
 			<p>After you completed each work flow you should decide which steps can be reused in future flows or projects and package them. Packaging will also be covered <a href="http://cradle.openovate.dev/docs/packages.html">later in documentation</a>.</p>
-            
+
             <a name="how"></a>
             <h2><i class="fa fa-arrow-down"></i> How it works</h2>
-            
-            <p>All step callbacks are passed two variables called the 
+
+            <p>All step callbacks are passed two variables called the
             <code class="language-php">$request</code> and the
-            <code class="language-php">$response</code> and you are free to 
+            <code class="language-php">$response</code> and you are free to
             manipulate these as you wish per step.</p>
-            
+
             <h6>In an event</h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->on('Create User in Database (Not verified)', function($request, $response) {
@@ -304,30 +304,30 @@ return function($request, $response) {
             <pre class="code line-numbers language-php"><code>&lt;?php
 class Controller
 {
-	public function($request, $response) 
+	public function($request, $response)
     {
     	//do the code to insert user in database
     }
 }
 
 </code></pre>
-            
-            <p>If you are using a callback, 
-            <code class="language-php">$this</code> refers to 
-            <code class="language-php">cradle()</code> and you can use 
+
+            <p>If you are using a callback,
+            <code class="language-php">$this</code> refers to
+            <code class="language-php">cradle()</code> and you can use
             either interchangably.</p>
-            
-            <p>In summary, each step just uses the 
+
+            <p>In summary, each step just uses the
             <code class="language-php">$request</code> object and incrementally populates the
-            <code class="language-php">$response</code> object. This process is called 
-            <a href="/docs/piping.html">Piping</a> and there are implied rules that 
+            <code class="language-php">$response</code> object. This process is called
+            <a href="/docs/piping.html">Piping</a> and there are implied rules that
             <a href="/docs/piping.html#rules">each step should follow</a>.</p>
-            
+
             <p>Other than that, you can put arbitrary data into these objects as you wish. Both the
             <code class="language-php">$request</code> and
             <code class="language-php">$response</code> have methods to support piping. A summary
-            of the most commont methods are provided below and more information can be found in 
-            <a href="/docs/request.html">Integrations: Request</a> and 
+            of the most commont methods are provided below and more information can be found in
+            <a href="/docs/request.html">Integrations: Request</a> and
             <a href="/docs/response.html">Integrations: Response</a> respectively.</p>
 
 <pre class="code line-numbers language-php"><code>&lt;?php
@@ -366,45 +366,45 @@ $response->set('json', 'results', 'path', 'to', 'key'); //--> 'and the value'
 </code></pre>
 
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> If there is no content set,
-            Cradle will json encode the <code class="language-php">$response->json</code> data in the response 
+            Cradle will json encode the <code class="language-php">$response->json</code> data in the response
             and if there is no <code class="language-php">$response->json</code>, a 404 exception
             will be thrown.</div>
- 
+
             <a name="system"></a>
             <h2><i class="fa fa-arrow-down"></i> File System</h2>
-            
+
             <p>There are four folders that you mainly deal with in Cradle.</p>
-            
+
             <ul>
             	<li><code class="language-php">bootstrap</code> - Instructions on how to load the app</li>
             	<li><code class="language-php">config</code> - Arbitrary configuration files</li>
             	<li><code class="language-php">public</code> - All of your publicly accessable files</li>
             	<li><code class="language-php">vendor</code> - 3rd party composer packages</li>
             </ul>
-            
+
             <p>And there are three entry points to Cradle.</p>
-            
+
             <ul>
             	<li><code class="language-php">bootstrap.php</code> - Accessed by CLI</li>
             	<li><code class="language-php">worker.php</code> - Works on queued flows</li>
             	<li><code class="language-php">public/index.php</code> - Accessed by users</li>
             </ul>
-            
+
             <a name="choices"></a>
-            <p>There are two choices on where to put your custom code. The first one is putting it in 
-            the <code class="language-php">vendor</code> folder following how composer works ie. 
-            <code class="language-php">author/package</code>. If you choose this direction, then you 
+            <p>There are two choices on where to put your custom code. The first one is putting it in
+            the <code class="language-php">vendor</code> folder following how composer works ie.
+            <code class="language-php">author/package</code>. If you choose this direction, then you
             can initialize and setup access points to your code by the following.</p>
-            
+
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->register('author/package');
 
 </code></pre>
-			
+
             <p>Inside of this folder, create a <code class="language-php">.cradle</code> file. This file
             is simply PHP that gives you a <code class="language-php">$cradle</code> variable to work with.
             The following example shows what can possibly be put in.</p>
-            
+
             <h6><code class="language-php">vendor/package/.cradle</code></h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 $cradle
@@ -416,29 +416,29 @@ $cradle
 </code></pre>
 
 
-			<p>The other way is putting it in your current project root folder, but it should still 
-            follow how composer works ie. <code class="language-php">author/package</code>. 
-            If you choose this direction, then you can initialize and setup access points to your code 
+			<p>The other way is putting it in your current project root folder, but it should still
+            follow how composer works ie. <code class="language-php">author/package</code>.
+            If you choose this direction, then you can initialize and setup access points to your code
             by the following.</p>
-			
+
             <h6>Notice the starting back slash.</h6>
         	<pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->register('/author/package');
 
 </code></pre>
-            
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Cradle is unopinionated in packages, 
+
+            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Cradle is unopinionated in packages,
             meaning it doesn't have a requirement of a particular file structure within packages, besides the optional
-            <code class="language-php">.cradle</code> file nor do other packages care about the structure since 
+            <code class="language-php">.cradle</code> file nor do other packages care about the structure since
             steps are defined by events. So feel free to decide on how you want to structure your packages.</div>
-			
+
             <a name="cheat"></a>
             <h2><i class="fa fa-arrow-down"></i> Cheat Sheet</h2>
-            
-            <p>There are only a few methods you need to know to quickly get started with Cradle. If you quickly 
-            want to know all the methods instead of reading the entire documentation, you can quickly skim 
-            through the following.</p> 
-            
+
+            <p>There are only a few methods you need to know to quickly get started with Cradle. If you quickly
+            want to know all the methods instead of reading the entire documentation, you can quickly skim
+            through the following.</p>
+
             <h6>Routing</h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
@@ -458,7 +458,7 @@ cradle()
 </code></pre>
 
 			<h6>Routing Middleware</h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php    
+            <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
     //These callbacks are called before routing
     ->preprocess(function($request, $response) {})
@@ -470,12 +470,12 @@ cradle()
 </code></pre>
 
 			<h6>Events</h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php    
+            <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()
     //listens to multiple events in one go
     //and executes in linear order
     ->flow(
-        'on event', 
+        'on event',
         'step1',             //can accept an event handler
         'Controller@step2',  //can accept controller methods
         'Controller::step3', //can accept static methods
@@ -509,10 +509,10 @@ cradle()
 
 </code></pre>
 
-			<p>The rest of the functionality surrounds the methods above and are predefined for your 
-            convenience. Bootstrap methods are located in the <code class="language-php">/bootstrap/</code> 
+			<p>The rest of the functionality surrounds the methods above and are predefined for your
+            convenience. Bootstrap methods are located in the <code class="language-php">/bootstrap/</code>
             folder and can be changed according to your project needs.</p>
-			
+
             <h6>Global Package Methods defined in <code class="language-php">/bootstrap/</code></h6>
 			<pre class="code line-numbers language-php"><code>&lt;?php
 //returns the absolute paths in this project
@@ -613,7 +613,7 @@ cradle()->flow(
                 </ul>
             </div>
         </div>
-        
+
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/intro.html">Getting Started</a></li>
@@ -621,8 +621,8 @@ cradle()->flow(
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
-        
-        
+
+
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>

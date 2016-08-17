@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8" />
         <title>Cradle PHP</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        
-        
+
+
+
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		
+
         <link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        
+
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-        
+
         <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
         <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
     </head>
@@ -40,7 +40,7 @@
             </button>
             <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                 <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/intro.html">Documentation</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-            
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -56,19 +56,18 @@
         </header>
         <section class="body">
             <div class="container">
-                
+
                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
     <h5>Getting Started</h5>
     <ul>
-        <li><a href="/docs/install.html">Install</a></li>
-        <li><a href="/docs/intro.html">Introduction</a></li>
+        <li><a href="/docs/install.html">Basic Install</a></li>
+        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
     </ul>
 
     <h5>Features</h5>
     <ul>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/events.html">Events</a></li>
         <li><a href="/docs/flows.html">Flows</a></li>
         <li><a href="/docs/routing.html">Routing</a></li>
@@ -76,30 +75,31 @@
         <li><a href="/docs/request.html">Request</a></li>
         <li><a href="/docs/response.html">Response</a></li>
         <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/integration.html">Integration</a></li>
         <li><a href="/docs/packages.html">Packages</a></li>
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Install</h1>
-            
+        	<h1>Basic Install</h1>
+
             <ul>
             	<li><i class="fa fa-arrow-right"></i><a href="#requirements">Server Requirements</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#install">Installation</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#load">Load the Page</a></li>
             </ul>
-        
+
         	<a name="requirements"></a>
             <h2><i class="fa fa-arrow-down"></i> Server Requirements</h2>
-            
+
             <p>The following are needed in order to successfully install Cradle. Please make sure your sever meets the following requirements.</p>
-            
+
             <ul>
             	<li>PHP >= 5.6</li>
                 <li>PDO PHP Extension</li>
                 <li>Composer</li>
             </ul>
-            
+
         	<a name="install"></a>
             <h2><i class="fa fa-arrow-down"></i> Installation</h2>
 
@@ -111,23 +111,23 @@ $ composer create-project -s dev cradlephp/cradle &lt;project folder name&gt;
 </code></pre>
 
 			<p>Then go <code class="language-php">cd &lt;project folder name&gt;/public</code> and run the following.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 $ php -S localhost:8000
 
 </code></pre>
-            
-            <p>Optionally, you can configure your application's document / web root to the public directory.</p> 
-            
+
+            <p>Optionally, you can configure your application's document / web root to the public directory.</p>
+
             <a name="load"></a>
 			<h2><i class="fa fa-arrow-down"></i> Load the Page</h2>
-			
-            <p>Open your browser to <code class="language-php">http://localhost:8000</code> 
+
+            <p>Open your browser to <code class="language-php">http://localhost:8000</code>
             and you should see the following.</p>
-            
+
             <pre class="well">Welcome to Cradle!
 Now remove this process flow :)</pre>
-            
+
         </div>
     </div>
 </div>
@@ -146,7 +146,7 @@ Now remove this process flow :)</pre>
                 </ul>
             </div>
         </div>
-        
+
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/intro.html">Getting Started</a></li>

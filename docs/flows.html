@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8" />
         <title>Cradle PHP</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        
-        
+
+
+
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		
+
         <link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        
+
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-        
+
         <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
         <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
     </head>
@@ -40,7 +40,7 @@
             </button>
             <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                 <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/intro.html">Documentation</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-            
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -56,19 +56,18 @@
         </header>
         <section class="body">
             <div class="container">
-                
+
                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
     <h5>Getting Started</h5>
     <ul>
-        <li><a href="/docs/install.html">Install</a></li>
-        <li><a href="/docs/intro.html">Introduction</a></li>
+        <li><a href="/docs/install.html">Basic Install</a></li>
+        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
     </ul>
 
     <h5>Features</h5>
     <ul>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/events.html">Events</a></li>
         <li><a href="/docs/flows.html">Flows</a></li>
         <li><a href="/docs/routing.html">Routing</a></li>
@@ -76,37 +75,38 @@
         <li><a href="/docs/request.html">Request</a></li>
         <li><a href="/docs/response.html">Response</a></li>
         <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/integration.html">Integration</a></li>
         <li><a href="/docs/packages.html">Packages</a></li>
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Flows</h1>
-            
+
             <ul>
             	<li><i class="fa fa-arrow-right"></i><a href="#handling">Handling</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#fork">Forking a Flow</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#import">Importing a Flow</a></li>
             </ul>
-            
+
             <a name="handling"></a>
             <h2><i class="fa fa-arrow-down"></i> Handling</h2>
-            
+
             <p>Flows is a subset of <a href="/docs/events.html">Events</a> which means that you
-            can also use <a href="/docs/events.html#advance">Advanced Listeners</a>, and the way 
-            event handlers are done here are slightly different. Much like the 
-            <a href="/docs/events.html#basic">Event Basics</a> event you can include event handers 
+            can also use <a href="/docs/events.html#advance">Advanced Listeners</a>, and the way
+            event handlers are done here are slightly different. Much like the
+            <a href="/docs/events.html#basic">Event Basics</a> event you can include event handers
             rather than defining in the same file (though both ways work too).</p>
-      
+
             <h6>Include Handlers</h6>
 			<pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->flow('Some Event', include('/some/event/handler'));
 
 </code></pre>
-			
-            <p>Yes it does look like events, because it is events. Where it starts to change is flows 
+
+            <p>Yes it does look like events, because it is events. Where it starts to change is flows
             can handle class handlers and callable function strings like the following.</p>
-			
+
             <h6>Class Handlers</h6>
 			<pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->flow('Some Event', 'Controller@action');
@@ -115,8 +115,8 @@ cradle()->flow('Some Event', 'Controller::action');
 
 </code></pre>
 
-			<p>With the example above, we see that there is an event handler called 
-            <code class="language-php">'Controller@action'</code>. This will instantiate 
+			<p>With the example above, we see that there is an event handler called
+            <code class="language-php">'Controller@action'</code>. This will instantiate
             the class called <code class="language-php">Controller</code> and then call a method
             called <code class="language-php">action()</code> given the above example. An example
             Controller class looks like the following.</p>
@@ -132,24 +132,24 @@ class Controller
 }
 
 </code></pre>
-			
+
             <div class="alert alert-danger"><i class="fa fa-times-circle"></i>
             Controllers that require constructor arguments will result in an error.
             </div>
-            
-			<div class="alert alert-info"><i class="fa fa-info-circle"></i> 
-            Though this example shows a Class Controller, Cradle doesn't require a 
+
+			<div class="alert alert-info"><i class="fa fa-info-circle"></i>
+            Though this example shows a Class Controller, Cradle doesn't require a
             specific Controller nor a specific file structure.
             </div>
-			
-            <p>Another thing that flows can do is handle multiple event handlers in one go, 
-            which is why this method is called a flow. An example on how to trigger multiple 
+
+            <p>Another thing that flows can do is handle multiple event handlers in one go,
+            which is why this method is called a flow. An example on how to trigger multiple
             event handlers using flows is shown below.</p>
-			
+
             <h6>Handler Flows</h6>
 			<pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->flow(
-	'Some Event', 
+	'Some Event',
     'Another Event',
     include('/another/event.php'),
     'Controller@action',
@@ -158,37 +158,37 @@ cradle()->flow(
 );
 
 </code></pre>
-			
+
             <a name="fork"></a>
             <h2><i class="fa fa-arrow-down"></i> Forking a Flow</h2>
-            
-            <p>Using triggers inside an event handler will allow a way to fork methods in 
+
+            <p>Using triggers inside an event handler will allow a way to fork methods in
             flows as well. To set up a fork, the first thing to do is create a trigger inside
             an event handler like the example below.</p>
-            
+
 			<pre class="code line-numbers language-php"><code>&lt;?php
 return function() {
 	//Do Something here
-    
+
     //Trigger a fork
     if($good) {
-    	$this->triggerSubflow('A Good Event');
+    	$this->subflow('A Good Event');
     } else {
-    	$this->triggerSubflow('A Bad Event');
+    	$this->subflow('A Bad Event');
     }
 };
 
 </code></pre>
-            
-            <p>The above example shows two subflows being triggered called  
+
+            <p>The above example shows two subflows being triggered called
             <code class="language-php">'A Good Event'</code> and
-            <code class="language-php">'A Bad Event'</code>. With these subflows we can 
+            <code class="language-php">'A Bad Event'</code>. With these subflows we can
             now apply a fork. The following shows how this can be done.</p>
 
             <h6>Applying a Fork</h6>
   			<pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->flow(
-	'Some Event', 
+	'Some Event',
     'Another Event',
     include('/another/event.php'),
     array(
@@ -203,31 +203,31 @@ cradle()->flow(
 );
 
 </code></pre>
- 
- 			<p>The way we describe forked events in flows are with arrays. In this example 
-            above, when a <code class="language-php">'A Good Event'</code> happens, 
-            <code class="language-php">'Controller@action'</code> will be fired off. 
-            Oppositely, when a <code class="language-php">'A Bad Event'</code> happens, 
-            <code class="language-php">'Controller::action'</code> will be fired off.</p> 
- 
-			<div class="alert alert-info"><i class="fa fa-info-circle"></i> 
+
+ 			<p>The way we describe forked events in flows are with arrays. In this example
+            above, when a <code class="language-php">'A Good Event'</code> happens,
+            <code class="language-php">'Controller@action'</code> will be fired off.
+            Oppositely, when a <code class="language-php">'A Bad Event'</code> happens,
+            <code class="language-php">'Controller::action'</code> will be fired off.</p>
+
+			<div class="alert alert-info"><i class="fa fa-info-circle"></i>
             A fork doesn't actually run in parallel. PHP is still linear.
-            </div>        
-			
+            </div>
+
             <a name="import"></a>
             <h2><i class="fa fa-arrow-down"></i> Importing a Flow</h2>
-            
-            <p>Using the import tool, we can optionally store flows in another 
+
+            <p>Using the import tool, we can optionally store flows in another
             file, that way, we can use the same flows for different projects. To import
             a flow, we can use the following method below.</p>
-            
+
             <h6>Importing a Flow</h6>
 <pre class="code line-numbers language-php"><code>&lt;?php
 
 cradle()->import(include('/path/to/flow.php'));
 
 </code></pre>
-			
+
             <p>An import file is simply a file that returns an array. An example on how
             it looks like is shown by the following.</p>
 
@@ -237,7 +237,7 @@ cradle()->import(include('/path/to/flow.php'));
 return array(
 	array(
     	'Form Submit',
-    	'Some Form Event', 
+    	'Some Form Event',
         'Another Form Event',
         array(
             'A Good Form Event',
@@ -250,14 +250,14 @@ return array(
     ),
     array(
     	'Render Page',
-        'Some Page Event', 
+        'Some Page Event',
         'Another Page Event',
     )
 );
 </code></pre>
 
-			
-            
+
+
         </div>
     </div>
 </div>
@@ -276,7 +276,7 @@ return array(
                 </ul>
             </div>
         </div>
-        
+
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/intro.html">Getting Started</a></li>
@@ -284,8 +284,8 @@ return array(
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
-        
-        
+
+
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>

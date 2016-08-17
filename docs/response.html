@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8" />
         <title>Cradle PHP</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        
-        
+
+
+
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		
+
         <link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        
+
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-        
+
         <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
         <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
     </head>
@@ -40,7 +40,7 @@
             </button>
             <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                 <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/intro.html">Documentation</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-            
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -56,19 +56,18 @@
         </header>
         <section class="body">
             <div class="container">
-                
+
                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
     <h5>Getting Started</h5>
     <ul>
-        <li><a href="/docs/install.html">Install</a></li>
-        <li><a href="/docs/intro.html">Introduction</a></li>
+        <li><a href="/docs/install.html">Basic Install</a></li>
+        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
     </ul>
 
     <h5>Features</h5>
     <ul>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/events.html">Events</a></li>
         <li><a href="/docs/flows.html">Flows</a></li>
         <li><a href="/docs/routing.html">Routing</a></li>
@@ -76,29 +75,30 @@
         <li><a href="/docs/request.html">Request</a></li>
         <li><a href="/docs/response.html">Response</a></li>
         <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/integration.html">Integration</a></li>
         <li><a href="/docs/packages.html">Packages</a></li>
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Response</h1>
-            
+
             <ul>
             	<li><i class="fa fa-arrow-right"></i><a href="#registry">Registry</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#methods">Response Methods </a></li>
             </ul>
-            
+
             <a name="registry"></a>
             <h2><i class="fa fa-arrow-down"></i> Registry</h2>
-            
-            <p>A response is a type of registry and a registry is a type of array object in which, 
+
+            <p>A response is a type of registry and a registry is a type of array object in which,
             we are dealing with one property which is an array. Every method in an array object
             helps interacting with that object like a native array and with a registry, every method
-            is designed to make it easier to manipulate the contents of an array. Particularly, a 
-            registry contains methods to manage a multi dimensional array. Since a response contains 
+            is designed to make it easier to manipulate the contents of an array. Particularly, a
+            registry contains methods to manage a multi dimensional array. Since a response contains
             header, status, content, etc. a response object deals with these like a registry as well.
             But at the end of the day, a registry is a glorified array.</p>
-            
+
             <h6>Remember Routes Uses Responses</h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->get('Some Event', function($response, $response) {
@@ -108,14 +108,14 @@ cradle()->get('Some Event', function($response, $response) {
 </code></pre>
 
 			<p>To see what's inside of a response, you can simply echo it out like the following.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 echo $response;
 
 </code></pre>
-            
+
             <p>And it will show JSON like the one representing this page.</p>
-            
+
             <pre class="code line-numbers language-json"><code>
 {
     "headers": {
@@ -137,64 +137,64 @@ echo $response;
 }
 
 </code></pre>
-            
-            <p>To access the <code class="language-php">"Registry"</code> in the above JSON, 
+
+            <p>To access the <code class="language-php">"Registry"</code> in the above JSON,
             you can do so in two ways</p>
-            
+
 			<pre class="code line-numbers language-php"><code>
 $response->get('body', 'results', 'menu', '#registry');
 
 $response->getDot('body.results.menu.#registry');
 
-</code></pre>   
-        
-            <p>Like wise, setting that same path to <code class="language-php">"Introduction"</code> 
+</code></pre>
+
+            <p>Like wise, setting that same path to <code class="language-php">"Introduction"</code>
             can be done like this.</p>
-                
+
 			<pre class="code line-numbers language-php"><code>
 $response->set('body', 'results', 'menu', '#registry', 'Introduction');
 
 $response->setDot('body.results.menu.#registry', 'Introduction');
 
-</code></pre>  
-        
+</code></pre>
+
         	<p>Removing that path is similar as well.</p>
-            
+
 			<pre class="code line-numbers language-php"><code>
 $response->remove('body', 'results', 'menu', '#registry');
 
 $response->removeDot('body.results.menu.#registry');
 
 
-</code></pre> 
-			
+</code></pre>
+
             <p>And checking for data can be like this.</p>
-            
+
 			<pre class="code line-numbers language-php"><code>
 $response->exists('body', 'results', 'menu', '#registry');
 
 $response->isDot('body.results.menu.#registry');
 
 
-</code></pre>            
-            
+</code></pre>
+
             <div class="alert alert-info"><i class="fa fa-info-circle"></i>
             If you have an actual <code class="language-php">.</code> in your path,
-            you can change the delimeter like 
+            you can change the delimeter like
             <code class="language-php">$response->getDot('body-results-menu-#registry', '-');</code>
             </div>
-            
+
             <a name="methods"></a>
             <h2><i class="fa fa-arrow-down"></i> Response Methods</h2>
-            
+
             <h3>Content</h3>
-            
-            <p>Though at the end a response body should be a string, dealing 
+
+            <p>Though at the end a response body should be a string, dealing
             with the body before that could be an array. This makes a lot of sense
-            if you are building REST calls for example. So content methods comes in 
+            if you are building REST calls for example. So content methods comes in
             two flavors, when it's an array or when it's a string. When it's an array,
             the response object will be built out like the following.</p>
-            
+
             <pre class="code line-numbers language-php"><code>&lt;?php
 array(
     'error' => false,
@@ -209,7 +209,7 @@ array(
 </code></pre>
 
 			<p>And the following methods can help build this structure.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 
 $response->isContentFlat(); //is it a string or array?
@@ -224,10 +224,10 @@ $response->getValidation(...$args);
 
 $response->setError(true, $message);
 
-</code></pre> 
+</code></pre>
 
 			<p>And when you know content is a string, you can use these methods.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 $response->getContent(true); //if the content is an array make it into json
 
@@ -235,13 +235,13 @@ $response->hasContent();
 
 $response->setContent($content);
 
-</code></pre> 
-            
+</code></pre>
+
 			<h3>Other Methods</h3>
-            
-            <p>There's quite a few other useful methods worth noting as well, 
+
+            <p>There's quite a few other useful methods worth noting as well,
             but to give you the gist of it, here they are.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 $response->addHeader(...$args);
 
@@ -251,10 +251,10 @@ $response->setStatus($code, $status);
 
 $response->getStatus();
 
-</code></pre> 
-            
+</code></pre>
+
         </div>
-        
+
     </div>
 </div>
             </div>
@@ -272,7 +272,7 @@ $response->getStatus();
                 </ul>
             </div>
         </div>
-        
+
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/intro.html">Getting Started</a></li>

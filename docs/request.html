@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8" />
         <title>Cradle PHP</title>
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
-        
-        
+
+
+
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		
+
         <link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        
+
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-        
+
         <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
         <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
     </head>
@@ -40,7 +40,7 @@
             </button>
             <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
         </div>
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                 <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/intro.html">Documentation</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-            
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -56,19 +56,18 @@
         </header>
         <section class="body">
             <div class="container">
-                
+
                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
     <h5>Getting Started</h5>
     <ul>
-        <li><a href="/docs/install.html">Install</a></li>
-        <li><a href="/docs/intro.html">Introduction</a></li>
+        <li><a href="/docs/install.html">Basic Install</a></li>
+        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
     </ul>
 
     <h5>Features</h5>
     <ul>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/events.html">Events</a></li>
         <li><a href="/docs/flows.html">Flows</a></li>
         <li><a href="/docs/routing.html">Routing</a></li>
@@ -76,36 +75,37 @@
         <li><a href="/docs/request.html">Request</a></li>
         <li><a href="/docs/response.html">Response</a></li>
         <li><a href="/docs/piping.html">Piping</a></li>
+        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
         <li><a href="/docs/integration.html">Integration</a></li>
         <li><a href="/docs/packages.html">Packages</a></li>
     </ul>
 </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Request</h1>
-            
+
             <ul>
             	<li><i class="fa fa-arrow-right"></i><a href="#registry">Registry</a></li>
             	<li><i class="fa fa-arrow-right"></i><a href="#methods">Request Methods </a></li>
             </ul>
-            
+
             <a name="registry"></a>
             <h2><i class="fa fa-arrow-down"></i> Registry</h2>
-            
-            <p>A request is a type of registry and a registry is a type of array object in which, 
+
+            <p>A request is a type of registry and a registry is a type of array object in which,
             we are dealing with one property which is an array. Every method in an array object
             helps interacting with that object like a native array and with a registry, every method
-            is designed to make it easier to manipulate the contents of an array. Particularly, a 
+            is designed to make it easier to manipulate the contents of an array. Particularly, a
             registry contains methods to manage a multi dimensional array. Since there are a lot of
-            arrays in a PHP request like 
+            arrays in a PHP request like
             <code class="language-php">$_POST</code>,
             <code class="language-php">$_GET</code>,
             <code class="language-php">$_FILES</code>,
             <code class="language-php">$_SERVER</code>,
-            <code class="language-php">$_SESSION</code>, 
-            <code class="language-php">$_COOKIE</code>, 
-            a request object deals with these like a registry as well. But at the end of the day, 
+            <code class="language-php">$_SESSION</code>,
+            <code class="language-php">$_COOKIE</code>,
+            a request object deals with these like a registry as well. But at the end of the day,
             a registry is a glorified array.</p>
-            
+
             <h6>Remember Routes Uses Requests</h6>
             <pre class="code line-numbers language-php"><code>&lt;?php
 cradle()->get('Some Event', function($request, $response) {
@@ -115,14 +115,14 @@ cradle()->get('Some Event', function($request, $response) {
 </code></pre>
 
 			<p>To see what's inside of a request, you can simply echo it out like the following.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 echo $request;
 
 </code></pre>
-            
+
             <p>And it will show JSON like the one representing this page.</p>
-            
+
             <pre class="code line-numbers language-json"><code>
 {
     "args": null,
@@ -187,62 +187,62 @@ echo $request;
 }
 
 </code></pre>
-            
-            <p>To access the <code class="language-php">"request.html"</code> in the above JSON, 
+
+            <p>To access the <code class="language-php">"request.html"</code> in the above JSON,
             you can do so in two ways</p>
-            
+
 			<pre class="code line-numbers language-php"><code>
 $request->get('route', 'variables', 0);
 
 $request->getDot('route.variables.0');
 
-</code></pre>   
-        
-            <p>Like wise, setting that same path to <code class="language-php">"flows.html"</code> 
+</code></pre>
+
+            <p>Like wise, setting that same path to <code class="language-php">"flows.html"</code>
             can be done like this.</p>
-                
+
 			<pre class="code line-numbers language-php"><code>
 $request->set('route', 'variables', 0, 'flows.html');
 
 $request->setDot('route.variables.0', 'flows.html');
 
-</code></pre>  
-        
+</code></pre>
+
         	<p>Removing that path is similar as well.</p>
-            
+
 			<pre class="code line-numbers language-php"><code>
 $request->remove('route', 'variables', 0);
 
 $request->removeDot('route.variables.0');
 
-</code></pre> 
-			
+</code></pre>
+
             <p>And checking for data can be like this.</p>
-            
+
 			<pre class="code line-numbers language-php"><code>
 $request->exists('route', 'variables', 0);
 
 $request->isDot('route.variables.0');
 
-</code></pre>            
-            
+</code></pre>
+
             <div class="alert alert-info"><i class="fa fa-info-circle"></i>
             If you have an actual <code class="language-php">.</code> in your path,
-            you can change the delimeter like 
+            you can change the delimeter like
             <code class="language-php">$request->getDot('route-variables-0', '-');</code>
             </div>
-            
+
             <a name="methods"></a>
             <h2><i class="fa fa-arrow-down"></i> Request Methods</h2>
-            
-            <p>Wrapping these methods further the CRUD for 
+
+            <p>Wrapping these methods further the CRUD for
             <code class="language-php">$_POST</code>,
             <code class="language-php">$_GET</code>,
             <code class="language-php">$_FILES</code>,
-            <code class="language-php">$_SESSION</code>, 
-            <code class="language-php">$_COOKIE</code> 
+            <code class="language-php">$_SESSION</code>,
+            <code class="language-php">$_COOKIE</code>
             looks like the following </p>
-            
+
             <pre class="code line-numbers language-php"><code>
 $request->getPost(...$path);
 
@@ -250,16 +250,16 @@ $request->setPost(...$path, $value);
 
 $request->hasPost(...$path);
 
-</code></pre> 
-			
+</code></pre>
+
             <h3>Stage</h3>
-            <p>Also to support <a href="/docs/piping.html">Piping</a>, there is an ever 
+            <p>Also to support <a href="/docs/piping.html">Piping</a>, there is an ever
             changing property called <code class="language-php">$request->stage</code>,
             which is similar to <code class="language-php">$_REQUEST</code>,
             in that the <code class="language-php">$_GET</code>,
-            <code class="language-php">$_POST</code> and <strong>binded URL 
+            <code class="language-php">$_POST</code> and <strong>binded URL
             parameters</strong> are already populated respectively in that order.</p>
-			
+
             <pre class="code line-numbers language-php"><code>
 $request->getStage(...$path);
 
@@ -268,12 +268,12 @@ $request->setStage(...$path, $value);
 $request->hasStage(...$path);
 
 </code></pre>
-            
+
             <h3>Server</h3>
-            
-			<p><code class="language-php">$_SERVER</code> is usually one dimensional. So 
+
+			<p><code class="language-php">$_SERVER</code> is usually one dimensional. So
             methods vary to this.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 $request->getServer($key);
 
@@ -281,24 +281,24 @@ $request->setServer($key, $value);
 
 $request->hasServer($key);
 
-</code></pre> 
+</code></pre>
 
 			<h3>Content</h3>
-            
-            <p>In a standard request, you could have received raw data via 
-            <code class="language-php">php://input</code>. To get this data 
+
+            <p>In a standard request, you could have received raw data via
+            <code class="language-php">php://input</code>. To get this data
             you can use <code class="language-php">$request->getContent()</code>
-            
+
             <div class="alert alert-info"><i class="fa fa-info-circle"></i>
-            Of course you can check if 
+            Of course you can check if
             <code class="language-php">$request->hasContent();</code>.
             </div>
 
 			<h3>Other Methods</h3>
-            
-            <p>There's quite a few other useful methods worth noting as well, 
+
+            <p>There's quite a few other useful methods worth noting as well,
             but to give you the gist of it, here they are.</p>
-            
+
             <pre class="code line-numbers language-php"><code>
 $request->getVariables($index);
 
@@ -318,10 +318,10 @@ $request->getQuery();
 
 $request->getArgs(); //CLI $argv;
 
-</code></pre> 
-            
+</code></pre>
+
         </div>
-        
+
     </div>
 </div>
             </div>
@@ -339,7 +339,7 @@ $request->getArgs(); //CLI $argv;
                 </ul>
             </div>
         </div>
-        
+
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/intro.html">Getting Started</a></li>
@@ -347,8 +347,8 @@ $request->getArgs(); //CLI $argv;
                 <li><a href="/">Documentation</a></li>
             </ul>
         </div>
-        
-        
+
+
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
