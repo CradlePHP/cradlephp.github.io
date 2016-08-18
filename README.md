@@ -30,14 +30,14 @@ foreach($files as $file) {
     }
 
     //first parse the markdown
-    $content = file_get_contents($source . $file);
-    $content = $parsedown->text($content);
+    $original = file_get_contents($source . $file);
+    $original = $parsedown->text($original);
 
     //next add classes to code
     $content = str_replace(
         '<pre><code>',
         '<pre class="code line-numbers language-php"><code class="marked">',
-        $content
+        $original
     );
 
     $content = str_replace('</code></pre>', PHP_EOL.'</code></pre>', $content);
@@ -85,9 +85,24 @@ foreach($files as $file) {
     //next use handlebars to add to the page
     $template = $handlebars->compile(file_get_contents(__DIR__.'/template/_page.html'));
 
+    //<meta name="author" content="Taylor Otwell">
+	//<meta name="description" content="Laravel - The PHP framework for web artisans.">
+	//<meta name="keywords" content="laravel, php, framework, web, artisans, taylor otwell">
+
+    $name = substr($file, 0, -3);
+    $title = ucwords($name);
+    $description = strip_tags($original);
+    $description = preg_replace('#\s+#is', ' ', $description);
+    $description = substr(strip_tags($description), 0, 130);
+    $keywords = 'cradle,php,'.substr($file, 0, -3);
+
     $content = $template(array(
         'page' => array(
-            'title' =>'CradlePHP'
+            'title' => $title . ' - CradlePHP',
+            'meta' => array(
+                'description' => $description,
+                'keywords' => $keywords
+            )
         ),
         'content' => $content
     ));
