@@ -94,11 +94,12 @@
         <div class="left col-xs-12 col-md-2">
             <h5>Getting Started</h5>
 <ul>
-    <li><a href="/docs/install.html">Vanilla Install</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+    <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
 </ul>
 
-<h5>Features</h5>
+<h5>Concepts</h5>
 <ul>
     <li><a href="/docs/events.html">Events</a></li>
     <li><a href="/docs/flows.html">Flows</a></li>
@@ -107,10 +108,43 @@
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
     <li><a href="/docs/piping.html">Piping</a></li>
-    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+</ul>
+
+<h5>Exporting</h5>
+<ul>
     <li><a href="/docs/integration.html">Integration</a></li>
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
+
+<!--<h5>Kitchen Sink</h5>
+<ul>
+    <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-schema.html">Schema</a></li>
+    <li><a href="/docs/sink-auth.html">Authentication</a></li>
+    <li><a href="/docs/sink-file.html">Files</a></li>
+    <li><a href="/docs/sink-mail.html">Mail</a></li>
+    <li><a href="/docs/sink-queue.html">Queue</a></li>
+    <li><a href="/docs/sink-csrf.html">CSRF</a></li>
+    <li><a href="/docs/sink-captcha.html">Captcha</a></li>
+    <li><a href="/docs/sink-handlebars.html">Handlebars</a></li>
+</ul>
+
+<h5>Core Traits</h5>
+<ul>
+    <li><a href="/docs/helper.html">Helper</a></li>
+    <li><a href="/docs/data.html">Data</a></li>
+    <li><a href="/docs/resolver.html">Resolver</a></li>
+    <li><a href="/docs/profiler.html">Profiler</a></li>
+</ul>
+
+<h5>Core Packages</h5>
+<ul>
+    <li><a href="/docs/i18n.html">i18n</a></li>
+    <li><a href="/docs/image.html">Image</a></li>
+    <li><a href="/docs/curl.html">cURL</a></li>
+    <li><a href="/docs/sql.html">SQL</a></li>
+    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+</ul>-->
    
         </div>
         <div class="right col-xs-12 col-md-10">
@@ -127,15 +161,17 @@
 <p><a name="boostrap"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">boostrap.php</code></h2>
 <p>If you open bootstrap.php in your project root folder, you will see a set of preprocessors called bootstrap files, each are located in the /bootstrap/ folder.</p>
-<p>return cradle()
-//now bootstrap
--&gt;preprocess(include('bootstrap/paths.php'))
--&gt;preprocess(include('bootstrap/debug.php'))
--&gt;preprocess(include('bootstrap/errors.php'))
--&gt;preprocess(include('bootstrap/services.php'))
--&gt;preprocess(include('bootstrap/i18n.php'))
--&gt;preprocess(include('bootstrap/timezone.php'))
--&gt;preprocess(include('bootstrap/queue.php'))</p>
+<pre class="code line-numbers language-php"><code class="marked">
+return cradle()
+    //now bootstrap
+    -&gt;preprocess(include('bootstrap/paths.php'))
+    -&gt;preprocess(include('bootstrap/debug.php'))
+    -&gt;preprocess(include('bootstrap/errors.php'))
+    -&gt;preprocess(include('bootstrap/services.php'))
+    -&gt;preprocess(include('bootstrap/i18n.php'))
+    -&gt;preprocess(include('bootstrap/timezone.php'))
+
+</code></pre>
 <p>These were put on the project level in the case you need you modify them for
 your project needs. You are free to add custom preprocessors here as well.
 But, you want to be careful in removing these preprocessors as some are needed
@@ -200,11 +236,8 @@ for example.</p>
 <h6><code class="language-php">/config/services.php</code></h6>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php //--&gt;
 
-use PhpAmqpLib\Connection\AMQPLazyConnection;
-
 return array (
-    'sql-main'   =&gt; new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', ''),
-    'queue-main' =&gt; new AMQPLazyConnection('127.0.0.1', 5672, 'guest', 'guest')
+    'sql-main'   =&gt; new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', '')
 );
 
 </code></pre>

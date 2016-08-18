@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Response Registry Response Methods Registry A response is a type of registry and a registry is a type of array object in which, we" />
+        <meta name="description" content="Response Registry Response Methods API (1) ContentTrait (3) HeaderTrait (3) PageTrait (9) RestTrait (15) StatusTrait (2) Registry " />
         
         <meta name="keywords" content="php,framework,cradle,response" />
         
@@ -23,7 +23,7 @@
 
         <meta property="og:title" content="Response - CradlePHP" />
 
-        <meta property="og:description" content="Response Registry Response Methods Registry A response is a type of registry and a registry is a type of array object in which, we" />
+        <meta property="og:description" content="Response Registry Response Methods API (1) ContentTrait (3) HeaderTrait (3) PageTrait (9) RestTrait (15) StatusTrait (2) Registry " />
 
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@
 
         <meta name="twitter:title" content="Response - CradlePHP" />
 
-        <meta name="twitter:description" content="Response Registry Response Methods Registry A response is a type of registry and a registry is a type of array object in which, we" />
+        <meta name="twitter:description" content="Response Registry Response Methods API (1) ContentTrait (3) HeaderTrait (3) PageTrait (9) RestTrait (15) StatusTrait (2) Registry " />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -94,11 +94,12 @@
         <div class="left col-xs-12 col-md-2">
             <h5>Getting Started</h5>
 <ul>
-    <li><a href="/docs/install.html">Vanilla Install</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+    <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
 </ul>
 
-<h5>Features</h5>
+<h5>Concepts</h5>
 <ul>
     <li><a href="/docs/events.html">Events</a></li>
     <li><a href="/docs/flows.html">Flows</a></li>
@@ -107,10 +108,43 @@
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
     <li><a href="/docs/piping.html">Piping</a></li>
-    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+</ul>
+
+<h5>Exporting</h5>
+<ul>
     <li><a href="/docs/integration.html">Integration</a></li>
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
+
+<!--<h5>Kitchen Sink</h5>
+<ul>
+    <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-schema.html">Schema</a></li>
+    <li><a href="/docs/sink-auth.html">Authentication</a></li>
+    <li><a href="/docs/sink-file.html">Files</a></li>
+    <li><a href="/docs/sink-mail.html">Mail</a></li>
+    <li><a href="/docs/sink-queue.html">Queue</a></li>
+    <li><a href="/docs/sink-csrf.html">CSRF</a></li>
+    <li><a href="/docs/sink-captcha.html">Captcha</a></li>
+    <li><a href="/docs/sink-handlebars.html">Handlebars</a></li>
+</ul>
+
+<h5>Core Traits</h5>
+<ul>
+    <li><a href="/docs/helper.html">Helper</a></li>
+    <li><a href="/docs/data.html">Data</a></li>
+    <li><a href="/docs/resolver.html">Resolver</a></li>
+    <li><a href="/docs/profiler.html">Profiler</a></li>
+</ul>
+
+<h5>Core Packages</h5>
+<ul>
+    <li><a href="/docs/i18n.html">i18n</a></li>
+    <li><a href="/docs/image.html">Image</a></li>
+    <li><a href="/docs/curl.html">cURL</a></li>
+    <li><a href="/docs/sql.html">SQL</a></li>
+    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+</ul>-->
    
         </div>
         <div class="right col-xs-12 col-md-10">
@@ -118,6 +152,14 @@
 <ul>
 <li><i class="fa fa-arrow-right"></i><a href="#registry">Registry</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#response">Response Methods</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#api">API (1)</a>
+<ul>
+<li><i class="fa fa-arrow-right"></i><a href="#content">ContentTrait (3)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#head">HeaderTrait (3)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#page">PageTrait (9)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#rest">RestTrait (15)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#status">StatusTrait (2)</a></li>
+</ul></li>
 </ul>
 <p><a name="registry"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Registry</h2>
@@ -201,16 +243,16 @@ REST calls for example. So content methods comes in two flavors, when it's
 an array or when it's a string. When it's an array, the response object will
 be built out like the following.</p>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-array(
+[
     'error' =&gt; false,
     'message' =&gt; 'A message',
-    'validation' =&gt; array(
+    'validation' =&gt; [
         'post_title' =&gt; 'Cannot be empty'
-    )
-    'results' =&gt; array(
+    ]
+    'results' =&gt; [
         'post_title' =&gt; 'A Title named Foo Bar'
-    )
-)
+    ]
+]
 
 </code></pre>
 <p>And the following methods can help build this structure.</p>
@@ -227,27 +269,300 @@ $response-&gt;getValidation(...$args);
 
 $response-&gt;setError(true, $message);
 
-``
-
-And when you know content is a string, you can use these methods.
-
 </code></pre>
-<p>$response-&gt;getContent(true); //if the content is an array make it into json</p>
-<p>$response-&gt;hasContent();</p>
-<p>$response-&gt;setContent($content);</p>
+<p>And when you know content is a string, you can use these methods.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-### Other Methods
+$response-&gt;getContent(true); //if the content is an array make it into json
 
-There's quite a few other useful methods worth noting as well, but to
-give you the gist of it, here they are.
+$response-&gt;hasContent();
+
+$response-&gt;setContent($content);
 
 </code></pre>
-<p>$response-&gt;addHeader(...$args);</p>
-<p>$response-&gt;getHeader(...$args, $value);</p>
-<p>$response-&gt;setStatus($code, $status);</p>
-<p>$response-&gt;getStatus();</p>
+<p><a name="api"></a></p>
+<h2><i class="fa fa-arrow-down"></i> API</h2>
+<p><code class="language-php">load</code> - Loads a default response data</p>
 <pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;load();
+
 </code></pre>
+<hr />
+<p><a name="content"></a></p>
+<h3>ContentTrait</h3>
+<p><code class="language-php">getContent</code> - Returns the content body</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getContent();
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasContent</code> - Returns true if there's content</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;hasContent();
+
+</code></pre>
+<hr />
+<p><code class="language-php">setContent</code> - Sets the content</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setContent('foobar');
+
+</code></pre>
+<hr />
+<p><a name="head"></a></p>
+<h3>HeaderTrait</h3>
+<p><code class="language-php">addHeader</code> - Adds a header parameter</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;addHeader('Content-Type', 'text/html');
+
+$response-&gt;addHeader('Expect');
+
+</code></pre>
+<hr />
+<p><code class="language-php">getHeaders</code> - Returns either the header value given the name or the all headers</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getHeaders();
+$response-&gt;getHeaders('Content-Type', 'text/html');
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeHeaders</code> - Removes either the header value given the name or the all headers</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;removeHeaders();
+$response-&gt;removeHeaders('Content-Type');
+
+</code></pre>
+<hr />
+<p><a name="page"></a></p>
+<h3>PageTrait</h3>
+<p><code class="language-php">addMeta</code> - Adds a page meta item</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;addMeta('description', 'foobar');
+
+</code></pre>
+<hr />
+<p><code class="language-php">getFlash</code> - Returns flash data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getFlash(); //--&gt; ['message' =&gt; 'foobar', 'type' =&gt; 'success']
+
+</code></pre>
+<hr />
+<p><code class="language-php">getMeta</code> - Returns page meta data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getMeta('description'); //--&gt; 'foobar'
+
+</code></pre>
+<hr />
+<p><code class="language-php">getPage</code> - Returns parts of the page data or the entire page data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getPage('meta'); //--&gt; ['description' =&gt; 'foobar']
+$response-&gt;getPage('meta', 'description'); //--&gt; 'foobar'
+$response-&gt;getPage('title'); //--&gt; 'foobar'
+$response-&gt;getPage('flash'); //--&gt; ['message' =&gt; 'foobar', 'type' =&gt; 'success']
+$response-&gt;getPage('flash', 'message'); //--&gt; 'foobar'
+
+//...
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasPage</code> - Returns parts of the page data or the entire page data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;hasPage();
+$response-&gt;hasPage('meta');
+$response-&gt;hasPage('meta', 'description');
+$response-&gt;hasPage('title');
+$response-&gt;hasPage('flash');
+$response-&gt;hasPage('flash', 'message');
+
+//...
+
+</code></pre>
+<hr />
+<p><code class="language-php">removePage</code> - Removes parts of the page data or the entire page data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;removePage();
+$response-&gt;removePage('meta');
+$response-&gt;removePage('meta', 'description');
+$response-&gt;removePage('title');
+$response-&gt;removePage('flash');
+$response-&gt;removePage('flash', 'message');
+
+//...
+
+</code></pre>
+<hr />
+<p><code class="language-php">setFlash</code> - Sets a Page flash</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setFlash('Just letting you know');
+
+$response-&gt;setFlash('Something went wrong', 'error');
+$response-&gt;setFlash('Just letting you know', 'info');
+$response-&gt;setFlash('Something went good', 'success');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setPage</code> - Sets parts of the page data or the entire page data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setPage([
+    'title' =&gt; 'foobar',
+    'meta' =&gt; ['description' =&gt; 'foobar'],
+    'flash' =&gt; ['message' =&gt; 'Just letting you know', 'type' =&gt; 'info']
+]);
+
+$response-&gt;setPage('meta', 'description', 'foobar');
+$response-&gt;setPage('title', 'foobar');
+$response-&gt;setPage('flash', ['message' =&gt; 'Just letting you know', 'type' =&gt; 'info']);
+$response-&gt;setPage('flash', 'message', 'Just letting you know');
+
+//...
+
+</code></pre>
+<hr />
+<p><code class="language-php">setTitle</code> - Sets the page title</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setTitle('foobar');
+
+//...
+
+</code></pre>
+<hr />
+<p><a name="rest"></a></p>
+<h3>RestTrait</h3>
+<p><code class="language-php">addValidation</code> - Adds a JSON validation message or sets all the validations</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;addValidation(['post_title' =&gt; 'Cannot be empty']);
+$response-&gt;addValidation('post_title', 'Cannot be empty');
+
+</code></pre>
+<hr />
+<p><code class="language-php">getResults</code> - Returns parts of the results or the entire JSON result set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getResults();
+/*--&gt;
+[
+    'error' =&gt; false,
+    'message' =&gt; 'A message',
+    'validation' =&gt; [
+        'post_title' =&gt; 'Cannot be empty'
+    ]
+    'results' =&gt; [
+        'post_title' =&gt; 'A Title named Foo Bar'
+    ]
+]
+*/
+
+$response-&gt;getResults('error'); //--&gt; false
+$response-&gt;getResults('validation', 'post_title'); //--&gt; 'Cannot be empty'
+
+//...
+
+</code></pre>
+<hr />
+<p><code class="language-php">getMessage</code> - Returns the message</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getMessage(); //--&gt; 'A message'
+
+</code></pre>
+<hr />
+<p><code class="language-php">getMessageType</code> - Returns the message type</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getMessageType(); //--&gt; 'error' | 'success' | 'info'
+
+</code></pre>
+<hr />
+<p><code class="language-php">getValidation</code> - Returns parts of the validation or the entire validation data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getValidation(); //--&gt; ['post_title' =&gt; 'Cannot be empty']
+$response-&gt;getValidation('post_title'); //--&gt; 'Cannot be empty'
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasJson</code> - Returns true if the given part exists or if there's JSON data at all</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;hasJson(); //--&gt; true
+$response-&gt;hasJson('validation'); //--&gt; true
+$response-&gt;hasJson('validation', 'post_title'); //--&gt; true
+
+//...
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasMessage</code> - Returns true if a message was set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;hasMessage();
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasResults</code> - Returns true if the given part exists or if there's JSON results data at all</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;hasResults();
+$response-&gt;hasResults('post_title');
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasValidation</code> - Returns true if the given part exists or if there's JSON validation data at all</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;hasValidation();
+$response-&gt;hasValidation('post_title');
+
+</code></pre>
+<hr />
+<p><code class="language-php">isError</code> - Returns true if the JSON data is an error set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;isError();
+
+</code></pre>
+<hr />
+<p><code class="language-php">isSuccess</code> - Returns true if the JSON data is a successful set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;isSuccess();
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeResults</code> - Removes parts of the results or the entire JSON result set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;removeResults();
+
+$response-&gt;removeResults('error');
+$response-&gt;removeResults('validation', 'post_title');
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeValidation</code> - Removes parts of the validation or the entire JSON validation set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;removeValidation();
+
+$response-&gt;removeValidation('post_title');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setError</code> - Sets a JSON error message</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setError(true, 'An error message');
+$response-&gt;setError(false, 'A success message');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setResults</code> - Sets parts of the results or the entire JSON result set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setResults(['post_title' =&gt; 'A Title named Foo Bar']);
+
+$response-&gt;setResults('post_title', 'A Title named Foo Bar');
+
+</code></pre>
+<hr />
+<p><a name="status"></a></p>
+<h3>StatusTrait</h3>
+<p><code class="language-php">getStatus</code> - Returns the status code</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;getStatus(); //--&gt; 200
+
+</code></pre>
+<hr />
+<p><code class="language-php">setStatus</code> - Sets a status code</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setStatus(200, '200 OK');
+
+</code></pre>
+<hr />
         </div>
 
     </div>

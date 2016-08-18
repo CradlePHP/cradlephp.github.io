@@ -1,4 +1,4 @@
-# Piping
+# Piping Rules of Etiquette
 
 With all of the concepts so far with [events](/docs/events/html),
 [flows](/docs/flows.html), [routing](/docs/routing.html),
@@ -14,32 +14,24 @@ In summary, each handler just uses the `$request` object and incrementally
 populates the `$response` object. This implies a rule of etiquette that each
 handler should follow.
 
-Data to be processed should exist in `$request['stage']`. This property is
-similar to `$_REQUEST`, in that the `$_GET`, `$_POST` and *binded URL
-parameters* are already populated respectively in that order.
+1. Data to be processed should exist in `$request['stage']`. This property is similar to `$_REQUEST`, in that the `$_GET`, `$_POST` and *binded URL parameters* are already populated respectively in that order.
+2. The above implies that a step should not process any data to be saved unless it is in the `$request['stage']`.
+3. Results are pushed to `$response['json']` in array form.  Steps that populate the JSON should populate it using the following format below.
+4. Steps that populate `$response['json']` should soft push in order for other steps to further add on to the results.
+5. When the data is ready to be transformed to a readable string output, then that content should be set in `$response['body']`.
 
-The above implies that a step should not process any data to be saved
-unless it is in the `$request['stage']`. Results are pushed to
-`$response['json']` in array form.  Steps that populate the JSON should
-populate it using the following format below.
-
+###### Rule 3: JSON Format
 ```
 <?php
-array(
+[
     'error' => false,
     'message' => 'A message',
-    'validation' => array(
+    'validation' => [
         'post_title' => 'Cannot be empty'
-    )
-    'results' => array(
+    ],
+    'results' => [
         'post_title' => 'A Title named Foo Bar'
-    )
-)
+    ]
+]
 
 ```
-
-Steps that populate `$response['json']` should soft push in order for other
-steps to further add on to the results.
-
-When the data is ready to be transformed to a readable string output, then
-that content should be set in `$response['body']`.

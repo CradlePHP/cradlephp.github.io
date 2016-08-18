@@ -2,7 +2,19 @@
 
  - [Registry](#registry)
  - [Request Methods](#methods)
+ - [API (1)](#api)
+    - [CliTrait (2)](#cli)
+    - [ContentTrait (3)](#content)
+    - [CookieTrait (4)](#cookie)
+    - [FileTrait (4)](#file)
+    - [GetTrait (4)](#get)
+    - [PostTrait (4)](#post)
+    - [RouteTrait (4)](#route)
+    - [ServerTrait (10)](#server)
+    - [SessionTrait (4)](#session)
+    - [StageTrait (5)](#stage)
 
+<a name="registry"></a>
 ## Registry
 A request is a type of registry and a registry is a type of array object in
 which, we are dealing with one property which is an array. Every method in an
@@ -194,28 +206,529 @@ To get this data you can use `$request->getContent()`
 
  Of course you can check if `$request->hasContent();`.
 
-### Other Methods
-There's quite a few other useful methods worth noting as well, but to
-give you the gist of it, here they are.
+<a name="api"></a>
+## API
+
+`load` - Loads default data given by PHP
 
 ```
 
-$request->getVariables($index);
+$request->load();
 
-$request->getRoute(...$args);
+```
 
-$request->setRoute(...$args, $value);
+----
 
-$request->hasRoute(...$args);
+<a name="cli"></a>
+### CliTrait
 
-$request->getMethod();
+`getArgs` - Returns CLI args if any
 
-$request->getPath('string');
+```
 
-$request->getPath('array');
+$request->getArgs();
 
-$request->getQuery();
+```
 
-$request->getArgs(); //CLI $argv;
+----
+
+`setArgs` - Sets CLI args
+
+```
+
+$request->setArgs([1, 2, 3]);
+
+```
+
+----
+
+<a name="content"></a>
+### ContentTrait
+
+`getContent` - Returns final input stream as in `php://input`
+
+```
+
+$request->getContent();
+
+```
+
+----
+
+`hasContent` - Returns true if there was a populated input stream
+
+```
+
+$request->hasContent();
+
+```
+
+----
+
+`setContent` - Sets a custom input stream
+
+```
+
+$request->setContent(fopen('php://input'));
+
+```
+
+----
+
+<a name="cookie"></a>
+### CookieTrait
+
+`getCookies` - Returns $_COOKIE given name or all $_COOKIE
+
+```
+
+$request->getCookies();
+$request->getCookies('foo'); // $_COOKIE['foo']
+
+```
+
+----
+
+`removeCookies` - Removes $_COOKIE given name or all $_COOKIE
+
+```
+
+$request->removeCookies();
+$request->removeCookies('foo'); // $_COOKIE['foo']
+
+```
+
+----
+
+`hasCookies` - Returns true if has $_COOKIE given name or if $_COOKIE is set
+
+```
+
+$request->hasCookies();
+$request->hasCookies('foo'); // $_COOKIE['foo']
+
+```
+
+----
+
+`setCookies` - Sets $_COOKIE given name or all $_COOKIE
+
+```
+
+$request->setCookies(['foo' => 'bar']);
+$request->setCookies('foo', 'bar'); // $_COOKIE['foo']
+
+```
+
+----
+
+<a name="file"></a>
+### FileTrait
+
+`getFiles` - Returns $_FILES given name or all $_FILES
+
+```
+
+$request->getFiles();
+$request->getFiles('foo'); // $_FILES['foo']
+
+```
+
+----
+
+`removeFiles` - Removes $_FILES given name or all $_FILES
+
+```
+
+$request->removeFiles();
+$request->removeFiles('foo'); // $_FILES['foo']
+
+```
+
+----
+
+`hasFiles` - Returns true if has $_FILES given name or if $_FILES is set
+
+```
+
+$request->hasFiles();
+$request->hasFiles('foo'); // $_FILES['foo']
+
+```
+
+----
+
+`setFiles` - Sets $_FILES given name or all $_FILES
+
+```
+
+$request->setFiles(['foo' => 'bar']);
+$request->setFiles('foo', 'bar'); // $_FILES['foo']
+
+```
+
+----
+
+<a name="get"></a>
+### GetTrait
+
+`getGet` - Returns $_GET given name or all $_GET
+
+```
+
+$request->getGet();
+$request->getGet('foo'); // $_GET['foo']
+
+```
+
+----
+
+`removeGet` - Removes $_GET given name or all $_GET
+
+```
+
+$request->removeGet();
+$request->removeGet('foo'); // $_GET['foo']
+
+```
+
+----
+
+`hasGet` - Returns true if has $_GET given name or if $_GET is set
+
+```
+
+$request->hasGet();
+$request->hasGet('foo'); // $_GET['foo']
+
+```
+
+----
+
+`setGet` - Sets $_GET given name or all $_GET
+
+```
+
+$request->setGet(['foo' => 'bar']);
+$request->setGet('foo', 'bar'); // $_GET['foo']
+
+```
+
+----
+
+<a name="post"></a>
+### PostTrait
+
+`getPost` - Returns $_POST given name or all $_POST
+
+```
+
+$request->getPost();
+$request->getPost('foo'); // $_POST['foo']
+
+```
+
+----
+
+`removePost` - Removes $_POST given name or all $_POST
+
+```
+
+$request->removePost();
+$request->removePost('foo'); // $_POST['foo']
+
+```
+
+----
+
+`hasPost` - Returns true if has $_POST given name or if $_POST is set
+
+```
+
+$request->hasPost();
+$request->hasPost('foo'); // $_POST['foo']
+
+```
+
+----
+
+`setPost` - Sets $_POST given name or all $_POST
+
+```
+
+$request->setPost(['foo' => 'bar']);
+$request->setPost('foo', 'bar'); // $_POST['foo']
+
+```
+
+----
+
+<a name="route"></a>
+### RouteTrait
+
+`getRoute` - Returns route data given name or all route data
+
+```
+
+$request->getRoute();
+$request->getRoute('event');
+
+//if '/foo/*/bar' and '/foo/zoo/bar'
+$request->getRoute('variables'); //--> ['zoo']
+
+//if '/foo/:name/bar' and '/foo/zoo/bar'
+$request->getRoute('parameters'); //--> ['name' => 'zoo']
+
+```
+
+----
+
+`getParameters` - Returns route parameters given name or all parameters
+
+```
+
+$request->getParameters();
+
+//if '/foo/:name/bar' and '/foo/zoo/bar'
+$request->getParameters('foo'); //--> zoo
+
+```
+
+----
+
+`getVariables` - Returns route variables given name or all variables
+
+```
+
+$request->getVariables();
+
+//if '/foo/*/bar' and '/foo/zoo/bar'
+$request->getVariables(0); //--> zoo
+
+```
+
+----
+
+`setRoute` - Sets a request route
+
+```
+
+$request->setRoute([
+    'event' => '#GET /foo/bar#',
+    'parameters' => ['foo' => 'bar'],
+    'variables' => ['foo', 'bar'],
+]);
+
+```
+
+----
+
+<a name="server"></a>
+### ServerTrait
+
+`getMethod` - Returns method if set
+
+```
+
+$request->getMethod(); //--> GET | POST | PUT | ...
+
+```
+
+----
+
+`getPath` - Returns path data given name or all path data
+
+```
+
+$request->getPath(); //--> ['string' => '/foo/bar', 'array' => ['', 'foo', 'bar']]
+$request->getPath('string'); //--> '/foo/bar'
+$request->getPath('array'); //--> ['', 'foo', 'bar']
+
+```
+
+----
+
+`getQuery` - Returns string query if set
+
+```
+
+$request->getQuery(); //--> 'foo=bar'
+
+```
+
+----
+
+`getServer` - Returns $_SERVER given name or all $_SERVER
+
+```
+
+$request->getServer();
+$request->getServer('foo'); // $_SERVER['foo']
+
+```
+
+----
+
+`hasServer` - Returns true if has $_SERVER given name or if $_SERVER is set
+
+```
+
+$request->hasServer();
+$request->hasServer('foo'); // $_SERVER['foo']
+
+```
+
+----
+
+`isMethod` - Returns true if method is the one given
+
+```
+
+$request->isMethod('GET');
+
+```
+
+----
+
+`setMethod` - Sets request method
+
+```
+
+$request->setMethod('GET');
+
+```
+
+----
+
+`setPath` - Sets path given in string or array form
+
+```
+
+$request->setPath('/foo/bar');
+
+```
+
+----
+
+`setQuery` - Sets query string
+
+```
+
+$request->setQuery('foo=bar');
+
+```
+
+----
+
+`setServer` - Sets $_SERVER given name or all $_SERVER
+
+```
+
+$request->setServer(['foo' => 'bar']);
+$request->setServer('foo', 'bar'); // $_SERVER['foo']
+
+```
+
+----
+
+<a name="session"></a>
+### SessionTrait
+
+`getSession` - Returns $_SESSION given name or all $_SESSION
+
+```
+
+$request->getSession();
+$request->getSession('foo'); // $_SESSION['foo']
+
+```
+
+----
+
+`removeSession` - Removes $_SESSION given name or all $_SESSION
+
+```
+
+$request->removeSession();
+$request->removeSession('foo'); // $_SESSION['foo']
+
+```
+
+----
+
+`hasSession` - Returns true if has $_SESSION given name or if $_SESSION is set
+
+```
+
+$request->hasSession();
+$request->hasSession('foo'); // $_SESSION['foo']
+
+```
+
+----
+
+`setSession` - Sets $_SESSION given name or all $_SESSION
+
+```
+
+$request->setSession(['foo' => 'bar']);
+$request->setSession('foo', 'bar'); // $_SESSION['foo']
+
+```
+
+----
+
+<a name="stage"></a>
+### StageTrait
+
+`getStage` - Returns $_REQUEST given name or all $_REQUEST
+
+```
+
+$request->getStage();
+$request->getStage('foo'); // $_REQUEST['foo']
+
+```
+
+----
+
+`removeStage` - Removes $_REQUEST given name or all $_REQUEST
+
+```
+
+$request->removeStage();
+$request->removeStage('foo'); // $_REQUEST['foo']
+
+```
+
+----
+
+`hasStage` - Returns true if has $_REQUEST given name or if $_REQUEST is set
+
+```
+
+$request->hasStage();
+$request->hasStage('foo'); // $_REQUEST['foo']
+
+```
+
+----
+
+`setStage` - Sets $_REQUEST given name or all $_REQUEST
+
+```
+
+$request->setStage(['foo' => 'bar']);
+$request->setStage('foo', 'bar'); // $_REQUEST['foo']
+
+```
+
+----
+
+`setSoftStage` - Clusters $_REQUEST data together without overwriting existing data
+
+```
+
+$request->setStage(['foo' => 'bar']);
 
 ```

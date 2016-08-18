@@ -1,6 +1,7 @@
 # Events
  - [Basics](#basic)
- - [Advanced Listeners](#advanced)
+ - [Advanced](#advanced)
+ - [API (4)](#api)
 
 <a name="basic"></a>
 ## Basics
@@ -77,7 +78,7 @@ following features in the next section, describes such needs of the framework
 which you can also use at your convenience.
 
 <a name="advanced"></a>
-## Advanced Listeners
+## Advanced
 
 ### `sprintf()`
 
@@ -149,3 +150,53 @@ cradle()
  ```warning
  Using too much regular expressions will slow down your application.
  ```
+
+ <a name="api"></a>
+ ## API
+
+ `on` - Attaches an instance to be notified when an event has been triggered
+
+```
+
+cradle()->on('Some Event', function(...$args) {
+	//Do something here
+});
+
+```
+
+----
+
+ `trigger` - Notify all observers of that a specific event has happened
+
+```
+
+cradle()->trigger('Some Event', ...$args);
+
+```
+
+----
+
+ `setEventHandler` - Allows for a custom event dispatcher to be used
+
+| Parameters                    |                                                                |
+|------------------------------------------------------------------------------------------------|
+| `Cradle\Event\EventInterface` | The event interface (`new Cradle\Event\EventHandler`)          |
+|  `$static` *(bool)*           | Whether if you want to replace the global static event handler |
+
+
+```
+
+cradle()->setEventHandler(new Cradle\Event\EventHandler, false);
+
+```
+
+----
+
+ `getEventHandler` - Returns an EventHandler object if none was set, it will auto create one
+
+
+```
+
+cradle()->getEventHandler();
+
+```

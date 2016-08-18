@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Request Registry Request Methods Registry A request is a type of registry and a registry is a type of array object in which, we ar" />
+        <meta name="description" content="Request Registry Request Methods API (1) CliTrait (2) ContentTrait (3) CookieTrait (4) FileTrait (4) GetTrait (4) PostTrait (4) Ro" />
         
         <meta name="keywords" content="php,framework,cradle,request" />
         
@@ -23,7 +23,7 @@
 
         <meta property="og:title" content="Request - CradlePHP" />
 
-        <meta property="og:description" content="Request Registry Request Methods Registry A request is a type of registry and a registry is a type of array object in which, we ar" />
+        <meta property="og:description" content="Request Registry Request Methods API (1) CliTrait (2) ContentTrait (3) CookieTrait (4) FileTrait (4) GetTrait (4) PostTrait (4) Ro" />
 
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@
 
         <meta name="twitter:title" content="Request - CradlePHP" />
 
-        <meta name="twitter:description" content="Request Registry Request Methods Registry A request is a type of registry and a registry is a type of array object in which, we ar" />
+        <meta name="twitter:description" content="Request Registry Request Methods API (1) CliTrait (2) ContentTrait (3) CookieTrait (4) FileTrait (4) GetTrait (4) PostTrait (4) Ro" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -94,11 +94,12 @@
         <div class="left col-xs-12 col-md-2">
             <h5>Getting Started</h5>
 <ul>
-    <li><a href="/docs/install.html">Vanilla Install</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+    <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
 </ul>
 
-<h5>Features</h5>
+<h5>Concepts</h5>
 <ul>
     <li><a href="/docs/events.html">Events</a></li>
     <li><a href="/docs/flows.html">Flows</a></li>
@@ -107,10 +108,43 @@
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
     <li><a href="/docs/piping.html">Piping</a></li>
-    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+</ul>
+
+<h5>Exporting</h5>
+<ul>
     <li><a href="/docs/integration.html">Integration</a></li>
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
+
+<!--<h5>Kitchen Sink</h5>
+<ul>
+    <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-schema.html">Schema</a></li>
+    <li><a href="/docs/sink-auth.html">Authentication</a></li>
+    <li><a href="/docs/sink-file.html">Files</a></li>
+    <li><a href="/docs/sink-mail.html">Mail</a></li>
+    <li><a href="/docs/sink-queue.html">Queue</a></li>
+    <li><a href="/docs/sink-csrf.html">CSRF</a></li>
+    <li><a href="/docs/sink-captcha.html">Captcha</a></li>
+    <li><a href="/docs/sink-handlebars.html">Handlebars</a></li>
+</ul>
+
+<h5>Core Traits</h5>
+<ul>
+    <li><a href="/docs/helper.html">Helper</a></li>
+    <li><a href="/docs/data.html">Data</a></li>
+    <li><a href="/docs/resolver.html">Resolver</a></li>
+    <li><a href="/docs/profiler.html">Profiler</a></li>
+</ul>
+
+<h5>Core Packages</h5>
+<ul>
+    <li><a href="/docs/i18n.html">i18n</a></li>
+    <li><a href="/docs/image.html">Image</a></li>
+    <li><a href="/docs/curl.html">cURL</a></li>
+    <li><a href="/docs/sql.html">SQL</a></li>
+    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+</ul>-->
    
         </div>
         <div class="right col-xs-12 col-md-10">
@@ -118,7 +152,21 @@
 <ul>
 <li><i class="fa fa-arrow-right"></i><a href="#registry">Registry</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#methods">Request Methods</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#api">API (1)</a>
+<ul>
+<li><i class="fa fa-arrow-right"></i><a href="#cli">CliTrait (2)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#content">ContentTrait (3)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#cookie">CookieTrait (4)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#file">FileTrait (4)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#get">GetTrait (4)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#post">PostTrait (4)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#route">RouteTrait (4)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#server">ServerTrait (10)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#session">SessionTrait (4)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#stage">StageTrait (5)</a></li>
+</ul></li>
 </ul>
+<p><a name="registry"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Registry</h2>
 <p>A request is a type of registry and a registry is a type of array object in
 which, we are dealing with one property which is an array. Every method in an
@@ -274,27 +322,341 @@ $request-&gt;hasServer($key);
 <p>In a standard request, you could have received raw data via <code class="language-php">php://input</code>.
 To get this data you can use <code class="language-php">$request-&gt;getContent()</code></p>
 <p>Of course you can check if <code class="language-php">$request-&gt;hasContent();</code>.</p>
-<h3>Other Methods</h3>
-<p>There's quite a few other useful methods worth noting as well, but to
-give you the gist of it, here they are.</p>
+<p><a name="api"></a></p>
+<h2><i class="fa fa-arrow-down"></i> API</h2>
+<p><code class="language-php">load</code> - Loads default data given by PHP</p>
 <pre class="code line-numbers language-php"><code class="marked">
-$request-&gt;getVariables($index);
+$request-&gt;load();
 
-$request-&gt;getRoute(...$args);
+</code></pre>
+<hr />
+<p><a name="cli"></a></p>
+<h3>CliTrait</h3>
+<p><code class="language-php">getArgs</code> - Returns CLI args if any</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getArgs();
 
-$request-&gt;setRoute(...$args, $value);
+</code></pre>
+<hr />
+<p><code class="language-php">setArgs</code> - Sets CLI args</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setArgs([1, 2, 3]);
 
-$request-&gt;hasRoute(...$args);
+</code></pre>
+<hr />
+<p><a name="content"></a></p>
+<h3>ContentTrait</h3>
+<p><code class="language-php">getContent</code> - Returns final input stream as in <code class="language-php">php://input</code></p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getContent();
 
-$request-&gt;getMethod();
+</code></pre>
+<hr />
+<p><code class="language-php">hasContent</code> - Returns true if there was a populated input stream</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasContent();
 
-$request-&gt;getPath('string');
+</code></pre>
+<hr />
+<p><code class="language-php">setContent</code> - Sets a custom input stream</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setContent(fopen('php://input'));
 
-$request-&gt;getPath('array');
+</code></pre>
+<hr />
+<p><a name="cookie"></a></p>
+<h3>CookieTrait</h3>
+<p><code class="language-php">getCookies</code> - Returns $_COOKIE given name or all $_COOKIE</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getCookies();
+$request-&gt;getCookies('foo'); // $_COOKIE['foo']
 
-$request-&gt;getQuery();
+</code></pre>
+<hr />
+<p><code class="language-php">removeCookies</code> - Removes $_COOKIE given name or all $_COOKIE</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;removeCookies();
+$request-&gt;removeCookies('foo'); // $_COOKIE['foo']
 
-$request-&gt;getArgs(); //CLI $argv;
+</code></pre>
+<hr />
+<p><code class="language-php">hasCookies</code> - Returns true if has $_COOKIE given name or if $_COOKIE is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasCookies();
+$request-&gt;hasCookies('foo'); // $_COOKIE['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setCookies</code> - Sets $_COOKIE given name or all $_COOKIE</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setCookies(['foo' =&gt; 'bar']);
+$request-&gt;setCookies('foo', 'bar'); // $_COOKIE['foo']
+
+</code></pre>
+<hr />
+<p><a name="file"></a></p>
+<h3>FileTrait</h3>
+<p><code class="language-php">getFiles</code> - Returns $_FILES given name or all $_FILES</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getFiles();
+$request-&gt;getFiles('foo'); // $_FILES['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeFiles</code> - Removes $_FILES given name or all $_FILES</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;removeFiles();
+$request-&gt;removeFiles('foo'); // $_FILES['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasFiles</code> - Returns true if has $_FILES given name or if $_FILES is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasFiles();
+$request-&gt;hasFiles('foo'); // $_FILES['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setFiles</code> - Sets $_FILES given name or all $_FILES</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setFiles(['foo' =&gt; 'bar']);
+$request-&gt;setFiles('foo', 'bar'); // $_FILES['foo']
+
+</code></pre>
+<hr />
+<p><a name="get"></a></p>
+<h3>GetTrait</h3>
+<p><code class="language-php">getGet</code> - Returns $_GET given name or all $_GET</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getGet();
+$request-&gt;getGet('foo'); // $_GET['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeGet</code> - Removes $_GET given name or all $_GET</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;removeGet();
+$request-&gt;removeGet('foo'); // $_GET['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasGet</code> - Returns true if has $_GET given name or if $_GET is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasGet();
+$request-&gt;hasGet('foo'); // $_GET['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setGet</code> - Sets $_GET given name or all $_GET</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setGet(['foo' =&gt; 'bar']);
+$request-&gt;setGet('foo', 'bar'); // $_GET['foo']
+
+</code></pre>
+<hr />
+<p><a name="post"></a></p>
+<h3>PostTrait</h3>
+<p><code class="language-php">getPost</code> - Returns $_POST given name or all $_POST</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getPost();
+$request-&gt;getPost('foo'); // $_POST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">removePost</code> - Removes $_POST given name or all $_POST</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;removePost();
+$request-&gt;removePost('foo'); // $_POST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasPost</code> - Returns true if has $_POST given name or if $_POST is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasPost();
+$request-&gt;hasPost('foo'); // $_POST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setPost</code> - Sets $_POST given name or all $_POST</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setPost(['foo' =&gt; 'bar']);
+$request-&gt;setPost('foo', 'bar'); // $_POST['foo']
+
+</code></pre>
+<hr />
+<p><a name="route"></a></p>
+<h3>RouteTrait</h3>
+<p><code class="language-php">getRoute</code> - Returns route data given name or all route data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getRoute();
+$request-&gt;getRoute('event');
+
+//if '/foo/*/bar' and '/foo/zoo/bar'
+$request-&gt;getRoute('variables'); //--&gt; ['zoo']
+
+//if '/foo/:name/bar' and '/foo/zoo/bar'
+$request-&gt;getRoute('parameters'); //--&gt; ['name' =&gt; 'zoo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">getParameters</code> - Returns route parameters given name or all parameters</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getParameters();
+
+//if '/foo/:name/bar' and '/foo/zoo/bar'
+$request-&gt;getParameters('foo'); //--&gt; zoo
+
+</code></pre>
+<hr />
+<p><code class="language-php">getVariables</code> - Returns route variables given name or all variables</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getVariables();
+
+//if '/foo/*/bar' and '/foo/zoo/bar'
+$request-&gt;getVariables(0); //--&gt; zoo
+
+</code></pre>
+<hr />
+<p><code class="language-php">setRoute</code> - Sets a request route</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setRoute([
+    'event' =&gt; '#GET /foo/bar#',
+    'parameters' =&gt; ['foo' =&gt; 'bar'],
+    'variables' =&gt; ['foo', 'bar'],
+]);
+
+</code></pre>
+<hr />
+<p><a name="server"></a></p>
+<h3>ServerTrait</h3>
+<p><code class="language-php">getMethod</code> - Returns method if set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getMethod(); //--&gt; GET | POST | PUT | ...
+
+</code></pre>
+<hr />
+<p><code class="language-php">getPath</code> - Returns path data given name or all path data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getPath(); //--&gt; ['string' =&gt; '/foo/bar', 'array' =&gt; ['', 'foo', 'bar']]
+$request-&gt;getPath('string'); //--&gt; '/foo/bar'
+$request-&gt;getPath('array'); //--&gt; ['', 'foo', 'bar']
+
+</code></pre>
+<hr />
+<p><code class="language-php">getQuery</code> - Returns string query if set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getQuery(); //--&gt; 'foo=bar'
+
+</code></pre>
+<hr />
+<p><code class="language-php">getServer</code> - Returns $_SERVER given name or all $_SERVER</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getServer();
+$request-&gt;getServer('foo'); // $_SERVER['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasServer</code> - Returns true if has $_SERVER given name or if $_SERVER is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasServer();
+$request-&gt;hasServer('foo'); // $_SERVER['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">isMethod</code> - Returns true if method is the one given</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;isMethod('GET');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setMethod</code> - Sets request method</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setMethod('GET');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setPath</code> - Sets path given in string or array form</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setPath('/foo/bar');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setQuery</code> - Sets query string</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setQuery('foo=bar');
+
+</code></pre>
+<hr />
+<p><code class="language-php">setServer</code> - Sets $_SERVER given name or all $_SERVER</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setServer(['foo' =&gt; 'bar']);
+$request-&gt;setServer('foo', 'bar'); // $_SERVER['foo']
+
+</code></pre>
+<hr />
+<p><a name="session"></a></p>
+<h3>SessionTrait</h3>
+<p><code class="language-php">getSession</code> - Returns $_SESSION given name or all $_SESSION</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getSession();
+$request-&gt;getSession('foo'); // $_SESSION['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeSession</code> - Removes $_SESSION given name or all $_SESSION</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;removeSession();
+$request-&gt;removeSession('foo'); // $_SESSION['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasSession</code> - Returns true if has $_SESSION given name or if $_SESSION is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasSession();
+$request-&gt;hasSession('foo'); // $_SESSION['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setSession</code> - Sets $_SESSION given name or all $_SESSION</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setSession(['foo' =&gt; 'bar']);
+$request-&gt;setSession('foo', 'bar'); // $_SESSION['foo']
+
+</code></pre>
+<hr />
+<p><a name="stage"></a></p>
+<h3>StageTrait</h3>
+<p><code class="language-php">getStage</code> - Returns $_REQUEST given name or all $_REQUEST</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;getStage();
+$request-&gt;getStage('foo'); // $_REQUEST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">removeStage</code> - Removes $_REQUEST given name or all $_REQUEST</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;removeStage();
+$request-&gt;removeStage('foo'); // $_REQUEST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">hasStage</code> - Returns true if has $_REQUEST given name or if $_REQUEST is set</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;hasStage();
+$request-&gt;hasStage('foo'); // $_REQUEST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setStage</code> - Sets $_REQUEST given name or all $_REQUEST</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setStage(['foo' =&gt; 'bar']);
+$request-&gt;setStage('foo', 'bar'); // $_REQUEST['foo']
+
+</code></pre>
+<hr />
+<p><code class="language-php">setSoftStage</code> - Clusters $_REQUEST data together without overwriting existing data</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$request-&gt;setStage(['foo' =&gt; 'bar']);
 
 </code></pre>
         </div>

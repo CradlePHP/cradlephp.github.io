@@ -100,16 +100,16 @@
 cradle()->get(
     '/foo/bar',
     'Get Foo Bar from database',
-    array(
+    [
         'Foo Bar data Found',
         'Render Foo Bar template',
         'Render with Custom Page'
-    ),
-    array(
+    ],
+    [
         'Foo Bar data Not Found',
         'Flash error',
         'Redirect to homepage',
-    )
+    ]
 );
 </code></pre>
 
@@ -140,7 +140,7 @@ $app->get('/', cradle()->export('Get Foo Bar from database'));
 cradle()->post(
     '/signup',
     'Validate sign up',
-    array(
+    [
     	'All Good ?',
         'Insert to Database',
         'debug://WTH Am I here ?'
@@ -150,7 +150,7 @@ cradle()->post(
         }
         'Render Login',
         'Render Custom Page'
-    )
+    ]
 );
 
 </code></pre>

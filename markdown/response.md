@@ -1,6 +1,12 @@
 # Response
  - [Registry](#registry)
  - [Response Methods](#response)
+ - [API (1)](#api)
+    - [ContentTrait (3)](#content)
+    - [HeaderTrait (3)](#head)
+    - [PageTrait (9)](#page)
+    - [RestTrait (15)](#rest)
+    - [StatusTrait (2)](#status)
 
 <a name="registry"></a>
 ## Registry
@@ -111,16 +117,16 @@ be built out like the following.
 
 ```
 <?php
-array(
+[
     'error' => false,
     'message' => 'A message',
-    'validation' => array(
+    'validation' => [
         'post_title' => 'Cannot be empty'
-    )
-    'results' => array(
+    ]
+    'results' => [
         'post_title' => 'A Title named Foo Bar'
-    )
-)
+    ]
+]
 
 ```
 
@@ -140,7 +146,7 @@ $response->getValidation(...$args);
 
 $response->setError(true, $message);
 
-``
+```
 
 And when you know content is a string, you can use these methods.
 
@@ -154,19 +160,424 @@ $response->setContent($content);
 
 ```
 
-### Other Methods
+<a name="api"></a>
+## API
 
-There's quite a few other useful methods worth noting as well, but to
-give you the gist of it, here they are.
+`load` - Loads a default response data
+
+```
+
+$request->load();
 
 ```
 
-$response->addHeader(...$args);
+----
 
-$response->getHeader(...$args, $value);
+<a name="content"></a>
+### ContentTrait
 
-$response->setStatus($code, $status);
-
-$response->getStatus();
+`getContent` - Returns the content body
 
 ```
+
+$response->getContent();
+
+```
+
+----
+
+`hasContent` - Returns true if there's content
+
+```
+
+$response->hasContent();
+
+```
+
+----
+
+`setContent` - Sets the content
+
+```
+
+$response->setContent('foobar');
+
+```
+
+----
+
+<a name="head"></a>
+### HeaderTrait
+
+`addHeader` - Adds a header parameter
+
+```
+
+$response->addHeader('Content-Type', 'text/html');
+
+$response->addHeader('Expect');
+
+```
+
+----
+
+`getHeaders` - Returns either the header value given the name or the all headers
+
+```
+
+$response->getHeaders();
+$response->getHeaders('Content-Type', 'text/html');
+
+```
+
+----
+
+`removeHeaders` - Removes either the header value given the name or the all headers
+
+```
+
+$response->removeHeaders();
+$response->removeHeaders('Content-Type');
+
+```
+
+----
+
+<a name="page"></a>
+### PageTrait
+
+`addMeta` - Adds a page meta item
+
+```
+
+$response->addMeta('description', 'foobar');
+
+```
+
+----
+
+`getFlash` - Returns flash data
+
+```
+
+$response->getFlash(); //--> ['message' => 'foobar', 'type' => 'success']
+
+```
+
+----
+
+`getMeta` - Returns page meta data
+
+```
+
+$response->getMeta('description'); //--> 'foobar'
+
+```
+
+----
+
+`getPage` - Returns parts of the page data or the entire page data
+
+```
+
+$response->getPage('meta'); //--> ['description' => 'foobar']
+$response->getPage('meta', 'description'); //--> 'foobar'
+$response->getPage('title'); //--> 'foobar'
+$response->getPage('flash'); //--> ['message' => 'foobar', 'type' => 'success']
+$response->getPage('flash', 'message'); //--> 'foobar'
+
+//...
+
+```
+
+----
+
+`hasPage` - Returns parts of the page data or the entire page data
+
+```
+
+$response->hasPage();
+$response->hasPage('meta');
+$response->hasPage('meta', 'description');
+$response->hasPage('title');
+$response->hasPage('flash');
+$response->hasPage('flash', 'message');
+
+//...
+
+```
+
+----
+
+`removePage` - Removes parts of the page data or the entire page data
+
+```
+
+$response->removePage();
+$response->removePage('meta');
+$response->removePage('meta', 'description');
+$response->removePage('title');
+$response->removePage('flash');
+$response->removePage('flash', 'message');
+
+//...
+
+```
+
+----
+
+`setFlash` - Sets a Page flash
+
+```
+
+$response->setFlash('Just letting you know');
+
+$response->setFlash('Something went wrong', 'error');
+$response->setFlash('Just letting you know', 'info');
+$response->setFlash('Something went good', 'success');
+
+```
+
+----
+
+`setPage` - Sets parts of the page data or the entire page data
+
+```
+
+$response->setPage([
+    'title' => 'foobar',
+    'meta' => ['description' => 'foobar'],
+    'flash' => ['message' => 'Just letting you know', 'type' => 'info']
+]);
+
+$response->setPage('meta', 'description', 'foobar');
+$response->setPage('title', 'foobar');
+$response->setPage('flash', ['message' => 'Just letting you know', 'type' => 'info']);
+$response->setPage('flash', 'message', 'Just letting you know');
+
+//...
+
+```
+
+----
+
+`setTitle` - Sets the page title
+
+```
+
+$response->setTitle('foobar');
+
+//...
+
+```
+
+----
+
+<a name="rest"></a>
+### RestTrait
+
+`addValidation` - Adds a JSON validation message or sets all the validations
+
+```
+
+$response->addValidation(['post_title' => 'Cannot be empty']);
+$response->addValidation('post_title', 'Cannot be empty');
+
+```
+
+----
+
+`getResults` - Returns parts of the results or the entire JSON result set
+
+```
+
+$response->getResults();
+/*-->
+[
+    'error' => false,
+    'message' => 'A message',
+    'validation' => [
+        'post_title' => 'Cannot be empty'
+    ]
+    'results' => [
+        'post_title' => 'A Title named Foo Bar'
+    ]
+]
+*/
+
+$response->getResults('error'); //--> false
+$response->getResults('validation', 'post_title'); //--> 'Cannot be empty'
+
+//...
+
+```
+
+----
+
+`getMessage` - Returns the message
+
+```
+
+$response->getMessage(); //--> 'A message'
+
+```
+
+----
+
+`getMessageType` - Returns the message type
+
+```
+
+$response->getMessageType(); //--> 'error' | 'success' | 'info'
+
+```
+
+----
+
+`getValidation` - Returns parts of the validation or the entire validation data
+
+```
+
+$response->getValidation(); //--> ['post_title' => 'Cannot be empty']
+$response->getValidation('post_title'); //--> 'Cannot be empty'
+
+```
+
+----
+
+`hasJson` - Returns true if the given part exists or if there's JSON data at all
+
+```
+
+$response->hasJson(); //--> true
+$response->hasJson('validation'); //--> true
+$response->hasJson('validation', 'post_title'); //--> true
+
+//...
+
+```
+
+----
+
+`hasMessage` - Returns true if a message was set
+
+```
+
+$response->hasMessage();
+
+```
+
+----
+
+`hasResults` - Returns true if the given part exists or if there's JSON results data at all
+
+```
+
+$response->hasResults();
+$response->hasResults('post_title');
+
+```
+
+----
+
+`hasValidation` - Returns true if the given part exists or if there's JSON validation data at all
+
+```
+
+$response->hasValidation();
+$response->hasValidation('post_title');
+
+```
+
+----
+
+`isError` - Returns true if the JSON data is an error set
+
+```
+
+$response->isError();
+
+```
+
+----
+
+`isSuccess` - Returns true if the JSON data is a successful set
+
+```
+
+$response->isSuccess();
+
+```
+
+----
+
+`removeResults` - Removes parts of the results or the entire JSON result set
+
+```
+
+$response->removeResults();
+
+$response->removeResults('error');
+$response->removeResults('validation', 'post_title');
+
+```
+
+----
+
+`removeValidation` - Removes parts of the validation or the entire JSON validation set
+
+```
+
+$response->removeValidation();
+
+$response->removeValidation('post_title');
+
+```
+
+----
+
+`setError` - Sets a JSON error message
+
+```
+
+$response->setError(true, 'An error message');
+$response->setError(false, 'A success message');
+
+```
+
+----
+
+`setResults` - Sets parts of the results or the entire JSON result set
+
+```
+
+$response->setResults(['post_title' => 'A Title named Foo Bar']);
+
+$response->setResults('post_title', 'A Title named Foo Bar');
+
+```
+
+----
+
+<a name="status"></a>
+### StatusTrait
+
+`getStatus` - Returns the status code
+
+```
+
+$response->getStatus(); //--> 200
+
+```
+
+----
+
+`setStatus` - Sets a status code
+
+```
+
+$response->setStatus(200, '200 OK');
+
+```
+
+----

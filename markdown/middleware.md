@@ -3,6 +3,7 @@
  - [Pre-Processing](#pre)
  - [Error Processing](#error)
  - [Post Processing](#post)
+ - [API (9)](#api)
 
 <a name="intro"></a>
 ## Introduction
@@ -34,6 +35,7 @@ Middleware can be inserted before routing with the following example.
 cradle()->preprocess(function($request, $response) {
 	//Do something before routing
 });
+
 ```
 
 Like routing, a `$request` and a `$response` will be passed. The usual
@@ -81,4 +83,116 @@ not have access to a queue available.
  A caveat about post-processors is that writing to sessions will no longer be
  available. You can write to it, but on refresh, it won't remember it like if
  it was still open.
+```
+
+<a name="api"></a>
+## API
+
+`preprocess` - Adds pre processing middleware which is called before routing
+
+```
+
+cradle()->preprocess(function($request, $response) {
+	//Do something before routing
+});
+
+```
+
+----
+
+`error` - Adds error middleware which is called when an Exception is thrown
+
+```
+
+cradle()->error(function($request, $response) {
+	//Do something because there was an error
+});
+
+```
+
+----
+
+`postprocess` - Adds post processing after the response was sent out and the connection is closed
+
+```
+
+cradle()->postprocess(function($request, $response) {
+	//Do something after the connection is closed
+});
+
+```
+
+----
+
+`setPreprocessor` - Allows for a custom pre processor to be used
+
+| Parameters                                   |                                                         |
+|--------------------------------------------------------------------------------------------------------|
+| `Cradle\Http\Middleware\MiddlewareInterface` | The middleware interface (`new Cradle\Http\Middleware`) |
+
+```
+
+cradle()->setPreProcessor(new Cradle\Http\Middleware);
+
+```
+
+----
+
+ `getPreProcessor` - Returns a Middleware processor if none was set, it will auto create one
+
+
+```
+
+cradle()->getPreprocessor();
+
+```
+
+----
+
+`setErrorProcessor` - Allows for a custom error processor to be used
+
+| Parameters                                   |                                                         |
+|--------------------------------------------------------------------------------------------------------|
+| `Cradle\Http\Middleware\MiddlewareInterface` | The middleware interface (`new Cradle\Http\Middleware`) |
+
+```
+
+cradle()->setErrorProcessor(new Cradle\Http\Middleware);
+
+```
+
+----
+
+ `getErrorProcessor` - Returns a Middleware processor if none was set, it will auto create one
+
+
+```
+
+cradle()->getErrorProcessor();
+
+```
+
+----
+
+`setPostProcessor` - Allows for a custom post processor to be used
+
+| Parameters                                   |                                                         |
+|--------------------------------------------------------------------------------------------------------|
+| `Cradle\Http\Middleware\MiddlewareInterface` | The middleware interface (`new Cradle\Http\Middleware`) |
+
+```
+
+cradle()->setPostProcessor(new Cradle\Http\Middleware);
+
+```
+
+----
+
+ `getPostProcessor` - Returns a Middleware processor if none was set, it will auto create one
+
+
+```
+
+cradle()->getPostProcessor();
+
 ```

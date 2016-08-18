@@ -9,8 +9,10 @@
 
 <a name="boostrap"></a>
 ## `boostrap.php`
+
 If you open bootstrap.php in your project root folder, you will see a set of preprocessors called bootstrap files, each are located in the /bootstrap/ folder.
 
+```
 
 return cradle()
 	//now bootstrap
@@ -20,7 +22,8 @@ return cradle()
 	->preprocess(include('bootstrap/services.php'))
 	->preprocess(include('bootstrap/i18n.php'))
 	->preprocess(include('bootstrap/timezone.php'))
-	->preprocess(include('bootstrap/queue.php'))
+
+```
 
 These were put on the project level in the case you need you modify them for
 your project needs. You are free to add custom preprocessors here as well.
@@ -103,11 +106,8 @@ for example.
 ```
 <?php //-->
 
-use PhpAmqpLib\Connection\AMQPLazyConnection;
-
 return array (
-	'sql-main' 	 => new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', ''),
-	'queue-main' => new AMQPLazyConnection('127.0.0.1', 5672, 'guest', 'guest')
+	'sql-main' 	 => new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', '')
 );
 
 ```

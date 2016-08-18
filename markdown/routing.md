@@ -4,6 +4,7 @@
  - [Request Paths](#paths)
  - [Route Handlers](#handlers)
  - [Mini Apps](#mini)
+ - [API (7)](#api)
 
 <a name="basics"></a>
 ## Basics
@@ -241,3 +242,165 @@ here are a few things that need to be understood about them.
  3. Pre Processors are triggered globally (not with the mini app middleware)
  4. Errors are triggered globally (not with the mini app middleware)
  5. Post Processors are triggered globally (not with the mini app middleware)
+
+<a name="api"></a>
+## API
+
+`all` - Adds routing middleware for all methods
+
+```
+
+cradle()->all('/foo/bar', function($request, $response) {
+    //Do something
+});
+
+cradle()->all(
+    '/foo/bar',
+    function($request, $response) {
+        //Do something
+    },
+    function($request, $response) {
+        //Do something more
+    },
+    'Some Event',
+    'Some@method',
+    'Some::method',
+    'Some://Event'
+    //...
+);
+
+```
+
+----
+
+`delete` - Adds routing middleware for DELETE method
+
+```
+
+cradle()->delete('/foo/bar', function($request, $response) {
+    //Do something
+});
+
+cradle()->delete(
+    '/foo/bar',
+    function($request, $response) {
+        //Do something
+    },
+    function($request, $response) {
+        //Do something more
+    },
+    'Some Event',
+    'Some@method',
+    'Some::method',
+    'Some://Event'
+    //...
+);
+
+```
+
+----
+
+`get` - Adds routing middleware for GET method
+
+```
+
+cradle()->get('/foo/bar', function($request, $response) {
+    //Do something
+});
+
+cradle()->get(
+    '/foo/bar',
+    function($request, $response) {
+        //Do something
+    },
+    function($request, $response) {
+        //Do something more
+    },
+    'Some Event',
+    'Some@method',
+    'Some::method',
+    'Some://Event'
+    //...
+);
+
+```
+
+----
+
+`post` - Adds routing middleware for POST method
+
+```
+
+cradle()->post('/foo/bar', function($request, $response) {
+    //Do something
+});
+
+cradle()->post(
+    '/foo/bar',
+    function($request, $response) {
+        //Do something
+    },
+    function($request, $response) {
+        //Do something more
+    },
+    'Some Event',
+    'Some@method',
+    'Some::method',
+    'Some://Event'
+    //...
+);
+
+```
+
+----
+
+`put` - Adds routing middleware for PUT method
+
+```
+
+cradle()->put('/foo/bar', function($request, $response) {
+    //Do something
+});
+
+cradle()->put(
+    '/foo/bar',
+    function($request, $response) {
+        //Do something
+    },
+    function($request, $response) {
+        //Do something more
+    },
+    'Some Event',
+    'Some@method',
+    'Some::method',
+    'Some://Event'
+    //...
+);
+
+```
+
+----
+
+ `setRouter` - Allows for a custom router to be used
+
+| Parameters                    |                                                 |
+|---------------------------------------------------------------------------------|
+| `Cradle\Http\RouterInterface` | The router interface (`new Cradle\Http\Router`) |
+
+
+```
+
+cradle()->setRouter(new Cradle\Http\Router);
+
+```
+
+----
+
+ `getRouter` - Returns a Router object if none was set, it will auto create one
+
+
+```
+
+cradle()->getRouter();
+
+```

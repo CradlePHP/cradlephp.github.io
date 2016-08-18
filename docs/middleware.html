@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Middleware Introduction Pre-Processing Error Processing Post Processing Introduction Middleware is a concept of allowing pieces of" />
+        <meta name="description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
         
         <meta name="keywords" content="php,framework,cradle,middleware" />
         
@@ -23,7 +23,7 @@
 
         <meta property="og:title" content="Middleware - CradlePHP" />
 
-        <meta property="og:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing Introduction Middleware is a concept of allowing pieces of" />
+        <meta property="og:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
 
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@
 
         <meta name="twitter:title" content="Middleware - CradlePHP" />
 
-        <meta name="twitter:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing Introduction Middleware is a concept of allowing pieces of" />
+        <meta name="twitter:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -94,11 +94,12 @@
         <div class="left col-xs-12 col-md-2">
             <h5>Getting Started</h5>
 <ul>
-    <li><a href="/docs/install.html">Vanilla Install</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+    <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
 </ul>
 
-<h5>Features</h5>
+<h5>Concepts</h5>
 <ul>
     <li><a href="/docs/events.html">Events</a></li>
     <li><a href="/docs/flows.html">Flows</a></li>
@@ -107,10 +108,43 @@
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
     <li><a href="/docs/piping.html">Piping</a></li>
-    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+</ul>
+
+<h5>Exporting</h5>
+<ul>
     <li><a href="/docs/integration.html">Integration</a></li>
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
+
+<!--<h5>Kitchen Sink</h5>
+<ul>
+    <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-schema.html">Schema</a></li>
+    <li><a href="/docs/sink-auth.html">Authentication</a></li>
+    <li><a href="/docs/sink-file.html">Files</a></li>
+    <li><a href="/docs/sink-mail.html">Mail</a></li>
+    <li><a href="/docs/sink-queue.html">Queue</a></li>
+    <li><a href="/docs/sink-csrf.html">CSRF</a></li>
+    <li><a href="/docs/sink-captcha.html">Captcha</a></li>
+    <li><a href="/docs/sink-handlebars.html">Handlebars</a></li>
+</ul>
+
+<h5>Core Traits</h5>
+<ul>
+    <li><a href="/docs/helper.html">Helper</a></li>
+    <li><a href="/docs/data.html">Data</a></li>
+    <li><a href="/docs/resolver.html">Resolver</a></li>
+    <li><a href="/docs/profiler.html">Profiler</a></li>
+</ul>
+
+<h5>Core Packages</h5>
+<ul>
+    <li><a href="/docs/i18n.html">i18n</a></li>
+    <li><a href="/docs/image.html">Image</a></li>
+    <li><a href="/docs/curl.html">cURL</a></li>
+    <li><a href="/docs/sql.html">SQL</a></li>
+    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+</ul>-->
    
         </div>
         <div class="right col-xs-12 col-md-10">
@@ -120,6 +154,7 @@
 <li><i class="fa fa-arrow-right"></i><a href="#pre">Pre-Processing</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#error">Error Processing</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#post">Post Processing</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#api">API (9)</a></li>
 </ul>
 <p><a name="intro"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Introduction</h2>
@@ -143,6 +178,7 @@ routing for example before and after the routing and during an error.</p>
 cradle()-&gt;preprocess(function($request, $response) {
     //Do something before routing
 });
+
 </code></pre>
 <p>Like routing, a <code class="language-php">$request</code> and a <code class="language-php">$response</code> will be passed. The usual
 activity for a <code class="language-php">-&gt;preprocess()</code> would be populating the <code class="language-php">$request</code> further,
@@ -179,6 +215,109 @@ not have access to a queue available.</p>
  available. You can write to it, but on refresh, it won't remember it like if
  it was still open.
 </div>
+<p><a name="api"></a></p>
+<h2><i class="fa fa-arrow-down"></i> API</h2>
+<p><code class="language-php">preprocess</code> - Adds pre processing middleware which is called before routing</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;preprocess(function($request, $response) {
+    //Do something before routing
+});
+
+</code></pre>
+<hr />
+<p><code class="language-php">error</code> - Adds error middleware which is called when an Exception is thrown</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;error(function($request, $response) {
+    //Do something because there was an error
+});
+
+</code></pre>
+<hr />
+<p><code class="language-php">postprocess</code> - Adds post processing after the response was sent out and the connection is closed</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;postprocess(function($request, $response) {
+    //Do something after the connection is closed
+});
+
+</code></pre>
+<hr />
+<p><code class="language-php">setPreprocessor</code> - Allows for a custom pre processor to be used</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Parameters</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
+<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
+</tr>
+</tbody>
+</table>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;setPreProcessor(new Cradle\Http\Middleware);
+
+</code></pre>
+<hr />
+<p><code class="language-php">getPreProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;getPreprocessor();
+
+</code></pre>
+<hr />
+<p><code class="language-php">setErrorProcessor</code> - Allows for a custom error processor to be used</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Parameters</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
+<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
+</tr>
+</tbody>
+</table>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;setErrorProcessor(new Cradle\Http\Middleware);
+
+</code></pre>
+<hr />
+<p><code class="language-php">getErrorProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;getErrorProcessor();
+
+</code></pre>
+<hr />
+<p><code class="language-php">setPostProcessor</code> - Allows for a custom post processor to be used</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Parameters</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
+<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
+</tr>
+</tbody>
+</table>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;setPostProcessor(new Cradle\Http\Middleware);
+
+</code></pre>
+<hr />
+<p><code class="language-php">getPostProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;getPostProcessor();
+
+</code></pre>
         </div>
 
     </div>

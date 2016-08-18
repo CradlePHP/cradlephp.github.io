@@ -4,6 +4,11 @@
  - [Installation](#installation)
  - [Load the Page](#load)
 
+In the case you want to start coding with a clean, minimalist and unopinionated
+meta framework, this install won't add any other packages other than what's
+needed. If you would like to install the extreme example, you should take a
+look at the [Kitchen Sink](/docs/sink.html).
+
 <a name="requirements"></a>
 ## Server Requirements
 

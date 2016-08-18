@@ -2,6 +2,7 @@
  - [Handling](#handling)
  - [Forking a Flow](#forking)
  - [Importing a Flow](#importing)
+ - [API (7)](#api)
 
 <a name="handling"></a>
 ## Handling
@@ -171,5 +172,124 @@ return array(
         'Another Page Event',
     )
 );
+
+```
+
+<a name="api"></a>
+## API
+
+`flow` - Sets up a process flow
+
+```
+
+cradle()->flow(
+	'Some Event',
+    'Another Event',
+    include('/another/event.php'),
+    'Controller@action',
+    'Controller::action',
+    ...$moreActions
+)
+
+```
+
+----
+
+`protocol` - Adds a protocol used to custom parse an event name
+
+```
+
+cradle()->protocol('debug', funtion($event, ...$args) {
+    //Parse Event
+});
+
+//...
+
+cradle()->trigger('debug://Hello World', $foo, $bar, 123);
+
+```
+
+----
+
+`subflow` - Calls a subflow to be called when there is an array fork
+
+
+```
+
+cradle()->flow(
+    'Flow Name',
+    'Some@method',
+    'Some::method',
+    'Some://Event',
+    'Some Event',
+    function() {
+        $this->subflow('A Good Fork');
+    },
+    [
+        'A Good Fork',
+        //...
+    ]
+);
+
+```
+
+----
+
+`trigger` - Calls an event considering classes and protocols
+
+```
+
+cradle()->trigger('Some Event', ...$args);
+cradle()->trigger('Some@method', ...$args);
+cradle()->trigger('Some::method', ...$args);
+cradle()->trigger('Some://Event', ...$args);
+
+```
+
+----
+
+`triggerController` - Explicitly calls a controller method
+
+```
+
+cradle()->triggerController('Some@method', ...$args);
+
+```
+
+----
+
+`triggerFlow` - Triggers an array of events without naming the flow
+
+```
+
+cradle()->triggerFlow(...$args);
+
+cradle()->triggerFlow(
+    'Some Event',
+    'Some@method',
+    'Some::method',
+    'Some://Event'
+);
+
+cradle()->triggerFlow(
+    'Some Event',
+    function() {
+        $this->subflow('A Good Fork');
+    },
+    [
+        'A Good Fork',
+        //...
+    ]
+);
+
+```
+
+----
+
+`triggerProtocol` - Explicitly triggers a protocol
+
+```
+
+cradle()->triggerProtocol('Some://Event', ...$args);
 
 ```
