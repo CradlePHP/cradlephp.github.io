@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Cradle PHP</title>
+        <title>CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+        
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
@@ -15,20 +14,19 @@
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/opensans-webfont-latin/css/opensans-latin.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
 
-        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
-        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     </head>
 
     <body>
     	<header>
-        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+            <nav class="navbar navbar-default navbar-branding navbar-static-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -45,224 +43,179 @@
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="/sink">Sink</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
         </header>
+
         <section class="body">
             <div class="container">
-
-                <div class="documentation">
+                
+                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
-    <h5>Getting Started</h5>
-    <ul>
-        <li><a href="/docs/install.html">Basic Install</a></li>
-        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
-    </ul>
+            <h5>Getting Started</h5>
+<ul>
+    <li><a href="/docs/install.html">Vanilla Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+</ul>
 
-    <h5>Features</h5>
-    <ul>
-        <li><a href="/docs/events.html">Events</a></li>
-        <li><a href="/docs/flows.html">Flows</a></li>
-        <li><a href="/docs/routing.html">Routing</a></li>
-        <li><a href="/docs/middleware.html">Middleware</a></li>
-        <li><a href="/docs/request.html">Request</a></li>
-        <li><a href="/docs/response.html">Response</a></li>
-        <li><a href="/docs/piping.html">Piping</a></li>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
-        <li><a href="/docs/integration.html">Integration</a></li>
-        <li><a href="/docs/packages.html">Packages</a></li>
-    </ul>
-</div>
+<h5>Features</h5>
+<ul>
+    <li><a href="/docs/events.html">Events</a></li>
+    <li><a href="/docs/flows.html">Flows</a></li>
+    <li><a href="/docs/routing.html">Routing</a></li>
+    <li><a href="/docs/middleware.html">Middleware</a></li>
+    <li><a href="/docs/request.html">Request</a></li>
+    <li><a href="/docs/response.html">Response</a></li>
+    <li><a href="/docs/piping.html">Piping</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+    <li><a href="/docs/integration.html">Integration</a></li>
+    <li><a href="/docs/packages.html">Packages</a></li>
+</ul>
+   
+        </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Bootstrap</h1>
-
-            <ul>
-            	<li><i class="fa fa-arrow-right"></i><a href="#bootstrap"><code class="language-php">boostrap.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#paths"><code class="language-php">boostrap/paths.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#debug"><code class="language-php">boostrap/debug.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#errors"><code class="language-php">boostrap/errors.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#services"><code class="language-php">boostrap/services.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#i18n"><code class="language-php">boostrap/i18n.php</code></a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#timezone"><code class="language-php">boostrap/timezone.php</code></a></li>
-            </ul>
-
-        	<a name="bootstrap"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">boostrap.php</code></h2>
-
-            <p>If you open <code class="language-php">bootstrap.php</code> in your project root folder,
-            you will see a set of preprocessors called bootstrap files, each are located in the
-            <code class="language-php">/bootstrap/</code> folder.</p>
-
-            <pre class="code line-numbers language-php"><code>
-return cradle()
-	//now bootstrap
-	->preprocess(include('bootstrap/paths.php'))
-	->preprocess(include('bootstrap/debug.php'))
-	->preprocess(include('bootstrap/errors.php'))
-	->preprocess(include('bootstrap/services.php'))
-	->preprocess(include('bootstrap/i18n.php'))
-	->preprocess(include('bootstrap/timezone.php'))
-	->preprocess(include('bootstrap/queue.php'))
-
-</code></pre>
-
-            <p>These were put on the project level in the case you need you modify them for your project needs.
-            You are free to add custom preprocessors here as well. But, you want to becareful in removing these
-            preprocessors as some are needed by other packages and by other bootstrap files.</p>
-
-            <a name="paths"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">paths.php</code></h2>
-
-            <p>This file provides two methods,
-            <code class="language-php">cradle()->package('global')->path('key name');</code></a>
-            and <code class="language-php">cradle()->package('global')->config('key name');</code></a>.
-            While <code class="language-php">path('key name')</code> Simply returns the absolute path,
-            <code class="language-php">config('key name')</code> returns the value set found in the
-            <code class="language-php">/config/</code> folder.
-            <code class="language-php">config('settings')</code> will return the data returned in
-            <code class="language-php">/config/settings.php</code> for example.
-            You can add extra paths in <code class="language-php">paths.php</code> between the
-            following code.</p>
-
-            <h6>Adding a custom path</h6>
-            <pre class="code line-numbers language-php"><code>
-$paths = array(
-    'root' => $root,
-    'boostrap' => $root . '/bootstrap',
-    'config' => $root . '/config',
-    'public' => $root . '/public',
-    'upload' => $root . '/public/upload',
-    'template' => $root . '/template',
-    'vendor' => $root . '/vendor',
-    'custom path' => $root . '/some/custom/path'
+<ul>
+<li><i class="fa fa-arrow-right"></i><a href="#boostrap"><code class="language-php">boostrap.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#paths"><code class="language-php">boostrap/paths.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#debug"><code class="language-php">boostrap/debug.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#errors"><code class="language-php">boostrap/errors.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#services"><code class="language-php">boostrap/services.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#i18n"><code class="language-php">boostrap/i18n.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#timezone"><code class="language-php">boostrap/timezone.php</code></a></li>
+</ul>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">boostrap.php</code></h2>
+<p>If you open bootstrap.php in your project root folder, you will see a set of preprocessors called bootstrap files, each are located in the /bootstrap/ folder.</p>
+<p>return cradle()
+//now bootstrap
+-&gt;preprocess(include('bootstrap/paths.php'))
+-&gt;preprocess(include('bootstrap/debug.php'))
+-&gt;preprocess(include('bootstrap/errors.php'))
+-&gt;preprocess(include('bootstrap/services.php'))
+-&gt;preprocess(include('bootstrap/i18n.php'))
+-&gt;preprocess(include('bootstrap/timezone.php'))
+-&gt;preprocess(include('bootstrap/queue.php'))</p>
+<p>These were put on the project level in the case you need you modify them for
+your project needs. You are free to add custom preprocessors here as well.
+But, you want to be careful in removing these preprocessors as some are needed
+by other packages and by other bootstrap files.</p>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">paths.php</code></h2>
+<p>This file provides two methods, <code class="language-php">cradle()-&gt;package('global')-&gt;path('key name');</code>
+and <code class="language-php">cradle()-&gt;package('global')-&gt;config('key name');</code>. While <code class="language-php">path('key name')</code>
+Simply returns the absolute path, <code class="language-php">config('key name')</code> returns the value set
+found in the <code class="language-php">/config/</code> folder. <code class="language-php">config('settings')</code> will return the data
+returned in <code class="language-php">/config/settings.php</code> for example. You can add extra paths
+in <code class="language-php">paths.php</code> between the following code.</p>
+<h6>Adding a custom path</h6>
+<pre class="code line-numbers language-php"><code class="marked">$paths = array(
+    'root' =&gt; $root,
+    'boostrap' =&gt; $root . '/bootstrap',
+    'config' =&gt; $root . '/config',
+    'public' =&gt; $root . '/public',
+    'upload' =&gt; $root . '/public/upload',
+    'template' =&gt; $root . '/template',
+    'vendor' =&gt; $root . '/vendor',
+    'custom path' =&gt; $root . '/some/custom/path'
 );
 
-</code></pre></p>
-
-			<a name="debug"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">debug.php</code></h2>
-
-            <p>This file simply chooses whether to show errors or not based on your
-            <code class="language-php">'debug_mode'</code> found in
-            <code class="language-php">/config/settings.php</code>.
-            It also provides a protocol called
-            <code class="language-php">debug://Put anything here</code>
-            which you can put in your flow to help troubleshoot problems.</p>
-
-            <h6>Debug Usage</h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->flow(
-	'Signup Flow',
+</code></pre>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">debug.php</code></h2>
+<p>This file simply chooses whether to show errors or not based on your
+<code class="language-php">'debug_mode'</code> found in <code class="language-php">/config/settings.php</code>. It also provides a protocol
+called <code class="language-php">debug://Put anything here</code> which you can put in your flow to help
+troubleshoot problems.</p>
+<h6>Debug Usage</h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()-&gt;flow(
+    'Signup Flow',
     'Send to Database',
     'debug://Put anything here',
     'Send Email'
     'Redirect to Home Page'
 );
 
-</code></pre></p>
-
-        	<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Make sure to remove these
-            debugs in production mode.</div>
-
-            <a name="errors"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">errors.php</code></h2>
-
-            <p>This file handles how to output errors based on the content type and the
-            <code class="language-php">'debug_mode'</code> found in
-            <code class="language-php">/config/settings.php</code>.
-            It provides additional methods for rendering an output which you can optionally
-            use to make custom error messages. You are free to modify this to fit your project
-            needs as there are no real dependancies on this.</p>
-
-            <a name="services"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">services.php</code></h2>
-
-            <p>This file utilizes services as defined in
-            <code class="language-php">/config/services.php</code>.
-            The configuration file should return a key/value set of services of native drivers and connections.
-            When available,  we want to use native drivers like PDO or sockets rather than a particular ORM to
-            allow packages to remain agnostic. This makes it possible for one package to use doctorine and
-            another package to use eloquent under the same connection for example.</p>
-
-            <h6><code class="language-php">/config/services.php</code></h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php //-->
+</code></pre>
+<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Make sure to remove these debugs in production mode.
+</div>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">errors.php</code></h2>
+<p>This file handles how to output errors based on the content type and the
+<code class="language-php">'debug_mode'</code> found in <code class="language-php">/config/settings.php</code>. It provides additional
+methods for rendering an output which you can optionally use to make custom
+error messages. You are free to modify this to fit your project needs as
+there are no real dependancies on this.</p>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">services.php</code></h2>
+<p>This file utilizes services as defined in /config/services.php. The
+configuration file should return a key/value set of services of native
+drivers and connections. When available, we want to use native drivers
+like PDO or sockets rather than a particular ORM to allow packages to
+remain agnostic. This makes it possible for one package to use
+<a href="http://www.doctrine-project.org/">Doctrine</a> and another package to use
+<a href="https://laravel.com/docs/5.2/eloquent">Eloquent</a> under the same connection
+for example.</p>
+<h6><code class="language-php">/config/services.php</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php //--&gt;
 
 use PhpAmqpLib\Connection\AMQPLazyConnection;
 
 return array (
-	'sql-main' 	 => new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', ''),
-	'queue-main' => new AMQPLazyConnection('127.0.0.1', 5672, 'guest', 'guest')
+    'sql-main'   =&gt; new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', ''),
+    'queue-main' =&gt; new AMQPLazyConnection('127.0.0.1', 5672, 'guest', 'guest')
 );
 
 </code></pre>
-            <p>Services can be accessed using the following.</p>
-
-            <pre class="code line-numbers language-php"><code>
-cradle()->package('global')->service('&lt;key name&gt;');
+<p>Services can be accessed using the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;package('global')-&gt;service('&lt;key name&gt;');
 
 </code></pre>
-
-            <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> When configuring this file
-            it's important to have a <code class="language-php">main-sql</code> and a
-            <code class="language-php">main-queue</code> value set in order for other packages to access
-            these resources.</div>
-
-            <p>Both the <code class="language-php">main-sql</code> and a
-            <code class="language-php">main-queue</code> are used in two additional global methods called
-            <code class="language-php">cradle()->package('global')->sql();</code> and
-            <code class="language-php">cradle()->package('global')->queue('task name', array());</code> in
-            which <code class="language-php">->sql()</code> is used by cradle object packages and
-            <code class="language-php">->queue()</code> is used by
-            <code class="language-php">/bootstrap/queue.php</code>. You are free to create custom service
-            methods for your project needs.</p>
-
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> You can use any ORM like
-            Doctorine or Eloquent if you wish for your own packages, but to be fair, let other
-            packages decide what to use.</div>
-
-            <a name="i18n"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">i18n.php</code></h2>
-
-            <p>This file adds translation capabilities to your application by providing a method called
-            <code class="language-php">cradle()->package('global')->translate('An English Phrase');</code>.
-            When this is called it will call on
-            <code class="language-php">/config/settings.php</code> to find out what the default language is
-            and <code class="language-php">/config/i18n/en_US.php</code> to figure out what the translation
-            should be.</p>
-
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Given that
-            <code class="language-php">'en_US'</code> is your default
-            <code class="language-php">'i18n'</code> value in
-            <code class="language-php">/config/settings.php</code>.</div>
-
-            <p>You can also use binded values to work with this method as in,
-            <code class="language-php">->translate('It costs %s. buy now?', $price);</code>.
-            This works exactly how <code class="language-php">sprintf()</code> works.</p>
-
-            <p>You are free to modify the specifics of translating in this file according
-            to your project needs.</p>
-
-            <a name="timezone"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">timezone.php</code></h2>
-
-            <p>This file simply set the system timezone which is set in
-            <code class="language-php">/config/settings.php</code>. There are no other
-            reasons why this exists.</p>
-
+<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> When configuring this file it's important to have a `main-sql` value set in
+order for other packages to access these resources.
+</div>
+<p>The main-sql has an additional global methods called
+<code class="language-php">cradle()-&gt;package('global')-&gt;sql()</code> simply to make it easier to access this
+service.</p>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i>  You can use any ORM like [Doctrine](http://www.doctrine-project.org/) or
+ [Eloquent](https://laravel.com/docs/5.2/eloquent) if you wish for your
+ own packages, but to be fair, let other packages decide what to use.
+</div>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">i18n.php</code></h2>
+<p>This file adds translation capabilities to your application by providing
+a method called <code class="language-php">cradle()-&gt;package('global')-&gt;translate('An English Phrase')</code>.
+When this is called it will call on <code class="language-php">/config/settings.php</code> to find out what
+the default language is and <code class="language-php">/config/i18n/en_US.php</code> to figure out what the
+translation should be.</p>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> Given that `'en_US'` is your default `'i18n'` value in `/config/settings.php`.
+</div>
+<p>You can also use binded values to work with this method as in,
+<code class="language-php">-&gt;translate('It costs %s. buy now?', $price)</code>. This works exactly how
+<code class="language-php">sprintf()</code> works.</p>
+<p>You are free to modify the specifics of translating in this file according to
+your project needs.</p>
+<p><a name="boostrap"></a></p>
+<h2><i class="fa fa-arrow-down"></i> <code class="language-php">timezone.php</code></h2>
+<p>This file simply set the system timezone which is set in
+<code class="language-php">/config/settings.php</code>. There are no other reasons why this exists.</p>
         </div>
+
     </div>
 </div>
+
             </div>
         </section>
         <footer>
-        	<div class="container">
+            <div class="container">
 	<div class="top clearfix">
         <div class="left pull-left">
             <div>
@@ -277,22 +230,26 @@ cradle()->package('global')->service('&lt;key name&gt;');
 
         <div class="middle pull-right">
             <ul>
-                <li><a href="/docs/intro.html">Getting Started</a></li>
-                <li><a href="/docs/install.html">Install</a></li>
-                <li><a href="/">Documentation</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Getting Started</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/install.html">Install</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Documentation</a></li>
             </ul>
         </div>
+
+
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
-<a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
-<br /><br />&copy; CradlePHP 2016</center>
+            <a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
+            <br /><br />&copy; CradlePHP 2016
+        </center>
     </div>
 </div>
+
         </footer>
         <script type="text/javascript" src="/www/scripts/prism.js"></script>
     </body>

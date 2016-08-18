@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Cradle PHP</title>
+        <title>CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+        
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
@@ -15,20 +14,19 @@
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/opensans-webfont-latin/css/opensans-latin.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
 
-        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
-        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     </head>
 
     <body>
     	<header>
-        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+            <nav class="navbar navbar-default navbar-branding navbar-static-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -45,101 +43,89 @@
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="/sink">Sink</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
         </header>
+
         <section class="body">
             <div class="container">
-
-                <div class="documentation">
+                
+                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
-    <h5>Getting Started</h5>
-    <ul>
-        <li><a href="/docs/install.html">Basic Install</a></li>
-        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
-    </ul>
+            <h5>Getting Started</h5>
+<ul>
+    <li><a href="/docs/install.html">Vanilla Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+</ul>
 
-    <h5>Features</h5>
-    <ul>
-        <li><a href="/docs/events.html">Events</a></li>
-        <li><a href="/docs/flows.html">Flows</a></li>
-        <li><a href="/docs/routing.html">Routing</a></li>
-        <li><a href="/docs/middleware.html">Middleware</a></li>
-        <li><a href="/docs/request.html">Request</a></li>
-        <li><a href="/docs/response.html">Response</a></li>
-        <li><a href="/docs/piping.html">Piping</a></li>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
-        <li><a href="/docs/integration.html">Integration</a></li>
-        <li><a href="/docs/packages.html">Packages</a></li>
-    </ul>
-</div>
+<h5>Features</h5>
+<ul>
+    <li><a href="/docs/events.html">Events</a></li>
+    <li><a href="/docs/flows.html">Flows</a></li>
+    <li><a href="/docs/routing.html">Routing</a></li>
+    <li><a href="/docs/middleware.html">Middleware</a></li>
+    <li><a href="/docs/request.html">Request</a></li>
+    <li><a href="/docs/response.html">Response</a></li>
+    <li><a href="/docs/piping.html">Piping</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+    <li><a href="/docs/integration.html">Integration</a></li>
+    <li><a href="/docs/packages.html">Packages</a></li>
+</ul>
+   
+        </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Piping</h1>
-
-            <p>With all of the concepts so far with events, flows, routing, middleware, requests
-            and responses we can create a new methodology called <strong>Event Pipes</strong>.
-            This concept deals with passing the <code class="language-php">$request</code> and
-            <code class="language-php">$response</code> to each handler till all handlers had a
-            chance to deal with it. At the end, The HTTP Handler will decide how to output it
-            based on the final response. Piping works out because <strong>you choose</strong>
-            the events that should fire off versus a random piece of code, which is how most
-            implement events.</p>
-
-            <p>In summary, each handler just uses the
-            <code class="language-php">$request</code> object and incrementally populates the
-            <code class="language-php">$response</code> object. This implies a rule of eticique
-            that each handler should follow.</p>
-
-            <a name="rules"></a>
-            <ol>
-            	<li>Data to be processed should exist in
-                	<code class="language-php">$request->stage</code>.
-                    This property is similar to <code class="language-php">$_REQUEST</code>,
-                    in that the <code class="language-php">$_GET</code>,
-                    <code class="language-php">$_POST</code> and <strong>binded URL
-                    parameters</strong> are already populated respectively in that order.
-                </li>
-                <li>The above implies that a step should not process any data to
-                be saved unless it is in the <code class="language-php">$request->stage</code>.
-                </li>
-                <li>Results are pushed to <code class="language-php">$response->body</code>.
-                	This can be an array or string, but you should do steps that populate
-                    an array result before steps that populate a string result. The usual
-                    suspects for this are steps that render a template.
-                </li>
-                <li>Steps that populate an array result should populate it using the following format below.
-<pre class="code line-numbers language-php"><code>&lt;?php
+<p>With all of the concepts so far with <a href="/docs/events/html">events</a>,
+<a href="/docs/flows.html">flows</a>, <a href="/docs/routing.html">routing</a>,
+<a href="/docs/middleware">middleware</a>, <a href="/docs/request.html">requests</a> and
+<a href="/docs/response.html">responses</a> we can create a new methodology called
+<strong>Event Pipes</strong>. This concept deals with passing the <code class="language-php">$request</code> and
+<code class="language-php">$response</code> to each handler till all handlers had a chance to deal with it.
+At the end, The HTTP Handler will decide how to output it based on the final
+response. Piping works out because you choose the events that should fire
+off versus a random piece of code, which is how most implement events.</p>
+<p>In summary, each handler just uses the <code class="language-php">$request</code> object and incrementally
+populates the <code class="language-php">$response</code> object. This implies a rule of etiquette that each
+handler should follow.</p>
+<p>Data to be processed should exist in <code class="language-php">$request['stage']</code>. This property is
+similar to <code class="language-php">$_REQUEST</code>, in that the <code class="language-php">$_GET</code>, <code class="language-php">$_POST</code> and <em>binded URL
+parameters</em> are already populated respectively in that order.</p>
+<p>The above implies that a step should not process any data to be saved
+unless it is in the <code class="language-php">$request['stage']</code>. Results are pushed to
+<code class="language-php">$response['json']</code> in array form.  Steps that populate the JSON should
+populate it using the following format below.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 array(
-    'error' => false,
-    'message' => 'A message',
-    'validation' => array(
-        'post_title' => 'Cannot be empty'
+    'error' =&gt; false,
+    'message' =&gt; 'A message',
+    'validation' =&gt; array(
+        'post_title' =&gt; 'Cannot be empty'
     )
-    'results' => array(
-        'post_title' => 'A Title named Foo Bar'
+    'results' =&gt; array(
+        'post_title' =&gt; 'A Title named Foo Bar'
     )
 )
-</code></pre>
-                </li>
-                <li>Steps that populate an array result and/or validation should soft push in order for other
-                steps to further add on to the results.</li>
-            </ol>
 
+</code></pre>
+<p>Steps that populate <code class="language-php">$response['json']</code> should soft push in order for other
+steps to further add on to the results.</p>
+<p>When the data is ready to be transformed to a readable string output, then
+that content should be set in <code class="language-php">$response['body']</code>.</p>
         </div>
 
     </div>
 </div>
+
             </div>
         </section>
         <footer>
-        	<div class="container">
+            <div class="container">
 	<div class="top clearfix">
         <div class="left pull-left">
             <div>
@@ -154,9 +140,9 @@ array(
 
         <div class="middle pull-right">
             <ul>
-                <li><a href="/docs/intro.html">Getting Started</a></li>
-                <li><a href="/docs/install.html">Install</a></li>
-                <li><a href="/">Documentation</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Getting Started</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/install.html">Install</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Documentation</a></li>
             </ul>
         </div>
 
@@ -164,14 +150,16 @@ array(
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
-<a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
-<br /><br />&copy; CradlePHP 2016</center>
+            <a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
+            <br /><br />&copy; CradlePHP 2016
+        </center>
     </div>
 </div>
+
         </footer>
         <script type="text/javascript" src="/www/scripts/prism.js"></script>
     </body>

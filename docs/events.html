@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Cradle PHP</title>
+        <title>CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+        
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
@@ -15,20 +14,19 @@
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/opensans-webfont-latin/css/opensans-latin.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
 
-        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
-        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     </head>
 
     <body>
     	<header>
-        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+            <nav class="navbar navbar-default navbar-branding navbar-static-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -45,195 +43,163 @@
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="/sink">Sink</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
         </header>
+
         <section class="body">
             <div class="container">
-
-                <div class="documentation">
+                
+                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
-    <h5>Getting Started</h5>
-    <ul>
-        <li><a href="/docs/install.html">Basic Install</a></li>
-        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
-    </ul>
+            <h5>Getting Started</h5>
+<ul>
+    <li><a href="/docs/install.html">Vanilla Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+</ul>
 
-    <h5>Features</h5>
-    <ul>
-        <li><a href="/docs/events.html">Events</a></li>
-        <li><a href="/docs/flows.html">Flows</a></li>
-        <li><a href="/docs/routing.html">Routing</a></li>
-        <li><a href="/docs/middleware.html">Middleware</a></li>
-        <li><a href="/docs/request.html">Request</a></li>
-        <li><a href="/docs/response.html">Response</a></li>
-        <li><a href="/docs/piping.html">Piping</a></li>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
-        <li><a href="/docs/integration.html">Integration</a></li>
-        <li><a href="/docs/packages.html">Packages</a></li>
-    </ul>
-</div>
+<h5>Features</h5>
+<ul>
+    <li><a href="/docs/events.html">Events</a></li>
+    <li><a href="/docs/flows.html">Flows</a></li>
+    <li><a href="/docs/routing.html">Routing</a></li>
+    <li><a href="/docs/middleware.html">Middleware</a></li>
+    <li><a href="/docs/request.html">Request</a></li>
+    <li><a href="/docs/response.html">Response</a></li>
+    <li><a href="/docs/piping.html">Piping</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+    <li><a href="/docs/integration.html">Integration</a></li>
+    <li><a href="/docs/packages.html">Packages</a></li>
+</ul>
+   
+        </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Events</h1>
-
-            <ul>
-            	<li><i class="fa fa-arrow-right"></i><a href="#basic">Basics</a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#advance">Advanced Listeners</a></li>
-            </ul>
-
-        	<a name="basic"></a>
-            <h2><i class="fa fa-arrow-down"></i> Basics</h2>
-
-            <p>In Cradle, flows, routes and middleware are all types of events.
-            Events have two typical actions, which are to listen and to fire. A typical
-            listen semantically looks like the following.</p>
-
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->on('Some Event', function(...$args) {
-	//Do something here
+<ul>
+<li><i class="fa fa-arrow-right"></i><a href="#basic">Basics</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#advanced">Advanced Listeners</a></li>
+</ul>
+<p><a name="basic"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Basics</h2>
+<p>In Cradle, <a href="/docs/flows.html">flows</a>, <a href="/docs/routing.html">routes</a>
+and <a href="/docs/middleware.html">middleware</a> are all types of events. If your new to
+events, they have two typical parts, which are to listen and to fire. A typical
+listen semantically looks like the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()-&gt;on('Some Event', function(...$args) {
+    //Do something here
 });
 
 </code></pre>
-
-			<p>In the example above there are two main arguments. The first one expressed as
-            <code class="language-php">'Some Event'</code> is called the event. The second argument
-            expressed as a function is called a handler. To fire off
-            <code class="language-php">'Some Event'</code> in the example above,
-            we can use the follow example below.</p>
-
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->trigger('Some Event', ...$args);
+<p>In the example above there are two main arguments. The first one expressed as
+<code class="language-php">'Some Event'</code> is called the event. The second argument expressed as a function
+is called a handler. To fire off <code class="language-php">'Some Event'</code> in the example above, we can use
+the follow example below.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()-&gt;trigger('Some Event', ...$args);
 
 </code></pre>
-
-			<p>As you noticed with <code class="language-php">->trigger()</code>
-            you can pass an N amount of arguments to the event
-            handler. To prevent writing all the event handlers in one file you
-            can optionally include the event handler in another file.</p>
-
-			<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->on('Some Event', include('/some/event/handler.php'));
+<p>As you noticed with <code class="language-php">-&gt;trigger()</code> you can pass an N amount of arguments to the
+event handler. To prevent writing all the event handlers in one file you can
+optionally include the event handler in another file.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()-&gt;on('Some Event', include('/some/event/handler.php'));
 
 </code></pre>
-
-            <p>With this set, you can create a file located where you specified the
-            event handler and return a function like the following example below.</p>
-
-            <h6><code class="language-php">'/some/event/handler.php'</code></h6>
-			<pre class="code line-numbers language-php"><code>&lt;?php
+<p>With this set, you can create a file located where you specified the event
+handler and return a function like the following example below.</p>
+<h6><code class="language-php">/some/event/handler.php</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 return function(...$args) {
-	//Do something here
+    //Do something here
 };
 
 </code></pre>
-
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> This isn't
-            doing any Cradle magic. It's just how PHP works.</div>
-
-            <a name="this"></a>
-            <h2><i class="fa fa-arrow-down"></i> <code class="language-php">$this</code></h2>
-
-            <p>Event handlers also have a populated
-            <code class="language-php">$this</code> variable which is the same as
-            <code class="language-php">cradle()</code>. This means you can also fire events
-            within your event handler. The following shows how this can be done.</p>
-
-            <pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->on('Some Event', function(...$args) {
-	//Do something here
-    $this->trigger('Another Event');
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> This isn't doing any Cradle magic. It's just how PHP works.
+</div>
+<h3><code class="language-php">$this</code></h3>
+<p>Event handlers also have a populated <code class="language-php">$this</code> variable which is the same as
+<code class="language-php">cradle()</code>. This means you can also fire events within your event handler. The
+following shows how this can be done.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()-&gt;on('Some Event', function(...$args) {
+    //Do something here
+    $this-&gt;trigger('Another Event');
 });
 
 </code></pre>
-
-        	<a name="advance"></a>
-            <h2><i class="fa fa-arrow-down"></i> Advanced Listeners</h2>
-
-            <h3><code class="language-php">sprintf()</code></h3>
-
-            <p>Cradle events differ than most event dispatchers because of its
-            ability to listen for special events. The first way is by using the
-            <code class="language-php">sprintf()</code> way.</p>
-
-            <h6>Listening via <code class="language-php">sprintf()</code></h6>
-			<pre class="code line-numbers language-php"><code>&lt;?php
+<p>The simplicity of the event interface in Cradle is by design, and used
+constantly throughout the framework, some of which require more advance
+features from events. Though in most cases you may not have a need for the
+following features in the next section, describes such needs of the framework
+which you can also use at your convenience.</p>
+<p><a name="advanced"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Advanced Listeners</h2>
+<h3><code class="language-php">sprintf()</code></h3>
+<p>Cradle events differ than most event dispatchers because it opens up the
+listener API for you to use, but be careful of it's over usage, because it
+may impact performance <em>(which is why most close off this)</em>. The first
+listener interface resembles a <code class="language-php">sprintf()</code> type string.</p>
+<h6>Listening via <code class="language-php">sprintf()</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 cradle()
-	->on('Some %s Event', function(...$args) {
+    -&gt;on('Some %s Event', function(...$args) {
         //output the first variable
-        echo $this->getEventHandler()->getMeta()['variables'][0]; //--> Random
+        echo $this-&gt;getEventHandler()-&gt;getMeta()['variables'][0]; //--&gt; Random
     })
-    ->trigger('Some Random Event');
+    -&gt;trigger('Some Random Event');
+</code></pre>
+<p>Given the example above, we use <code class="language-php">'%s'</code> to denote that we are expecting a
+variable. As long as the event being fired off matches <code class="language-php">'Some %s Event'</code> the
+relative event handler will be called. For example,
+<code class="language-php">cradle()-&gt;trigger('Some Good Event')</code> will match the case above.</p>
+<h3>Meta Data</h3>
+<p>To get the variable we call on the event handler using
+<code class="language-php">$this-&gt;getEventHandler()-&gt;getMeta()</code> which returns meta data about the
+current event. The meta data is an array that contains information like
+<code class="language-php">'event'</code>, <code class="language-php">'pattern'</code>, <code class="language-php">'callback'</code> you can use to help process an event.</p>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> There isn't an easy way to access meta data inside the event handler because
+you would only need to know about meta data in advance cases.
+</div>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> Meta data is short lived. It updates every time there is a new event, ends up
+`true` if all the events were fired off successfully and false if the latter.
+</div>
+<h3>Regular Expressions</h3>
+<p>It is also possible to listen to events via regular expressions. Cradle will
+case for strings to be evaluated as a regular expression if the event starts
+with a <code class="language-php">#</code> and has a <code class="language-php">#</code> in the end like the following example below.</p>
+<h6>Listening via Regular Expressions</h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()
+    -&gt;on('#Some\s(.+)\sEvent#', function(...$args) {
+        //output the first variable
+        echo $this-&gt;getEventHandler()-&gt;getMeta()['variables'][0]; //--&gt; Random
+    })
+    -&gt;trigger('Some Random Event');
 
 </code></pre>
-
-            <p>Given the example above, we use
-            <code class="language-php">'%s'</code> to denote that we are expecting a string. As long as the event
-            being fired off matches <code class="language-php">'Some %s Event'</code> the relative event handler
-            will be called. There are other wildcards you can use as well. Look into
-            <a href="http://php.net/manual/en/function.sprintf.php">PHP: sprinf()</a> for more information.</p>
-
-            <h3>Meta Data</h3>
-
-            <p>To get the variable we call on the event handler using
-            <code class="language-php">$this->getEventHandler()->getMeta()</code> which returns meta data about
-            the current event. The meta data is an array that contains information like
-            <code class="language-php">'event'</code>,
-            <code class="language-php">'pattern'</code>,
-            <code class="language-php">'callback'</code> you can use to help process an event.</p>
-
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> There isn't an easy way to
-            access meta data inside the event handler because you would only need to know about meta data
-            in advance cases.</div>
-
-            <div class="alert alert-info"><i class="fa fa-info-circle"></i> Meta data is short lived. It updates
-            everytime there is a new event, ends up true if all the events were fired off successfully and false
-            if the latter.</div>
-
-            <h3>Regular Expressions</h3>
-
-            <p>It is also possible to listen to events via regular expressions. Cradle will case for strings to be
-            evaluated as a regular expression if the event starts with a
-            <code class="language-php">#</code> and has a
-            <code class="language-php">#</code> in the end like the following example below.</p>
-
-			<h6>Listening via Regular Expressions</h6>
-			<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()
-	->on('#Some\s(.+)\sEvent#', function(...$args) {
-        //output the first variable
-        echo $this->getEventHandler()->getMeta()['variables'][0]; //--> Random
-    })
-    ->trigger('Some Random Event');
-
-</code></pre>
-
-			<div class="alert alert-info"><i class="fa fa-info-circle"></i> It is also possible to use expression
-            modifiers like <code class="language-php">#Some\s(.+)\sEvent#is</code> in the end.</div>
-
-            <div class="alert alert-warning">
-            	<i class="fa fa-exclamation-triangle"></i>
-            	Make sure you know how to Regex. Invalid regular expressions will
-                throw out an error or make the variables results unexpected.
-            </div>
-
-            <div class="alert alert-warning">
-            	<i class="fa fa-exclamation-triangle"></i>
-            	Using too much regular expressions will slow down your application.
-            </div>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i>  It is also possible to use expression modifiers like `#Some\s(.+)\sEvent#is`
+ in the end.
+</div>
+<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>  Make sure you know how to Regex. Invalid regular expressions will throw out an error or make the variables results unexpected.
+</div>
+<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>  Using too much regular expressions will slow down your application.
+</div>
         </div>
+
     </div>
 </div>
+
             </div>
         </section>
         <footer>
-        	<div class="container">
+            <div class="container">
 	<div class="top clearfix">
         <div class="left pull-left">
             <div>
@@ -248,22 +214,26 @@ cradle()
 
         <div class="middle pull-right">
             <ul>
-                <li><a href="/docs/intro.html">Getting Started</a></li>
-                <li><a href="/docs/install.html">Install</a></li>
-                <li><a href="/">Documentation</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Getting Started</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/install.html">Install</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Documentation</a></li>
             </ul>
         </div>
+
+
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
-<a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
-<br /><br />&copy; CradlePHP 2016</center>
+            <a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
+            <br /><br />&copy; CradlePHP 2016
+        </center>
     </div>
 </div>
+
         </footer>
         <script type="text/javascript" src="/www/scripts/prism.js"></script>
     </body>

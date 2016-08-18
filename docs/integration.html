@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Cradle PHP</title>
+        <title>CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+        
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
@@ -15,20 +14,19 @@
 		<link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-font-awesome/awesome.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-bootstrap/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/eve-open-sans/open-sans.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/opensans-webfont-latin/css/opensans-latin.css" />
+        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
         <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
 
-        <script type="text/javascript" src="/bower_components/eve-jquery/jquery.js"></script>
-        <script type="text/javascript" src="/bower_components/eve-bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     </head>
 
     <body>
     	<header>
-        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+            <nav class="navbar navbar-default navbar-branding navbar-static-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -45,95 +43,90 @@
         <div class="collapse navbar-collapse" id="header">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="/sink">Sink</a></li>
                 <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
         </header>
+
         <section class="body">
             <div class="container">
-
-                <div class="documentation">
+                
+                 <div class="documentation">
     <div class="row">
         <div class="left col-xs-12 col-md-2">
-    <h5>Getting Started</h5>
-    <ul>
-        <li><a href="/docs/install.html">Basic Install</a></li>
-        <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
-    </ul>
+            <h5>Getting Started</h5>
+<ul>
+    <li><a href="/docs/install.html">Vanilla Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink Install</a></li>
+</ul>
 
-    <h5>Features</h5>
-    <ul>
-        <li><a href="/docs/events.html">Events</a></li>
-        <li><a href="/docs/flows.html">Flows</a></li>
-        <li><a href="/docs/routing.html">Routing</a></li>
-        <li><a href="/docs/middleware.html">Middleware</a></li>
-        <li><a href="/docs/request.html">Request</a></li>
-        <li><a href="/docs/response.html">Response</a></li>
-        <li><a href="/docs/piping.html">Piping</a></li>
-        <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
-        <li><a href="/docs/integration.html">Integration</a></li>
-        <li><a href="/docs/packages.html">Packages</a></li>
-    </ul>
-</div>
+<h5>Features</h5>
+<ul>
+    <li><a href="/docs/events.html">Events</a></li>
+    <li><a href="/docs/flows.html">Flows</a></li>
+    <li><a href="/docs/routing.html">Routing</a></li>
+    <li><a href="/docs/middleware.html">Middleware</a></li>
+    <li><a href="/docs/request.html">Request</a></li>
+    <li><a href="/docs/response.html">Response</a></li>
+    <li><a href="/docs/piping.html">Piping</a></li>
+    <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+    <li><a href="/docs/integration.html">Integration</a></li>
+    <li><a href="/docs/packages.html">Packages</a></li>
+</ul>
+   
+        </div>
         <div class="right col-xs-12 col-md-10">
         	<h1>Integration</h1>
-
-            <ul>
-            	<li><i class="fa fa-arrow-right"></i><a href="#semi">Semi-Integration</a></li>
-            	<li><i class="fa fa-arrow-right"></i><a href="#full">Full Integration</a></li>
-            </ul>
-
-            <a name="semi"></a>
-            <h2>Semi Integration</h2>
-
-            <p>When it comes to PHP, there are already existing great enterprise solutions out there.
-            If you have done something existing in PHP already, most likely you have used one of them.
-            Cradle is a meta framework, and whenever your ready to integrate with a more enterprise
-            solution, you can easily so with the <code class="language-php">->export()</code> method.
-            The following example shows how this can be done.</p>
-
-            <h6>Exporting a Flow</h6>
-<pre class="code line-numbers language-php"><code>&lt;?php
+<ul>
+<li><i class="fa fa-arrow-right"></i><a href="#semi">Semi-Integration</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#full">Full Integration</a></li>
+</ul>
+<p><a name="semi"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Semi Integration</h2>
+<p>When it comes to PHP, there are already existing great enterprise solutions
+out there. If you have done something existing in PHP already, most likely you
+have used one of them. Cradle is a meta framework, and whenever your ready to
+integrate with a more enterprise solution, you can easily so with the
+<code class="language-php">-&gt;export()</code> method. The following example shows how this can be done.</p>
+<h6>Exporting a Flow</h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 /**
  * Hello Laravel !
  */
-$app->get('/', cradle()->export('Get Foo Bar'));
+$app-&gt;get('/', cradle()-&gt;export('Get Foo Bar'));
 
 </code></pre>
-
-			<p>The above will return a callback which Laravel can call on. In this particular case
-            Laravel can pass an N amount of arguments, all of which will be ignored by default
-            and Cradle will continue with its own way of doing things and in the end either return
-            a response string or false. If you want to map out the response before it gets sent to
-            Laravel you need to create a map callback and add true to the
-            <code class="language-php">->export()</code> method. The following shows how this can be done.</p>
-
-            <pre class="code line-numbers language-php"><code>&lt;?php
-/**
- * Hello Laravel !
- */
-$app->get('/{app_id}', function($appId) {
-	list($request, $response, $next) = cradle()->export('Get Foo Bar', true);
-
-    $request->setPost('app_id', $appId);
-
-	return $next();
-});
-
-</code></pre>
-
-			<p>Doing it this way will return three properties,
-            <code class="language-php">$request</code> which is the Cradle Request object,
-            <code class="language-php">$response</code> which is the Cradle Response object and
-            <code class="language-php">$next</code> which is the callback to trigger the flow.
-            In Symfony you an acheive the same in Laravel with the following</p>
-
-<pre class="code line-numbers language-php"><code>&lt;?php
+<p>The above will return a callback which <a href="https://laravel.com/">Laravel</a> can
+call on. In this particular case <a href="https://laravel.com/">Laravel</a> can pass an
+<em>N</em> amount of arguments, all of which will be ignored by default and
+Cradle will continue with its own way of doing things and in the end either
+return a response string or false. If you want to map out the response before
+it gets sent to <a href="https://laravel.com/">Laravel</a> you need to create a map
+callback and add true to the -&gt;export() method. The following shows how
+this can be done.</p>
+<p>&lt;?php
+/**</p>
+<ul>
+<li>
+<p>Hello Laravel !
+*/
+$app-&gt;get('/{app_id}', function($appId) {
+list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);</p>
+<p>$request-&gt;setPost('app_id', $appId);</p>
+<p>return $next();
+});</p>
+</li>
+</ul>
+<p>Doing it this way will return three properties, <code class="language-php">$request</code> which is the
+Cradle Request object, <code class="language-php">$response</code> which is the Cradle
+<a href="/docs/response.html">Response</a> object and <code class="language-php">$next</code> which is the callback to
+trigger the flow. In <a href="https://symfony.com/">Symfony</a> you an achieve the same
+in <a href="https://laravel.com/">Laravel</a> with the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 // src/AppBundle/Controller/BlogController.php
 namespace AppBundle\Controller;
 
@@ -149,36 +142,32 @@ class BlogController extends Controller
      */
     public function showAction($slug)
     {
-    	list($request, $response, $next) = cradle()->export('Get Foo Bar', true);
+        list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);
 
-        $request->setPost('blog_slug', $slug);
+        $request-&gt;setPost('blog_slug', $slug);
 
         return new Response($next());
     }
 }
 
 </code></pre>
-
-			<a name="full"></a>
-            <h2>Full Integration</h2>
-
-            <p>With full integration, we will not be utilizing Cradle's Request, Response, nor
-            the Router to run these flows. Instead we rely on the framework that we are integrating
-            with to have these features. To do a full on integration it's really three steps.</p>
-
-            <h3>Step 1</h3>
-
-      		<p>Define all your flows in the configuration folder which is usually marked as
-            <code class="language-php">/config</code> or <code class="language-php">/app/config</code>.
-            Your File should look like the following.</p>
-
-            <h6><code class="language-php">/config/flows.php</code></h6>
-            <pre class="code line-numbers language-php"><code>&lt;?php
+<p><a name="full"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Full Integration</h2>
+<p>With full integration, we will not be utilizing Cradle's
+<a href="/docs/request.html">Request</a>, <a href="/docs/response.html">Response</a>,
+nor the <a href="/docs/routing.html">Router</a> to run these flows. Instead we rely on
+the framework that we are integrating with to have these features. To do a
+full on integration it's really three steps.</p>
+<h3>Step 1</h3>
+<p>Define all your flows in the configuration folder which is usually marked as
+<code class="language-php">/config</code> or <code class="language-php">/app/config</code>. Your File should look like the following.</p>
+<h6><code class="language-php">/config/flows.php</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 
 return array(
-	array(
-    	'Form Submit',
-    	'Some Form Event',
+    array(
+        'Form Submit',
+        'Some Form Event',
         'Another Form Event',
         array(
             'A Good Form Event',
@@ -190,44 +179,34 @@ return array(
         )
     ),
     array(
-    	'Render Page',
+        'Render Page',
         'Some Page Event',
         'Another Page Event',
     )
 );
-
 </code></pre>
-
-            <h3>Step 2</h3>
-
-            <p>Setup Cradle in the main PHP file. Most frameworks use
-            <code class="language-php">/public/index.php</code> or
-            <code class="language-php">/web/app.php</code>. Open that
-            file and add the following.</p>
-
-            <pre class="code line-numbers language-php"><code>&lt;?php
+<h3>Step 2</h3>
+<p>Setup Cradle in the main PHP file. Most frameworks use <code class="language-php">/public/index.php</code>
+or <code class="language-php">/web/app.php</code>. Open that file and add the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 
 if(!function_exists('cradle')) {
-	function cradle()
-	{
-		static $framework = null;
+    function cradle()
+    {
+        static $framework = null;
 
-		if(is_null($framework)) {
-			$framework = new \Cradle\Frame\FrameHttp;
-		}
+        if(is_null($framework)) {
+            $framework = new \Cradle\Frame\FrameHttp;
+        }
 
-		return $framework;
-	}
+        return $framework;
+    }
 }
 
 </code></pre>
-
-
-            <h3>Step 3</h3>
-
-            <p>Populate the Framework Actions</p>
-
-            <pre class="code line-numbers language-php"><code>&lt;?php
+<h3>Step 3</h3>
+<p>Populate the Framework Actions</p>
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
 // src/AppBundle/Controller/BlogController.php
 namespace AppBundle\Controller;
 
@@ -243,25 +222,23 @@ class BlogController extends Controller
      */
     public function showAction($slug)
     {
-    	$response = new Response();
+        $response = new Response();
 
-    	cradle()->trigger('Render Page', $slug, $response);
+        cradle()-&gt;trigger('Render Page', $slug, $response);
 
         return $response;
     }
 }
-
 </code></pre>
-
         </div>
+
     </div>
 </div>
-
 
             </div>
         </section>
         <footer>
-        	<div class="container">
+            <div class="container">
 	<div class="top clearfix">
         <div class="left pull-left">
             <div>
@@ -276,22 +253,26 @@ class BlogController extends Controller
 
         <div class="middle pull-right">
             <ul>
-                <li><a href="/docs/intro.html">Getting Started</a></li>
-                <li><a href="/docs/install.html">Install</a></li>
-                <li><a href="/">Documentation</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Getting Started</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/install.html">Install</a></li>
+                <li><a href="https://cradlepphp.github.io/docs/intro.html">Documentation</a></li>
             </ul>
         </div>
+
+
     </div>
     <div class="masthead">
     	<center class="copy"><a href="https://travis-ci.org/CradlePHP/packages"><img src="https://travis-ci.org/CradlePHP/packages.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
-<a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
-<a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
-<br /><br />&copy; CradlePHP 2016</center>
+            <a href='https://coveralls.io/github/CradlePHP/packages?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/packages/badge.svg?branch=master' alt='Coverage Status' /></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img src="https://poser.pugx.org/cradlephp/packages/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/packages/downloads" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/packages/v/unstable" style="max-width:100%;"></a>
+            <a href="https://packagist.org/packages/cradlephp/packages"><img alt="License" src="https://poser.pugx.org/cradlephp/packages/license" style="max-width:100%;"></a>
+            <br /><br />&copy; CradlePHP 2016
+        </center>
     </div>
 </div>
+
         </footer>
         <script type="text/javascript" src="/www/scripts/prism.js"></script>
     </body>
