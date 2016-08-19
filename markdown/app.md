@@ -128,4 +128,4 @@ notice that only `Done.` was outputted. From here you merely have to define
 event handlers for each event.
 
 For a more OOP discussion on writing apps, please see
-[Facades]('/docs/facades.html').
+[Facades](/docs/facades.html).
