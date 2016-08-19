@@ -10,18 +10,20 @@
 <a name="boostrap"></a>
 ## `boostrap.php`
 
-If you open bootstrap.php in your project root folder, you will see a set of preprocessors called bootstrap files, each are located in the /bootstrap/ folder.
+If you open bootstrap.php in your project root folder, you will see a set of
+[preprocessors](/docs/middleware.html#pre) called bootstrap files, each are
+located in the `/bootstrap/` folder.
 
 ```
 
 return cradle()
-	//now bootstrap
-	->preprocess(include('bootstrap/paths.php'))
-	->preprocess(include('bootstrap/debug.php'))
-	->preprocess(include('bootstrap/errors.php'))
-	->preprocess(include('bootstrap/services.php'))
-	->preprocess(include('bootstrap/i18n.php'))
-	->preprocess(include('bootstrap/timezone.php'))
+    //now bootstrap
+    ->preprocess(include('bootstrap/paths.php'))
+    ->preprocess(include('bootstrap/debug.php'))
+    ->preprocess(include('bootstrap/errors.php'))
+    ->preprocess(include('bootstrap/services.php'))
+    ->preprocess(include('bootstrap/i18n.php'))
+    ->preprocess(include('bootstrap/timezone.php'))
 
 ```
 
@@ -67,7 +69,7 @@ troubleshoot problems.
 ```
 <?php
 cradle()->flow(
-	'Signup Flow',
+    'Signup Flow',
     'Send to Database',
     'debug://Put anything here',
     'Send Email'
@@ -107,7 +109,7 @@ for example.
 <?php //-->
 
 return array (
-	'sql-main' 	 => new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', '')
+    'sql-main'      => new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', '')
 );
 
 ```

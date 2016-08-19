@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Middleware - CradlePHP</title>
+        <title>Profiler - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
         
-        <meta name="keywords" content="php,framework,cradle,middleware" />
+        <meta name="keywords" content="php,framework,cradle,profiler" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Middleware - CradlePHP" />
+        <meta property="og:title" content="Profiler - CradlePHP" />
 
-        <meta property="og:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta property="og:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Middleware - CradlePHP" />
+        <meta name="twitter:title" content="Profiler - CradlePHP" />
 
-        <meta name="twitter:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="twitter:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -151,174 +151,79 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Middleware</h1>
+        	<h1>Profiler Traits</h1>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#intro">Introduction</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#pre">Pre-Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#error">Error Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#post">Post Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#api">API (9)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#caller">Caller (2)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#inspector">Inspector (1)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#logger">Logger (2)</a></li>
 </ul>
-<p><a name="intro"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Introduction</h2>
-<p>Middleware is a concept of allowing pieces of functionality to be injected
-anywhere at your discretion. Almost like plugins or extensions, the popularity
-of middleware came from third party vendors being able to quickly plug into
-applications.</p>
-<p>Routes is a kind of middleware interface because you can add functionality
-using the include method explained before.</p>
-<h6>Routing Middleware Interface</h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;get('/some/path', include('/some/event/handler'));
+<p><a name="#caller"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Caller</h2>
+<p>The caller trait profiles meta information about the current method and the
+method that called it. Mounting this trait can be done with the following
+example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Profiler\CallerTrait
+
+class MyClass
+{
+    use CallerTrait;
+}
 
 </code></pre>
-<p>There are other areas where you may need to plug in to other than the time of
-routing for example before and after the routing and during an error.</p>
-<p><a name="pre"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Pre-Processing</h2>
-<p>Middleware can be inserted before routing with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
+<p>The caller trait adds on two method to your class called <code class="language-php">getCaller</code> and
+<code class="language-php">getCallee</code>. The following shows how these method can be used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$this-&gt;getCaller(); //--&gt; ['file', 'line', 'class', 'method' ...]
+$this-&gt;getCallee(); //--&gt; ['file', 'line', 'class', 'method' ...]
+
+</code></pre>
+<p><a name="#inspector"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Inspector</h2>
+<p>The inspector trait profiles class properties in certain stages. Mounting
+this trait can be done with the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Profiler\InspectorTrait
+
+class MyClass
+{
+    use InspectorTrait;
+}
+
+</code></pre>
+<p>The inspector trait adds on just one method to your class called <code class="language-php">inspect</code>
+which can be used in various ways. The following shows how this method can be
+used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+//echo MyClass-&gt;protectedProperty
+$this-&gt;inspect('protectedProperty');
+
+//echo MyClass-&gt;protectedProperty after `someMethod` was called
+$this-&gt;inspect('protectedProperty', true)-&gt;someMethod();
+
+</code></pre>
+<p><a name="#caller"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Logger</h2>
+<p>The logger trait enables a clean way to take notes. Mounting
+this trait can be done with the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Profiler\LoggerTrait
+
+class MyClass
+{
+    use LoggerTrait;
+}
+
+</code></pre>
+<p>The logger trait adds on two method to your class called <code class="language-php">addLogger</code> and <code class="language-php">log</code>
+which can be used in various ways. The following shows how these method can be
+used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$this-&gt;addLogger(function($message) {
+    //Do something
 });
 
-</code></pre>
-<p>Like routing, a <code class="language-php">$request</code> and a <code class="language-php">$response</code> will be passed. The usual
-activity for a <code class="language-php">-&gt;preprocess()</code> would be populating the <code class="language-php">$request</code> further,
-presetting a $response and/or adding more available methods. The Bootstrap
-heavily uses <code class="language-php">-&gt;preprocess()</code> for example.</p>
-<p><a name="error"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Error Processing</h2>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;error(function($request, $response, $error) {
-    //Do something because there was an error
-});
-
-</code></pre>
-<p>With error processors, like pre-processors a $request and a $response will be
-passed. A third argument called <code class="language-php">$error</code> will also be passed which will be an
-<strong>Exception</strong> object. Error processors should be treated as a last ditch effort
-to report the error to the user in a nice way.</p>
-<div class="alert alert-danger"><i class="fa fa-times"></i> Because errors that happen in an error handler will throw that error if not caught again.
-Bootstrap: Errors presets what happens whens there's an error and your free to change/remove/add on to it.
-</div>
-<p><a name="post"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Post Processing</h2>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;postprocess(function($request, $response, $error) {
-    //Do something after the connection is closed
-});
-
-</code></pre>
-<p>Post processors are like pre-processors except that it waits till the user
-has received a response and the connection is closed before being activated.
-This is a nice feature where you can do short time consuming tasks if you do
-not have access to a queue available.</p>
-<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>  A caveat about post-processors is that writing to sessions will no longer be
- available. You can write to it, but on refresh, it won't remember it like if
- it was still open.
-</div>
-<p><a name="api"></a></p>
-<h2><i class="fa fa-arrow-down"></i> API</h2>
-<p><code class="language-php">preprocess</code> - Adds pre processing middleware which is called before routing</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">error</code> - Adds error middleware which is called when an Exception is thrown</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;error(function($request, $response) {
-    //Do something because there was an error
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">postprocess</code> - Adds post processing after the response was sent out and the connection is closed</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;postprocess(function($request, $response) {
-    //Do something after the connection is closed
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPreprocessor</code> - Allows for a custom pre processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPreProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPreProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPreprocessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setErrorProcessor</code> - Allows for a custom error processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setErrorProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getErrorProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getErrorProcessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPostProcessor</code> - Allows for a custom post processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPostProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPostProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPostProcessor();
+$this-&gt;log('Something has happened');
 
 </code></pre>
         </div>

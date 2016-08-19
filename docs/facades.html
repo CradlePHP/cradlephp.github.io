@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Middleware - CradlePHP</title>
+        <title>Facades - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="description" content="Facades To start off with a reference, we will be using the setup described in Writing an App. The first thing you want to do befo" />
         
-        <meta name="keywords" content="php,framework,cradle,middleware" />
+        <meta name="keywords" content="php,framework,cradle,facades" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Middleware - CradlePHP" />
+        <meta property="og:title" content="Facades - CradlePHP" />
 
-        <meta property="og:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta property="og:description" content="Facades To start off with a reference, we will be using the setup described in Writing an App. The first thing you want to do befo" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Middleware - CradlePHP" />
+        <meta name="twitter:title" content="Facades - CradlePHP" />
 
-        <meta name="twitter:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="twitter:description" content="Facades To start off with a reference, we will be using the setup described in Writing an App. The first thing you want to do befo" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -151,175 +151,244 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Middleware</h1>
-<ul>
-<li><i class="fa fa-arrow-right"></i><a href="#intro">Introduction</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#pre">Pre-Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#error">Error Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#post">Post Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#api">API (9)</a></li>
-</ul>
-<p><a name="intro"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Introduction</h2>
-<p>Middleware is a concept of allowing pieces of functionality to be injected
-anywhere at your discretion. Almost like plugins or extensions, the popularity
-of middleware came from third party vendors being able to quickly plug into
-applications.</p>
-<p>Routes is a kind of middleware interface because you can add functionality
-using the include method explained before.</p>
-<h6>Routing Middleware Interface</h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;get('/some/path', include('/some/event/handler'));
+        	<h1>Facades</h1>
+<p>To start off with a reference, we will be using the setup described in
+<a href="/docs/app.html">Writing an App</a>. The first thing you want to do before
+continuing is to create a project namespace in <code class="language-php">composer.json</code> like the
+following. Then run <code class="language-php">composer dump-autoload</code> to rebuild the autoload.</p>
+<pre class="code line-numbers language-php"><code class="marked">{
+    "autoload": {
+        "psr-4": {"Cradle\\App\\Www\\": "app/www/"}
+    }
+}
+</code></pre>
+<p>Facades are used in Cradle to return a callback of your actual class method.
+Facades closely works with controllers and controllers closely work with actions.
+Facades are arguably more efficient than events in general when it comes to
+flows because since they directly return a callback, it doesn't add to the
+event handler. Before we delve into facades, let's review how flows work.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle()-&gt;flow(
+    'A process flow',
+    'An event',
+    //add a logger
+    function($request, $response) {
+        echo 'Hello World';
+    }
+);
 
 </code></pre>
-<p>There are other areas where you may need to plug in to other than the time of
-routing for example before and after the routing and during an error.</p>
-<p><a name="pre"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Pre-Processing</h2>
-<p>Middleware can be inserted before routing with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
+<p>In Cradle, there is an existing callback that log messages and you can use
+it like this.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Framework\Flow;
+
+cradle()-&gt;flow(
+    'A process flow',
+    'An event',
+    //add a logger
+    Flow::log()-&gt;debug('Hello World')
+);
+
+</code></pre>
+<p><code class="language-php">Flow::log()-&gt;debug('Hello World')</code> does the exact the same thing as the
+first example, outputs <code class="language-php">'Hello World'</code> because <code class="language-php">Flow::log()-&gt;debug('Hello World')</code>
+returns a callback just like the first example.</p>
+<p>Instead of making a list of facades, Cradle rolls all facades in a magical class
+called <code class="language-php">Flow</code> used above. To add controllers in your package to the Flow object
+you simply need to register it like the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\App\Www\Controller;
+
+Flow::register('custom', function () {
+    static $cache = null;
+
+    if (is_null($cache)) {
+        $cache = new Controller(cradle());
+    }
+
+    return $cache;
 });
 
 </code></pre>
-<p>Like routing, a <code class="language-php">$request</code> and a <code class="language-php">$response</code> will be passed. The usual
-activity for a <code class="language-php">-&gt;preprocess()</code> would be populating the <code class="language-php">$request</code> further,
-presetting a $response and/or adding more available methods. The Bootstrap
-heavily uses <code class="language-php">-&gt;preprocess()</code> for example.</p>
-<p><a name="error"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Error Processing</h2>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;error(function($request, $response, $error) {
-    //Do something because there was an error
-});
-
-</code></pre>
-<p>With error processors, like pre-processors a $request and a $response will be
-passed. A third argument called <code class="language-php">$error</code> will also be passed which will be an
-<strong>Exception</strong> object. Error processors should be treated as a last ditch effort
-to report the error to the user in a nice way.</p>
-<div class="alert alert-danger"><i class="fa fa-times"></i> Because errors that happen in an error handler will throw that error if not caught again.
-Bootstrap: Errors presets what happens whens there's an error and your free to change/remove/add on to it.
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> While you can define the above code anywhere, it's recommended to put it
+inside of your `.cradle` file.
 </div>
-<p><a name="post"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Post Processing</h2>
+<p>Also please note <code class="language-php">new Controller(cradle())</code> which passes the App to the
+controller. This will be used later. For illustration purposes define your
+controller like the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+namespace Cradle\App\Www;
+
+class Controller
+{
+    public function hello()
+    {
+        return function($request, $response) {
+            echo 'Hello World';
+        };
+    }
+}
+
+</code></pre>
+<p>Now we can call on our controller like the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+Flow::custom()-&gt;hello();
+
+</code></pre>
+<p>While this being fantastic, overtime you will have a bunch of methods that
+cannot be used directly. To prevent having to return a callback, we need to
+add two things. The first one is add a helper trait called <code class="language-php">FlowTrait</code> used
+like below.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+namespace Cradle\App\Www;
+
+use Cradle\Framework\App;
+use Cradle\Framework\FlowTrait;
+
+use Cradle\App\Www\Action\Hello;
+
+class Controller
+{
+    use FlowTrait {
+        FlowTrait::__callFlow as __call;
+        FlowTrait::__getFlow as __get;
+    }
+
+    public function __construct(App $app)
+    {
+        $this-&gt;actions['hello'] = $this-&gt;resolve(Hello::class, $app);
+    }
+}
+
+</code></pre>
+<p>Several things happened in the example above. First off <code class="language-php">Flow</code> comes with a
+helper trait called <code class="language-php">FlowTrait</code>. And <code class="language-php">FlowTrait</code> is used to delay your methods
+by wrapping methods in a callback and returning that instead. The exact
+definition of flow traits is provided below. The second thing is that we
+registered an action to the <code class="language-php">FlowTrait</code> using <code class="language-php">resolve</code>. To learn more about
+<code class="language-php">resolve</code> you can see the section about <a href="'/docs/resolver.html'">Resolvers</a>.</p>
+<h6>Definition of the FlowTrait</h6>
+<pre class="code line-numbers language-php"><code class="marked">
+trait FlowTrait
+{
+    use ResolverTrait;
+
+    /**
+     * @var array $actions
+     */
+    protected $actions = array();
+
+    /**
+     * @var array $current
+     */
+    protected $current = null;
+
+    /**
+     * Returns the action property
+     * example `Flow::auth()-&gt;load()`
+     * example `Flow::auth()-&gt;search()-&gt;load()`
+     * example `Flow::auth()-&gt;search-&gt;load()`
+     *
+     * @param *string $name
+     * @param *array  $args
+     *
+     * @return string
+     */
+    public function __callFlow($name, $args)
+    {
+        if (is_null($this-&gt;current)) {
+            if (!isset($this-&gt;actions[$name])) {
+                return $this;
+            }
+
+            //its the search part in `Flow::auth()-&gt;search()-&gt;load()`
+            $this-&gt;current = $this-&gt;actions[$name];
+            return $this;
+        }
+
+        //its the load part in `Flow::auth()-&gt;search()-&gt;load()`
+        $action = $this-&gt;current;
+        $this-&gt;current = null;
+
+        if (property_exists($action, $name)) {
+            return $action-&gt;$name;
+        }
+
+        return function ($request, $response) use ($action, $name, &amp;$args) {
+            //we should throw a method exist error at runtime
+            $results = $action-&gt;$name($request, $response, ...$args);
+
+            if ($results instanceof $action) {
+                return;
+            }
+
+            return $results;
+        };
+    }
+
+    /**
+     * Returns the action property
+     * example `Flow::auth()-&gt;search-&gt;load`
+     *
+     * @param *string $name
+     *
+     * @return string|callable
+     */
+    public function __getFlow($name)
+    {
+        return $this-&gt;__callFlow($name, array());
+    }
+}
+
+</code></pre>
+<p>Before we fire off our custom facade the next thing to do is create an action
+class called <code class="language-php">Cradle\App\Www\Action\Hello</code>.</p>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;postprocess(function($request, $response, $error) {
-    //Do something after the connection is closed
-});
+
+namespace Cradle\App\Www\Action;
+
+use Cradle\Framework\App;
+
+class Hello
+{
+    protected $app;
+
+    public function __construct(App $app)
+    {
+        $this-&gt;app = $app;
+    }
+
+    public function world($request, $response) {
+        echo 'Hello World';
+
+        return $this;
+    }
+}
 
 </code></pre>
-<p>Post processors are like pre-processors except that it waits till the user
-has received a response and the connection is closed before being activated.
-This is a nice feature where you can do short time consuming tasks if you do
-not have access to a queue available.</p>
-<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>  A caveat about post-processors is that writing to sessions will no longer be
- available. You can write to it, but on refresh, it won't remember it like if
- it was still open.
-</div>
-<p><a name="api"></a></p>
-<h2><i class="fa fa-arrow-down"></i> API</h2>
-<p><code class="language-php">preprocess</code> - Adds pre processing middleware which is called before routing</p>
+<p>If you made it this far, you can now add your custom facade like the following.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
-});
+use Cradle\Framework\Flow;
+
+cradle()-&gt;flow(
+    'A process flow',
+    'An event',
+    //add a logger
+    Flow::custom()-&gt;hello-&gt;world
+);
 
 </code></pre>
-<hr />
-<p><code class="language-php">error</code> - Adds error middleware which is called when an Exception is thrown</p>
+<p>You can accept additional parameters to your custom methods like this.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;error(function($request, $response) {
-    //Do something because there was an error
-});
+Flow::custom()-&gt;hello-&gt;world($foo, 'bar');
 
 </code></pre>
-<hr />
-<p><code class="language-php">postprocess</code> - Adds post processing after the response was sent out and the connection is closed</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;postprocess(function($request, $response) {
-    //Do something after the connection is closed
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPreprocessor</code> - Allows for a custom pre processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPreProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPreProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPreprocessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setErrorProcessor</code> - Allows for a custom error processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setErrorProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getErrorProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getErrorProcessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPostProcessor</code> - Allows for a custom post processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPostProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPostProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPostProcessor();
-
+<p>In which can be accepted by your methods like this.</p>
+<pre class="code line-numbers language-php"><code class="marked">public function world($request, $response, $foo, $bar) {
+    echo 'Hello World';
+    return $this;
+}
 </code></pre>
         </div>
 

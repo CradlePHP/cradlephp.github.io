@@ -67,6 +67,8 @@ public directory.
 Open your browser to `http://localhost:8000` and you should see the application
 running.
 
+To understand how these packages work, take a look at [Facades](/docs/facades.html).
+
 For documentation on the packages being used, the following links have been
 provided.
 

@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Middleware - CradlePHP</title>
+        <title>App - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="description" content="Writing an App First off, writing an app is similar to writing a package. Create a folder path called app/www in your &amp;lt;project " />
         
-        <meta name="keywords" content="php,framework,cradle,middleware" />
+        <meta name="keywords" content="php,framework,cradle,app" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Middleware - CradlePHP" />
+        <meta property="og:title" content="App - CradlePHP" />
 
-        <meta property="og:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta property="og:description" content="Writing an App First off, writing an app is similar to writing a package. Create a folder path called app/www in your &amp;lt;project " />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Middleware - CradlePHP" />
+        <meta name="twitter:title" content="App - CradlePHP" />
 
-        <meta name="twitter:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="twitter:description" content="Writing an App First off, writing an app is similar to writing a package. Create a folder path called app/www in your &amp;lt;project " />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -151,176 +151,110 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Middleware</h1>
-<ul>
-<li><i class="fa fa-arrow-right"></i><a href="#intro">Introduction</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#pre">Pre-Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#error">Error Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#post">Post Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#api">API (9)</a></li>
-</ul>
-<p><a name="intro"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Introduction</h2>
-<p>Middleware is a concept of allowing pieces of functionality to be injected
-anywhere at your discretion. Almost like plugins or extensions, the popularity
-of middleware came from third party vendors being able to quickly plug into
-applications.</p>
-<p>Routes is a kind of middleware interface because you can add functionality
-using the include method explained before.</p>
-<h6>Routing Middleware Interface</h6>
+        	<h2><i class="fa fa-arrow-down"></i> Writing an App</h2>
+<p>First off, writing an app is similar to <a href="/docs/packages.html">writing a package</a>.</p>
+<p>Create a folder path called <code class="language-php">app/www</code> in your <code class="language-php">&lt;project folder name&gt;</code> so the
+final folder path should look like <code class="language-php">&lt;project folder name&gt;/app/www</code>. Inside of
+this folder create a file called <code class="language-php">.cradle</code>, open it up and add the following
+code.</p>
+<h6>Inside of <code class="language-php">&lt;project folder name&gt;/app/www/.cradle</code></h6>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;get('/some/path', include('/some/event/handler'));
 
-</code></pre>
-<p>There are other areas where you may need to plug in to other than the time of
-routing for example before and after the routing and during an error.</p>
-<p><a name="pre"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Pre-Processing</h2>
-<p>Middleware can be inserted before routing with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
+$cradle-&gt;get('/foo/bar', 'Do something');
+
+$cradle-&gt;on('Do something', function($request, $response) {
+    $response-&gt;setContent('Doing Something.');
 });
 
 </code></pre>
-<p>Like routing, a <code class="language-php">$request</code> and a <code class="language-php">$response</code> will be passed. The usual
-activity for a <code class="language-php">-&gt;preprocess()</code> would be populating the <code class="language-php">$request</code> further,
-presetting a $response and/or adding more available methods. The Bootstrap
-heavily uses <code class="language-php">-&gt;preprocess()</code> for example.</p>
-<p><a name="error"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Error Processing</h2>
+<p>The code above makes use of <a href="/docs/events.html">events</a>,
+<a href="/docs/routing.html">routes</a>, <a href="/docs/request.html">request</a>,
+and <a href="/docs/response.html">response</a>. Please read through these in case you have
+questions about these.</p>
+<p>The importance of this file is that when you register this package, your
+<code class="language-php">.cradle</code> file will be called. This file is suppose to bootstrap everything
+that is needed in order for your app to work. From within your
+<code class="language-php">&lt;project folder name&gt;/app/www</code> folder you are free to decide on the folder
+structure because in the <code class="language-php">.cradle</code> file you will be linking each event
+handler manually like in the example below.</p>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;error(function($request, $response, $error) {
-    //Do something because there was an error
-});
+
+$cradle
+    -&gt;get('/foo/bar', 'Do something')
+    -&gt;on('Do something', include(__DIR__ . '/events/something.php'));
 
 </code></pre>
-<p>With error processors, like pre-processors a $request and a $response will be
-passed. A third argument called <code class="language-php">$error</code> will also be passed which will be an
-<strong>Exception</strong> object. Error processors should be treated as a last ditch effort
-to report the error to the user in a nice way.</p>
-<div class="alert alert-danger"><i class="fa fa-times"></i> Because errors that happen in an error handler will throw that error if not caught again.
-Bootstrap: Errors presets what happens whens there's an error and your free to change/remove/add on to it.
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> If you have code coloring problems in your editor you can use `.cradle.php`
+instead.
 </div>
-<p><a name="post"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Post Processing</h2>
+<p>Don't add in the code above yet, for now go to your <code class="language-php">/public/index.php</code> make
+sure it looks similar to the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+return cradle()
+    //add packages here
+    -&gt;register('/app/www')
+
+    //start rendering
+    -&gt;render();
+
+</code></pre>
+<p>If you go to your browser and open up <code class="language-php">http://127.0.0.1/foo/bar</code>, you will
+see that your package triggered.</p>
+<p>While this is fantastic, overtime your <code class="language-php">.cradle</code> file will be populated with
+many routes and events. To separate the app into <em>mini apps</em> you can add a mini app hander
+like the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$cradle-&gt;app('/foo', include(__DIR__ . '/route/foo.php'));
+
+</code></pre>
+<h6>And Inside of <project folder name>/app/www/route/foo.php</h6>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;postprocess(function($request, $response, $error) {
-    //Do something after the connection is closed
-});
+use Cradle\Framework\App;
+
+return App::i()
+    -&gt;get('/bar', 'Do something');
+    -&gt;on('Do something', function($request, $response) {
+        $response-&gt;setContent('Doing Something.');
+    });
 
 </code></pre>
-<p>Post processors are like pre-processors except that it waits till the user
-has received a response and the connection is closed before being activated.
-This is a nice feature where you can do short time consuming tasks if you do
-not have access to a queue available.</p>
-<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>  A caveat about post-processors is that writing to sessions will no longer be
- available. You can write to it, but on refresh, it won't remember it like if
- it was still open.
-</div>
-<p><a name="api"></a></p>
-<h2><i class="fa fa-arrow-down"></i> API</h2>
-<p><code class="language-php">preprocess</code> - Adds pre processing middleware which is called before routing</p>
+<p>If you go to your browser and open up <code class="language-php">http://127.0.0.1/foo/bar</code>, you should
+see the exact same result as before. To see an extreme example, it would look
+like the following.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
-});
+$cradle
+    -&gt;app('/'       , include(__DIR__ . '/route/global.php'))
+    -&gt;app('/app'    , include(__DIR__ . '/route/app.php'))
+    -&gt;app('/auth'   , include(__DIR__ . '/route/auth.php'))
+    -&gt;app('/profile', include(__DIR__ . '/route/profile.php'))
+    -&gt;app('/files'  , include(__DIR__ . '/route/file.php'))
+    -&gt;app('/utility', include(__DIR__ . '/route/utility.php'));
 
 </code></pre>
-<hr />
-<p><code class="language-php">error</code> - Adds error middleware which is called when an Exception is thrown</p>
+<p>This is pretty much what you need to know to meta programming custom apps on
+Cradle.</p>
+<h6>How to Meta Program</h6>
 <pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;error(function($request, $response) {
-    //Do something because there was an error
-});
+cradle()
+    -&gt;get('/checkout', 'Checkout Page')
+    -&gt;flow(
+        'Checkout Page',
+        'get products from cart',
+        'get customer data',
+        'render checkout body',
+        'render website page',
+        function($request, $response) {
+            //more psuedo coding
+            $response-&gt;setContent('Done.');
+        }
+    );
 
 </code></pre>
-<hr />
-<p><code class="language-php">postprocess</code> - Adds post processing after the response was sent out and the connection is closed</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;postprocess(function($request, $response) {
-    //Do something after the connection is closed
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPreprocessor</code> - Allows for a custom pre processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPreProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPreProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPreprocessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setErrorProcessor</code> - Allows for a custom error processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setErrorProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getErrorProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getErrorProcessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPostProcessor</code> - Allows for a custom post processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPostProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPostProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPostProcessor();
-
-</code></pre>
+<p>If you go to your browser and open up <code class="language-php">http://127.0.0.1/checkout</code> You will
+notice that only <code class="language-php">Done.</code> was outputted. From here you merely have to define
+event handlers for each event.</p>
+<p>For a more OOP discussion on writing apps, please see
+<a href="'/docs/facades.html'">Facades</a>.</p>
         </div>
 
     </div>

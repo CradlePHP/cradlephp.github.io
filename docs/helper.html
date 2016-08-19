@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Middleware - CradlePHP</title>
+        <title>Helper - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="description" content="Helper Traits Binder (1) Conditional (1) Loop (1) Instance (1) Singleton (1) Binder The binder trait is used to bind callbacks to " />
         
-        <meta name="keywords" content="php,framework,cradle,middleware" />
+        <meta name="keywords" content="php,framework,cradle,helper" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Middleware - CradlePHP" />
+        <meta property="og:title" content="Helper - CradlePHP" />
 
-        <meta property="og:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta property="og:description" content="Helper Traits Binder (1) Conditional (1) Loop (1) Instance (1) Singleton (1) Binder The binder trait is used to bind callbacks to " />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Middleware - CradlePHP" />
+        <meta name="twitter:title" content="Helper - CradlePHP" />
 
-        <meta name="twitter:description" content="Middleware Introduction Pre-Processing Error Processing Post Processing API (9) Introduction Middleware is a concept of allowing p" />
+        <meta name="twitter:description" content="Helper Traits Binder (1) Conditional (1) Loop (1) Instance (1) Singleton (1) Binder The binder trait is used to bind callbacks to " />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -151,176 +151,191 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Middleware</h1>
+        	<h1>Helper Traits</h1>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#intro">Introduction</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#pre">Pre-Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#error">Error Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#post">Post Processing</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#api">API (9)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#binder">Binder (1)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#condition">Conditional (1)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#loop">Loop (1)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#instance">Instance (1)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#singleton">Singleton (1)</a></li>
 </ul>
-<p><a name="intro"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Introduction</h2>
-<p>Middleware is a concept of allowing pieces of functionality to be injected
-anywhere at your discretion. Almost like plugins or extensions, the popularity
-of middleware came from third party vendors being able to quickly plug into
-applications.</p>
-<p>Routes is a kind of middleware interface because you can add functionality
-using the include method explained before.</p>
-<h6>Routing Middleware Interface</h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;get('/some/path', include('/some/event/handler'));
+<p><a name="binder"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Binder</h2>
+<p>The binder trait is used to bind callbacks to the class where this trait is
+mounted. Mounting this trait can be done with the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Helper\BinderTrait
+
+class MyClass
+{
+    use BinderTrait;
+}
 
 </code></pre>
-<p>There are other areas where you may need to plug in to other than the time of
-routing for example before and after the routing and during an error.</p>
-<p><a name="pre"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Pre-Processing</h2>
-<p>Middleware can be inserted before routing with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
+<p>The binder trait adds on just one method to your class called <code class="language-php">bindCallback</code>.
+This method gives the callback that is being passed access to all protected,
+private and static relations defined in the class. The following shows how this
+method can be used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$this-&gt;bindCallback(function() {
+    //I now have access to $this and self
 });
 
 </code></pre>
-<p>Like routing, a <code class="language-php">$request</code> and a <code class="language-php">$response</code> will be passed. The usual
-activity for a <code class="language-php">-&gt;preprocess()</code> would be populating the <code class="language-php">$request</code> further,
-presetting a $response and/or adding more available methods. The Bootstrap
-heavily uses <code class="language-php">-&gt;preprocess()</code> for example.</p>
-<p><a name="error"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Error Processing</h2>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;error(function($request, $response, $error) {
-    //Do something because there was an error
+<p><a name="condition"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Conditional</h2>
+<p>The conditional trait is used as an external interface to case for specific
+things having to do with your class properties conditionally. Mounting this
+trait can be done with the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Helper\ConditionalTrait
+
+class MyClass
+{
+    use ConditionalTrait;
+}
+
+</code></pre>
+<p>The conditional trait adds on just one method to your class called <code class="language-php">when</code>.
+This method has three parameters which is <code class="language-php">$conditional</code>, <code class="language-php">$success</code>, <code class="language-php">$fail</code>
+respectively.The following shows how this method can be used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+//case 1
+$this-&gt;when(true, function() {
+    //do something good
+});
+
+//case 2
+$this-&gt;when(true, function() {
+    //do something good
+}, function() {
+    //do something bad
+});
+
+//case 3
+$this-&gt;when(function() {
+    //am I good?
+    return true;
+},
+function() {
+    //do something good
+},
+function() {
+    //do something bad
 });
 
 </code></pre>
-<p>With error processors, like pre-processors a $request and a $response will be
-passed. A third argument called <code class="language-php">$error</code> will also be passed which will be an
-<strong>Exception</strong> object. Error processors should be treated as a last ditch effort
-to report the error to the user in a nice way.</p>
-<div class="alert alert-danger"><i class="fa fa-times"></i> Because errors that happen in an error handler will throw that error if not caught again.
-Bootstrap: Errors presets what happens whens there's an error and your free to change/remove/add on to it.
+<p>In all parameters as callbacks you have access to all protected,
+private and static relations defined in the class.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+//case 4
+$this-&gt;when(function() {
+    //I now have access to $this and self
+},
+function() {
+    //I also now have access to $this and self
+},
+function() {
+    //I also now have access to $this and self
+});
+
+</code></pre>
+<p><a name="loop"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Loop</h2>
+<p>The loop trait is used as an external interface to case for specific
+things having to do with your class properties iteratively. Mounting this
+trait can be done with the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Helper\LoopTrait
+
+class MyClass
+{
+    use LoopTrait;
+}
+
+</code></pre>
+<p>The loop trait adds on just one method to your class called <code class="language-php">loop</code>.
+This method gives the callback that is being passed access to all protected,
+private and static relations defined in the class. The following shows how this
+method can be used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$this-&gt;loop(function($i) {
+    //I still have access to $this and self
+
+    if($i &gt; 10) {
+        return false;
+    }
+
+    return true;
+});
+
+</code></pre>
+<p>In this example above, the callback will continue to loop as long as it
+returns an equivalent to true. <code class="language-php">$i</code> will be started at <code class="language-php">0</code> and incremented
+each time the callback is called. You can preset <code class="language-php">$i</code> like the following
+example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$this-&gt;loop(function($i) {
+    //I would never run.
+
+    if($i &gt; 10) {
+        return false;
+    }
+
+    return true;
+}, 11);
+
+</code></pre>
+<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Not returning an equivalent false will make this loop infinite.
 </div>
-<p><a name="post"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Post Processing</h2>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;postprocess(function($request, $response, $error) {
-    //Do something after the connection is closed
-});
+<p><a name="instance"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Instance</h2>
+<p>The instance trait is used as an external interface quickly instantiate your
+class in a chainable manner. Mounting this trait can be done with the following example.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Helper\InstanceTrait
+
+class MyClass
+{
+    use InstanceTrait;
+}
 
 </code></pre>
-<p>Post processors are like pre-processors except that it waits till the user
-has received a response and the connection is closed before being activated.
-This is a nice feature where you can do short time consuming tasks if you do
-not have access to a queue available.</p>
-<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i>  A caveat about post-processors is that writing to sessions will no longer be
- available. You can write to it, but on refresh, it won't remember it like if
- it was still open.
+<p>The instance trait adds on just one static method to your class called <code class="language-php">i</code>,
+which is short for <code class="language-php">instance</code> or <code class="language-php">getInstance</code> in other libraries. The
+following shows how this method can be used.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+MyClass::i()-&gt;arbitraryDefinedMethod();
+
+</code></pre>
+<p>You can also pass arguments to the constructor by passing it withing the <code class="language-php">i</code>
+method like the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+MyClass::i($foo, $bar, 123)-&gt;arbitraryDefinedMethod();
+
+</code></pre>
+<p><a name="singleton"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Singleton</h2>
+<p>The singleton trait has an exact usage case as the instance trait. The only
+difference is that it only allows the class to be instantiated once. Mounting
+this trait can be done with the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+use Cradle\Helper\SingletonTrait
+
+class MyClass
+{
+    use SingletonTrait;
+}
+
+</code></pre>
+<p>And it's usage just like the instance trait is the following</p>
+<pre class="code line-numbers language-php"><code class="marked">
+MyClass::i($foo, $bar, 123)-&gt;arbitraryDefinedMethod();
+
+</code></pre>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> Passing arguments to the class will only work the first time around, it's
+otherwise ignored on multiple usages.
 </div>
-<p><a name="api"></a></p>
-<h2><i class="fa fa-arrow-down"></i> API</h2>
-<p><code class="language-php">preprocess</code> - Adds pre processing middleware which is called before routing</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;preprocess(function($request, $response) {
-    //Do something before routing
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">error</code> - Adds error middleware which is called when an Exception is thrown</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;error(function($request, $response) {
-    //Do something because there was an error
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">postprocess</code> - Adds post processing after the response was sent out and the connection is closed</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;postprocess(function($request, $response) {
-    //Do something after the connection is closed
-});
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPreprocessor</code> - Allows for a custom pre processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPreProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPreProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPreprocessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setErrorProcessor</code> - Allows for a custom error processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setErrorProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getErrorProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getErrorProcessor();
-
-</code></pre>
-<hr />
-<p><code class="language-php">setPostProcessor</code> - Allows for a custom post processor to be used</p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Parameters</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code class="language-php">Cradle\Http\Middleware\MiddlewareInterface</code></td>
-<td>The middleware interface (<code class="language-php">new Cradle\Http\Middleware</code>)</td>
-</tr>
-</tbody>
-</table>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;setPostProcessor(new Cradle\Http\Middleware);
-
-</code></pre>
-<hr />
-<p><code class="language-php">getPostProcessor</code> - Returns a Middleware processor if none was set, it will auto create one</p>
-<pre class="code line-numbers language-php"><code class="marked">
-cradle()-&gt;getPostProcessor();
-
-</code></pre>
         </div>
 
     </div>

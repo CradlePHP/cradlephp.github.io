@@ -95,8 +95,9 @@
             <h5>Getting Started</h5>
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/app.html">Writing an App</a></li>
     <li><a href="/docs/bootstrap.html">Bootstrap</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
 </ul>
 
 <h5>Concepts</h5>
@@ -108,6 +109,7 @@
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
     <li><a href="/docs/piping.html">Piping</a></li>
+    <li><a href="/docs/facades.html">Facades</a></li>
 </ul>
 
 <h5>Exporting</h5>
@@ -119,6 +121,7 @@
 <!--<h5>Kitchen Sink</h5>
 <ul>
     <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-facade.html">Facades</a></li>
     <li><a href="/docs/sink-schema.html">Schema</a></li>
     <li><a href="/docs/sink-auth.html">Authentication</a></li>
     <li><a href="/docs/sink-file.html">Files</a></li>
@@ -160,7 +163,9 @@
 </ul>
 <p><a name="boostrap"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">boostrap.php</code></h2>
-<p>If you open bootstrap.php in your project root folder, you will see a set of preprocessors called bootstrap files, each are located in the /bootstrap/ folder.</p>
+<p>If you open bootstrap.php in your project root folder, you will see a set of
+<a href="/docs/middleware.html#pre">preprocessors</a> called bootstrap files, each are
+located in the <code class="language-php">/bootstrap/</code> folder.</p>
 <pre class="code line-numbers language-php"><code class="marked">
 return cradle()
     //now bootstrap
@@ -237,7 +242,7 @@ for example.</p>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php //--&gt;
 
 return array (
-    'sql-main'   =&gt; new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', '')
+    'sql-main'      =&gt; new PDO('mysql:host=127.0.0.1;dbname=framework', 'root', '')
 );
 
 </code></pre>
