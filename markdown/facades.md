@@ -52,7 +52,7 @@ cradle()->flow(
 first example, outputs `'Hello World'` because `Flow::log()->debug('Hello World')`
 returns a callback just like the first example.
 
-Instead of making a list of facades, Cradle rolls all facades in a magical class
+Instead of remembering a list of facades, Cradle rolls all facades in a magical class
 called `Flow` used above. To add controllers in your package to the Flow object
 you simply need to register it like the following.
 
