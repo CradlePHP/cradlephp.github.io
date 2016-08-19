@@ -42,7 +42,7 @@ following.
 
 ```
 
-$ vendor/bin/cradle cblanquera/cradle-schema install
+$ vendor/bin/cradle package cblanquera/cradle-schema install
 
 ```
 
