@@ -139,7 +139,7 @@ helper trait called `FlowTrait`. And `FlowTrait` is used to delay your methods
 by wrapping methods in a callback and returning that instead. The exact
 definition of flow traits is provided below. The second thing is that we
 registered an action to the `FlowTrait` using `resolve`. To learn more about
-`resolve` you can see the section about [Resolvers]('/docs/resolver.html').
+`resolve` you can see the section about [Resolvers](/docs/resolver.html).
 
 ###### Definition of the FlowTrait
 ```
