@@ -4,18 +4,13 @@
  - [Installation](#installation)
  - [Load the Page](#load)
 
-In the case you want to start coding with a clean, minimalist and unopinionated
-meta framework, this install won't add any other packages other than what's
-needed. If you would like to install the extreme example, you should take a
-look at the [Kitchen Sink](/docs/sink.html).
-
 <a name="requirements"></a>
 ## Server Requirements
 
 The following are needed in order to successfully install Cradle. Please make
 sure your sever meets the following requirements.
 
- - PHP >= 5.6
+ - PHP >= 7
  - PDO PHP Extension
  - Composer
 
