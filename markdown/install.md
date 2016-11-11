@@ -1,4 +1,4 @@
-# Vanilla Install
+# Install
 
  - [Server Requirements](#requirements)
  - [Installation](#installation)
@@ -11,7 +11,6 @@ The following are needed in order to successfully install Cradle. Please make
 sure your sever meets the following requirements.
 
  - PHP >= 7
- - PDO PHP Extension
  - Composer
 
 <a name="installation"></a>
@@ -42,5 +41,4 @@ Open your browser to `http://localhost:8000` and you should see the following.
 
 ```well
 Welcome to Cradle!
-Now remove this process flow :)
 ```
