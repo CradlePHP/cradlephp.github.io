@@ -1,19 +1,19 @@
 body, html{
-	font-family: "Open Sans", Arial;
-	font-weight: 300;
-	height: 100%;
+    font-family: "Open Sans", Arial;
+    font-weight: 300;
+    height: 100%;
 }
 
-h1, h2, h3, h4, h5 { 
-	border-bottom: 1px solid #EEEEEE; 
-	font-weight: 300;
-	padding-bottom: 20px;
+h1, h2, h3, h4, h5 {
+    border-bottom: 1px solid #EEEEEE;
+    font-weight: 300;
+    padding-bottom: 20px;
 }
 
 hr { border-color: #E7E7E7; }
 
 input, select, button, a.btn {
-	border-radius: 0 !important;
+    border-radius: 0 !important;
 }
 
 .clear { clear: both; }
@@ -30,7 +30,7 @@ input, select, button, a.btn {
 .branding a:hover,
 .branding a:active,
 .branding a:visited {
-	color: #45A9D9 !important;
+    color: #45A9D9 !important;
 }
 
 .branding a.btn-info,
@@ -56,47 +56,47 @@ input, select, button, a.btn {
 .branding a.btn-danger:hover,
 .branding a.btn-danger:active,
 .branding a.btn-danger:visited {
-	color: #FFFFFF !important;
+    color: #FFFFFF !important;
 }
 
 .branding .alert { border-radius: 0; margin-top: 20px; }
 .branding .alert .fa { font-size: 20px; }
-.branding header { 
-	background-color: #FFFFFF; 
-	margin-top: 20px;
+.branding header {
+    background-color: #FFFFFF;
+    margin-top: 20px;
 }
 
 .branding header .navbar {
-	background-color: #FFFFFF;
-	margin-bottom: 0;
-	padding: 20px 5px;
+    background-color: #FFFFFF;
+    margin-bottom: 0;
+    padding: 20px 5px;
 }
 
 .branding header .navbar ul li a i {
-	font-size: 40px;
+    font-size: 40px;
     margin-top: -12px;
 }
 
 .branding header .navbar .navbar-brand {
-	padding: 7px 15px 13px;
+    padding: 7px 15px 13px;
 }
 
 .branding header .navbar .navbar-brand img {
-	height: 30px;
+    height: 30px;
 }
 
 .branding header .navbar .navbar-toggle .icon-bar {
     background-color: #45A9D9;
 }
 
-.branding .body { 
-	background-color: #FFFFFF; 
-	padding: 40px 0;
+.branding .body {
+    background-color: #FFFFFF;
+    padding: 40px 0;
 }
 
 .branding footer {
-	color: #FFFFFF;
-	padding: 40px 0;
+    color: #FFFFFF;
+    padding: 40px 0;
 }
 
 .branding footer a,
@@ -104,27 +104,27 @@ input, select, button, a.btn {
 .branding footer a:hover,
 .branding footer a:active,
 .branding footer a:visited {
-	color: #FFFFFF !important;
+    color: #FFFFFF !important;
 }
 
 .branding footer ul {
-	list-style: none;
+    list-style: none;
 }
 
 .branding footer .left {
-	width: 200px;
+    width: 200px;
 }
 
 .branding footer .logo {
-	background: #FFFFFF;
+    background: #FFFFFF;
     display: inline-block;
-	font-weight: 700;
+    font-weight: 700;
     padding: 2px;
-	margin-right: 5px;
+    margin-right: 5px;
 }
 
 .branding footer .logo img {
-	height: 60px;
+    height: 60px;
 }
 
 .branding footer .title {
@@ -141,96 +141,99 @@ input, select, button, a.btn {
 }
 
 .branding footer .masthead {
-	padding-top: 20px;
+    padding-top: 20px;
 }
 .branding footer .copy {
-	border-top: 1px solid #EEEEEE;
-	display: block;
-	font-size: 12px;
-	padding-top: 20px;
-	text-align: center;
+    border-top: 1px solid #EEEEEE;
+    display: block;
+    font-size: 12px;
+    padding-top: 20px;
+    text-align: center;
 }
 
 .branding pre.code {
-	background-color: #FFFFFF;
-	border-radius: 0;
-	padding: 0 0 0 3.8em;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    padding: 0 0 0 3.8em;
 }
 
 .branding pre.code code {
-	display: inline-block;
+    display: inline-block;
 }
 .branding .line-numbers .line-numbers-rows {
-	background-color: #f5f2f0;
+    background-color: #f5f2f0;
 }
 
 .home .splash {
-	margin-top: -40px;
+    margin-top: -40px;
 }
 
 .home h1,
 .home h2 {
-	border-bottom: 0;
-	text-align: center; 
+    border-bottom: 0;
+    text-align: center;
 }
 
-.branding .home h1 { 
-	color: #45A9D9; 
-	font-size: 80px;
+.branding .home h1 {
+    color: #45A9D9;
+    font-size: 80px;
 }
 
 .home pre.code {
-	margin: auto;
-	max-width: 680px;
+    margin: auto;
+    max-width: 680px;
 }
 
 .home .source {
-	margin: -30px 0 20px;
+    font-size: 25px;
+    font-weight: 200;
+    line-height: 40px;
+    margin: auto;
 }
 
 .home .call-to-action .btn {
-	display: block;
-	font-size: 20px;
-	font-weight: 300;
-	margin-top: 40px;
-	max-width: 680px;
-	padding: 20px;
+    display: block;
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 40px;
+    max-width: 680px;
+    padding: 20px;
 }
 
 .documentation .left ul {
-	list-style: none;
-	padding: 0;
-	margin-bottom: 40px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
 }
 
 .documentation .right {
-	font-size: 16px;
+    font-size: 16px;
 }
 .documentation .right h1 {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .documentation .right h2,
 .documentation .right h3,
 .documentation .right h4,
 .documentation .right h5 {
-	border-bottom: 0;
+    border-bottom: 0;
 }
 
 .documentation .right h2 {
-	border-top: 1px solid #EEEEEE; 
-	margin-top: 40px;
-	padding-top: 30px;
+    border-top: 1px solid #EEEEEE;
+    margin-top: 40px;
+    padding-top: 30px;
 }
 
-.documentation .right h2 .fa { 
-	color: #777777;
-	font-size: 20px; 
-	margin-right: 20px; 
+.documentation .right h2 .fa {
+    color: #777777;
+    font-size: 20px;
+    margin-right: 20px;
 }
 
 .documentation .right h6 {
-	font-weight: bold;
+    font-weight: bold;
     background-color: #f5f2f0;
     display: block;
     padding: 10px;
@@ -240,24 +243,24 @@ input, select, button, a.btn {
 }
 
 .documentation .right ul {
-	list-style: none;
-	margin-bottom: 40px;
+    list-style: none;
+    margin-bottom: 40px;
 }
 
-.documentation .right ul .fa { 
-	color: #777777;
-	font-size: 12px; 
-	margin-right: 20px; 
+.documentation .right ul .fa {
+    color: #777777;
+    font-size: 12px;
+    margin-right: 20px;
 }
 
 .documentation .right ul li,
 .documentation .right ol li { line-height: 25px; }
 
-.documentation p { 
-	line-height: 32px;
-	font-weight: 400;
+.documentation p {
+    line-height: 32px;
+    font-weight: 400;
 }
 
-.documentation p code { 
-	white-space: nowrap;
+.documentation p code {
+    white-space: nowrap;
 }

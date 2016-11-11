@@ -13,7 +13,7 @@
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
         <link rel="icon" type="image/png" href="/favicon.png" />
-		<link rel="icon" type="image/gif" href="/favicon.gif" />
+        <link rel="icon" type="image/gif" href="/favicon.gif" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
         <!-- FACEBOOK TAGS -->
@@ -56,8 +56,8 @@
     </head>
 
     <body>
-    	<header>
-        	<nav class="navbar navbar-default navbar-branding navbar-static-top">
+        <header>
+            <nav class="navbar navbar-default navbar-branding navbar-static-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -90,103 +90,143 @@
 
     <h1>Cradle PHP</h1>
     <center class="source">
-    	<em>
-        	in 5 reasons.
+        <em>
+            An unopinionated PHP7 micro framework built on traits.
         </em>
     </center>
-    <h2>1. It's a Meta Framework Powered by Event Pipes</h2>
 
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->get(
+    <h2>With Epic Routing</h2>
+<pre class="code line-numbers language-php"><code>
+cradle()->get('/foo/:bar', function($request, $response) {
+    $response->setContent('Hello, World');
+});
+
+cradle()->post('/foo/*(/:start){0,1}', function($request, $response) {
+    $response->setContent('Hello, World');
+});
+
+</code></pre>
+
+    <h2>With Limitless Events</h2>
+<pre class="code line-numbers language-php"><code>
+cradle()->on('create-user', function(...$data) {
+    //insert to database
+});
+
+cradle()->on('Show a %s message', function() {
+    $meta = $this->getEventHandler()->getMeta();
+    echo $meta['variables'][0];
+});
+
+cradle()->on('#^foo$#', function() {
+    echo 'bar';
+});
+
+</code></pre>
+
+    <h2>With Granular Middleware</h2>
+<pre class="code line-numbers language-php"><code>
+cradle()->preprocess(function($request, $response) {
+    session_start();
+});
+
+cradle()->postprocess(function($request, $response) {
+    session_write_close();
+});
+
+cradle()->error(function($request, $response, $error) {
+    $response->setContent('Something went wrong');
+});
+
+cradle()->all(
     '/foo/bar',
-    'Get Foo Bar from database',
-    [
-        'Foo Bar data Found',
-        'Render Foo Bar template',
-        'Render with Custom Page'
-    ],
-    [
-        'Foo Bar data Not Found',
-        'Flash error',
-        'Redirect to homepage',
-    ]
-);
-</code></pre>
-
-    <h2>2. Yes, You Can Use Any Controller</h2>
-
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->get(
-    '/foo/bar',
-    'Controller@method',
-    'Controller::method'
+    'must-be-logged-in',
+    function($request, $response) {
+        //and an admin
+    },
+    function($request, $response) {
+        $response->setContent('Hello, World');
+    },
+    'Controller@addView'
 );
 
 </code></pre>
 
-    <h2>3. And Use Any Framework</h2>
+    <h2>Use Any Template Engine</h2>
+<pre class="code line-numbers language-php"><code>
+use Philo\Blade\Blade;
+use Cradle\Handlebars\HandlebarsHandler;
 
-<pre class="code line-numbers language-php"><code>&lt;?php
-/**
- * Hello Laravel !
- */
-$app->get('/', cradle()->export('Get Foo Bar from database'));
+//blade
+cradle()->get('/foo/:bar', function($request, $response) {
+    $blade = new Blade('/path/to/views', '/path/to/cache');
+    $content = $blade->view()->make('hello')->render();
+    $response->setContent($content);
+});
 
-</code></pre>
+//twig
+cradle()->get('/foo/:bar', function($request, $response) {
+    $loader = new Twig_Loader_Array(['index' => 'Hello {{ name }}!']);
+    $twig = new Twig_Environment($loader);
+    $content = $twig->render('index', $request->getStage());
+    $response->setContent($content);
+});
 
-    <h2>4. And Easily Troubleshoot</h2>
-
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()->post(
-    '/signup',
-    'Validate sign up',
-    [
-    	'All Good ?',
-        'Insert to Database',
-        'debug://WTH Am I here ?'
-        //'Send an email',
-        function($request, $response) {
-       		//Try sending mail manually ...
-        }
-        'Render Login',
-        'Render Custom Page'
-    ]
-);
+//handlebars
+cradle()->get('/foo/:bar', function($request, $response) {
+    $template = HandlebarsHandler::i()->compile('/path/to/template');
+    $content = $template($request->getStage());
+    $response->setContent($content);
+});
 
 </code></pre>
 
-    <h2>5. And Unopinionated</h2>
+    <h2>Use Any ORM</h2>
+<pre class="code line-numbers language-php"><code>
+use EloquentModel\Book;
+use Doctrine\ORM\EntityManager;
 
-<pre class="code line-numbers language-php"><code>&lt;?php
-cradle()
-	->post('/signup', 'Validate sign up')
-    ->flow(
-    	'Validate sign up',
-        'Prepare Data',
-        include('path/to/callback.php')
+//eloquent
+cradle()->get('/foo/:bar', function($request, $response) {
+    $book = Books::find(1);
+    $book->name = "The Best Book in the World";
+    $book->author = "Ed Zynda";
+    $book->save();
+});
+
+//doctrine
+cradle()->get('/foo/:bar', function($request, $response) use ($entityManager) {
+    $authorRepository = $entityManager->getRepository("Author");
+    $author = $authorRepository->find($authorId);
+
+    $postRepository = $entityManager->getRepository("Post");
+    $post = $postRepository->findOneBy(array("title" => "Hello World!"));
+
+    $posts = $repository->findBy(
+        array("author" => $author),
+        array("title" => "ASC")
     );
+});
 
-...
+</code></pre>
 
-//path/to/callback.php
-return function($request, $response) {
-	//look Ma no classes!
-	$response->setContent('valid');
-    //fork a process
-    $this->triggerEvent('All Good ?', $request, $response);
-};
+    <h2>Isolated Vendor Packages</h2>
+<pre class="code line-numbers language-php"><code>
+cradle()->register('some-composer/package');
+
+cradle()->package('some-composer/package')->runCustomMethod();
 
 </code></pre>
 
 <center class="call-to-action">
-	<a class="btn btn-warning" href="/docs/install.html">Get Started</a>
+    <a class="btn btn-warning" href="/docs/install.html">Get Started</a>
 </center>
 </div>
             </div>
         </section>
         <footer>
-        	<div class="container">
-	<div class="top clearfix">
+            <div class="container">
+    <div class="top clearfix">
         <div class="left pull-left">
             <div>
                 <div class="logo pull-left"><img src="/www/images/logo-square.png" /></div>
@@ -209,13 +249,13 @@ return function($request, $response) {
 
     </div>
     <div class="masthead">
-    	<center class="copy">
+        <center class="copy">
         <a href="https://travis-ci.org/CradlePHP/framework"><img src="https://travis-ci.org/CradlePHP/framework.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
         <a href='https://coveralls.io/github/CradlePHP/framework?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/framework/badge.svg?branch=master' alt='Coverage Status' /></a>
         <a href="https://packagist.org/packages/cradlephp/framework"><img src="https://poser.pugx.org/cradlephp/framework/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
         <a href="https://packagist.org/packages/cradlephp/framework"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/framework/downloads" style="max-width:100%;"></a>
         <a href="https://packagist.org/packages/cradlephp/framework"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/framework/v/unstable" style="max-width:100%;"></a>
-        <a href="https://packagist.org/packages/cradlephp/framework"><img alt="License" src="https://poser.pugx.org/cradlephp/framework/license" style="max-width:100%;"></a>    
+        <a href="https://packagist.org/packages/cradlephp/framework"><img alt="License" src="https://poser.pugx.org/cradlephp/framework/license" style="max-width:100%;"></a>
         <br /><br />&copy; CradlePHP 2016</center>
     </div>
 </div>
