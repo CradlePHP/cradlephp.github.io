@@ -95,7 +95,7 @@
         </em>
     </center>
 
-    <h2>With Epic Routing</h2>
+    <h2>1. Epic Routing</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->get('/foo/:bar', function($request, $response) {
     $response->setContent('Hello, World');
@@ -107,7 +107,7 @@ cradle()->post('/foo/*(/:start){0,1}', function($request, $response) {
 
 </code></pre>
 
-    <h2>With Limitless Events</h2>
+    <h2>2. Limitless Events</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->on('create-user', function(...$data) {
     //insert to database
@@ -124,7 +124,7 @@ cradle()->on('#^foo$#', function() {
 
 </code></pre>
 
-    <h2>With Granular Middleware</h2>
+    <h2>3. Granular Middleware</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->preprocess(function($request, $response) {
     session_start();
@@ -152,7 +152,7 @@ cradle()->all(
 
 </code></pre>
 
-    <h2>Use Any Template Engine</h2>
+    <h2>4. Use Any Template Engine</h2>
 <pre class="code line-numbers language-php"><code>
 use Philo\Blade\Blade;
 use Cradle\Handlebars\HandlebarsHandler;
@@ -181,7 +181,7 @@ cradle()->get('/foo/:bar', function($request, $response) {
 
 </code></pre>
 
-    <h2>Use Any ORM</h2>
+    <h2>5. Use Any ORM</h2>
 <pre class="code line-numbers language-php"><code>
 use EloquentModel\Book;
 use Doctrine\ORM\EntityManager;
@@ -210,7 +210,7 @@ cradle()->get('/foo/:bar', function($request, $response) use ($entityManager) {
 
 </code></pre>
 
-    <h2>Isolated Vendor Packages</h2>
+    <h2>6. Isolated Vendor Packages</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->register('some-composer/package');
 
