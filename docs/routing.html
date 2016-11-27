@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Routing Basics Request Methods Request Paths Route Handlers Mini Apps API (7) Basics Routing is a subset of Flows which is a subse" />
+        <meta name="description" content="Routing Basics Request Methods Request Paths Request and Response Mini Apps API (7) Basics Routing is a subset of Events. Routing " />
         
         <meta name="keywords" content="php,framework,cradle,routing" />
         
@@ -23,7 +23,7 @@
 
         <meta property="og:title" content="Routing - CradlePHP" />
 
-        <meta property="og:description" content="Routing Basics Request Methods Request Paths Route Handlers Mini Apps API (7) Basics Routing is a subset of Flows which is a subse" />
+        <meta property="og:description" content="Routing Basics Request Methods Request Paths Request and Response Mini Apps API (7) Basics Routing is a subset of Events. Routing " />
 
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@
 
         <meta name="twitter:title" content="Routing - CradlePHP" />
 
-        <meta name="twitter:description" content="Routing Basics Request Methods Request Paths Route Handlers Mini Apps API (7) Basics Routing is a subset of Flows which is a subse" />
+        <meta name="twitter:description" content="Routing Basics Request Methods Request Paths Request and Response Mini Apps API (7) Basics Routing is a subset of Events. Routing " />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -95,6 +95,7 @@
             <h5>Getting Started</h5>
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
 </ul>
 
 <h5>Concepts</h5>
@@ -105,6 +106,8 @@
     <li><a href="/docs/middleware.html">Middleware</a></li>
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
+    <li><a href="/docs/integration.html">Integration</a></li>
+    <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
 
 <h5>Core Traits</h5>
@@ -115,33 +118,29 @@
     <li><a href="/docs/profiler.html">Profiler</a></li>
 </ul>
 
-<h5>Exporting</h5>
+<!--<h5>Core Packages</h5>
 <ul>
-    <li><a href="/docs/integration.html">Integration</a></li>
-    <li><a href="/docs/packages.html">Packages</a></li>
+    <li><a href="/docs/curl.html">cURL</a></li>
+    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+    <li><a href="/docs/image.html">Image</a></li>
+    <li><a href="/docs/sql.html">SQL</a></li>
 </ul>
 
-<!--<h5>Kitchen Sink</h5>
+<h5>Kitchen Sink</h5>
 <ul>
     <li><a href="/docs/sink-intro.html">Introduction</a></li>
-    <li><a href="/docs/sink-facade.html">Facades</a></li>
-    <li><a href="/docs/sink-schema.html">Schema</a></li>
-    <li><a href="/docs/sink-auth.html">Authentication</a></li>
-    <li><a href="/docs/sink-file.html">Files</a></li>
-    <li><a href="/docs/sink-mail.html">Mail</a></li>
-    <li><a href="/docs/sink-queue.html">Queue</a></li>
-    <li><a href="/docs/sink-csrf.html">CSRF</a></li>
-    <li><a href="/docs/sink-captcha.html">Captcha</a></li>
-    <li><a href="/docs/sink-handlebars.html">Handlebars</a></li>
-</ul>
+    <li><a href="/docs/sink-models.html">Models</a></li>
+    <li><a href="/docs/sink-jobs.html">Jobs</a></li>
+    <li><a href="/docs/sink-controllers.html">Controllers</a></li>
+    <li><a href="/docs/sink-templates.html">Templates</a></li>
+    <li><a href="/docs/sink-templates.html">Custom CLI Commands</a></li>
 
-<h5>Core Packages</h5>
-<ul>
-    <li><a href="/docs/i18n.html">i18n</a></li>
-    <li><a href="/docs/image.html">Image</a></li>
-    <li><a href="/docs/curl.html">cURL</a></li>
-    <li><a href="/docs/sql.html">SQL</a></li>
-    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+    <li><a href="/docs/sink-files.html">File Uploading</a></li>
+    <li><a href="/docs/sink-mail.html">Sending Mail</a></li>
+    <li><a href="/docs/sink-queue.html">Queuing Jobs</a></li>
+    <li><a href="/docs/sink-optimization.html">Optimization</a></li>
+    <li><a href="/docs/sink-security.html">Security Cases</a></li>
+    <li><a href="/docs/sink-i18n.html">i18n</a></li>
 </ul>-->
    
         </div>
@@ -151,19 +150,18 @@
 <li><i class="fa fa-arrow-right"></i><a href="#basics">Basics</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#methods">Request Methods</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#paths">Request Paths</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#handlers">Route Handlers</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#rnr">Request and Response</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#mini">Mini Apps</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#api">API (7)</a></li>
 </ul>
 <p><a name="basics"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Basics</h2>
-<p>Routing is a subset of <a href="/docs/flows.html">Flows</a> which is a subset of
-<a href="/docs/events.html">Events</a>. Routing wraps how event listeners work and
-designed to resolve request methods and paths. The basic route listener
-looks like the following.</p>
+<p>Routing is a subset of <a href="/docs/events.html">Events</a>. Routing wraps how event
+listeners work and designed to resolve request methods and paths. The basic
+route listener looks like the following.</p>
 <h6>Basic Routing</h6>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;get('Some Event', function($request, $response) {
+cradle()-&gt;get('/about/us', function($request, $response) {
     //Do something here
 });
 
@@ -220,7 +218,7 @@ cradle()
 cradle()-&gt;all('/some/path/', function($request, $response) {});
 
 </code></pre>
-<p><a href="paths"></a></p>
+<p><a name="paths"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Request Paths</h2>
 <h3>Star Variables</h3>
 <p>With paths, they can also be expressed with wildcards by adding a <code class="language-php">*</code> as in
@@ -262,7 +260,7 @@ cradle()-&gt;get('/some/:name/stuff', function($request, $response) {
 });
 
 </code></pre>
-<p><a href="handlers"></a></p>
+<p><a name="handlers"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Route Handlers</h2>
 <p>Much like events, routing can be expressed as a function or an include
 like the following.</p>
@@ -271,16 +269,14 @@ like the following.</p>
 cradle()-&gt;get('/some/path', include('/some/event/handler'));
 
 </code></pre>
-<p>Much like flows, routing can also call on class methods like the following.</p>
+<p>Much like <a href="/docs/flows.html">flows</a>, routing can also call on class methods
+like the following.</p>
 <h6>Class Handlers</h6>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
 cradle()-&gt;get('/some/path', 'Controller@action');
 
-cradle()-&gt;get('/some/path', 'Controller::action');
-</code></pre>
-<p>Routing adopts the flow interface which allows this to happen.</p>
-<h6>Handler Flows</h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+cradle()-&gt;post('/some/path', 'Controller::action');
+
 cradle()-&gt;get(
     '/some/path',
     'Another Event',
@@ -290,28 +286,46 @@ cradle()-&gt;get(
     ...$moreActions
 );
 </code></pre>
-<p>Where it differs is, by default, routing provides two arguments which are
-called a <code class="language-php">$request</code> and a <code class="language-php">$response</code>. For consistency a <code class="language-php">$request</code> and a
-<code class="language-php">$response</code> should be passed whenever you trigger an event within a route
-handler. For example, in flows, we discussed forking, and with routing the
-exact same applies, with the addition of passing the $request and <code class="language-php">$response</code>
-first like the example below.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-return function($request, $response) {
-    //Do Something here
-
-    //Trigger a fork
-    if($good) {
-        $this-&gt;triggerSubflow('A Good Event', $request, $response);
-    } else {
-        $this-&gt;triggerSubflow('A Bad Event', $request, $response);
+<p><a name="rnr"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Request and Response</h2>
+<p><code class="language-php">$request</code> and <code class="language-php">$response</code> are objects that are usually passed to the
+callback. Documentation about requests can be found <a href="/docs/request.html">here</a>
+and responses can be found <a href="/docs/response.html">here</a>.</p>
+<h3>Staging Data</h3>
+<p>Request comes with a property by default is populated with <code class="language-php">$_GET</code>, <code class="language-php">$_POST</code>
+and URL parameters which is called stage. Staging data is used to prepare data
+that will be eventually processed (like before inserting into a database).
+Accessing data can be achieved like <code class="language-php">$request-&gt;getStage()</code>. Stage is the most
+used property in the request because it is the aggregated request data, prevents
+the need to manipulate the original post and get properties and allows
+prepared data to be passed to other routes and events.</p>
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> You should consider using stage for all kinds of custom data.
+</div>
+<h3>JSON Output</h3>
+<p>Response comes with a property used to aggregate data to be either sent off to
+the output or to bind with a template engine called results which can be set
+like <code class="language-php">$response-&gt;setResults('foo', 'bar')</code>. If there is no content set in the
+response, by default a JSON object will be returned in its place. JSON data
+can be manipulated like the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">$response-&gt;setError(true, 'Something happened');
+$response-&gt;addValidation('profile_id', 'Invalid ID');
+$response-&gt;setResults('foo', 'bar');
+</code></pre>
+<p>If the above code was executed a similar JSON output would look like the
+following.</p>
+<pre class="code line-numbers language-php"><code class="marked">{
+    "error": false,
+    "message": "Something happened",
+    "validation": {
+        "post_title": "Invalid ID"
+    },
+    "results": {
+        "foo": "bar"
     }
-};
+}
 
 </code></pre>
-<p><code class="language-php">$request</code> followed by <code class="language-php">$response</code> should always be at the start of your
-arguments for consistency with other packages.</p>
-<p><a href="mini"></a></p>
+<p><a name="mini"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Mini Apps</h2>
 <p>If your routing with flows gets too large in one file, you can optionally
 split up those routes in mini app files. In a new file, the following is

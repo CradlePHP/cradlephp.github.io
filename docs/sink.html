@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Kitchen Sink Install Server Requirements Installation Load the Page Optionally you can take a look at the full setup and learn bac" />
+        <meta name="description" content="Kitchen Sink Install Server Requirements Installation Load the Page The kitchen sink is a sandbox project to help provide somethin" />
         
         <meta name="keywords" content="php,framework,cradle,sink" />
         
@@ -23,7 +23,7 @@
 
         <meta property="og:title" content="Sink - CradlePHP" />
 
-        <meta property="og:description" content="Kitchen Sink Install Server Requirements Installation Load the Page Optionally you can take a look at the full setup and learn bac" />
+        <meta property="og:description" content="Kitchen Sink Install Server Requirements Installation Load the Page The kitchen sink is a sandbox project to help provide somethin" />
 
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@
 
         <meta name="twitter:title" content="Sink - CradlePHP" />
 
-        <meta name="twitter:description" content="Kitchen Sink Install Server Requirements Installation Load the Page Optionally you can take a look at the full setup and learn bac" />
+        <meta name="twitter:description" content="Kitchen Sink Install Server Requirements Installation Load the Page The kitchen sink is a sandbox project to help provide somethin" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -95,6 +95,7 @@
             <h5>Getting Started</h5>
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
 </ul>
 
 <h5>Concepts</h5>
@@ -105,6 +106,8 @@
     <li><a href="/docs/middleware.html">Middleware</a></li>
     <li><a href="/docs/request.html">Request</a></li>
     <li><a href="/docs/response.html">Response</a></li>
+    <li><a href="/docs/integration.html">Integration</a></li>
+    <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
 
 <h5>Core Traits</h5>
@@ -115,33 +118,29 @@
     <li><a href="/docs/profiler.html">Profiler</a></li>
 </ul>
 
-<h5>Exporting</h5>
+<!--<h5>Core Packages</h5>
 <ul>
-    <li><a href="/docs/integration.html">Integration</a></li>
-    <li><a href="/docs/packages.html">Packages</a></li>
+    <li><a href="/docs/curl.html">cURL</a></li>
+    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+    <li><a href="/docs/image.html">Image</a></li>
+    <li><a href="/docs/sql.html">SQL</a></li>
 </ul>
 
-<!--<h5>Kitchen Sink</h5>
+<h5>Kitchen Sink</h5>
 <ul>
     <li><a href="/docs/sink-intro.html">Introduction</a></li>
-    <li><a href="/docs/sink-facade.html">Facades</a></li>
-    <li><a href="/docs/sink-schema.html">Schema</a></li>
-    <li><a href="/docs/sink-auth.html">Authentication</a></li>
-    <li><a href="/docs/sink-file.html">Files</a></li>
-    <li><a href="/docs/sink-mail.html">Mail</a></li>
-    <li><a href="/docs/sink-queue.html">Queue</a></li>
-    <li><a href="/docs/sink-csrf.html">CSRF</a></li>
-    <li><a href="/docs/sink-captcha.html">Captcha</a></li>
-    <li><a href="/docs/sink-handlebars.html">Handlebars</a></li>
-</ul>
+    <li><a href="/docs/sink-models.html">Models</a></li>
+    <li><a href="/docs/sink-jobs.html">Jobs</a></li>
+    <li><a href="/docs/sink-controllers.html">Controllers</a></li>
+    <li><a href="/docs/sink-templates.html">Templates</a></li>
+    <li><a href="/docs/sink-templates.html">Custom CLI Commands</a></li>
 
-<h5>Core Packages</h5>
-<ul>
-    <li><a href="/docs/i18n.html">i18n</a></li>
-    <li><a href="/docs/image.html">Image</a></li>
-    <li><a href="/docs/curl.html">cURL</a></li>
-    <li><a href="/docs/sql.html">SQL</a></li>
-    <li><a href="/docs/handlebars.html">Handlebars</a></li>
+    <li><a href="/docs/sink-files.html">File Uploading</a></li>
+    <li><a href="/docs/sink-mail.html">Sending Mail</a></li>
+    <li><a href="/docs/sink-queue.html">Queuing Jobs</a></li>
+    <li><a href="/docs/sink-optimization.html">Optimization</a></li>
+    <li><a href="/docs/sink-security.html">Security Cases</a></li>
+    <li><a href="/docs/sink-i18n.html">i18n</a></li>
 </ul>-->
    
         </div>
@@ -152,19 +151,30 @@
 <li><i class="fa fa-arrow-right"></i><a href="#installation">Installation</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#load">Load the Page</a></li>
 </ul>
-<p>Optionally you can take a look at the full setup and learn backwards. The
-kitchen sink features various 3rd party packages useful for mid to complicated
-projects. The kitchen sink will update periodically as new and useful packages
-are available.</p>
+<p>The kitchen sink is a sandbox project to help provide something tangible for
+the average developer as well as give some initial ideas of how to structure
+your own project. Please note that this build is very opinionated and feedback
+on the architecture may vary from person to person. The kitchen sink will
+update periodically as new and useful packages are available.</p>
 <p><a name="requirements"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Server Requirements</h2>
 <p>The following are needed in order to successfully install Cradle. Please make
 sure your sever meets the following requirements.</p>
 <ul>
-<li>PHP &gt;= 5.6</li>
-<li>PDO PHP Extension</li>
-<li>RabbitMQ</li>
-<li>Composer</li>
+<li>PHP &gt;= 7</li>
+<li>MySQL &gt;= 5.7</li>
+<li><a href="http://php.net/manual/en/book.pdo.php">PDO PHP Extension</a></li>
+<li><a href="https://bower.io/">Bower</a></li>
+<li><a href="https://getcomposer.org/">Composer</a></li>
+</ul>
+<p>The kitchen sink has a full stack built in which cases for particular services
+if available. Some optional services you may want to configure on your server are
+the following.</p>
+<ul>
+<li><a href="https://packagist.org/packages/php-amqplib/php-amqplib">RabbitMQ</a></li>
+<li><a href="https://packagist.org/packages/elasticsearch/elasticsearch">ElasticSearch</a></li>
+<li><a href="https://packagist.org/packages/predis/predis">Redis</a></li>
+<li><a href="https://packagist.org/packages/aws/aws-sdk-php">AWS S3 SDK</a></li>
 </ul>
 <p><a name="installation"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Installation</h2>
@@ -174,19 +184,9 @@ $ composer create-project -s dev cradlephp/kitchen-sink &lt;project folder name&
 
 </code></pre>
 <p>Open <code class="language-php">&lt;project folder name&gt;/config/services.php</code> and update the PDO connection
-information with a new sandbox database (MySQL). Also give a sample email
-address and password to test the mail functions as well as signup for
-<a href="https://www.google.com/recaptcha/">Google Captcha</a> and provide the tokens in
-this same file.</p>
-<p>Next open up terminal again and run <code class="language-php">$ cd &lt;project folder name&gt;</code> and run the
-following.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-$ vendor/bin/cradle package cblanquera/cradle-schema install
-
-</code></pre>
-<p>It will ask you which schema to install. type app. Repeat this step for
-<code class="language-php">profile</code>, <code class="language-php">auth</code> and <code class="language-php">file</code>.</p>
-<p>Then go cd <code class="language-php">&lt;project folder name&gt;/public</code> and run the following.</p>
+information with a new sandbox database (MySQL) and run the following
+MySQL Queries located in <code class="language-php">&lt;project folder name&gt;/app/core/schema.sql</code>.</p>
+<p>Next go cd <code class="language-php">&lt;project folder name&gt;/public</code> and run the following.</p>
 <pre class="code line-numbers language-php"><code class="marked">
 $ bower install
 $ php -S localhost:8000
@@ -198,16 +198,25 @@ public directory.</p>
 <h2><i class="fa fa-arrow-down"></i> Load the Page</h2>
 <p>Open your browser to <code class="language-php">http://localhost:8000</code> and you should see the application
 running.</p>
-<p>To understand how these packages work, take a look at <a href="/docs/facades.html">Facades</a>.</p>
+<p>The full set of features on the sink are the following.</p>
+<ul>
+<li>Full Stack MVC Architecture</li>
+<li>Queue Centric Events with <a href="https://www.rabbitmq.com/">RabbitMQ</a></li>
+<li>Index Searching with <a href="https://www.elastic.co/">ElasticSearch</a></li>
+<li>Data Caching with <a href="https://redis.io/">Redis</a></li>
+<li>Mailing with <a href="https://packagist.org/packages/swiftmailer/swiftmailer">SwiftMailer</a></li>
+<li>Templating with <a href="http://handlebarsjs.com/">Handlebars</a></li>
+<li>Captcha with <a href="https://www.google.com/recaptcha/intro/index.html">reCaptcha</a></li>
+<li>Server and Client Side CDN uploads with <a href="https://aws.amazon.com/s3/">AWS S3</a></li>
+<li>CSRF protection</li>
+<li>Internationalization (i18n / l10n)</li>
+<li>Customizable CLI commands</li>
+</ul>
 <p>For documentation on the packages being used, the following links have been
 provided.</p>
 <ul>
-<li>See <a href="https://github.com/cblanquera/cradle-schema"><a href="https://github.com/cblanquera/cradle-schema">https://github.com/cblanquera/cradle-schema</a></a></li>
-<li>See <a href="https://github.com/cblanquera/cradle-auth"><a href="https://github.com/cblanquera/cradle-auth">https://github.com/cblanquera/cradle-auth</a></a></li>
-<li>See <a href="https://github.com/cblanquera/cradle-file"><a href="https://github.com/cblanquera/cradle-file">https://github.com/cblanquera/cradle-file</a></a></li>
 <li>See <a href="https://github.com/cblanquera/cradle-csrf"><a href="https://github.com/cblanquera/cradle-csrf">https://github.com/cblanquera/cradle-csrf</a></a></li>
 <li>See <a href="https://github.com/cblanquera/cradle-captcha"><a href="https://github.com/cblanquera/cradle-captcha">https://github.com/cblanquera/cradle-captcha</a></a></li>
-<li>See <a href="https://github.com/cblanquera/cradle-mail"><a href="https://github.com/cblanquera/cradle-mail">https://github.com/cblanquera/cradle-mail</a></a></li>
 <li>See <a href="https://github.com/cblanquera/cradle-queue"><a href="https://github.com/cblanquera/cradle-queue">https://github.com/cblanquera/cradle-queue</a></a></li>
 <li>See <a href="https://github.com/cblanquera/cradle-handlebars"><a href="https://github.com/cblanquera/cradle-handlebars">https://github.com/cblanquera/cradle-handlebars</a></a></li>
 </ul>

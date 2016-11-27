@@ -4,10 +4,11 @@
  - [Installation](#installation)
  - [Load the Page](#load)
 
-Optionally you can take a look at the full setup and learn backwards. The
-kitchen sink features various 3rd party packages useful for mid to complicated
-projects. The kitchen sink will update periodically as new and useful packages
-are available.
+The kitchen sink is a sandbox project to help provide something tangible for 
+the average developer as well as give some initial ideas of how to structure
+your own project. Please note that this build is very opinionated and feedback
+on the architecture may vary from person to person. The kitchen sink will
+update periodically as new and useful packages are available.
 
 <a name="requirements"></a>
 ## Server Requirements
@@ -15,10 +16,20 @@ are available.
 The following are needed in order to successfully install Cradle. Please make
 sure your sever meets the following requirements.
 
- - PHP >= 5.6
- - PDO PHP Extension
- - RabbitMQ
- - Composer
+ - PHP >= 7
+ - MySQL >= 5.7
+ - [PDO PHP Extension](http://php.net/manual/en/book.pdo.php)
+ - [Bower](https://bower.io/)
+ - [Composer](https://getcomposer.org/)
+
+The kitchen sink has a full stack built in which cases for particular services
+if available. Some optional services you may want to configure on your server are
+the following.
+
+ - [RabbitMQ](https://packagist.org/packages/php-amqplib/php-amqplib)
+ - [ElasticSearch](https://packagist.org/packages/elasticsearch/elasticsearch)
+ - [Redis](https://packagist.org/packages/predis/predis)
+ - [AWS S3 SDK](https://packagist.org/packages/aws/aws-sdk-php)
 
 <a name="installation"></a>
 ## Installation
@@ -32,24 +43,10 @@ $ composer create-project -s dev cradlephp/kitchen-sink <project folder name>
 ```
 
 Open `<project folder name>/config/services.php` and update the PDO connection
-information with a new sandbox database (MySQL). Also give a sample email
-address and password to test the mail functions as well as signup for
-[Google Captcha](https://www.google.com/recaptcha/) and provide the tokens in
-this same file.
+information with a new sandbox database (MySQL) and run the following
+MySQL Queries located in `<project folder name>/app/core/schema.sql`.
 
-Next open up terminal again and run `$ cd <project folder name>` and run the
-following.
-
-```
-
-$ vendor/bin/cradle package cblanquera/cradle-schema install
-
-```
-
-It will ask you which schema to install. type app. Repeat this step for
-`profile`, `auth` and `file`.
-
-Then go cd `<project folder name>/public` and run the following.
+Next go cd `<project folder name>/public` and run the following.
 
 ```
 
@@ -67,16 +64,23 @@ public directory.
 Open your browser to `http://localhost:8000` and you should see the application
 running.
 
-To understand how these packages work, take a look at [Facades](/docs/facades.html).
+The full set of features on the sink are the following.
+- Full Stack MVC Architecture
+- Queue Centric Events with [RabbitMQ](https://www.rabbitmq.com/)
+- Index Searching with [ElasticSearch](https://www.elastic.co/)
+- Data Caching with [Redis](https://redis.io/)
+- Mailing with [SwiftMailer](https://packagist.org/packages/swiftmailer/swiftmailer)
+- Templating with [Handlebars](http://handlebarsjs.com/)
+- Captcha with [reCaptcha](https://www.google.com/recaptcha/intro/index.html)
+- Server and Client Side CDN uploads with [AWS S3](https://aws.amazon.com/s3/)
+- CSRF protection
+- Internationalization (i18n / l10n)
+- Customizable CLI commands
 
 For documentation on the packages being used, the following links have been
 provided.
 
- - See [https://github.com/cblanquera/cradle-schema](https://github.com/cblanquera/cradle-schema)
- - See [https://github.com/cblanquera/cradle-auth](https://github.com/cblanquera/cradle-auth)
- - See [https://github.com/cblanquera/cradle-file](https://github.com/cblanquera/cradle-file)
  - See [https://github.com/cblanquera/cradle-csrf](https://github.com/cblanquera/cradle-csrf)
  - See [https://github.com/cblanquera/cradle-captcha](https://github.com/cblanquera/cradle-captcha)
- - See [https://github.com/cblanquera/cradle-mail](https://github.com/cblanquera/cradle-mail)
  - See [https://github.com/cblanquera/cradle-queue](https://github.com/cblanquera/cradle-queue)
  - See [https://github.com/cblanquera/cradle-handlebars](https://github.com/cblanquera/cradle-handlebars)

@@ -2,23 +2,22 @@
  - [Basics](#basics)
  - [Request Methods](#methods)
  - [Request Paths](#paths)
- - [Route Handlers](#handlers)
+ - [Request and Response](#rnr)
  - [Mini Apps](#mini)
  - [API (7)](#api)
 
 <a name="basics"></a>
 ## Basics
 
-Routing is a subset of [Flows](/docs/flows.html) which is a subset of
-[Events](/docs/events.html). Routing wraps how event listeners work and
-designed to resolve request methods and paths. The basic route listener
-looks like the following.
+Routing is a subset of [Events](/docs/events.html). Routing wraps how event
+listeners work and designed to resolve request methods and paths. The basic
+route listener looks like the following.
 
 ###### Basic Routing
 ```
 <?php
-cradle()->get('Some Event', function($request, $response) {
-	//Do something here
+cradle()->get('/about/us', function($request, $response) {
+    //Do something here
 });
 
 ```
@@ -52,7 +51,7 @@ methods.
 ```
 <?php
 cradle()->route('GET', '/some/path/', function($request, $response) {
-	//Do something here
+    //Do something here
 });
 
 ```
@@ -73,10 +72,10 @@ which wraps the `->route()` method for your convenience.
 ```
 <?php
 cradle()
-	->get('/some/path/', function($request, $response) {})
-	->post('/some/path/', function($request, $response) {})
-	->put('/some/path/', function($request, $response) {})
-	->delete('/some/path/', function($request, $response) {});
+    ->get('/some/path/', function($request, $response) {})
+    ->post('/some/path/', function($request, $response) {})
+    ->put('/some/path/', function($request, $response) {})
+    ->delete('/some/path/', function($request, $response) {});
 
 ```
 
@@ -88,7 +87,7 @@ cradle()->all('/some/path/', function($request, $response) {});
 
 ```
 
-<a href="paths"></a>
+<a name="paths"></a>
 ## Request Paths
 
 ### Star Variables
@@ -145,12 +144,12 @@ dynamic paths being passed. The following shows how this can be done.
 ```
 <?php
 cradle()->get('/some/:name/stuff', function($request, $response) {
-	echo $request->getStage('name');
+    echo $request->getStage('name');
 });
 
 ```
 
-<a href="handlers"></a>
+<a name="handlers"></a>
 ## Route Handlers
 Much like events, routing can be expressed as a function or an include
 like the following.
@@ -162,23 +161,18 @@ cradle()->get('/some/path', include('/some/event/handler'));
 
 ```
 
-Much like flows, routing can also call on class methods like the following.
+Much like [flows](/docs/flows.html), routing can also call on class methods
+like the following.
 
 ###### Class Handlers
 ```
 <?php
 cradle()->get('/some/path', 'Controller@action');
 
-cradle()->get('/some/path', 'Controller::action');
-```
+cradle()->post('/some/path', 'Controller::action');
 
-Routing adopts the flow interface which allows this to happen.
-
-###### Handler Flows
-```
-<?php
 cradle()->get(
-	'/some/path',
+    '/some/path',
     'Another Event',
     include('/another/event.php'),
     'Controller@action',
@@ -187,32 +181,59 @@ cradle()->get(
 );
 ```
 
-Where it differs is, by default, routing provides two arguments which are
-called a `$request` and a `$response`. For consistency a `$request` and a
-`$response` should be passed whenever you trigger an event within a route
-handler. For example, in flows, we discussed forking, and with routing the
-exact same applies, with the addition of passing the $request and `$response`
-first like the example below.
+<a name="rnr"></a>
+## Request and Response
+
+`$request` and `$response` are objects that are usually passed to the
+callback. Documentation about requests can be found [here](/docs/request.html)
+and responses can be found [here](/docs/response.html).
+
+### Staging Data
+
+Request comes with a property by default is populated with `$_GET`, `$_POST`
+and URL parameters which is called stage. Staging data is used to prepare data
+that will be eventually processed (like before inserting into a database).
+Accessing data can be achieved like `$request->getStage()`. Stage is the most
+used property in the request because it is the aggregated request data, prevents
+the need to manipulate the original post and get properties and allows
+prepared data to be passed to other routes and events.
+
+```info
+You should consider using stage for all kinds of custom data.
+```
+
+### JSON Output
+
+Response comes with a property used to aggregate data to be either sent off to
+the output or to bind with a template engine called results which can be set
+like `$response->setResults('foo', 'bar')`. If there is no content set in the
+response, by default a JSON object will be returned in its place. JSON data
+can be manipulated like the following.
 
 ```
-<?php
-return function($request, $response) {
-	//Do Something here
+$response->setError(true, 'Something happened');
+$response->addValidation('profile_id', 'Invalid ID');
+$response->setResults('foo', 'bar');
+```
 
-    //Trigger a fork
-    if($good) {
-    	$this->triggerSubflow('A Good Event', $request, $response);
-    } else {
-    	$this->triggerSubflow('A Bad Event', $request, $response);
+If the above code was executed a similar JSON output would look like the
+following.
+
+```
+{
+    "error": false,
+    "message": "Something happened",
+    "validation": {
+        "post_title": "Invalid ID"
+    },
+    "results": {
+        "foo": "bar"
     }
-};
+}
 
 ```
 
- `$request` followed by `$response` should always be at the start of your
- arguments for consistency with other packages.
-
-<a href="mini"></a>
+<a name="mini"></a>
 ## Mini Apps
 
 If your routing with flows gets too large in one file, you can optionally
