@@ -3,12 +3,12 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Cradle PHP</title>
+        <title>Cradle PHP 7</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta name="description" content="PHP 7 Meta Framework" />
-        <meta name="keywords" content="php,framework,cradle" />
+        <meta name="description" content="PHP 7 Micro Framework" />
+        <meta name="keywords" content="php, php7, meta framework, micro framework" />
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
@@ -18,7 +18,7 @@
 
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
-        <meta property="og:title" content="CradlePHP" />
+        <meta property="og:title" content="Cradle PHP 7" />
         <meta property="og:description" content="PHP 7 Meta Framework" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://cradlephp.github.io/" />
@@ -26,12 +26,12 @@
         <!-- TWITTER TAGS -->
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
-        <meta name="twitter:title" content="CradlePHP" />
+        <meta name="twitter:title" content="Cradle PHP 7" />
         <meta name="twitter:description" content="PHP 7 Meta Framework" />
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
         <!-- SCHEMA.ORG TAGS -->
-        <meta itemprop="name" content="Cradle PHP" />
+        <meta itemprop="name" content="Cradle PHP 7" />
         <meta itemprop="openingHours" content="Mo,Tu,We,Th,Fr 10:00-20:00" />
 
         <link itemprop="url" content="https://cradlephp.github.io/" />
@@ -88,14 +88,14 @@
                 <div class="home">
     <center class="splash"><img src="/www/images/newtons-cradle-large.jpg" /></center>
 
-    <h1>Cradle PHP</h1>
+    <h1>Cradle PHP 7</h1>
     <center class="source">
         <em>
-            An unopinionated PHP7 micro framework built on traits.
+            A very simple unopinionated, micro framework.
         </em>
     </center>
 
-    <h2>1. Epic Routing</h2>
+    <h2>1. With Routing</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->get('/foo/:bar', function($request, $response) {
     $response->setContent('Hello, World');
@@ -107,7 +107,7 @@ cradle()->post('/foo/*(/:start){0,1}', function($request, $response) {
 
 </code></pre>
 
-    <h2>2. Limitless Events</h2>
+    <h2>2. With Events</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->on('create-user', function(...$data) {
     //insert to database
@@ -124,7 +124,7 @@ cradle()->on('#^foo$#', function() {
 
 </code></pre>
 
-    <h2>3. Granular Middleware</h2>
+    <h2>3. Wih Middleware</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->preprocess(function($request, $response) {
     session_start();
@@ -240,7 +240,7 @@ cradle()->package('some-composer/package')->runCustomMethod();
 
         <div class="middle pull-right">
             <ul>
-                <li><a href="/docs/intro.html">Getting Started</a></li>
+                <li><a href="/docs/install.html">Getting Started</a></li>
                 <li><a href="/docs/install.html">Install</a></li>
                 <li><a href="/">Documentation</a></li>
             </ul>
