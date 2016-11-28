@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Profiler - CradlePHP</title>
+        <title>Sink-overview - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta name="description" content="Sink - Overview The kitchen sink briefly shows how Cradle can be used as full stack solution. It's purpose is to provide some cont" />
         
-        <meta name="keywords" content="php,framework,cradle,profiler" />
+        <meta name="keywords" content="php,framework,cradle,sink-overview" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Profiler - CradlePHP" />
+        <meta property="og:title" content="Sink-overview - CradlePHP" />
 
-        <meta property="og:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta property="og:description" content="Sink - Overview The kitchen sink briefly shows how Cradle can be used as full stack solution. It's purpose is to provide some cont" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Profiler - CradlePHP" />
+        <meta name="twitter:title" content="Sink-overview - CradlePHP" />
 
-        <meta name="twitter:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta name="twitter:description" content="Sink - Overview The kitchen sink briefly shows how Cradle can be used as full stack solution. It's purpose is to provide some cont" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -150,81 +150,40 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Profiler Traits</h1>
+        	<h1>Sink - Overview</h1>
+<p>The kitchen sink briefly shows how Cradle can be used as full stack solution.
+It's purpose is to provide some context and examples on the usage of the micro
+framework. The sink has the following features and uses the following technologies.</p>
+<h3>Features</h3>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#caller">Caller (2)</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#inspector">Inspector (1)</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#logger">Logger (2)</a></li>
+<li>Full Stack MVC Architecture</li>
+<li>Queue Centric Events</li>
+<li>CSRF protection</li>
+<li>Internationalization (i18n / l10n)</li>
+<li>Customizable CLI commands</li>
 </ul>
-<p><a name="#caller"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Caller</h2>
-<p>The caller trait profiles meta information about the current method and the
-method that called it. Mounting this trait can be done with the following
-example.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\CallerTrait
-
-class MyClass
-{
-    use CallerTrait;
-}
-
-</code></pre>
-<p>The caller trait adds on two method to your class called <code class="language-php">getCaller</code> and
-<code class="language-php">getCallee</code>. The following shows how these method can be used.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-$this-&gt;getCaller(); //--&gt; ['file', 'line', 'class', 'method' ...]
-$this-&gt;getCallee(); //--&gt; ['file', 'line', 'class', 'method' ...]
-
-</code></pre>
-<p><a name="#inspector"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Inspector</h2>
-<p>The inspector trait profiles class properties in certain stages. Mounting
-this trait can be done with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\InspectorTrait
-
-class MyClass
-{
-    use InspectorTrait;
-}
-
-</code></pre>
-<p>The inspector trait adds on just one method to your class called <code class="language-php">inspect</code>
-which can be used in various ways. The following shows how this method can be
-used.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-//echo MyClass-&gt;protectedProperty
-$this-&gt;inspect('protectedProperty');
-
-//echo MyClass-&gt;protectedProperty after `someMethod` was called
-$this-&gt;inspect('protectedProperty', true)-&gt;someMethod();
-
-</code></pre>
-<p><a name="#caller"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Logger</h2>
-<p>The logger trait enables a clean way to take notes. Mounting
-this trait can be done with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\LoggerTrait
-
-class MyClass
-{
-    use LoggerTrait;
-}
-
-</code></pre>
-<p>The logger trait adds on two method to your class called <code class="language-php">addLogger</code> and <code class="language-php">log</code>
-which can be used in various ways. The following shows how these method can be
-used.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-$this-&gt;addLogger(function($message) {
-    //Do something
-});
-
-$this-&gt;log('Something has happened');
-
-</code></pre>
+<h3>Technologies</h3>
+<ul>
+<li>Queues with <a href="https://www.rabbitmq.com/">RabbitMQ</a></li>
+<li>Index Searching with <a href="https://www.elastic.co/">ElasticSearch</a></li>
+<li>Data Caching with <a href="https://redis.io/">Redis</a></li>
+<li>Mailing with <a href="https://packagist.org/packages/swiftmailer/swiftmailer">SwiftMailer</a></li>
+<li>Templating with <a href="http://handlebarsjs.com/">Handlebars</a></li>
+<li>Captcha with <a href="https://www.google.com/recaptcha/intro/index.html">reCaptcha</a></li>
+<li>Server and Client Side CDN uploads with <a href="https://aws.amazon.com/s3/">AWS S3</a></li>
+</ul>
+<h2><i class="fa fa-arrow-down"></i> File Structure</h2>
+<ul>
+<li><code class="language-php">app</code>
+<ul>
+<li><code class="language-php">api</code></li>
+<li><code class="language-php">core</code></li>
+<li><code class="language-php">www</code></li>
+</ul></li>
+<li><code class="language-php">bootstrap</code></li>
+<li><code class="language-php">config</code></li>
+<li><code class="language-php">public</code></li>
+</ul>
         </div>
 
     </div>
