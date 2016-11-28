@@ -4,7 +4,7 @@
  - [Installation](#installation)
  - [Load the Page](#load)
 
-The kitchen sink is a sandbox project to help provide something tangible for 
+The kitchen sink is a sandbox project to help provide something tangible for
 the average developer as well as give some initial ideas of how to structure
 your own project. Please note that this build is very opinionated and feedback
 on the architecture may vary from person to person. The kitchen sink will
@@ -63,24 +63,3 @@ public directory.
 
 Open your browser to `http://localhost:8000` and you should see the application
 running.
-
-The full set of features on the sink are the following.
-- Full Stack MVC Architecture
-- Queue Centric Events with [RabbitMQ](https://www.rabbitmq.com/)
-- Index Searching with [ElasticSearch](https://www.elastic.co/)
-- Data Caching with [Redis](https://redis.io/)
-- Mailing with [SwiftMailer](https://packagist.org/packages/swiftmailer/swiftmailer)
-- Templating with [Handlebars](http://handlebarsjs.com/)
-- Captcha with [reCaptcha](https://www.google.com/recaptcha/intro/index.html)
-- Server and Client Side CDN uploads with [AWS S3](https://aws.amazon.com/s3/)
-- CSRF protection
-- Internationalization (i18n / l10n)
-- Customizable CLI commands
-
-For documentation on the packages being used, the following links have been
-provided.
-
- - See [https://github.com/cblanquera/cradle-csrf](https://github.com/cblanquera/cradle-csrf)
- - See [https://github.com/cblanquera/cradle-captcha](https://github.com/cblanquera/cradle-captcha)
- - See [https://github.com/cblanquera/cradle-queue](https://github.com/cblanquera/cradle-queue)
- - See [https://github.com/cblanquera/cradle-handlebars](https://github.com/cblanquera/cradle-handlebars)

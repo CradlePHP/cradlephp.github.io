@@ -129,7 +129,7 @@
 
 <h5>Kitchen Sink</h5>
 <ul>
-    <!--<li><a href="/docs/sink-overview.html">Overview</a></li>-->
+    <li><a href="/docs/sink-overview.html">Overview</a></li>
     <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-models.html">Models</a></li>
     <li><a href="/docs/sink-jobs.html">Jobs</a></li>
@@ -155,6 +155,8 @@
 It's purpose is to provide some context and examples on the usage of the micro
 framework. The sink has the following features and uses the following technologies.</p>
 <h3>Features</h3>
+<p>The sink is designed to be feature rich, as close to an actual project template
+as possible. The following were taken into consideration.</p>
 <ul>
 <li>Full Stack MVC Architecture</li>
 <li>Queue Centric Events</li>
@@ -163,6 +165,8 @@ framework. The sink has the following features and uses the following technologi
 <li>Customizable CLI commands</li>
 </ul>
 <h3>Technologies</h3>
+<p>The following technologies were also chosen for the possibility of the sink to
+represent full stack level logic and implementation.</p>
 <ul>
 <li>Queues with <a href="https://www.rabbitmq.com/">RabbitMQ</a></li>
 <li>Index Searching with <a href="https://www.elastic.co/">ElasticSearch</a></li>
@@ -172,17 +176,32 @@ framework. The sink has the following features and uses the following technologi
 <li>Captcha with <a href="https://www.google.com/recaptcha/intro/index.html">reCaptcha</a></li>
 <li>Server and Client Side CDN uploads with <a href="https://aws.amazon.com/s3/">AWS S3</a></li>
 </ul>
-<h2><i class="fa fa-arrow-down"></i> File Structure</h2>
+<h3>File Structure</h3>
+<p>The sink has a simple architecture matching elements found in a common MVC
+system. The following describes this system and purposes for each.</p>
 <ul>
-<li><code class="language-php">app</code>
+<li><code class="language-php">app</code> - Main application packages
 <ul>
-<li><code class="language-php">api</code></li>
-<li><code class="language-php">core</code></li>
-<li><code class="language-php">www</code></li>
+<li><code class="language-php">api</code> - Contains controllers and templates for REST calls</li>
+<li><code class="language-php">core</code> - Contains models and jobs used throughout the app</li>
+<li><code class="language-php">www</code> - Contains controllers and templates for the front end</li>
 </ul></li>
-<li><code class="language-php">bootstrap</code></li>
-<li><code class="language-php">config</code></li>
-<li><code class="language-php">public</code></li>
+<li><code class="language-php">bootstrap</code> - Contains pre-processors to do before routing</li>
+<li><code class="language-php">config</code> - Arbitrary configuration files</li>
+<li><code class="language-php">public</code> - DMZ and static assets</li>
+</ul>
+<h3>Third party packages</h3>
+<p>For documentation on the packages being used, the following links have been
+provided.</p>
+<ul>
+<li>See <a href="https://packagist.org/packages/php-amqplib/php-amqplib"><a href="https://packagist.org/packages/php-amqplib/php-amqplib">https://packagist.org/packages/php-amqplib/php-amqplib</a></a></li>
+<li>See <a href="https://packagist.org/packages/elasticsearch/elasticsearch"><a href="https://packagist.org/packages/elasticsearch/elasticsearch">https://packagist.org/packages/elasticsearch/elasticsearch</a></a></li>
+<li>See <a href="https://packagist.org/packages/predis/predis"><a href="https://packagist.org/packages/predis/predis">https://packagist.org/packages/predis/predis</a></a></li>
+<li>See <a href="https://packagist.org/packages/aws/aws-sdk-php"><a href="https://packagist.org/packages/aws/aws-sdk-php">https://packagist.org/packages/aws/aws-sdk-php</a></a></li>
+<li>See <a href="https://packagist.org/packages.com/cblanquera/cradle-csrf"><a href="https://packagist.org/packages/cblanquera/cradle-csrf">https://packagist.org/packages/cblanquera/cradle-csrf</a></a></li>
+<li>See <a href="https://packagist.org/packages/cblanquera/cradle-captcha"><a href="https://packagist.org/packages/cblanquera/cradle-captcha">https://packagist.org/packages/cblanquera/cradle-captcha</a></a></li>
+<li>See <a href="https://packagist.org/packages/cblanquera/cradle-queue"><a href="https://packagist.org/packages/cblanquera/cradle-queue">https://packagist.org/packages/cblanquera/cradle-queue</a></a></li>
+<li>See <a href="https://packagist.org/packages/cblanquera/cradle-handlebars"><a href="https://packagist.org/packages/cblanquera/cradle-handlebars">https://packagist.org/packages/cblanquera/cradle-handlebars</a></a></li>
 </ul>
         </div>
 

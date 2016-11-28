@@ -14,7 +14,7 @@ echo $template(['world' => 'World!']);
 Instead of using this implementation directly each `app` using templating, wrap
 this in a method called `cradle('/app/api')->template($path, $data, $partials)`.
 This definition can be found in both `app/api/src/package/methods.php` and
-`app/api/src/package/methods.php`. Implementing this would look like the
+`app/www/src/package/methods.php`. Implementing this would look like the
 following where `'developer/app/search'` translates to
 `app/api/src/template/developer/app/search.html`
 

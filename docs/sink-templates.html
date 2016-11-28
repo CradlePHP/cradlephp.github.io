@@ -129,7 +129,7 @@
 
 <h5>Kitchen Sink</h5>
 <ul>
-    <!--<li><a href="/docs/sink-overview.html">Overview</a></li>-->
+    <li><a href="/docs/sink-overview.html">Overview</a></li>
     <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-models.html">Models</a></li>
     <li><a href="/docs/sink-jobs.html">Jobs</a></li>
@@ -162,7 +162,7 @@ echo $template(['world' =&gt; 'World!']);
 <p>Instead of using this implementation directly each <code class="language-php">app</code> using templating, wrap
 this in a method called <code class="language-php">cradle('/app/api')-&gt;template($path, $data, $partials)</code>.
 This definition can be found in both <code class="language-php">app/api/src/package/methods.php</code> and
-<code class="language-php">app/api/src/package/methods.php</code>. Implementing this would look like the
+<code class="language-php">app/www/src/package/methods.php</code>. Implementing this would look like the
 following where <code class="language-php">'developer/app/search'</code> translates to
 <code class="language-php">app/api/src/template/developer/app/search.html</code></p>
 <h6><code class="language-php">app/api/src/controller/developer/app:33</code></h6>
