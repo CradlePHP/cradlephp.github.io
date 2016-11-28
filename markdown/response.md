@@ -23,8 +23,8 @@ end of the day, a registry is a glorified array.
 ###### Remember Routes Uses Responses
 ```
 <?php
-cradle()->get('Some Event', function($response, $response) {
-	//Do something here
+cradle()->get('/create/user', function($response, $response) {
+    //Do something here
 });
 
 ```
@@ -43,31 +43,36 @@ And it will show JSON like the one representing this page.
 ```
 {
     "headers": {
-        "Content-Type": "text\/html; charset=utf-8"
+        "Content-Type": "text\/plain"
     },
     "code": 200,
     "header": {
-    	"Status": "200 OK",
+        "Status": "200 OK",
     },
-    "body": {
+    "json": {
         "error": false,
         "results": {
-        	"menu": {
-            	"#registry": "Registry",
-            	"#methods": "Response Methods",
+            "menu": {
+                "#registry": "Registry",
+                "#methods": "Response Methods",
             }
         }
-    }
+    },
+    "content": "Hello, World"
 }
 ```
 
-To access the `"Registry"` in the above JSON, you can do so in two ways
+To access the `"Registry"` in the above JSON, you can do so in many ways
 
 ```
 
-$response->get('body', 'results', 'menu', '#registry');
+$response->get('json', 'results', 'menu', '#registry');
 
-$response->getDot('body.results.menu.#registry');
+$response->getDot('json.results.menu.#registry');
+
+$response->getJson('results', 'menu', '#registry');
+
+$response->getResults('menu', '#registry');
 
 ```
 
@@ -79,15 +84,23 @@ $response->set('body', 'results', 'menu', '#registry', 'Introduction');
 
 $response->setDot('body.results.menu.#registry', 'Introduction');
 
+$response->setJson('results', 'menu', '#registry', 'Introduction');
+
+$response->setResults('menu', '#registry', 'Introduction');
+
 ```
 
 Removing that path is similar as well.
 
 ```
 
-$response->remove('body', 'results', 'menu', '#registry');
+$response->remove('json', 'results', 'menu', '#registry');
 
-$response->removeDot('body.results.menu.#registry');
+$response->removeDot('json.results.menu.#registry');
+
+$response->removeJson('results', 'menu', '#registry');
+
+$response->removeResults('menu', '#registry');
 
 ```
 
@@ -95,9 +108,13 @@ And checking for data can be like this.
 
 ```
 
-$response->exists('body', 'results', 'menu', '#registry');
+$response->exists('json', 'results', 'menu', '#registry');
 
-$response->isDot('body.results.menu.#registry');
+$response->isDot('json.results.menu.#registry');
+
+$response->hasJson('results', 'menu', '#registry');
+
+$response->hasResults('menu', '#registry');
 
 ```
 
@@ -109,28 +126,23 @@ $response->isDot('body.results.menu.#registry');
 ## Response Methods
 
 ### Content
-Though at the end a response body should be a string, dealing with the body
-before that could be an array. This makes a lot of sense if you are building
-REST calls for example. So content methods comes in two flavors, when it's
-an array or when it's a string. When it's an array, the response object will
-be built out like the following.
 
-```
-<?php
-[
-    'error' => false,
-    'message' => 'A message',
-    'validation' => [
-        'post_title' => 'Cannot be empty'
-    ]
-    'results' => [
-        'post_title' => 'A Title named Foo Bar'
-    ]
-]
+Content in the response will be considered to be outputted first, but when
+it is not set, by default the JSON data will be the latter choice. Setting
+content can be done in the following way.
 
 ```
 
-And the following methods can help build this structure.
+$response->setContent('Hello, World');
+
+```
+
+When an array is passed to `$response->setContent(['foo' => 'bar'])`, the 
+content will automatically transform it to `JSON_PRETTYPRINT` format.
+
+For both the content and the JSON, the following methods can help build
+a response that can be outputted.
+
 
 ```
 
@@ -145,12 +157,6 @@ $response->setResults(...$args, $value);
 $response->getValidation(...$args);
 
 $response->setError(true, $message);
-
-```
-
-And when you know content is a string, you can use these methods.
-
-```
 
 $response->getContent(true); //if the content is an array make it into json
 

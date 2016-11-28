@@ -95,6 +95,7 @@
             <h5>Getting Started</h5>
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
+    <li><a href="/docs/introduction.html">Introduction</a></li>
     <li><a href="/docs/sink.html">Kitchen Sink</a></li>
 </ul>
 
@@ -124,17 +125,21 @@
     <li><a href="/docs/handlebars.html">Handlebars</a></li>
     <li><a href="/docs/image.html">Image</a></li>
     <li><a href="/docs/sql.html">SQL</a></li>
-</ul>
+</ul>-->
 
 <h5>Kitchen Sink</h5>
 <ul>
-    <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-models.html">Models</a></li>
     <li><a href="/docs/sink-jobs.html">Jobs</a></li>
     <li><a href="/docs/sink-controllers.html">Controllers</a></li>
     <li><a href="/docs/sink-templates.html">Templates</a></li>
-    <li><a href="/docs/sink-templates.html">Custom CLI Commands</a></li>
+</ul>
+<!--
+    <li><a href="/docs/sink-overview.html">Overview</a></li>
+    <li><a href="/docs/sink-cli.html">Custom CLI Commands</a></li>
 
+    <li><a href="/docs/sink-auth.html">Authentication</a></li>
     <li><a href="/docs/sink-files.html">File Uploading</a></li>
     <li><a href="/docs/sink-mail.html">Sending Mail</a></li>
     <li><a href="/docs/sink-queue.html">Queuing Jobs</a></li>
@@ -170,7 +175,7 @@ etc. a response object deals with these like a registry as well. But at the
 end of the day, a registry is a glorified array.</p>
 <h6>Remember Routes Uses Responses</h6>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-cradle()-&gt;get('Some Event', function($response, $response) {
+cradle()-&gt;get('/create/user', function($response, $response) {
     //Do something here
 });
 
@@ -184,13 +189,13 @@ echo $response;
 <p>And it will show JSON like the one representing this page.</p>
 <pre class="code line-numbers language-php"><code class="marked">{
     "headers": {
-        "Content-Type": "text\/html; charset=utf-8"
+        "Content-Type": "text\/plain"
     },
     "code": 200,
     "header": {
         "Status": "200 OK",
     },
-    "body": {
+    "json": {
         "error": false,
         "results": {
             "menu": {
@@ -198,14 +203,19 @@ echo $response;
                 "#methods": "Response Methods",
             }
         }
-    }
+    },
+    "content": "Hello, World"
 }
 </code></pre>
-<p>To access the <code class="language-php">"Registry"</code> in the above JSON, you can do so in two ways</p>
+<p>To access the <code class="language-php">"Registry"</code> in the above JSON, you can do so in many ways</p>
 <pre class="code line-numbers language-php"><code class="marked">
-$response-&gt;get('body', 'results', 'menu', '#registry');
+$response-&gt;get('json', 'results', 'menu', '#registry');
 
-$response-&gt;getDot('body.results.menu.#registry');
+$response-&gt;getDot('json.results.menu.#registry');
+
+$response-&gt;getJson('results', 'menu', '#registry');
+
+$response-&gt;getResults('menu', '#registry');
 
 </code></pre>
 <p>Like wise, setting that same path to <code class="language-php">"Introduction"</code> can be done like this.</p>
@@ -214,19 +224,31 @@ $response-&gt;set('body', 'results', 'menu', '#registry', 'Introduction');
 
 $response-&gt;setDot('body.results.menu.#registry', 'Introduction');
 
+$response-&gt;setJson('results', 'menu', '#registry', 'Introduction');
+
+$response-&gt;setResults('menu', '#registry', 'Introduction');
+
 </code></pre>
 <p>Removing that path is similar as well.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-$response-&gt;remove('body', 'results', 'menu', '#registry');
+$response-&gt;remove('json', 'results', 'menu', '#registry');
 
-$response-&gt;removeDot('body.results.menu.#registry');
+$response-&gt;removeDot('json.results.menu.#registry');
+
+$response-&gt;removeJson('results', 'menu', '#registry');
+
+$response-&gt;removeResults('menu', '#registry');
 
 </code></pre>
 <p>And checking for data can be like this.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-$response-&gt;exists('body', 'results', 'menu', '#registry');
+$response-&gt;exists('json', 'results', 'menu', '#registry');
 
-$response-&gt;isDot('body.results.menu.#registry');
+$response-&gt;isDot('json.results.menu.#registry');
+
+$response-&gt;hasJson('results', 'menu', '#registry');
+
+$response-&gt;hasResults('menu', '#registry');
 
 </code></pre>
 <div class="alert alert-info"><i class="fa fa-info-circle"></i>  If you have an actual `.` in your path, you can change the delimeter like `$response-&gt;getDot('body-results-menu-#registry', '-');`
@@ -234,25 +256,17 @@ $response-&gt;isDot('body.results.menu.#registry');
 <p><a name="methods"></a></p>
 <h2><i class="fa fa-arrow-down"></i> Response Methods</h2>
 <h3>Content</h3>
-<p>Though at the end a response body should be a string, dealing with the body
-before that could be an array. This makes a lot of sense if you are building
-REST calls for example. So content methods comes in two flavors, when it's
-an array or when it's a string. When it's an array, the response object will
-be built out like the following.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-[
-    'error' =&gt; false,
-    'message' =&gt; 'A message',
-    'validation' =&gt; [
-        'post_title' =&gt; 'Cannot be empty'
-    ]
-    'results' =&gt; [
-        'post_title' =&gt; 'A Title named Foo Bar'
-    ]
-]
+<p>Content in the response will be considered to be outputted first, but when
+it is not set, by default the JSON data will be the latter choice. Setting
+content can be done in the following way.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$response-&gt;setContent('Hello, World');
 
 </code></pre>
-<p>And the following methods can help build this structure.</p>
+<p>When an array is passed to <code class="language-php">$response-&gt;setContent(['foo' =&gt; 'bar'])</code>, the
+content will automatically transform it to <code class="language-php">JSON_PRETTYPRINT</code> format.</p>
+<p>For both the content and the JSON, the following methods can help build
+a response that can be outputted.</p>
 <pre class="code line-numbers language-php"><code class="marked">
 $response-&gt;isContentFlat(); //is it a string or array?
 
@@ -266,9 +280,6 @@ $response-&gt;getValidation(...$args);
 
 $response-&gt;setError(true, $message);
 
-</code></pre>
-<p>And when you know content is a string, you can use these methods.</p>
-<pre class="code line-numbers language-php"><code class="marked">
 $response-&gt;getContent(true); //if the content is an array make it into json
 
 $response-&gt;hasContent();
@@ -584,8 +595,8 @@ $response-&gt;setStatus(200, '200 OK');
         <div class="middle pull-right">
             <ul>
                 <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="/docs/install.html">Install</a></li>
-                <li><a href="/docs/intro.html">Documentation</a></li>
+                <li><a href="/docs/introduction.html">Introduction</a></li>
+                <li><a href="/docs/introduction.html">Documentation</a></li>
             </ul>
         </div>
 

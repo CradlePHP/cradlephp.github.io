@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Bootstrap - CradlePHP</title>
+        <title>Sink-bootstrap - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Bootstrap boostrap.php boostrap/paths.php boostrap/debug.php boostrap/errors.php boostrap/services.php boostrap/i18n.php boostrap/" />
+        <meta name="description" content="Sink - Bootstrap boostrap.php boostrap/paths.php boostrap/debug.php boostrap/errors.php boostrap/services.php boostrap/i18n.php bo" />
         
-        <meta name="keywords" content="php,framework,cradle,bootstrap" />
+        <meta name="keywords" content="php,framework,cradle,sink-bootstrap" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Bootstrap - CradlePHP" />
+        <meta property="og:title" content="Sink-bootstrap - CradlePHP" />
 
-        <meta property="og:description" content="Bootstrap boostrap.php boostrap/paths.php boostrap/debug.php boostrap/errors.php boostrap/services.php boostrap/i18n.php boostrap/" />
+        <meta property="og:description" content="Sink - Bootstrap boostrap.php boostrap/paths.php boostrap/debug.php boostrap/errors.php boostrap/services.php boostrap/i18n.php bo" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Bootstrap - CradlePHP" />
+        <meta name="twitter:title" content="Sink-bootstrap - CradlePHP" />
 
-        <meta name="twitter:description" content="Bootstrap boostrap.php boostrap/paths.php boostrap/debug.php boostrap/errors.php boostrap/services.php boostrap/i18n.php boostrap/" />
+        <meta name="twitter:description" content="Sink - Bootstrap boostrap.php boostrap/paths.php boostrap/debug.php boostrap/errors.php boostrap/services.php boostrap/i18n.php bo" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -125,17 +125,21 @@
     <li><a href="/docs/handlebars.html">Handlebars</a></li>
     <li><a href="/docs/image.html">Image</a></li>
     <li><a href="/docs/sql.html">SQL</a></li>
-</ul>
+</ul>-->
 
 <h5>Kitchen Sink</h5>
 <ul>
-    <li><a href="/docs/sink-intro.html">Introduction</a></li>
+    <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-models.html">Models</a></li>
     <li><a href="/docs/sink-jobs.html">Jobs</a></li>
     <li><a href="/docs/sink-controllers.html">Controllers</a></li>
     <li><a href="/docs/sink-templates.html">Templates</a></li>
-    <li><a href="/docs/sink-templates.html">Custom CLI Commands</a></li>
+</ul>
+<!--
+    <li><a href="/docs/sink-overview.html">Overview</a></li>
+    <li><a href="/docs/sink-cli.html">Custom CLI Commands</a></li>
 
+    <li><a href="/docs/sink-auth.html">Authentication</a></li>
     <li><a href="/docs/sink-files.html">File Uploading</a></li>
     <li><a href="/docs/sink-mail.html">Sending Mail</a></li>
     <li><a href="/docs/sink-queue.html">Queuing Jobs</a></li>
@@ -146,9 +150,9 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Bootstrap</h1>
+        	<h1>Sink - Bootstrap</h1>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#boostrap"><code class="language-php">boostrap.php</code></a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#bootstrap"><code class="language-php">boostrap.php</code></a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#paths"><code class="language-php">boostrap/paths.php</code></a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#debug"><code class="language-php">boostrap/debug.php</code></a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#errors"><code class="language-php">boostrap/errors.php</code></a></li>
@@ -156,11 +160,13 @@
 <li><i class="fa fa-arrow-right"></i><a href="#i18n"><code class="language-php">boostrap/i18n.php</code></a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#timezone"><code class="language-php">boostrap/timezone.php</code></a></li>
 </ul>
-<p><a name="boostrap"></a></p>
+<p><a name="bootstrap"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">boostrap.php</code></h2>
 <p>If you open bootstrap.php in your project root folder, you will see a set of
 <a href="/docs/middleware.html#pre">preprocessors</a> called bootstrap files, each are
-located in the <code class="language-php">/bootstrap/</code> folder.</p>
+located in the <code class="language-php">/bootstrap/</code> folder. Similar to <code class="language-php">public/index.php</code>, however
+the bootstrap is used to load packages and middleware common to both the CLI
+and HTTP.</p>
 <pre class="code line-numbers language-php"><code class="marked">
 return cradle()
     //now bootstrap
@@ -168,15 +174,17 @@ return cradle()
     -&gt;preprocess(include('bootstrap/debug.php'))
     -&gt;preprocess(include('bootstrap/errors.php'))
     -&gt;preprocess(include('bootstrap/services.php'))
-    -&gt;preprocess(include('bootstrap/i18n.php'))
     -&gt;preprocess(include('bootstrap/timezone.php'))
+    -&gt;preprocess(include('bootstrap/session.php'))
+    -&gt;preprocess(include('bootstrap/i18n.php'))
+    -&gt;preprocess(include('bootstrap/handlebars.php'))
 
 </code></pre>
 <p>These were put on the project level in the case you need you modify them for
 your project needs. You are free to add custom preprocessors here as well.
 But, you want to be careful in removing these preprocessors as some are needed
 by other packages and by other bootstrap files.</p>
-<p><a name="boostrap"></a></p>
+<p><a name="paths"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">paths.php</code></h2>
 <p>This file provides two methods, <code class="language-php">cradle()-&gt;package('global')-&gt;path('key name');</code>
 and <code class="language-php">cradle()-&gt;package('global')-&gt;config('key name');</code>. While <code class="language-php">path('key name')</code>
@@ -197,7 +205,7 @@ in <code class="language-php">paths.php</code> between the following code.</p>
 );
 
 </code></pre>
-<p><a name="boostrap"></a></p>
+<p><a name="debug"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">debug.php</code></h2>
 <p>This file simply chooses whether to show errors or not based on your
 <code class="language-php">'debug_mode'</code> found in <code class="language-php">/config/settings.php</code>. It also provides a protocol
@@ -216,14 +224,14 @@ cradle()-&gt;flow(
 </code></pre>
 <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> Make sure to remove these debugs in production mode.
 </div>
-<p><a name="boostrap"></a></p>
+<p><a name="errors"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">errors.php</code></h2>
 <p>This file handles how to output errors based on the content type and the
 <code class="language-php">'debug_mode'</code> found in <code class="language-php">/config/settings.php</code>. It provides additional
 methods for rendering an output which you can optionally use to make custom
 error messages. You are free to modify this to fit your project needs as
 there are no real dependancies on this.</p>
-<p><a name="boostrap"></a></p>
+<p><a name="services"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">services.php</code></h2>
 <p>This file utilizes services as defined in /config/services.php. The
 configuration file should return a key/value set of services of native
@@ -256,7 +264,7 @@ service.</p>
  [Eloquent](https://laravel.com/docs/5.2/eloquent) if you wish for your
  own packages, but to be fair, let other packages decide what to use.
 </div>
-<p><a name="boostrap"></a></p>
+<p><a name="i18n"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">i18n.php</code></h2>
 <p>This file adds translation capabilities to your application by providing
 a method called <code class="language-php">cradle()-&gt;package('global')-&gt;translate('An English Phrase')</code>.
@@ -270,7 +278,7 @@ translation should be.</p>
 <code class="language-php">sprintf()</code> works.</p>
 <p>You are free to modify the specifics of translating in this file according to
 your project needs.</p>
-<p><a name="boostrap"></a></p>
+<p><a name="timezone"></a></p>
 <h2><i class="fa fa-arrow-down"></i> <code class="language-php">timezone.php</code></h2>
 <p>This file simply set the system timezone which is set in
 <code class="language-php">/config/settings.php</code>. There are no other reasons why this exists.</p>

@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Integration - CradlePHP</title>
+        <title>Sink-models - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Integration Semi-Integration Full Integration Semi Integration When it comes to PHP, there are already existing great enterprise s" />
+        <meta name="description" content="Sink - Models All models can be found in the app/core/src/Model folder. Models in the sink are generic classes used to define unit" />
         
-        <meta name="keywords" content="php,framework,cradle,integration" />
+        <meta name="keywords" content="php,framework,cradle,sink-models" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Integration - CradlePHP" />
+        <meta property="og:title" content="Sink-models - CradlePHP" />
 
-        <meta property="og:description" content="Integration Semi-Integration Full Integration Semi Integration When it comes to PHP, there are already existing great enterprise s" />
+        <meta property="og:description" content="Sink - Models All models can be found in the app/core/src/Model folder. Models in the sink are generic classes used to define unit" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Integration - CradlePHP" />
+        <meta name="twitter:title" content="Sink-models - CradlePHP" />
 
-        <meta name="twitter:description" content="Integration Semi-Integration Full Integration Semi Integration When it comes to PHP, there are already existing great enterprise s" />
+        <meta name="twitter:description" content="Sink - Models All models can be found in the app/core/src/Model folder. Models in the sink are generic classes used to define unit" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -150,156 +150,25 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Integration</h1>
+        	<h1>Sink - Models</h1>
+<p>All models can be found in the <code class="language-php">app/core/src/Model</code> folder. Models in the sink
+are generic classes used to define unit sized functionality about objects and
+allow the framework to interact with various services.</p>
+<p>Models in the sink are designed for usage exclusively for <a href="/docs/sink-jobs">jobs</a>
+and follow a common structure.</p>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#semi">Semi-Integration</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#full">Full Integration</a></li>
+<li>CRUD for database</li>
+<li>CRUD for index</li>
+<li>CRUD for cache</li>
+<li>Validation</li>
 </ul>
-<p><a name="semi"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Semi Integration</h2>
-<p>When it comes to PHP, there are already existing great enterprise solutions
-out there. If you have done something existing in PHP already, most likely you
-have used one of them. Cradle is a meta framework, and whenever your ready to
-integrate with a more enterprise solution, you can easily so with the
-<code class="language-php">-&gt;export()</code> method. The following example shows how this can be done.</p>
-<h6>Exporting a Flow</h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-/**
- * Hello Laravel !
- */
-$app-&gt;get('/', cradle()-&gt;export('Get Foo Bar'));
-
-</code></pre>
-<p>The above will return a callback which <a href="https://laravel.com/">Laravel</a> can
-call on. In this particular case <a href="https://laravel.com/">Laravel</a> can pass an
-<em>N</em> amount of arguments, all of which will be ignored by default and
-Cradle will continue with its own way of doing things and in the end either
-return a response string or false. If you want to map out the response before
-it gets sent to <a href="https://laravel.com/">Laravel</a> you need to create a map
-callback and add true to the -&gt;export() method. The following shows how
-this can be done.</p>
-<p>&lt;?php
-/**</p>
-<ul>
-<li>
-<p>Hello Laravel !
-*/
-$app-&gt;get('/{app_id}', function($appId) {
-list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);</p>
-<p>$request-&gt;setPost('app_id', $appId);</p>
-<p>return $next();
-});</p>
-</li>
-</ul>
-<p>Doing it this way will return three properties, <code class="language-php">$request</code> which is the
-Cradle Request object, <code class="language-php">$response</code> which is the Cradle
-<a href="/docs/response.html">Response</a> object and <code class="language-php">$next</code> which is the callback to
-trigger the flow. In <a href="https://symfony.com/">Symfony</a> you an achieve the same
-in <a href="https://laravel.com/">Laravel</a> with the following.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-// src/AppBundle/Controller/BlogController.php
-namespace AppBundle\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-class BlogController extends Controller
-{
-    /**
-     * Matches /blog/*
-     *
-     * @Route("/blog/{slug}", name="blog_show")
-     */
-    public function showAction($slug)
-    {
-        list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);
-
-        $request-&gt;setPost('blog_slug', $slug);
-
-        return new Response($next());
-    }
-}
-
-</code></pre>
-<p><a name="full"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Full Integration</h2>
-<p>With full integration, we will not be utilizing Cradle's
-<a href="/docs/request.html">Request</a>, <a href="/docs/response.html">Response</a>,
-nor the <a href="/docs/routing.html">Router</a> to run these flows. Instead we rely on
-the framework that we are integrating with to have these features. To do a
-full on integration it's really three steps.</p>
-<h3>Step 1</h3>
-<p>Define all your flows in the configuration folder which is usually marked as
-<code class="language-php">/config</code> or <code class="language-php">/app/config</code>. Your File should look like the following.</p>
-<h6><code class="language-php">/config/flows.php</code></h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-
-return array(
-    array(
-        'Form Submit',
-        'Some Form Event',
-        'Another Form Event',
-        array(
-            'A Good Form Event',
-            'Controller@action',
-        ),
-        array(
-            'A Bad Form Event',
-            'Controller::action',
-        )
-    ),
-    array(
-        'Render Page',
-        'Some Page Event',
-        'Another Page Event',
-    )
-);
-</code></pre>
-<h3>Step 2</h3>
-<p>Setup Cradle in the main PHP file. Most frameworks use <code class="language-php">/public/index.php</code>
-or <code class="language-php">/web/app.php</code>. Open that file and add the following.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-
-if(!function_exists('cradle')) {
-    function cradle()
-    {
-        static $framework = null;
-
-        if(is_null($framework)) {
-            $framework = new \Cradle\Frame\FrameHttp;
-        }
-
-        return $framework;
-    }
-}
-
-</code></pre>
-<h3>Step 3</h3>
-<p>Populate the Framework Actions</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-// src/AppBundle/Controller/BlogController.php
-namespace AppBundle\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-class BlogController extends Controller
-{
-    /**
-     * Matches /blog/*
-     *
-     * @Route("/blog/{slug}", name="blog_show")
-     */
-    public function showAction($slug)
-    {
-        $response = new Response();
-
-        cradle()-&gt;trigger('Render Page', $slug, $response);
-
-        return $response;
-    }
-}
-</code></pre>
+<p>In the sink, the <code class="language-php">databaseDetail</code>, <code class="language-php">indexDetail</code> and <code class="language-php">cacheDetail</code> should
+return the exact same data format by design. This makes inserting and
+updating normalized for easier logic. Likewise the same could be said about
+<code class="language-php">databaseSearch</code>, <code class="language-php">indexSearch</code> and <code class="language-php">cacheSearch</code>.</p>
+<p>You are free to exchange models with your desired ORM with very little effort
+because Models in the sink only require the <code class="language-php">AbstractModel</code> also found in
+<code class="language-php">app/core/src</code>.</p>
         </div>
 
     </div>

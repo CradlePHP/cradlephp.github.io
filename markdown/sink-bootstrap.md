@@ -1,5 +1,5 @@
-# Bootstrap
- - [`boostrap.php`](#boostrap)
+# Sink - Bootstrap
+ - [`boostrap.php`](#bootstrap)
  - [`boostrap/paths.php`](#paths)
  - [`boostrap/debug.php`](#debug)
  - [`boostrap/errors.php`](#errors)
@@ -7,12 +7,14 @@
  - [`boostrap/i18n.php`](#i18n)
  - [`boostrap/timezone.php`](#timezone)
 
-<a name="boostrap"></a>
+<a name="bootstrap"></a>
 ## `boostrap.php`
 
 If you open bootstrap.php in your project root folder, you will see a set of
 [preprocessors](/docs/middleware.html#pre) called bootstrap files, each are
-located in the `/bootstrap/` folder.
+located in the `/bootstrap/` folder. Similar to `public/index.php`, however
+the bootstrap is used to load packages and middleware common to both the CLI
+and HTTP.
 
 ```
 
@@ -22,8 +24,10 @@ return cradle()
     ->preprocess(include('bootstrap/debug.php'))
     ->preprocess(include('bootstrap/errors.php'))
     ->preprocess(include('bootstrap/services.php'))
-    ->preprocess(include('bootstrap/i18n.php'))
     ->preprocess(include('bootstrap/timezone.php'))
+    ->preprocess(include('bootstrap/session.php'))
+    ->preprocess(include('bootstrap/i18n.php'))
+    ->preprocess(include('bootstrap/handlebars.php'))
 
 ```
 
@@ -32,7 +36,7 @@ your project needs. You are free to add custom preprocessors here as well.
 But, you want to be careful in removing these preprocessors as some are needed
 by other packages and by other bootstrap files.
 
-<a name="boostrap"></a>
+<a name="paths"></a>
 ## `paths.php`
 
 This file provides two methods, `cradle()->package('global')->path('key name');`
@@ -57,7 +61,7 @@ $paths = array(
 
 ```
 
-<a name="boostrap"></a>
+<a name="debug"></a>
 ## `debug.php`
 
 This file simply chooses whether to show errors or not based on your
@@ -82,7 +86,7 @@ cradle()->flow(
 Make sure to remove these debugs in production mode.
 ```
 
-<a name="boostrap"></a>
+<a name="errors"></a>
 ## `errors.php`
 
 This file handles how to output errors based on the content type and the
@@ -91,7 +95,7 @@ methods for rendering an output which you can optionally use to make custom
 error messages. You are free to modify this to fit your project needs as
 there are no real dependancies on this.
 
-<a name="boostrap"></a>
+<a name="services"></a>
 ## `services.php`
 
 This file utilizes services as defined in /config/services.php. The
@@ -137,7 +141,7 @@ service.
  own packages, but to be fair, let other packages decide what to use.
 ```
 
-<a name="boostrap"></a>
+<a name="i18n"></a>
 ## `i18n.php`
 
 This file adds translation capabilities to your application by providing
@@ -157,7 +161,7 @@ You can also use binded values to work with this method as in,
 You are free to modify the specifics of translating in this file according to
 your project needs.
 
-<a name="boostrap"></a>
+<a name="timezone"></a>
 ## `timezone.php`
 
 This file simply set the system timezone which is set in

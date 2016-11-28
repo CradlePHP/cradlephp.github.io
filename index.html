@@ -95,99 +95,104 @@
         </em>
     </center>
 
-    <h2>1. With Routing</h2>
+    <h2>1. With Events</h2>
+    <pre class="code line-numbers language-php"><code>
+    cradle()->on('create-user', function(...$data) {
+        //insert to database
+    });
+
+    cradle()->on('Show a %s message', function() {
+        $meta = $this->getEventHandler()->getMeta();
+        echo $meta['variables'][0];
+    });
+
+    cradle()->on('#^foo$#', function() {
+        echo 'bar';
+    });
+
+    </code></pre>
+
+    <h2>2. With Command Line</h2>
+    <pre class="code line-numbers language-php"><code>
+    $ cradle create-user --name John age=34 -active
+    </code></pre>
+
+    <h2>3. With Routing</h2>
 <pre class="code line-numbers language-php"><code>
-cradle()->get('/foo/:bar', function($request, $response) {
-    $response->setContent('Hello, World');
+cradle()->get('/foo/:bar', function($req, $res) {
+    $res->setContent('Hello, World');
 });
 
-cradle()->post('/foo/*(/:start){0,1}', function($request, $response) {
-    $response->setContent('Hello, World');
+cradle()->post('/foo/*(/:start){0,1}', function($req, $res) {
+    $res->setContent('Hello, World');
 });
 
 </code></pre>
 
-    <h2>2. With Events</h2>
+    <h2>4. Wih Middleware</h2>
 <pre class="code line-numbers language-php"><code>
-cradle()->on('create-user', function(...$data) {
-    //insert to database
-});
-
-cradle()->on('Show a %s message', function() {
-    $meta = $this->getEventHandler()->getMeta();
-    echo $meta['variables'][0];
-});
-
-cradle()->on('#^foo$#', function() {
-    echo 'bar';
-});
-
-</code></pre>
-
-    <h2>3. Wih Middleware</h2>
-<pre class="code line-numbers language-php"><code>
-cradle()->preprocess(function($request, $response) {
+cradle()->preprocess(function($req, $res) {
     session_start();
 });
 
-cradle()->postprocess(function($request, $response) {
+cradle()->postprocess(function($req, $res) {
     session_write_close();
 });
 
-cradle()->error(function($request, $response, $error) {
-    $response->setContent('Something went wrong');
+cradle()->error(function($req, $res, $err) {
+    $res->setContent('Something went wrong');
 });
 
 cradle()->all(
     '/foo/bar',
     'must-be-logged-in',
-    function($request, $response) {
+    function($req, $res) {
         //and an admin
     },
-    function($request, $response) {
-        $response->setContent('Hello, World');
+    function($req, $res) {
+        $res->setContent('Hello, World');
     },
     'Controller@addView'
 );
 
 </code></pre>
 
-    <h2>4. Use Any Template Engine</h2>
+    <h2>5. Use Any Template Engine</h2>
 <pre class="code line-numbers language-php"><code>
 use Philo\Blade\Blade;
 use Cradle\Handlebars\HandlebarsHandler;
 
 //blade
-cradle()->get('/foo/:bar', function($request, $response) {
+cradle()->get('/foo/:bar', function($req, $res) {
     $blade = new Blade('/path/to/views', '/path/to/cache');
     $content = $blade->view()->make('hello')->render();
-    $response->setContent($content);
+    $res->setContent($content);
 });
 
 //twig
-cradle()->get('/foo/:bar', function($request, $response) {
+cradle()->get('/foo/:bar', function($req, $res) {
     $loader = new Twig_Loader_Array(['index' => 'Hello {{ name }}!']);
     $twig = new Twig_Environment($loader);
-    $content = $twig->render('index', $request->getStage());
-    $response->setContent($content);
+    $content = $twig->render('index', $req->getStage());
+    $res->setContent($content);
 });
 
 //handlebars
-cradle()->get('/foo/:bar', function($request, $response) {
+cradle()->get('/foo/:bar', function($req, $res) {
     $template = HandlebarsHandler::i()->compile('/path/to/template');
-    $content = $template($request->getStage());
-    $response->setContent($content);
+    $content = $template($req->getStage());
+    $res->setContent($content);
 });
 
 </code></pre>
 
-    <h2>5. Use Any ORM</h2>
+    <h2>6. Use Any ORM</h2>
 <pre class="code line-numbers language-php"><code>
 use EloquentModel\Book;
 use Doctrine\ORM\EntityManager;
 
 //eloquent
-cradle()->get('/foo/:bar', function($request, $response) {
+cradle()->get('/foo/:bar', function($req, $res) {
     $book = Books::find(1);
     $book->name = "The Best Book in the World";
     $book->author = "Ed Zynda";
@@ -195,7 +200,7 @@ cradle()->get('/foo/:bar', function($request, $response) {
 });
 
 //doctrine
-cradle()->get('/foo/:bar', function($request, $response) use ($entityManager) {
+cradle()->get('/foo/:bar', function($req, $res) use ($entityManager) {
     $authorRepository = $entityManager->getRepository("Author");
     $author = $authorRepository->find($authorId);
 
@@ -210,7 +215,7 @@ cradle()->get('/foo/:bar', function($request, $response) use ($entityManager) {
 
 </code></pre>
 
-    <h2>6. Isolated Vendor Packages</h2>
+    <h2>7. Completely Packable</h2>
 <pre class="code line-numbers language-php"><code>
 cradle()->register('some-composer/package');
 

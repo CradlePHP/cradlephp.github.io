@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Integration - CradlePHP</title>
+        <title>Sink-jobs - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Integration Semi-Integration Full Integration Semi Integration When it comes to PHP, there are already existing great enterprise s" />
+        <meta name="description" content="Sink - Jobs All jobs can be found in the app/core/src/job folder. Jobs in the sink are events used to define business logic of you" />
         
-        <meta name="keywords" content="php,framework,cradle,integration" />
+        <meta name="keywords" content="php,framework,cradle,sink-jobs" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Integration - CradlePHP" />
+        <meta property="og:title" content="Sink-jobs - CradlePHP" />
 
-        <meta property="og:description" content="Integration Semi-Integration Full Integration Semi Integration When it comes to PHP, there are already existing great enterprise s" />
+        <meta property="og:description" content="Sink - Jobs All jobs can be found in the app/core/src/job folder. Jobs in the sink are events used to define business logic of you" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Integration - CradlePHP" />
+        <meta name="twitter:title" content="Sink-jobs - CradlePHP" />
 
-        <meta name="twitter:description" content="Integration Semi-Integration Full Integration Semi Integration When it comes to PHP, there are already existing great enterprise s" />
+        <meta name="twitter:description" content="Sink - Jobs All jobs can be found in the app/core/src/job folder. Jobs in the sink are events used to define business logic of you" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -150,156 +150,61 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Integration</h1>
+        	<h1>Sink - Jobs</h1>
+<p>All jobs can be found in the <code class="language-php">app/core/src/job</code> folder. Jobs in the sink
+are events used to define business logic of your application. The reason
+why jobs implements the <a href="/docs/events.html">event</a> construct is to allow
+jobs to be called via CLI or to be queued. Queuing in the sink is also only
+considering the event construct.</p>
+<p>Jobs in the sink are designed for usage exclusively for
+<a href="/docs/sink-controllers">controllers</a> and have common things about them.</p>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#semi">Semi-Integration</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#full">Full Integration</a></li>
+<li>Assumes that staged data as in <code class="language-php">$request-&gt;getStage()</code> is prepared</li>
+<li>CRUD based jobs populate the results as in <code class="language-php">$response-&gt;setResults()</code></li>
+<li>Does not assume you have any services enabled and should fall back politely</li>
 </ul>
-<p><a name="semi"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Semi Integration</h2>
-<p>When it comes to PHP, there are already existing great enterprise solutions
-out there. If you have done something existing in PHP already, most likely you
-have used one of them. Cradle is a meta framework, and whenever your ready to
-integrate with a more enterprise solution, you can easily so with the
-<code class="language-php">-&gt;export()</code> method. The following example shows how this can be done.</p>
-<h6>Exporting a Flow</h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-/**
- * Hello Laravel !
- */
-$app-&gt;get('/', cradle()-&gt;export('Get Foo Bar'));
-
-</code></pre>
-<p>The above will return a callback which <a href="https://laravel.com/">Laravel</a> can
-call on. In this particular case <a href="https://laravel.com/">Laravel</a> can pass an
-<em>N</em> amount of arguments, all of which will be ignored by default and
-Cradle will continue with its own way of doing things and in the end either
-return a response string or false. If you want to map out the response before
-it gets sent to <a href="https://laravel.com/">Laravel</a> you need to create a map
-callback and add true to the -&gt;export() method. The following shows how
-this can be done.</p>
-<p>&lt;?php
-/**</p>
-<ul>
-<li>
-<p>Hello Laravel !
-*/
-$app-&gt;get('/{app_id}', function($appId) {
-list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);</p>
-<p>$request-&gt;setPost('app_id', $appId);</p>
-<p>return $next();
-});</p>
-</li>
-</ul>
-<p>Doing it this way will return three properties, <code class="language-php">$request</code> which is the
-Cradle Request object, <code class="language-php">$response</code> which is the Cradle
-<a href="/docs/response.html">Response</a> object and <code class="language-php">$next</code> which is the callback to
-trigger the flow. In <a href="https://symfony.com/">Symfony</a> you an achieve the same
-in <a href="https://laravel.com/">Laravel</a> with the following.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-// src/AppBundle/Controller/BlogController.php
-namespace AppBundle\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-class BlogController extends Controller
-{
-    /**
-     * Matches /blog/*
-     *
-     * @Route("/blog/{slug}", name="blog_show")
-     */
-    public function showAction($slug)
-    {
-        list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);
-
-        $request-&gt;setPost('blog_slug', $slug);
-
-        return new Response($next());
-    }
-}
-
-</code></pre>
-<p><a name="full"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Full Integration</h2>
-<p>With full integration, we will not be utilizing Cradle's
-<a href="/docs/request.html">Request</a>, <a href="/docs/response.html">Response</a>,
-nor the <a href="/docs/routing.html">Router</a> to run these flows. Instead we rely on
-the framework that we are integrating with to have these features. To do a
-full on integration it's really three steps.</p>
-<h3>Step 1</h3>
-<p>Define all your flows in the configuration folder which is usually marked as
-<code class="language-php">/config</code> or <code class="language-php">/app/config</code>. Your File should look like the following.</p>
-<h6><code class="language-php">/config/flows.php</code></h6>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-
-return array(
-    array(
-        'Form Submit',
-        'Some Form Event',
-        'Another Form Event',
-        array(
-            'A Good Form Event',
-            'Controller@action',
-        ),
-        array(
-            'A Bad Form Event',
-            'Controller::action',
-        )
-    ),
-    array(
-        'Render Page',
-        'Some Page Event',
-        'Another Page Event',
-    )
-);
-</code></pre>
-<h3>Step 2</h3>
-<p>Setup Cradle in the main PHP file. Most frameworks use <code class="language-php">/public/index.php</code>
-or <code class="language-php">/web/app.php</code>. Open that file and add the following.</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-
-if(!function_exists('cradle')) {
-    function cradle()
-    {
-        static $framework = null;
-
-        if(is_null($framework)) {
-            $framework = new \Cradle\Frame\FrameHttp;
-        }
-
-        return $framework;
-    }
-}
-
-</code></pre>
-<h3>Step 3</h3>
-<p>Populate the Framework Actions</p>
-<pre class="code line-numbers language-php"><code class="marked">&lt;?php
-// src/AppBundle/Controller/BlogController.php
-namespace AppBundle\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-class BlogController extends Controller
-{
-    /**
-     * Matches /blog/*
-     *
-     * @Route("/blog/{slug}", name="blog_show")
-     */
-    public function showAction($slug)
-    {
-        $response = new Response();
-
-        cradle()-&gt;trigger('Render Page', $slug, $response);
-
-        return $response;
-    }
-}
-</code></pre>
+<p>However jobs has separate logic for read and write operations.</p>
+<h3>Creating</h3>
+<ol>
+<li>Validate</li>
+<li>Insert to database</li>
+<li>Create index</li>
+<li>Invalidate search cache</li>
+</ol>
+<h3>Updating</h3>
+<ol>
+<li>Validate</li>
+<li>Update to database</li>
+<li>Update index</li>
+<li>Invalidate detail cache for this item</li>
+<li>Invalidate search cache</li>
+</ol>
+<h3>Remove</h3>
+<ol>
+<li>Validate</li>
+<li>Set item in database to inactive</li>
+<li>Remove from index</li>
+<li>Invalidate detail cache for this item</li>
+<li>Invalidate search cache</li>
+</ol>
+<h3>Search</h3>
+<ol>
+<li>Try to get it from the cache</li>
+<li>Try to get it from the index</li>
+<li>Try to get it from the database</li>
+<li>If the data is from the index or database, then cache it</li>
+</ol>
+<h3>Detail</h3>
+<ol>
+<li>Try to get it from the cache</li>
+<li>Try to get it from the index</li>
+<li>Try to get it from the database</li>
+<li>If the data is from the index or database, then cache it</li>
+</ol>
+<p>Other things in jobs can include other non-CRUD based operations like
+file uploading and mailing both of which have a commonality of time consuming
+operations. Tasks that are similar to these should be considered as a job to
+allow for optional queuing in the future.</p>
         </div>
 
     </div>
