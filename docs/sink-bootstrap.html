@@ -96,7 +96,7 @@
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
     <li><a href="/docs/introduction.html">Introduction</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/writing.html">Your First App</a></li>
 </ul>
 
 <h5>Concepts</h5>
@@ -111,13 +111,13 @@
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
 
-<h5>Core Traits</h5>
+<!--<h5>Core Traits</h5>
 <ul>
     <li><a href="/docs/helper.html">Helper</a></li>
     <li><a href="/docs/data.html">Data</a></li>
     <li><a href="/docs/resolver.html">Resolver</a></li>
     <li><a href="/docs/profiler.html">Profiler</a></li>
-</ul>
+</ul>-->
 
 <!--<h5>Core Packages</h5>
 <ul>
@@ -129,10 +129,13 @@
 
 <h5>Kitchen Sink</h5>
 <ul>
+    <li><a href="/docs/sink.html">Install</a></li>
     <li><a href="/docs/sink-overview.html">Overview</a></li>
     <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-module.html">Modules</a></li>
     <li><a href="/docs/sink-app.html">Applications</a></li>
+    <li><a href="/docs/sink-schema.html">Schemas</a></li>
+    <li><a href="/docs/sink-generators.html">Generators</a></li>
 </ul>
 <!--
     <li><a href="/docs/sink-cli.html">Custom CLI Commands</a></li>
@@ -252,12 +255,6 @@ return array (
 cradle()-&gt;package('global')-&gt;service('&lt;key name&gt;');
 
 </code></pre>
-<div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> When configuring this file it's important to have a `main-sql` value set in
-order for other packages to access these resources.
-</div>
-<p>The main-sql has an additional global methods called
-<code class="language-php">cradle()-&gt;package('global')-&gt;sql()</code> simply to make it easier to access this
-service.</p>
 <div class="alert alert-info"><i class="fa fa-info-circle"></i>  You can use any ORM like [Doctrine](http://www.doctrine-project.org/) or
  [Eloquent](https://laravel.com/docs/5.2/eloquent) if you wish for your
  own packages, but to be fair, let other packages decide what to use.

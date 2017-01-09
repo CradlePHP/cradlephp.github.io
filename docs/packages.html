@@ -96,7 +96,7 @@
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
     <li><a href="/docs/introduction.html">Introduction</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/writing.html">Your First App</a></li>
 </ul>
 
 <h5>Concepts</h5>
@@ -111,13 +111,13 @@
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
 
-<h5>Core Traits</h5>
+<!--<h5>Core Traits</h5>
 <ul>
     <li><a href="/docs/helper.html">Helper</a></li>
     <li><a href="/docs/data.html">Data</a></li>
     <li><a href="/docs/resolver.html">Resolver</a></li>
     <li><a href="/docs/profiler.html">Profiler</a></li>
-</ul>
+</ul>-->
 
 <!--<h5>Core Packages</h5>
 <ul>
@@ -129,10 +129,13 @@
 
 <h5>Kitchen Sink</h5>
 <ul>
+    <li><a href="/docs/sink.html">Install</a></li>
     <li><a href="/docs/sink-overview.html">Overview</a></li>
     <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-module.html">Modules</a></li>
     <li><a href="/docs/sink-app.html">Applications</a></li>
+    <li><a href="/docs/sink-schema.html">Schemas</a></li>
+    <li><a href="/docs/sink-generators.html">Generators</a></li>
 </ul>
 <!--
     <li><a href="/docs/sink-cli.html">Custom CLI Commands</a></li>
@@ -170,13 +173,14 @@ that is needed in order for your package to work. From within your <code class="
 folder you are free to decide on the folder structure because in the <code class="language-php">.cradle</code>
 file you will be linking each event handler manually like in the example below.</p>
 <pre class="code line-numbers language-php"><code class="marked">&lt;?php
-$cradle-&gt;flow(
-    'Do something',
-    include(__DIR__ . '/i/am/doing/something.php')
-);
+$cradle-&gt;on('Do something', function($req, $res) {
+    $res-&gt;setContent('Hello, World.');
+});
 
 </code></pre>
-<p>Don't add in the code above yet, for now go to your <code class="language-php">/public/index.php</code> make
+<div class="alert alert-info"><i class="fa fa-info-circle"></i> Use .cradle.php if you have IDE code coloring problems :)
+</div>
+<p>Next, go to <code class="language-php">/public/index.php</code> make
 sure it looks like the following.</p>
 <pre class="code line-numbers language-php"><code class="marked">
 return cradle()

@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Profiler - CradlePHP</title>
+        <title>Writing - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta name="description" content="Writing Your First App In this tutorial, we will be creating a quick TODO list. For the sake of simplicity, we will be storing dat" />
         
-        <meta name="keywords" content="php,framework,cradle,profiler" />
+        <meta name="keywords" content="php,framework,cradle,writing" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Profiler - CradlePHP" />
+        <meta property="og:title" content="Writing - CradlePHP" />
 
-        <meta property="og:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta property="og:description" content="Writing Your First App In this tutorial, we will be creating a quick TODO list. For the sake of simplicity, we will be storing dat" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Profiler - CradlePHP" />
+        <meta name="twitter:title" content="Writing - CradlePHP" />
 
-        <meta name="twitter:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta name="twitter:description" content="Writing Your First App In this tutorial, we will be creating a quick TODO list. For the sake of simplicity, we will be storing dat" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -151,81 +151,115 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Profiler Traits</h1>
-<ul>
-<li><i class="fa fa-arrow-right"></i><a href="#caller">Caller (2)</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#inspector">Inspector (1)</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#logger">Logger (2)</a></li>
-</ul>
-<p><a name="#caller"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Caller</h2>
-<p>The caller trait profiles meta information about the current method and the
-method that called it. Mounting this trait can be done with the following
-example.</p>
+        	<h1>Writing Your First App</h1>
+<p>In this tutorial, we will be creating a quick TODO list. For the sake of simplicity,
+we will be storing data in <code class="language-php">$_SESSION</code> and using <a href="http://handlebarsjs.com">Handlebars</a>
+for the templating engine.</p>
+<p>First open up <code class="language-php">public/index.php</code> and add the following routes before the <code class="language-php">-&gt;render()</code> line.</p>
+<h6><code class="language-php">public/index.php</code></h6>
 <pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\CallerTrait
+    -&gt;get('/todo', function ($request, $response) {
+        //TODO
+    })
 
-class MyClass
-{
-    use CallerTrait;
-}
+    -&gt;post('/todo/create', function ($request, $response) {
+        //TODO
+    })
+
+    -&gt;get('/todo/remove/:id', function ($request, $response) {
+        //TODO
+    })
 
 </code></pre>
-<p>The caller trait adds on two method to your class called <code class="language-php">getCaller</code> and
-<code class="language-php">getCallee</code>. The following shows how these method can be used.</p>
+<p>What we did here is outline the routes we will be eventually populating. Next,
+lets create a new file called <code class="language-php">template.html</code> in the <code class="language-php">public</code> folder and
+populate the file with the following content.</p>
+<h6><code class="language-php">public/template.html</code></h6>
 <pre class="code line-numbers language-php"><code class="marked">
-$this-&gt;getCaller(); //--&gt; ['file', 'line', 'class', 'method' ...]
-$this-&gt;getCallee(); //--&gt; ['file', 'line', 'class', 'method' ...]
+&lt;h1&gt;TODO&lt;/h1&gt;
+&lt;form method="post" action="/todo/create"&gt;
+    &lt;input type="text" name="detail" /&gt;
+    &lt;button&gt;Create&lt;/button&gt;
+&lt;/form&gt;
+{{#if rows}}
+&lt;table width="100%" border="1" cellpadding="5" cellspacing="0"&gt;
+    {{#each rows}}
+    &lt;tr&gt;
+        &lt;td&gt;{{detail}}&lt;/td&gt;
+        &lt;td&gt;&lt;a href="/todo/remove/{{@key}}"&gt;Remove&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    {{/each}}
+&lt;/table&gt;
+{{else}}
+&lt;h4&gt;Nothing TODO, that might be a good thing :)&lt;/h4&gt;
+{{/if}}
 
 </code></pre>
-<p><a name="#inspector"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Inspector</h2>
-<p>The inspector trait profiles class properties in certain stages. Mounting
-this trait can be done with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\InspectorTrait
+<p>If you are unfamiliar with Handlebars, documentation can be found
+<a href="http://handlebarsjs.com">here</a>. Now that we have a basic template, we can
+continue to populate the routes. Let's first populate the <code class="language-php">GET /todo</code> route.
+Paste the following within the <code class="language-php">-&gt;get('/todo')</code> callback.</p>
+<h6><code class="language-php">public/index.php</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">    -&gt;get('/todo', function ($request, $response) {
+        $rows = [];
+        if($request-&gt;hasSession('todo')) {
+            $rows = $request-&gt;getSession('todo');
+        }
 
-class MyClass
-{
-    use InspectorTrait;
-}
+        $response-&gt;setResults('rows', $rows);
+        $data = $response-&gt;getResults();
+
+        $content = file_get_contents(__DIR__ . '/template.html');
+        $handlebars = new Cradle\Handlebars\HandlebarsHandler();
+        $template = $handlebars-&gt;compile($content);
+        $response-&gt;setContent($template($data));
+    })
+</code></pre>
+<p>You can now go to <code class="language-php">127.0.0.1:8888/todo</code> in your browser to see your first form
+and list. This is great, but let's make the form and list dynamically work.</p>
+<p>Next, let's populate the <code class="language-php">POST /todo/create</code> route. Paste the following within the
+<code class="language-php">-&gt;post('/todo/create')</code> callback.</p>
+<h6><code class="language-php">public/index.php</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">
+    -&gt;post('/todo/create', function ($request, $response) {
+        $detail = $request-&gt;getStage('detail');
+
+        if($detail) {
+            $rows = [];
+            if($request-&gt;hasSession('todo')) {
+                $rows = $request-&gt;getSession('todo');
+            }
+
+            $rows[] = ['detail' =&gt; $detail];
+            $request-&gt;setSession('todo', $rows);
+        }
+
+        $this-&gt;triggerRoute('get', '/todo', $request, $response);
+    })
 
 </code></pre>
-<p>The inspector trait adds on just one method to your class called <code class="language-php">inspect</code>
-which can be used in various ways. The following shows how this method can be
-used.</p>
+<p>Lastly, let's populate the <code class="language-php">GET /todo/remove/:id</code> route. Paste the following within the
+<code class="language-php">-&gt;get('/todo/remove/:id')</code> callback.</p>
+<h6><code class="language-php">public/index.php</code></h6>
 <pre class="code line-numbers language-php"><code class="marked">
-//echo MyClass-&gt;protectedProperty
-$this-&gt;inspect('protectedProperty');
+    -&gt;get('/todo/remove/:id', function ($request, $response) {
+        $id = $request-&gt;getStage('id');
+        if($request-&gt;hasSession('todo')) {
+            $rows = $request-&gt;getSession('todo');
 
-//echo MyClass-&gt;protectedProperty after `someMethod` was called
-$this-&gt;inspect('protectedProperty', true)-&gt;someMethod();
+            if(isset($rows[$id])) {
+                unset($rows[$id]);
+            }
+
+            $request-&gt;setSession('todo', $rows);
+        }
+
+        $this-&gt;triggerRoute('get', '/todo', $request, $response);
+    })
 
 </code></pre>
-<p><a name="#caller"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Logger</h2>
-<p>The logger trait enables a clean way to take notes. Mounting
-this trait can be done with the following example.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\LoggerTrait
-
-class MyClass
-{
-    use LoggerTrait;
-}
-
-</code></pre>
-<p>The logger trait adds on two method to your class called <code class="language-php">addLogger</code> and <code class="language-php">log</code>
-which can be used in various ways. The following shows how these method can be
-used.</p>
-<pre class="code line-numbers language-php"><code class="marked">
-$this-&gt;addLogger(function($message) {
-    //Do something
-});
-
-$this-&gt;log('Something has happened');
-
-</code></pre>
+<p>Finally return to <code class="language-php">127.0.0.1:8888/todo</code> in your browser to double check the form
+and list are working.</p>
         </div>
 
     </div>

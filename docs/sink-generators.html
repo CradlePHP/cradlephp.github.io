@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Profiler - CradlePHP</title>
+        <title>Sink-generators - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta name="description" content="Sink - Generators Generate Module Generate SQL Generate Controllers The kitchen sink comes with a slew of Command Line tools calle" />
         
-        <meta name="keywords" content="php,framework,cradle,profiler" />
+        <meta name="keywords" content="php,framework,cradle,sink-generators" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Profiler - CradlePHP" />
+        <meta property="og:title" content="Sink-generators - CradlePHP" />
 
-        <meta property="og:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta property="og:description" content="Sink - Generators Generate Module Generate SQL Generate Controllers The kitchen sink comes with a slew of Command Line tools calle" />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Profiler - CradlePHP" />
+        <meta name="twitter:title" content="Sink-generators - CradlePHP" />
 
-        <meta name="twitter:description" content="Profiler Traits Caller (2) Inspector (1) Logger (2) Caller The caller trait profiles meta information about the current method and" />
+        <meta name="twitter:description" content="Sink - Generators Generate Module Generate SQL Generate Controllers The kitchen sink comes with a slew of Command Line tools calle" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -151,79 +151,59 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Profiler Traits</h1>
+        	<h1>Sink - Generators</h1>
 <ul>
-<li><i class="fa fa-arrow-right"></i><a href="#caller">Caller (2)</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#inspector">Inspector (1)</a></li>
-<li><i class="fa fa-arrow-right"></i><a href="#logger">Logger (2)</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#module">Generate Module</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#sql">Generate SQL</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#controller">Generate Controllers</a></li>
 </ul>
-<p><a name="#caller"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Caller</h2>
-<p>The caller trait profiles meta information about the current method and the
-method that called it. Mounting this trait can be done with the following
-example.</p>
+<p>The kitchen sink comes with a slew of Command Line tools called <code class="language-php">faucet</code>. To find
+out what are the available commands run the following in terminal.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\CallerTrait
-
-class MyClass
-{
-    use CallerTrait;
-}
+$ bin/cradle faucet
 
 </code></pre>
-<p>The caller trait adds on two method to your class called <code class="language-php">getCaller</code> and
-<code class="language-php">getCallee</code>. The following shows how these method can be used.</p>
+<p>Code Generators are used to help layout a project faster and used generically
+written code infrastructure and logic to allow you to focus on custom business rules.</p>
+<p>For these instructions we will install a generic post module where its definition
+is found in <code class="language-php">&lt;project folder name&gt;/schema/post.php</code>.</p>
+<p><a name="module"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Generate Module</h2>
+<p>First run the following command.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-$this-&gt;getCaller(); //--&gt; ['file', 'line', 'class', 'method' ...]
-$this-&gt;getCallee(); //--&gt; ['file', 'line', 'class', 'method' ...]
+$ bin/cradle faucet generate-module --schema post
 
 </code></pre>
-<p><a name="#inspector"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Inspector</h2>
-<p>The inspector trait profiles class properties in certain stages. Mounting
-this trait can be done with the following example.</p>
+<p>This will convert the data file found in <code class="language-php">&lt;project folder name&gt;/schema/post.php</code>
+to a code set called a <code class="language-php">module</code> that can be generically used through out your project.
+It's important to also run <code class="language-php">composer update</code> right after.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\InspectorTrait
-
-class MyClass
-{
-    use InspectorTrait;
-}
+$ composer update
 
 </code></pre>
-<p>The inspector trait adds on just one method to your class called <code class="language-php">inspect</code>
-which can be used in various ways. The following shows how this method can be
-used.</p>
+<p><a name="sql"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Generate SQL</h2>
+<p>The next command will generate SQL files within the module folder and
+then install to your database using the versioning updater built in.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-//echo MyClass-&gt;protectedProperty
-$this-&gt;inspect('protectedProperty');
-
-//echo MyClass-&gt;protectedProperty after `someMethod` was called
-$this-&gt;inspect('protectedProperty', true)-&gt;someMethod();
+$ bin/cradle faucet generate-sql --schema post
 
 </code></pre>
-<p><a name="#caller"></a></p>
-<h2><i class="fa fa-arrow-down"></i> Logger</h2>
-<p>The logger trait enables a clean way to take notes. Mounting
-this trait can be done with the following example.</p>
+<p>Optionally if you want to populate the SQL we can use the following command.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-use Cradle\Profiler\LoggerTrait
-
-class MyClass
-{
-    use LoggerTrait;
-}
+$ bin/cradle faucet populate-sql --module post
 
 </code></pre>
-<p>The logger trait adds on two method to your class called <code class="language-php">addLogger</code> and <code class="language-php">log</code>
-which can be used in various ways. The following shows how these method can be
-used.</p>
+<p><a name="controller"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Generate Controllers</h2>
+<p>If you want to auto generate an admin for the <code class="language-php">post</code> we can do so with the following command.</p>
 <pre class="code line-numbers language-php"><code class="marked">
-$this-&gt;addLogger(function($message) {
-    //Do something
-});
+$ bin/cradle faucet generate-admin --schema post
 
-$this-&gt;log('Something has happened');
+</code></pre>
+<p>Like wise with a REST controller, it can be done with the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet generate-rest --schema post
 
 </code></pre>
         </div>

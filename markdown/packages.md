@@ -27,14 +27,17 @@ file you will be linking each event handler manually like in the example below.
 
 ```
 <?php
-$cradle->flow(
-    'Do something',
-    include(__DIR__ . '/i/am/doing/something.php')
-);
+$cradle->on('Do something', function($req, $res) {
+    $res->setContent('Hello, World.');
+});
 
 ```
 
-Don't add in the code above yet, for now go to your `/public/index.php` make
+```info
+Use .cradle.php if you have IDE code coloring problems :)
+```
+
+Next, go to `/public/index.php` make
 sure it looks like the following.
 
 
@@ -58,6 +61,6 @@ If you go to your browser and open up `http://127.0.0.1/something`, you will
 see that your package triggered. From here you can customize your package
 however you like then follow instructions to submit it to
 [Packagist](https://packagist.org/), if you would like for all to use.
-[Composer](https://getcomposer.org/) also has a provision for 
+[Composer](https://getcomposer.org/) also has a provision for
 [private repositories](https://getcomposer.org/doc/05-repositories.md) you can
 look at as well.

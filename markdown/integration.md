@@ -27,9 +27,10 @@ call on. In this particular case [Laravel](https://laravel.com/) can pass an
 Cradle will continue with its own way of doing things and in the end either
 return a response string or false. If you want to map out the response before
 it gets sent to [Laravel](https://laravel.com/) you need to create a map
-callback and add true to the ->export() method. The following shows how
+callback and add true to the `->export()` method. The following shows how
 this can be done.
 
+```
 <?php
 /**
  * Hello Laravel !
@@ -41,9 +42,10 @@ $app->get('/{app_id}', function($appId) {
 
     return $next();
 });
+```
 
 Doing it this way will return three properties, `$request` which is the
-Cradle Request object, `$response` which is the Cradle
+Cradle [Request](/docs/request.html) object, `$response` which is the Cradle
 [Response](/docs/response.html) object and `$next` which is the callback to
 trigger the flow. In [Symfony](https://symfony.com/) you an achieve the same
 in [Laravel](https://laravel.com/) with the following.

@@ -126,15 +126,6 @@ cradle()->package('global')->service('<key name>');
 
 ```
 
-```warning
-When configuring this file it's important to have a `main-sql` value set in
-order for other packages to access these resources.
-```
-
-The main-sql has an additional global methods called
-`cradle()->package('global')->sql()` simply to make it easier to access this
-service.
-
 ```info
  You can use any ORM like [Doctrine](http://www.doctrine-project.org/) or
  [Eloquent](https://laravel.com/docs/5.2/eloquent) if you wish for your

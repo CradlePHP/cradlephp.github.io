@@ -96,7 +96,7 @@
 <ul>
     <li><a href="/docs/install.html">Install</a></li>
     <li><a href="/docs/introduction.html">Introduction</a></li>
-    <li><a href="/docs/sink.html">Kitchen Sink</a></li>
+    <li><a href="/docs/writing.html">Your First App</a></li>
 </ul>
 
 <h5>Concepts</h5>
@@ -111,13 +111,13 @@
     <li><a href="/docs/packages.html">Packages</a></li>
 </ul>
 
-<h5>Core Traits</h5>
+<!--<h5>Core Traits</h5>
 <ul>
     <li><a href="/docs/helper.html">Helper</a></li>
     <li><a href="/docs/data.html">Data</a></li>
     <li><a href="/docs/resolver.html">Resolver</a></li>
     <li><a href="/docs/profiler.html">Profiler</a></li>
-</ul>
+</ul>-->
 
 <!--<h5>Core Packages</h5>
 <ul>
@@ -129,10 +129,13 @@
 
 <h5>Kitchen Sink</h5>
 <ul>
+    <li><a href="/docs/sink.html">Install</a></li>
     <li><a href="/docs/sink-overview.html">Overview</a></li>
     <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
     <li><a href="/docs/sink-module.html">Modules</a></li>
     <li><a href="/docs/sink-app.html">Applications</a></li>
+    <li><a href="/docs/sink-schema.html">Schemas</a></li>
+    <li><a href="/docs/sink-generators.html">Generators</a></li>
 </ul>
 <!--
     <li><a href="/docs/sink-cli.html">Custom CLI Commands</a></li>
@@ -174,23 +177,22 @@ call on. In this particular case <a href="https://laravel.com/">Laravel</a> can 
 Cradle will continue with its own way of doing things and in the end either
 return a response string or false. If you want to map out the response before
 it gets sent to <a href="https://laravel.com/">Laravel</a> you need to create a map
-callback and add true to the -&gt;export() method. The following shows how
+callback and add true to the <code class="language-php">-&gt;export()</code> method. The following shows how
 this can be done.</p>
-<p>&lt;?php
-/**</p>
-<ul>
-<li>
-<p>Hello Laravel !
-*/
+<pre class="code line-numbers language-php"><code class="marked">&lt;?php
+/**
+ * Hello Laravel !
+ */
 $app-&gt;get('/{app_id}', function($appId) {
-list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);</p>
-<p>$request-&gt;setPost('app_id', $appId);</p>
-<p>return $next();
-});</p>
-</li>
-</ul>
+    list($request, $response, $next) = cradle()-&gt;export('Get Foo Bar', true);
+
+    $request-&gt;setPost('app_id', $appId);
+
+    return $next();
+});
+</code></pre>
 <p>Doing it this way will return three properties, <code class="language-php">$request</code> which is the
-Cradle Request object, <code class="language-php">$response</code> which is the Cradle
+Cradle <a href="/docs/request.html">Request</a> object, <code class="language-php">$response</code> which is the Cradle
 <a href="/docs/response.html">Response</a> object and <code class="language-php">$next</code> which is the callback to
 trigger the flow. In <a href="https://symfony.com/">Symfony</a> you an achieve the same
 in <a href="https://laravel.com/">Laravel</a> with the following.</p>
