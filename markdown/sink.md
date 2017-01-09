@@ -42,17 +42,17 @@ $ composer create-project -s dev cradlephp/kitchen-sink <project folder name>
 
 ```
 
-Open `<project folder name>/config/services.php` and update the PDO connection
-information with a new sandbox database (MySQL) and run the following
-MySQL Queries located in `<project folder name>/app/core/schema.sql`.
-
-Next go cd `<project folder name>/public` and run the following.
+Then go cd `<project folder name>` and run the following and and follow the wizard to install.
 
 ```
-
+$ bin/cradle faucet install
 $ bower install
-$ php -S localhost:8000
+```
 
+To start the server you issue the following command.
+
+```
+$ bin/cradle faucet server -h 127.0.0.1 -p 8888
 ```
 
 Optionally, you can configure your application's document / web root to the
@@ -61,5 +61,5 @@ public directory.
 <a name="load"></a>
 ## Load the Page
 
-Open your browser to `http://localhost:8000` and you should see the application
+Open your browser to `http://127.0.0.1:8888` and you should see the application
 running.
