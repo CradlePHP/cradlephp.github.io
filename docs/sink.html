@@ -188,11 +188,15 @@ $ composer create-project -s dev cradlephp/kitchen-sink &lt;project folder name&
 
 </code></pre>
 <p>Then go cd <code class="language-php">&lt;project folder name&gt;</code> and run the following and and follow the wizard to install.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet install
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet install
 $ bower install
+
 </code></pre>
 <p>To start the server you issue the following command.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet server -h 127.0.0.1 -p 8888
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet server -h 127.0.0.1 -p 8888
+
 </code></pre>
 <p>Optionally, you can configure your application's document / web root to the
 public directory.</p>
@@ -211,7 +215,9 @@ running.</p>
 <h2><i class="fa fa-arrow-down"></i> Code Generators</h2>
 <p>The kitchen sink comes with a slew of Command Line tools called <code class="language-php">faucet</code>. To find
 out what are the available commands run the following in terminal.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet
+
 </code></pre>
 <p>Code Generators are used to help layout a project faster and used generically
 written code infrastructure and logic to allow you to focus on custom business rules.</p>
@@ -219,27 +225,39 @@ written code infrastructure and logic to allow you to focus on custom business r
 is found in <code class="language-php">&lt;project folder name&gt;/schema/post.php</code>.</p>
 <h3>Generate Module</h3>
 <p>First run the following command.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-module --schema post
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet generate-module --schema post
+
 </code></pre>
 <p>This will convert the data file found in <code class="language-php">&lt;project folder name&gt;/schema/post.php</code>
 to a code set called a <code class="language-php">module</code> that can be generically used through out your project.
 It's important to also run <code class="language-php">composer update</code> right after.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ composer update
+<pre class="code line-numbers language-php"><code class="marked">
+$ composer update
+
 </code></pre>
 <h3>Generate SQL</h3>
 <p>The next command will generate SQL files within the module folder and
 then install to your database using the versioning updater built in.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-sql --schema post
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet generate-sql --schema post
+
 </code></pre>
 <p>Optionally if you want to populate the SQL we can use the following command.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet populate-sql --module post
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet populate-sql --module post
+
 </code></pre>
 <h3>Generate Controllers</h3>
 <p>If you want to auto generate an admin for the <code class="language-php">post</code> we can do so with the following command.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-admin --schema post
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet generate-admin --schema post
+
 </code></pre>
 <p>Like wise with a REST controller, it can be done with the following.</p>
-<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-rest --schema post
+<pre class="code line-numbers language-php"><code class="marked">
+$ bin/cradle faucet generate-rest --schema post
+
 </code></pre>
         </div>
 
