@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Kitchen Sink Install Server Requirements Installation Load the Page The kitchen sink is a sandbox project to help provide somethin" />
+        <meta name="description" content="Kitchen Sink Install Server Requirements Installation Load the Page Generators The kitchen sink is a sandbox project to help provi" />
         
         <meta name="keywords" content="php,framework,cradle,sink" />
         
@@ -23,7 +23,7 @@
 
         <meta property="og:title" content="Sink - CradlePHP" />
 
-        <meta property="og:description" content="Kitchen Sink Install Server Requirements Installation Load the Page The kitchen sink is a sandbox project to help provide somethin" />
+        <meta property="og:description" content="Kitchen Sink Install Server Requirements Installation Load the Page Generators The kitchen sink is a sandbox project to help provi" />
 
         <meta property="og:type" content="website" />
 
@@ -36,7 +36,7 @@
 
         <meta name="twitter:title" content="Sink - CradlePHP" />
 
-        <meta name="twitter:description" content="Kitchen Sink Install Server Requirements Installation Load the Page The kitchen sink is a sandbox project to help provide somethin" />
+        <meta name="twitter:description" content="Kitchen Sink Install Server Requirements Installation Load the Page Generators The kitchen sink is a sandbox project to help provi" />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -153,6 +153,7 @@
 <li><i class="fa fa-arrow-right"></i><a href="#requirements">Server Requirements</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#installation">Installation</a></li>
 <li><i class="fa fa-arrow-right"></i><a href="#load">Load the Page</a></li>
+<li><i class="fa fa-arrow-right"></i><a href="#load">Generators</a></li>
 </ul>
 <p>The kitchen sink is a sandbox project to help provide something tangible for
 the average developer as well as give some initial ideas of how to structure
@@ -199,6 +200,47 @@ public directory.</p>
 <h2><i class="fa fa-arrow-down"></i> Load the Page</h2>
 <p>Open your browser to <code class="language-php">http://127.0.0.1:8888</code> and you should see the application
 running.</p>
+<h3>Admin</h3>
+<p>A default admin login is also generated with the following credentials.</p>
+<ul>
+<li>Email: <code class="language-php">john@doe.com</code></li>
+<li>Password: <code class="language-php">123</code></li>
+</ul>
+<p>The example admin section can be found at <code class="language-php">http://127.0.0.1:8888/admin/profile/search</code>.</p>
+<p><a name="generators"></a></p>
+<h2><i class="fa fa-arrow-down"></i> Code Generators</h2>
+<p>The kitchen sink comes with a slew of Command Line tools called <code class="language-php">faucet</code>. To find
+out what are the available commands run the following in terminal.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet
+</code></pre>
+<p>Code Generators are used to help layout a project faster and used generically
+written code infrastructure and logic to allow you to focus on custom business rules.</p>
+<p>For these instructions we will install a generic post module where its definition
+is found in <code class="language-php">&lt;project folder name&gt;/schema/post.php</code>.</p>
+<h3>Generate Module</h3>
+<p>First run the following command.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-module --schema post
+</code></pre>
+<p>This will convert the data file found in <code class="language-php">&lt;project folder name&gt;/schema/post.php</code>
+to a code set called a <code class="language-php">module</code> that can be generically used through out your project.
+It's important to also run <code class="language-php">composer update</code> right after.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ composer update
+</code></pre>
+<h3>Generate SQL</h3>
+<p>The next command will generate SQL files within the module folder and
+then install to your database using the versioning updater built in.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-sql --schema post
+</code></pre>
+<p>Optionally if you want to populate the SQL we can use the following command.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet populate-sql --module post
+</code></pre>
+<h3>Generate Controllers</h3>
+<p>If you want to auto generate an admin for the <code class="language-php">post</code> we can do so with the following command.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-admin --schema post
+</code></pre>
+<p>Like wise with a REST controller, it can be done with the following.</p>
+<pre class="code line-numbers language-php"><code class="marked">$ bin/cradle faucet generate-rest --schema post
+</code></pre>
         </div>
 
     </div>
