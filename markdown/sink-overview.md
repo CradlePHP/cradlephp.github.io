@@ -34,12 +34,14 @@ The sink has a simple architecture matching elements found in a common MVC
 system. The following describes this system and purposes for each.
 
  - `app` - Main application packages
+   - `admin` - Contains controllers and templates for super admin rights
    - `api` - Contains controllers and templates for REST calls
-   - `core` - Contains models and jobs used throughout the app
    - `www` - Contains controllers and templates for the front end
  - `bootstrap` - Contains pre-processors to do before routing
  - `config` - Arbitrary configuration files
+ - `module` - Contains reusable models, services and events
  - `public` - DMZ and static assets
+ - `schema` - Contains data maps for generating code, building databases and indexes
 
 ### Third party packages
 

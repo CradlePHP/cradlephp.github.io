@@ -131,10 +131,8 @@
 <ul>
     <li><a href="/docs/sink-overview.html">Overview</a></li>
     <li><a href="/docs/sink-bootstrap.html">Bootstrap</a></li>
-    <li><a href="/docs/sink-models.html">Models</a></li>
-    <li><a href="/docs/sink-jobs.html">Jobs</a></li>
-    <li><a href="/docs/sink-controllers.html">Controllers</a></li>
-    <li><a href="/docs/sink-templates.html">Templates</a></li>
+    <li><a href="/docs/sink-module.html">Modules</a></li>
+    <li><a href="/docs/sink-app.html">Applications</a></li>
 </ul>
 <!--
     <li><a href="/docs/sink-cli.html">Custom CLI Commands</a></li>
@@ -182,13 +180,15 @@ system. The following describes this system and purposes for each.</p>
 <ul>
 <li><code class="language-php">app</code> - Main application packages
 <ul>
+<li><code class="language-php">admin</code> - Contains controllers and templates for super admin rights</li>
 <li><code class="language-php">api</code> - Contains controllers and templates for REST calls</li>
-<li><code class="language-php">core</code> - Contains models and jobs used throughout the app</li>
 <li><code class="language-php">www</code> - Contains controllers and templates for the front end</li>
 </ul></li>
 <li><code class="language-php">bootstrap</code> - Contains pre-processors to do before routing</li>
 <li><code class="language-php">config</code> - Arbitrary configuration files</li>
+<li><code class="language-php">module</code> - Contains reusable models, services and events</li>
 <li><code class="language-php">public</code> - DMZ and static assets</li>
+<li><code class="language-php">schema</code> - Contains data maps for generating code, building databases and indexes</li>
 </ul>
 <h3>Third party packages</h3>
 <p>For documentation on the packages being used, the following links have been

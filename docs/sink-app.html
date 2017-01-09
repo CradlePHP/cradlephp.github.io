@@ -2,14 +2,14 @@
 <html lang="en" class="branding ">
     <head>
         <meta charset="utf-8" />
-        <title>Sink-models - CradlePHP</title>
+        <title>Sink-app - CradlePHP</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         
-        <meta name="description" content="Sink - Models All models can be found in the app/core/src/Model folder. Models in the sink are generic classes used to define unit" />
+        <meta name="description" content="Sink - Applications Controllers Controllers can be found in both app/api/src/controller and app/www/src/controller. They interact " />
         
-        <meta name="keywords" content="php,framework,cradle,sink-models" />
+        <meta name="keywords" content="php,framework,cradle,sink-app" />
         
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,9 +21,9 @@
         <!-- FACEBOOK TAGS -->
         <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta property="og:title" content="Sink-models - CradlePHP" />
+        <meta property="og:title" content="Sink-app - CradlePHP" />
 
-        <meta property="og:description" content="Sink - Models All models can be found in the app/core/src/Model folder. Models in the sink are generic classes used to define unit" />
+        <meta property="og:description" content="Sink - Applications Controllers Controllers can be found in both app/api/src/controller and app/www/src/controller. They interact " />
 
         <meta property="og:type" content="website" />
 
@@ -34,9 +34,9 @@
 
         <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
 
-        <meta name="twitter:title" content="Sink-models - CradlePHP" />
+        <meta name="twitter:title" content="Sink-app - CradlePHP" />
 
-        <meta name="twitter:description" content="Sink - Models All models can be found in the app/core/src/Model folder. Models in the sink are generic classes used to define unit" />
+        <meta name="twitter:description" content="Sink - Applications Controllers Controllers can be found in both app/api/src/controller and app/www/src/controller. They interact " />
 
         <meta name="twitter:url" content="https://cradlephp.github.io/" />
 
@@ -148,25 +148,58 @@
    
         </div>
         <div class="right col-xs-12 col-md-10">
-        	<h1>Sink - Models</h1>
-<p>All models can be found in the <code class="language-php">app/core/src/Model</code> folder. Models in the sink
-are generic classes used to define unit sized functionality about objects and
-allow the framework to interact with various services.</p>
-<p>Models in the sink are designed for usage exclusively for <a href="/docs/sink-jobs">jobs</a>
-and follow a common structure.</p>
-<ul>
-<li>CRUD for database</li>
-<li>CRUD for index</li>
-<li>CRUD for cache</li>
-<li>Validation</li>
-</ul>
-<p>In the sink, the <code class="language-php">databaseDetail</code>, <code class="language-php">indexDetail</code> and <code class="language-php">cacheDetail</code> should
-return the exact same data format by design. This makes inserting and
-updating normalized for easier logic. Likewise the same could be said about
-<code class="language-php">databaseSearch</code>, <code class="language-php">indexSearch</code> and <code class="language-php">cacheSearch</code>.</p>
-<p>You are free to exchange models with your desired ORM with very little effort
-because Models in the sink only require the <code class="language-php">AbstractModel</code> also found in
-<code class="language-php">app/core/src</code>.</p>
+        	<h1>Sink - Applications</h1>
+<h3>Controllers</h3>
+<p>Controllers can be found in both <code class="language-php">app/api/src/controller</code> and
+<code class="language-php">app/www/src/controller</code>. They interact with both the
+<i class="fa fa-arrow-right"></i><a href="#templating">templates</a> and <a href="/docs/sink-modules.html">modules</a>
+exclusively. Controllers utilize the <a href="/docs/routing.html">route</a> construct
+and follow a common process.</p>
+<ol>
+<li>Validate access</li>
+<li>Prepare Data</li>
+<li>Trigger jobs</li>
+<li>Interpret Response from Jobs</li>
+<li>Redirects, calls another route or renders the response content</li>
+</ol>
+<p>Controllers can be separated into several <code class="language-php">app</code> folders optionally pairing
+with a template folder where applicable depending on your preference of
+responsibilities.</p>
+<p><a name="templating"></a></p>
+<h3>Templating</h3>
+<p>In the sink, controllers uses a PHP version of
+<a href="http://handlebarsjs.com/">Handlebars</a> which in turn, follows a PHP version
+of the implementation.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$template = cradle('global')-&gt;handlebars()-&gt;compile('Hello {world}');
+echo $template(['world' =&gt; 'World!']);
+
+</code></pre>
+<p>Instead of using this implementation directly each <code class="language-php">app</code> using templating, wrap
+this in a method called <code class="language-php">cradle('/app/api')-&gt;template($path, $data, $partials)</code>.
+This definition can be found in both <code class="language-php">app/api/src/package/methods.php</code> and
+<code class="language-php">app/www/src/package/methods.php</code>. Implementing this would look like the
+following where <code class="language-php">'developer/app/search'</code> translates to
+<code class="language-php">app/api/src/template/developer/app/search.html</code></p>
+<h6><code class="language-php">app/api/src/controller/developer/app:33</code></h6>
+<pre class="code line-numbers language-php"><code class="marked">
+cradle('/app/api')-&gt;template('developer/app/search', $data);
+
+</code></pre>
+<p>To reuse the header and footer we can do so by triggering the
+<code class="language-php">render-developer-page</code> found in <code class="language-php">app/api/src/controller/developer/app:42</code> and
+its definition can be found in <code class="language-php">app/api/src/package/events.php</code>.</p>
+<p>We leave these methods in the root level of your code to allow you to customize
+it for your needs while staying unopinionated in general. Custom helpers can
+be added to <code class="language-php">bootstrap/handlebars.php</code> in the following manner.</p>
+<pre class="code line-numbers language-php"><code class="marked">
+$handlebars-&gt;registerHelper('foo', function($value, $options) {
+   return $value . ' bar';
+});
+
+</code></pre>
+<p>and in your template you can start using it like <code class="language-php">{{foo 'foo'}}</code> which would
+result in <code class="language-php">foo bar</code> when rendered.</p>
         </div>
 
     </div>
