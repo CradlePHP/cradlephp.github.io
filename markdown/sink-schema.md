@@ -31,7 +31,7 @@ Also there are many examples of schemas found in the `/schema/` folder.
                 '<a title="SQL Configuration" href=" #sql-config">default</a>' => 'Foobar',
                 '<a title="SQL Configuration" href=" #sql-config">comment</a>' => 'foobar',
                 '<a title="SQL Configuration" href=" #sql-config">required</a>' => true,
-                '<a title="SQL Configuration" href=" #sql-config">key</a>' => true,
+                '<a title="SQL Configuration" href=" #sql-config">index</a>' => true,
                 '<a title="SQL Configuration" href=" #sql-config">unique</a>' => true,
                 '<a title="SQL Configuration" href=" #sql-config">primary</a>' => true,
                 '<a title="SQL Configuration" href=" #sql-config">encoding</a>' => <a href=" #encoding-options">false</a>,
@@ -133,7 +133,7 @@ Also there are many examples of schemas found in the `/schema/` folder.
 | `default`    | Optional | A default value                                                                  |
 | `comment`    | Optional | SQL Comment                                                                      |
 | `required`   | Optional | `true` if this is a required field                                               |
-| `key`        | Optional | `true` if this should be indexed                                                 |
+| `index`      | Optional | `true` if this should be indexed                                                 |
 | `unique`     | Optional | `true` if this should be uniquely indexed                                        |
 | `primary`    | Optional | `true` if this should be primarily indexed                                       |
 | `encoding`   | Optional | Encoding rule to apply before writing. See (Encoding Options)[#encoding-options] |
