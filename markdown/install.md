@@ -20,7 +20,7 @@ Issue the Composer create-project command in your terminal:
 
 ```
 
-$ composer create-project -s dev cradlephp/cradle <project folder name>
+$ composer create-project -s dev cradlephp/vanilla <project folder name>
 
 ```
 
