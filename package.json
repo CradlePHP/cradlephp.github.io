@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "doon": "^1.0.0",
+    "fontawesome5-webfont": "^5.0.4",
+    "google-code-prettify": "^1.0.5",
+    "jquery": "^3.3.1",
+    "open-sans-fontface": "^1.4.0",
+    "yarn-acquire": "^0.0.8"
+  }
+}

@@ -1,270 +1,295 @@
+---
+layout: default
+class: page-home
+title:  "Cradle - Back End Builder System"
+description: "Cradle is a feature rich, modern admin builder. Build apps faster. Developer friendly. Open Source."
+---
+<section class="section section-1">
+    <h2>All the Back End You'll Ever Need</h2>
+    <p>Cradle is a feature rich, modern admin builder. Build apps faster. Developer friendly. Open Source.</p>
+    <div class="sample">
+        <img src="/images/showntell.png" />
+        <a class="btn btn-primary" href="#">Get Started</a>
+    </div>
+</section>
 
-<!DOCTYPE html>
-<html lang="en" class="branding ">
-    <head>
-        <meta charset="utf-8" />
-        <title>Cradle PHP 7</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <meta name="description" content="PHP 7 Micro Framework" />
-        <meta name="keywords" content="php, php7, meta framework, micro framework" />
-
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="icon" type="image/gif" href="/favicon.gif" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-        <!-- FACEBOOK TAGS -->
-        <meta property="og:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
-        <meta property="og:title" content="Cradle PHP 7" />
-        <meta property="og:description" content="PHP 7 Meta Framework" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://cradlephp.github.io/" />
-
-        <!-- TWITTER TAGS -->
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="https://cradlephp.github.io/www/images/logo-long.png" />
-        <meta name="twitter:title" content="Cradle PHP 7" />
-        <meta name="twitter:description" content="PHP 7 Meta Framework" />
-        <meta name="twitter:url" content="https://cradlephp.github.io/" />
-
-        <!-- SCHEMA.ORG TAGS -->
-        <meta itemprop="name" content="Cradle PHP 7" />
-        <meta itemprop="openingHours" content="Mo,Tu,We,Th,Fr 10:00-20:00" />
-
-        <link itemprop="url" content="https://cradlephp.github.io/" />
-        <link itemprop="logo" content="https://cradlephp.github.io/www/images/logo-long.png" />
-        <link itemprop="image" content="https://cradlephp.github.io/www/images/logo-long.png" />
-
-        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/opensans-webfont-latin/css/opensans-latin.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
-        <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-
-
-        <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/opensans-webfont-latin/css/opensans-latin.css" />
-        <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="/www/styles/prism.css" />
-        <link rel="stylesheet" type="text/css" href="/www/styles/custom.css" />
-
-        <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    </head>
-
-    <body>
-        <header>
-            <nav class="navbar navbar-default navbar-branding navbar-static-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img alt="Cradle PHP" src="/www/images/logo-long.png" /></a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="header">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a></li>
-                <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="https://github.com/CradlePHP/Cradle"><i class="fa fa-github"></i></a></li>
-
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
-        </header>
-        <section class="body">
-            <div class="container">
-
-                <div class="home">
-    <center class="splash"><img src="/www/images/newtons-cradle-large.jpg" /></center>
-
-    <h1>Cradle PHP 7</h1>
-    <center class="source">
-        <em>
-            A very simple unopinionated, micro framework.
-        </em>
-    </center>
-
-    <h2>1. With Events</h2>
-    <pre class="code line-numbers language-php"><code>
-    cradle()->on('create-user', function(...$data) {
-        //insert to database
-    });
-
-    cradle()->on('Show a %s message', function() {
-        $meta = $this->getEventHandler()->getMeta();
-        echo $meta['variables'][0];
-    });
-
-    cradle()->on('#^foo$#', function() {
-        echo 'bar';
-    });
-
-    </code></pre>
-
-    <h2>2. With Command Line</h2>
-    <pre class="code line-numbers language-php"><code>
-    $ cradle create-user --name John age=34 -active
-    </code></pre>
-
-    <h2>3. With Routing</h2>
-<pre class="code line-numbers language-php"><code>
-cradle()->get('/foo/:bar', function($req, $res) {
-    $res->setContent('Hello, World');
-});
-
-cradle()->post('/foo/*(/:start){0,1}', function($req, $res) {
-    $res->setContent('Hello, World');
-});
-
-</code></pre>
-
-    <h2>4. With Middleware</h2>
-<pre class="code line-numbers language-php"><code>
-cradle()->preprocess(function($req, $res) {
-    session_start();
-});
-
-cradle()->postprocess(function($req, $res) {
-    session_write_close();
-});
-
-cradle()->error(function($req, $res, $err) {
-    $res->setContent('Something went wrong');
-});
-
-cradle()->all(
-    '/foo/bar',
-    'must-be-logged-in',
-    function($req, $res) {
-        //and an admin
-    },
-    function($req, $res) {
-        $res->setContent('Hello, World');
-    },
-    'Controller@addView'
-);
-
-</code></pre>
-
-    <h2>5. Use Any Template Engine</h2>
-<pre class="code line-numbers language-php"><code>
-use Philo\Blade\Blade;
-use Cradle\Handlebars\HandlebarsHandler;
-
-//blade
-cradle()->get('/foo/:bar', function($req, $res) {
-    $blade = new Blade('/path/to/views', '/path/to/cache');
-    $content = $blade->view()->make('hello')->render();
-    $res->setContent($content);
-});
-
-//twig
-cradle()->get('/foo/:bar', function($req, $res) {
-    $loader = new Twig_Loader_Array(['index' => 'Hello {{ name }}!']);
-    $twig = new Twig_Environment($loader);
-    $content = $twig->render('index', $req->getStage());
-    $res->setContent($content);
-});
-
-//handlebars
-cradle()->get('/foo/:bar', function($req, $res) {
-    $template = HandlebarsHandler::i()->compile('/path/to/template');
-    $content = $template($req->getStage());
-    $res->setContent($content);
-});
-
-</code></pre>
-
-    <h2>6. Use Any ORM</h2>
-<pre class="code line-numbers language-php"><code>
-use EloquentModel\Book;
-use Doctrine\ORM\EntityManager;
-
-//eloquent
-cradle()->get('/foo/:bar', function($req, $res) {
-    $book = Books::find(1);
-    $book->name = "The Best Book in the World";
-    $book->author = "Ed Zynda";
-    $book->save();
-});
-
-//doctrine
-cradle()->get('/foo/:bar', function($req, $res) use ($entityManager) {
-    $authorRepository = $entityManager->getRepository("Author");
-    $author = $authorRepository->find($authorId);
-
-    $postRepository = $entityManager->getRepository("Post");
-    $post = $postRepository->findOneBy(array("title" => "Hello World!"));
-
-    $posts = $repository->findBy(
-        array("author" => $author),
-        array("title" => "ASC")
-    );
-});
-
-</code></pre>
-
-    <h2>7. Completely Packable</h2>
-<pre class="code line-numbers language-php"><code>
-cradle()->register('some-composer/package');
-
-cradle()->package('some-composer/package')->runCustomMethod();
-
-</code></pre>
-
-<center class="call-to-action">
-    <a class="btn btn-warning" href="/docs/install.html">Get Started</a>
-</center>
-</div>
+<section class="section section-2">
+    <h2>A little bit more than a CMS</h2>
+    <p>Define your back end anyway you like. Design your front end anyway you like.</p>
+    <div class="row">
+        <div class="col-sm">
+            <div class="icon">
+                <i class="fas fa-building"></i>
             </div>
-        </section>
-        <footer>
-            <div class="container">
-    <div class="top clearfix">
-        <div class="left pull-left">
-            <div>
-                <div class="logo pull-left"><img src="/www/images/logo-square.png" /></div>
-                <div class="title">Cradle PHP</div>
-                <ul>
-                    <li><a href="https://github.com/CradlePHP/Cradle">GitHub</a></li>
-                    <li><a href="https://packagist.org/packages/cradlephp/cradle">Packagist</a></li>
-                </ul>
-            </div>
+            <h3>Company ERP</h3>
+            <p>HR, Accounting, File Repositories, Procurement, Task &amp; Production Planning, Event &amp; Time Management</p>
         </div>
+        <div class="col-sm">
+            <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>Ecommerce Backends</h3>
+            <p>Product Management, Customer Management, Order Management, Logistics Systems</p>
+        </div>
+        <div class="col-sm">
+            <div class="icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <h3>Application Backends</h3>
+            <p>Web, Mobile &amp; Desktop Apps like news, wikis, blogs, calendars, jobs, games, it really can be anything.</p>
+        </div>
+    </div>
+</section>
 
-        <div class="middle pull-right">
+<section class="section section-3">
+    <h2>Features</h2>
+    <p>We compiled a list of feature requirements based on over 10 years of backend system development.</p>
+    <div class="row right">
+        <div class="col-1 col-sm-5">
+            <a href="/images/full-7.png" target="_blank">
+                <img src="/images/preview-7.png" />
+            </a>
+        </div>
+        <div class="col-2 col-sm-7">
+            <h3>Objects and Relations</h3>
+            <p>Most, if not all, applications deal with objects and relations to other objects. If you can't find an out of box solution for what you want to build, ususally these things need to be custom developed. The time it takes to develop depends on how many objects and relations you have. It's really this gray area without proper planning can fail. At its core, Cradle provides a way to create, manage and dynamically generate an admin for all of your objects and relations.</p>
+        </div>
+    </div>
+    <div class="row left">
+        <div class="col-1 col-sm-7">
+            <h3>Fields as a Playground</h3>
+            <p>Create fields on the fly, make mistakes and change fields, re-order fields; Skies are the limits! Clone objects to make creating objects even faster. Relate objects in one-to-zero, one-to-one, one-to-many and many-to-many. You can even relate external tables not defined in our system. </p>
+        </div>
+        <div class="col-2 col-sm-5">
+            <a href="/images/full-8.png" target="_blank">
+                <img src="/images/preview-8.png" />
+            </a>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col-1 col-sm-5">
+            <a href="/images/full-6.png" target="_blank">
+                <img src="/images/preview-6.png" />
+            </a>
+        </div>
+        <div class="col-2 col-sm-7">
+            <h3>Validations and Output Formats</h3>
+            <p>On top of form submissions, we need to also consider field validation and final output formats. Cradle supports any kind of validation (required, empty, less, greater, regexp, etc.) and output formats (capital, lower, date, relative, link, email, image, formulas, etc.). Activate searchable, filter and sortable features per field and it will be dynamically rendered in your admin.</p>
+        </div>
+    </div>
+    <div class="row left">
+        <div class="col-1 col-sm-7">
+            <h3>Database Translations</h3>
+            <p>We compared against many popular CMS libraries to determine a proper database structure and concluded that none fit what we wanted in terms of raw flexibility. Our fields translates into proper SQL-3NF and ElasticSearch schemas without any fuss. You can create, update, sort fields even after creating an object. Just turn on Redis to take advantage of data caching and RabbitMQ to take advantage of queues.</p>
+        </div>
+        <div class="col-2 col-sm-5">
+            <a href="/images/full-10.png" target="_blank">
+                <img src="/images/preview-10.png" />
+            </a>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col-1 col-sm-5">
+            <a href="/images/full-3.png" target="_blank">
+                <img src="/images/preview-3.png" />
+            </a>
+        </div>
+        <div class="col-2 col-sm-7">
+            <h3>Dynamic Search Pages</h3>
+            <p>Developers usually miss out on some of the basic features of a general search because it is just so tedius to build out all the time. Cradle takes care of these for you. Featuring search queries, dynamic filters, relations, bulk actions, importing and exporting. Define searchable, filterable and sortable fields in your schema and watch the search page match your specifications.</p>
+        </div>
+    </div>
+    <div class="row left">
+        <div class="col-1 col-sm-7">
+            <h3>Dynamic Forms</h3>
+            <p>Developing form submissions is a very tedius process starting from creating the front end form and validating fields to creating or updating into the database, provide a success message and redirect to another page. With Cradle, no more! Forms are dynamically created, validated and processed based on your defined objects and relations.</p>
+        </div>
+        <div class="col-2 col-sm-5">
+            <a href="/images/full-4.png" target="_blank">
+                <img src="/images/preview-4.png" />
+            </a>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col-1 col-sm-5">
+            <a href="/images/full-5.png" target="_blank">
+                <img src="/images/preview-5.png" />
+            </a>
+        </div>
+        <div class="col-2 col-sm-7">
+            <h3>Relational Actions and Filters</h3>
+            <p>Easy navigation to object relations and do futher filters, bulk actions, importing and exporting. Create objects and have it automatically linked to its parent. Link existing objects together easily.</p>
+        </div>
+    </div>
+    <div class="row left">
+        <div class="col-1 col-sm-7">
+            <h3>Menu Builder</h3>
+            <p>Create menu items on the fly. Create menu groups and drag items and groups in any order you want. Choose any icon from the FontAwesome 5 library or none at all. Use any link you want, even not in the system. Menu items automatically will show on relative active pages and show counts on schema search menu items.</p>
+        </div>
+        <div class="col-2 col-sm-5">
+            <a href="/images/full-2.png" target="_blank">
+                <img src="/images/preview-2.png" />
+            </a>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col-1 col-sm-5">
+            <a href="/images/full-1.png" target="_blank">
+                <img src="/images/preview-1.png" />
+            </a>
+        </div>
+        <div class="col-2 col-sm-7">
+            <h3>Lots of Fields</h3>
+            <p>Supporting all HTML5 fields, mask, WYSIWYG, Markdown, Code Editors, Date Fields, Range Sliders, Switches, Dials &amp; Knobs, Files &amp; Images Tag and Meta fields. All fields accept an arbitrary amount of HTML attributes incase you want to add a placeholder or number min-max for example. You can also free add your own custom fields, use any JavaScript and CSS. Anything you like.</p>
+        </div>
+    </div>
+    <div class="row left">
+        <div class="col-1 col-sm-7">
+            <h3>Fully Templated</h3>
+            <p>We considered all UI elements in our admin to be flexible and usable anywhere including the front end. Built on top of jQuery, Bootstrap 4, and Font Awesome 5 and Handlebars to reduce the learning curve and for easier manipulation.</p>
+        </div>
+        <div class="col-2 col-sm-5">
+            <a href="/images/full-9.png" target="_blank">
+                <img src="/images/preview-9.png" />
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="container section section-4">
+    <h2>Our Technology Stack</h2>
+    <p>Carefully chosen agnostic technologies that can be used with any major server stack.</p>
+    <div class="banner">
+        <a href="http://php.net/archive/2018.php#id2018-03-02-1" target="_blank">
+            <img src="/images/php.png" />
+        </a>
+        <a href="https://dev.mysql.com/doc/relnotes/mysql/5.7/en/" target="_blank">
+            <img src="/images/mysql.png" />
+        </a>
+        <a href="https://www.elastic.co/" target="_blank">
+            <img src="/images/elastic.png" />
+        </a>
+        <a href="https://redis.io/" target="_blank">
+            <img src="/images/redis.png" />
+        </a>
+        <a href="https://www.rabbitmq.com/" target="_blank">
+            <img src="/images/rabbit.png" />
+        </a>
+        <a href="https://cradlephp.github.io/" target="_blank">
+            <img src="/images/logo-square.png" />
+        </a>
+        <a href="https://getbootstrap.com/" target="_blank">
+            <img src="/images/bootstrap.png" />
+        </a>
+        <a href="https://jquery.com/" target="_blank">
+            <img src="/images/jquery.png" />
+        </a>
+        <a href="https://fontawesome.com/" target="_blank">
+            <img src="/images/fontawesome.png" />
+        </a>
+        <a href="https://yarnpkg.com/en/" target="_blank">
+            <img src="/images/yarn.png" />
+        </a>
+        <a href="https://handlebarsjs.com/" target="_blank">
+            <img src="/images/handlebars.png" />
+        </a>
+        <a href="https://github.com/" target="_blank">
+            <img src="/images/github.png" />
+        </a>
+        <a href="https://travis-ci.org/" target="_blank">
+            <img src="/images/travis.png" />
+        </a>
+        <a href="https://codeception.com/" target="_blank">
+            <img src="/images/codecept.png" />
+        </a>
+        <a href="https://coveralls.io/" target="_blank">
+            <img src="/images/coveralls.png" />
+        </a>
+        <a href="https://www.docker.com/" target="_blank">
+            <img src="/images/docker.png" />
+        </a>
+        <a href="https://aws.amazon.com/s3/" target="_blank">
+            <img src="/images/s3.png" />
+        </a>
+    </div>
+    <h4>Thanks to these Open Source Projects</h4>
+    <div class="row">
+        <div class="col-sm">
             <ul>
-                <li><a href="/docs/install.html">Getting Started</a></li>
-                <li><a href="/docs/install.html">Install</a></li>
-                <li><a href="/">Documentation</a></li>
+                <li>
+                    <a href="https://ace.c9.io" target="_blank">
+                        Ace Editor <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://simplemde.com/" target="_blank">
+                        Simplemde <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://momentjs.com/" target="_blank">
+                        Moment.js <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://flatpickr.js.org/" target="_blank">
+                        Flatpickr <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
             </ul>
         </div>
-
-
+        <div class="col-sm">
+            <ul>
+                <li>
+                    <a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html" target="_blank">
+                        Ion <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://codeseven.github.io/toastr/" target="_blank">
+                        Toastr <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.papaparse.com/" target="_blank">
+                        Papa Parse <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/cblanquera/doon" target="_blank">
+                        Doon <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <ul>
+                <li>
+                    <a href="http://wysihtml.com/" target="_blank">
+                        WYSIHTML <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/cblanquera/acquire" target="_blank">
+                        Acquire <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        Storm <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">
+                        Ace Editor <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="masthead">
-        <center class="copy">
-        <a href="https://travis-ci.org/CradlePHP/framework"><img src="https://travis-ci.org/CradlePHP/framework.svg?branch=master" alt="Travis CI" style="max-width:100%;"></a>
-        <a href='https://coveralls.io/github/CradlePHP/framework?branch=master'><img src='https://coveralls.io/repos/github/CradlePHP/framework/badge.svg?branch=master' alt='Coverage Status' /></a>
-        <a href="https://packagist.org/packages/cradlephp/framework"><img src="https://poser.pugx.org/cradlephp/framework/v/stable" alt="Latest Stable Version"  style="max-width:100%;"></a>
-        <a href="https://packagist.org/packages/cradlephp/framework"><img alt="Total Downloads" src="https://poser.pugx.org/cradlephp/framework/downloads" style="max-width:100%;"></a>
-        <a href="https://packagist.org/packages/cradlephp/framework"><img alt="Latest Unstable Version" src="https://poser.pugx.org/cradlephp/framework/v/unstable" style="max-width:100%;"></a>
-        <a href="https://packagist.org/packages/cradlephp/framework"><img alt="License" src="https://poser.pugx.org/cradlephp/framework/license" style="max-width:100%;"></a>
-        <br /><br />&copy; CradlePHP 2016</center>
-    </div>
-</div>
-        </footer>
-        <script type="text/javascript" src="/www/scripts/prism.js"></script>
-    </body>
-</html>
+</section>
+
+<section class="section section-5">
+    <h2>Um, what are you waiting for?</h2>
+    <center><a class="btn btn-primary" href="/auth/login">Demo Now</a></center>
+</section>
