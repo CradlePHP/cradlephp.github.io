@@ -1,0 +1,28 @@
+{
+  "systemParams": "darwin-x64-59",
+  "modulesFolders": [
+    "yarn"
+  ],
+  "flags": [],
+  "linkedModules": [],
+  "topLevelPatterns": [
+    "bootstrap@^4.0.0",
+    "doon@^1.0.0",
+    "fontawesome5-webfont@^5.0.4",
+    "google-code-prettify@^1.0.5",
+    "jquery@^3.3.1",
+    "open-sans-fontface@^1.4.0",
+    "yarn-acquire@^0.0.8"
+  ],
+  "lockfileEntries": {
+    "bootstrap@^4.0.0": "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a",
+    "doon@^1.0.0": "https://registry.yarnpkg.com/doon/-/doon-1.0.0.tgz#5cce1fab7be8dc80a8561f86d722261e55d3e6dc",
+    "fontawesome5-webfont@^5.0.4": "https://registry.yarnpkg.com/fontawesome5-webfont/-/fontawesome5-webfont-5.0.4.tgz#f392cee1529e6dd81f1e103be8cc6c3522282995",
+    "google-code-prettify@^1.0.5": "https://registry.yarnpkg.com/google-code-prettify/-/google-code-prettify-1.0.5.tgz#9f477f224dbfa62372e5ef803a7e157410400084",
+    "jquery@^3.3.1": "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca",
+    "open-sans-fontface@^1.4.0": "https://registry.yarnpkg.com/open-sans-fontface/-/open-sans-fontface-1.4.0.tgz#03cc6d1bf5e6a8b5b47910888562f722c5dd3428",
+    "yarn-acquire@^0.0.8": "https://registry.yarnpkg.com/yarn-acquire/-/yarn-acquire-0.0.8.tgz#13294aafb155ad7ec23ba5cdfd2ba4c94a4c8a34"
+  },
+  "files": [],
+  "artifacts": {}
+}
