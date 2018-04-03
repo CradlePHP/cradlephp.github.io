@@ -191,8 +191,6 @@ placeholder | text | Specifies a short hint that describes the expected value of
 required | required | Specifies that the field must be filled out before submitting the form
 rows | number | Specifies the visible number of lines in a text area
 
-[https://github.com/xing/wysihtml5](https://github.com/xing/wysihtml5)
-
 <a name="markdown"></a>
 ## Markdown Field
 
