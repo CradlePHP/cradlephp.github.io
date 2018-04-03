@@ -2,11 +2,14 @@
 layout: documentation
 class: page-docs page-docs-system-create-schema
 title:  "Creating a Schema - System Documentation - Cradle"
-description: "System is the primary feature of Cradle which generically handles schemas, relations and models."
+description: "For this tutorial we will create an article. If you have worked with articles in other systems, you can already visualize how the form should like."
 ---
 # Creating a Schema
 
- - [Introduction](#intro)
+For this tutorial we will create an article. An article has a title, detail,
+published date, and status. If you have worked with articles in other systems,
+you can already visualize how the form should like.
+
  - [Information Fields](#info)
  - [Custom Fields](#types)
  - [Validation](#validation)
@@ -16,12 +19,6 @@ description: "System is the primary feature of Cradle which generically handles 
  - [Suggested Format](#suggested)
  - [Create an Article](#create)
 
-<a name="intro"></a>
-## Introduction
-
-For this tutorial we will create an article. An article has a title, detail,
-published date, and status. If you have worked with articles in other systems,
-you can already visualize how the form should like.
 
 Go to `http://127.0.0.1:8888/admin/system/schema/search`. You should see
 something similar to the following.
@@ -150,6 +147,13 @@ declared that article has a `1:1` relationship with profile. The profile field
 is an autocomplete field you will get familiar with over time.
 
 After submitting the form you will be redirected back to the article search page
-with your new entry. The search results should look simiar to the following.
+with your new entry. The search results should look similar to the following.
 
 ![Article Results](/images/article-results.png)
+
+<a name="conclusion"></a>
+## Conclusion
+
+That's all it really takes to build a schema in Cradle. This saves a lot of time
+versus getting your backend custom made. The purpose of this is to have your
+developers move on to the advance things while we take care of the basics.

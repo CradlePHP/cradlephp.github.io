@@ -4,39 +4,39 @@ class: page-docs page-docs-framework-server
 title:  "Server Recommendations - Framework Documentation - Cradle"
 description: "Cradle is a feature rich, modern admin builder. Build apps faster. Developer friendly. Open Source."
 ---
-# Server Recommendations
+# Deploy Recommendations
 
- - [1. Hardware Components](#components)
-   - [1.1. Application Server](#app)
-   - [1.2. Database Cluster](#database)
-   - [1.3. Cache Server](#cache)
-   - [1.4. Index Server](#index)
-   - [1.5. Worker Server](#worker)
-   - [1.6. Queue Server](#queue)
-   - [1.7. Proxy Server](#proxy)
-   - [1.8. Logs Server](#logs)
-   - [1.9. Monitoring Server](#monitoring)
- - [2. Architecture Overview](#overview)
-   - [2.1. App Server](#app-server)
-   - [2.2. Database Servers](#database-server)
-   - [2.3. Queues](#queue-server)
-   - [2.4. File uploading and S3](#s3-server)
+ - [Hardware Components](#components)
+   - [Application Server](#app)
+   - [Database Cluster](#database)
+   - [Cache Server](#cache)
+   - [Index Server](#index)
+   - [Worker Server](#worker)
+   - [Queue Server](#queue)
+   - [Proxy Server](#proxy)
+   - [Logs Server](#logs)
+   - [Monitoring Server](#monitoring)
+ - [Architecture Overview](#overview)
+   - [App Server](#app-server)
+   - [Database Servers](#database-server)
+   - [Queues](#queue-server)
+   - [File uploading and S3](#s3-server)
 
 <a name="components"></a>
-## 1. Hardware Components
+## Hardware Components
 
 ![Server Types](/images/Cradle-Server-Types.jpg)
 
 ----
 
 <a name="app"></a>
-### 1.1. Application Server
+### Application Server
 
 Application server acts as the initiating connector between all of the
 components. This houses the framework in which responses are generated based
 on the request type for every kind of user.
 
-#### 1.1.1. Recommendations
+#### Recommendations
 
 A load balancer is recommended to evenly distribute traffic between all
 application servers per region. A redundancy strategy should include the
@@ -46,7 +46,7 @@ replication of the entire Application Layer.
 | **Memory (GB)**  | 8  |
 | **Storage (GB)** | 50 |
 
-#### 1.1.2. Considerations
+#### Considerations
 
 Though having more cores is usually recommended, PHP, the primary language of
 the application only
@@ -66,7 +66,7 @@ the new ones as a crutch.
 ----
 
 <a name="database"></a>
-### 1.2. Database Server
+### Database Server
 
 The database cluster is primarily used to store objects and the relations between
 them. This acts as the original source of data where other data store constructs
@@ -75,7 +75,7 @@ swiftly deliver data by using a flat structure however volatile in nature. The
 cluster strategy that we are going to use is
 [Multi-Master Replication](https://www.percona.com/doc/percona-xtradb-cluster/LATEST/features/multimaster-replication.html)
 
-#### 1.2.1. Recommendations
+#### Recommendations
 
 A node cluster architecture is recommended because of it’s lack of
 [single point stability](https://www.mysql.com/products/cluster/features.html).
@@ -92,7 +92,7 @@ All the read operations should be redirected to an [index](#index) server.
 | **Memory (GB)**  | 8   |
 | **Storage (GB)** | 500 |
 
-#### 1.2.2. Considerations
+#### Considerations
 
 Before vertically scaling it is recommended to horizontally scale first because
 synchronizing data between database servers still take time. Other
@@ -103,14 +103,14 @@ as the storage for high performance, though costly at the same time.
 ----
 
 <a name="cache"></a>
-### 1.3. Cache Server
+### Cache Server
 
 The cache server is designed to deliver existing content faster than any index
 or relational database can perform. Caching has a crutch which requires content
 to actually be gathered initially before it is saved. Caching does not solve the
 performance for a unique request, but does solve it on consecutive requests.
 
-#### 1.3.1. Recommendations
+#### Recommendations
 A single server is recommended at first because of the nature of high
 availability and volatility. The application is designed to consider the
 failure of a cache server and by passes it on the occurrence. It’s recommended
@@ -125,7 +125,7 @@ why we recommend having a dedicated cache servers within this architecture.
 | **Memory (GB)**  | 4   |
 | **Storage (GB)** | 500 |
 
-#### 1.3.2. Considerations
+#### Considerations
 
 Cache services have an out of box design to be
 [clusterable](http://redis.io/topics/cluster-spec)>. We should consider
@@ -135,13 +135,13 @@ for long periods of time and the hard drive of the cache server is running out.
 ----
 
 <a name="index"></a>
-### 1.4. Index Server
+### Index Server
 Index server is another kind of data store except it deals with a flat data
 structure based on the original relational database. Index services are
 optimized for both search and detail related pages. With that said, It’s
 important to always have a flat version of all data on hand at all times.
 
-#### 1.4.1. Recommendations
+#### Recommendations
 A single server is recommended at first because of the nature of high
 availability that an index service is designed to have. It’s recommended that
 [a substantial amount of swap space](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html)
@@ -156,7 +156,7 @@ this architecture.
 | **Memory (GB)**  | 12  |
 | **Storage (GB)** | 500 |
 
-#### 1.4.2. Considerations
+#### Considerations
 
 Index services have an out of box design to be
 [clusterable](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cluster.html).
@@ -167,10 +167,10 @@ server is running out.
 ----
 
 <a name="worker"></a>
-### 1.5. Worker Server
+### Worker Server
 A worker server is primarily used to execute tasks in the job queue.
 
-#### 1.5.1. Recommendations
+#### Recommendations
 Four workers usually take up 1GB of memory and each job can vary between five
 seconds to one minute. Worker servers are usually manually balanced depending
 on how fast the queue grows and there is no out of box scalability feature for
@@ -183,7 +183,7 @@ recommend having a worker server in this architecture.
 | **Memory (GB)**  | 2  |
 | **Storage (GB)** | 50 |
 
-#### 1.5.2. Considerations
+#### Considerations
 The failure of a worker server only means that delayed tasks won’t execute. The
 simple resolution is to restart or spawn a new server in order to resolve the
 queue. This implies that failures of worker servers is a low risk event.
@@ -191,7 +191,7 @@ queue. This implies that failures of worker servers is a low risk event.
 ----
 
 <a name="queue"></a>
-### 1.6. Queue Server
+### Queue Server
 A job queue server is used for process that don’t necessarily need to be
 executed immediately. This introduces
 [asynchronous](https://devcenter.heroku.com/articles/asynchronous-web-worker-model-using-rabbitmq-in-java)
@@ -200,7 +200,7 @@ on monitoring and resource management at the same time. Deciding on which
 business rules to delay will improves the user experience because response time
 will inherently be reduced with this technology.
 
-#### 1.6.1. Recommendations
+#### Recommendations
 A single server is recommended at first because of the nature of high
 availability and low resources that a queue service is designed to have. It’s
 recommended that a substantial amount of swap space is given per queue server.
@@ -212,7 +212,7 @@ recommend having a queue server in this architecture.
 | **Memory (GB)**  | 12  |
 | **Storage (GB)** | 500 |
 
-#### 1.6.2. Considerations
+#### Considerations
 A single queue can process thousands of messages per second without requiring a
 lot of resources. On the rare occasion of failure queued tasks can be
 unrecoverable. Prevention is simply monitoring the size of the queue regularly.
@@ -223,7 +223,7 @@ considered. An alternative to hosting a queue server is using
 [per API call](https://aws.amazon.com/sqs/pricing/).
 
 <a name="overview"></a>
-## 2. Architecture Overview
+## Architecture Overview
 
 ![Server Architecture](/images/Cradle-Servers.jpg)
 
@@ -236,14 +236,14 @@ We don't want to put the entire LAMP/LEMP stack in one server on purpose to
 understand how service performs.
 
 <a name="app-server"></a>
-### 2.1. App Server
+### App Server
 
 We initially setup the load balancer to provision the case you need to scale
 application servers in the future. Otherwise you would need to account for
 DNS propagation.
 
 <a name="database-server"></a>
-### 2.2. Database Servers
+### Database Servers
 
 Instead of clustering databases together to share the load, we assign one
 MySQL server per app server *(and supervisor server)*. Then we sync the
@@ -259,7 +259,7 @@ data requests.
 ![Data Retrieval Logic](/images/Cradle-Get-Logic.jpg)
 
 <a name="queue-server"></a>
-### 2.3. Queues
+### Queues
 
 For tasks that require more server resources than normal *(and takes some time)*,
 We recommend to queue these tasks instead of processing them on request. This
@@ -285,7 +285,7 @@ Between 4-8 workers can run on the recommended server specifications optimally
 ```
 
 <a name="s3-server"></a>
-### 2.4. File uploading and S3
+### File uploading and S3
 
 Instead of passing files to our app server, we rely on the client side to
 directly upload to S3. You can read about it

@@ -4,7 +4,11 @@ class: page-docs page-docs-system-field-types
 title:  "Schema Field Types - System Documentation - Cradle"
 description: "Documentation of system schema field types."
 ---
-# Schema Field Types
+# Field Types
+
+The following is the documentation for field types you can choose from when
+creating a schema with Cradle. The fields are a mixture of HTML5 fields as well
+as advanced fields commonly used around the web.
 
  - [Text Field](#text)
  - [Email Field](#email)

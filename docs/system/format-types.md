@@ -4,7 +4,12 @@ class: page-docs page-docs-system-format-types
 title:  "Schema Format Types - System Documentation - Cradle"
 description: "Documentation of system schema format types."
 ---
-# Schema Format Types
+# Format Types
+
+Output formats are used to display the correct representation of a value. If you
+can't find the format you need, you can create a custom format with
+[Custom Format](#custom). This accepts all the
+[Handlebars Helpers](/docs/framework/helpers.html).
 
  - [Lower Case](#lower)
  - [Upper Case](#upper)

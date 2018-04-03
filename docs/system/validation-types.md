@@ -4,7 +4,11 @@ class: page-docs page-docs-system-validation-types
 title:  "Schema Validation Types - System Documentation - Cradle"
 description: "Documentation of system schema validation types."
 ---
-# Schema Validation Types
+# Validation Types
+
+Cradle successfully provides the all kinds of of validation methods. If you
+can't find the validation you need, you can create custom validations with
+[Valid Expression](#expression).
 
  - [Required](#required)
  - [Not Empty](#empty)

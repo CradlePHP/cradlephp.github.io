@@ -7,7 +7,11 @@ description: "As well as the original Handlebars helpers. Cradle adds over 30 mo
 
 # Handlebars Helpers
 
- - [Overview](#overview)
+Cradle uses [Handlebars](https://handlebarsjs.com/) for the templating engine.
+We chose Handlebars for it's simplicity and it's availability in other
+programming languages. As well as the original Handlebars helpers. Cradle adds
+over 30 more reusable helpers to use within your templates.
+
  - [capital](#capital)
  - [upper](#upper)
  - [lower](#lower)
@@ -42,14 +46,8 @@ description: "As well as the original Handlebars helpers. Cradle adds over 30 mo
  - [fileinfo](#fileinfo)
  - [request](#request)
  - [response](#response)
- - [_](#_)
+ - [ _ ](#_)
  - [settings](#settings)
-
-<a name="overview"></a>
-## Overview
-
-As well as the original Handlebars helpers. Cradle adds over 30 more reusable
-helpers to use within your templates.
 
 <a name="capital"></a>
 ## {% raw %}{{capital}}{% endraw %}
