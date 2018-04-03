@@ -49,7 +49,7 @@ our custom projects are stable, found below.
 
  - Unit Tests
  - Functional Tests
- - UA Tests
+ - Acceptance Tests
  - Code Coverage
  - Coding Standards
 
@@ -98,3 +98,124 @@ mv phpunit.phar /usr/local/bin/phpcbf
  - Write **Unit tests** for classes
  - Write **Functional tests** for events
  - Write **Acceptance tests** for controllers
+
+For both unit tests and functional tests we write tests with **PHPUnit**.
+The following example shows how to structure your unit tests.
+
+```info
+Tests can be usually found in the `/test/` folder in any Cradle package.
+```
+
+###### Unit Test Example
+```php
+class Cradle_Module_Utility_FileTest extends TestCase
+{
+    /**
+     * @covers Cradle\Module\Utility\File::getExtensionFromData
+     */
+    public function testGetExtensionFromData()
+    {
+        $actual = File::getExtensionFromData('data:image/jpeg;base64,xXxOoO');
+        $this->assertEquals('jpg', $actual);
+    }
+}
+```
+
+The above test is a standard test example described in
+[PHPUnit](https://phpunit.de/). To test the quality of this test, otherwise
+called *Code Coverage*, we add a `@covers` doc explaining what method this
+test is written for. We can then run a clover test as in the following to get
+the coverage report.
+
+```bash
+phpunit --coverage-clover build/logs/clover.xml
+```
+
+###### Functional Test Example
+```php
+class Cradle_History_EventsTest extends TestCase
+{
+    /**
+     * history-create
+     *
+     * @covers Cradle\Module\System\Model\Validator::getCreateErrors
+     * @covers Cradle\Module\System\Model\Validator::getOptionalErrors
+     * @covers Cradle\Package\System\Model\Service\SqlService::create
+     * @covers Cradle\Module\System\Utility\Service\AbstractElasticService::create
+     * @covers Cradle\Module\System\Utility\Service\AbstractRedisService::createDetail
+     */
+    public function testHistoryCreate()
+    {
+        $this->request->setStage([
+            'history_remote_address' => '127.0.0.1',
+            'history_activity' => 'Test',
+            'history_page' => '/',
+            'history_meta' => [],
+            'history_flag' => '0',
+            'history_active' => '1',
+            'profile_id' => '1',
+        ]);
+
+        cradle()->trigger('history-create', $this->request, $this->response);
+
+        $this->assertEquals('Test', $this->response->getResults('history_activity'));
+        self::$id = $this->response->getResults('history_id');
+        $this->assertTrue(is_numeric(self::$id));
+    }
+}
+```
+
+The above test is an example of a functional test. As you can see the functional
+test calls the event `history-create` which in turn calls on several unit
+methods. We can conclude that a functional test, runs a group of methods
+together in order to test the final output.
+
+###### Acceptance Test Example
+```php
+use Page\Login as LoginPage;
+
+$I = new AcceptanceTester($scenario);
+$I->wantTo('Update Account Settings');
+
+//Login
+$loginPage = new LoginPage($I);
+$loginPage->login();
+$I->seeInCurrentUrl('/');
+$I->amOnPage('/profile/account?redirect_uri=%2F');
+
+// redirect to edit
+$I->click(['xpath' => '//div/a[@href="/profile/account/information"]']);
+$I->seeInCurrentUrl('/profile/account/information');
+
+// update the form
+$I->amGoingTo('update my account settings');
+$I->see('Account Settings');
+$I->fillField('profile_company', 'test');
+$I->fillField('profile_website', 'http://www.google.com');
+$I->click('//div/div/button[@class="btn btn-default text-uppercase"]');
+$I->seeInCurrentUrl('/profile/account');
+
+// notif
+$I->wait(2);
+
+$I->see('Update Successful');
+```
+
+The above acceptance test uses [CodeCeption](https://codeception.com/) to run
+the tests on a browser called [PhantomJS](http://phantomjs.org/).
+
+```php
+These are already setup by Cradle
+```
+
+To run the tests you can execute the following in your terminal.
+
+```bash
+bin/codecept run -c ./app/www
+```
+
+We now have a clear definition between the following.
+
+ - UI -> Controllers -> Acceptance
+ - Business Rules -> Events -> Functional
+ - Abstract -> Class -> Unit
