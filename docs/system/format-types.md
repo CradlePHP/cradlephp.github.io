@@ -3,6 +3,29 @@ layout: documentation
 class: page-docs page-docs-system-format-types
 title:  "Schema Format Types - System Documentation - Cradle"
 description: "Documentation of system schema format types."
+menu_title: Format Types
+menu:
+  lower: Lower Case
+  upper: Upper Case
+  capital: Capitalize
+  char: Character Length
+  word: Word Length
+  date: Date Format
+  relative: Relative Format
+  html: Raw HTML
+  strip: Strip HTML
+  markdown: Markdown
+  link: Link
+  image: Image
+  email: Email
+  phone: Phone
+  formula: Formula
+  comma: Comma Separated
+  price: Price Format
+  yes: Yes/No
+  custom: Custom Format
+  hide: Dont Show
+  none: No Filter
 ---
 # Format Types
 

@@ -3,6 +3,33 @@ layout: documentation
 class: page-docs page-docs-system-validation-types
 title:  "Schema Validation Types - System Documentation - Cradle"
 description: "Documentation of system schema validation types."
+menu_title: Validation Types
+menu:
+  required: Required
+  empty: Not Empty
+  ne: Not Equal
+  option: Valid Option
+  clt: Characters Less Than
+  clte: Characters Less Than Equal
+  cgt: Characters Greater Than
+  cgte: Characters Greater Than Equal
+  wlt: Words Less Than
+  wlte: Words Less Than Equal
+  wgt: Words Greater Than
+  wgte: Words Greater Than Equal
+  number: Valid Number
+  float: Valid Float
+  price: Valid Price
+  lt: Less Than
+  lte: Less Than Equal
+  gt: Greater Than
+  gte: Greater Than Equal
+  date: Valid Date
+  time: Valid Time
+  datetime: Valid Date Time
+  email: Valid Email
+  cc: Valid Credit Card
+  expression: Valid Expression
 ---
 # Validation Types
 

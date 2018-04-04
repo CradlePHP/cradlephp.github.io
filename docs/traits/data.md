@@ -3,8 +3,18 @@ layout: documentation
 class: page-docs page-docs-traits-events
 title:  "Data - Traits - Cradle"
 description: "Data Concepts and Documentation"
+menu_title: Data
+menu:
+  arrayaccess: ArrayAccess Trait (4)
+  countable: Countable Trait (1)
+  iterator: Iterator Trait (5)
+  magic: Magic Trait (4)
+  dot: Dot Trait (4)
+  generator: Generator Trait (1)
+  data: Data Trait
 ---
 # Data
+
  - [ArrayAccess Trait (4)](#arrayaccess)
  - [Countable Trait (1)](#countable)
  - [Iterator Trait (5)](#iterator)

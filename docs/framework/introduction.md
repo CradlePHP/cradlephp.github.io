@@ -3,19 +3,25 @@ layout: documentation
 class: page-docs page-docs-framework-introduction
 title:  "Introduction - Framework Documentation - Cradle"
 description: "Cradle though heavily adopts some parts, is not a typical MVC pattern. As well as MVC, Cradle adopts jobs, events, continuous deploys and REST in the normal architecture to help optimize PHP and organize your code overall."
+menu_title: Introduction
+menu:
+  structure: Structure
+  process: Process
 ---
 # Introduction
-
- - [Request and Response](#rnr)
- - [Process](#process)
-
-<a name="rnr"></a>
-## Request and Response
 
 Cradle though heavily adopts some parts, is not a typical MVC pattern. As well
 as MVC, Cradle adopts jobs, events, continuous deploys and REST in the normal
 architecture to help optimize PHP and organize your code overall. The following
 structure should reflect the folders of what is installed.
+
+ - [Structure](#structure)
+ - [Process](#process)
+
+<a name="structure"></a>
+## Structure
+
+The file structure at best has been minimized to the follow sets of folders.
 
  - `/app/` - Main applications used
  - `/bootstrap/` - Preprocessor files

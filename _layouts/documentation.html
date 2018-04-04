@@ -35,138 +35,30 @@
     <header class="head" data-do="fixed-scroll">{% include header.html %}</header>
 
     <section class="body row">
-        <aside class="col-md-3 side">
-            <nav class="nav flex-column">
-                <h5>Getting Started</h5>
-                <!--
-                <a class="nav-link" href="/docs/introduction.html">
-                    Introduction
-                </a>
-                -->
-                <a class="nav-link" href="/docs/installation.html">
-                    Installation
-                </a>
-                <a class="nav-link" href="/docs/system/create-schema.html">
-                    Creating a Schema
-                </a>
-                <a class="nav-link" href="/docs/system/field-types.html">
-                    Field Types
-                </a>
-                <a class="nav-link" href="/docs/system/validation-types.html">
-                    Validation Types
-                </a>
-                <a class="nav-link" href="/docs/system/format-types.html">
-                    Format Types
-                </a>
-                <a class="nav-link" href="/docs/system/indexes-relations.html">
-                    Indexes and Relations
-                </a>
-
-                <h5>Framework</h5>
-                <a class="nav-link" href="/docs/framework/introduction.html">
-                    Introduction
-                </a>
-                <a class="nav-link" href="/docs/framework/structure.html">
-                    File Structure
-                </a>
-                <a class="nav-link" href="/docs/framework/packages.html">
-                    Packages
-                </a>
-                <a class="nav-link" href="/docs/framework/helpers.html">
-                    Helpers
-                </a>
-                <!--
-                <a class="nav-link" href="/docs/framework/system.html">
-                    System
-                </a>
-                <a class="nav-link" href="/docs/framework/authentication.html">
-                    Authentication
-                </a>
-                <a class="nav-link" href="/docs/framework/roles.html">
-                    Roles and Permissions
-                </a>
-                <a class="nav-link" href="/docs/framework/history.html">
-                    History Logs
-                </a>
-                <a class="nav-link" href="/docs/framework/rest.html">
-                    REST
-                </a>
-                -->
-                <a class="nav-link" href="/docs/framework/developer.html">
-                    Developer Tools
-                </a>
-                <a class="nav-link" href="/docs/framework/tests.html">
-                    Writing Tests
-                </a>
-                <a class="nav-link" href="/docs/framework/server.html">
-                    Deploying Project
-                </a>
-
-                <h5>Concepts</h5>
-                <a class="nav-link" href="/docs/concepts/introduction.html">
-                    Introduction
-                </a>
-                <a class="nav-link" href="/docs/concepts/events.html">
-                    Events
-                </a>
-                <a class="nav-link" href="/docs/concepts/routing.html">
-                    Routing
-                </a>
-                <a class="nav-link" href="/docs/concepts/middleware.html">
-                    Middleware
-                </a>
-                <a class="nav-link" href="/docs/concepts/request.html">
-                    Request
-                </a>
-                <a class="nav-link" href="/docs/concepts/response.html">
-                    Response
-                </a>
-                <a class="nav-link" href="/docs/concepts/model.html">
-                    Model
-                </a>
-                <a class="nav-link" href="/docs/concepts/collection.html">
-                    Collection
-                </a>
-                <a class="nav-link" href="/docs/concepts/registry.html">
-                    Registry
-                </a>
-                <a class="nav-link" href="/docs/concepts/packages.html">
-                    Writing a Package
-                </a>
-
-                <h5>Traits</h5>
-                <a class="nav-link" href="/docs/traits/data.html">
-                    Data Traits
-                </a>
-                <a class="nav-link" href="/docs/traits/helper.html">
-                    Helper Traits
-                </a>
-                <a class="nav-link" href="/docs/traits/profiler.html">
-                    Profiler Traits
-                </a>
-                <a class="nav-link" href="/docs/traits/resolver.html">
-                    Resolver Traits
-                </a>
-
-                <h5>Extras</h5>
-                <a class="nav-link" href="/docs/extras/handlebars.html">
-                    Handlebars
-                </a>
-                <a class="nav-link" href="/docs/extras/storm.html">
-                    Storm
-                </a>
-                <a class="nav-link" href="/docs/extras/curl.html">
-                    cURL
-                </a>
-                <a class="nav-link" href="/docs/extras/i18n.html">
-                    i18n
-                </a>
-                <a class="nav-link" href="/docs/extras/image.html">
-                    Image
-                </a>
-            </nav>
+        <aside class="col-lg-2 col-md-3 left">
+            {% include menu.html %}
         </aside>
-        <main class="col-md-9 main">{{ content }}</main>
+        <section class="col-lg-10 col-md-9 main">
+            <section class="row">
+                <main class="col-lg-7 col-md-7 middle">
+                    {{ content }}
+                </main>
+                <aside class="col-lg-3 col-md-5 right">
+                    <div class="box">
+                        <div class="box-head box-default">
+                            <h5 class="box-title">{{ page.menu_title }}</h5>
+                        </div>
+                        <div class="box-body box-padding box-light">
+                            <nav class="nav flex-column">
+                                {% for menu in page.menu %}
+                                    <a href="#{{ menu[0] }}">{{ menu[1] }}</a>
+                                {% endfor %}
+                            </nav>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+        </section>
     </section>
 
 

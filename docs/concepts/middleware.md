@@ -3,8 +3,21 @@ layout: documentation
 class: page-docs page-docs-concepts-middle
 title:  "Middleware - Documentation Concepts - Cradle"
 description: "Middleware is a concept of allowing pieces of functionality to be injected anywhere at your discretion. "
+menu_title: Middleware
+menu:
+  intro: Introduction
+  pre: Pre-Processing
+  error: Error Processing
+  post: Post Processing
+  api: API (9)
 ---
 # Middleware
+
+Middleware is a concept of allowing pieces of functionality to be injected
+anywhere at your discretion. Almost like plugins or extensions, the popularity
+of middleware came from third party vendors being able to quickly plug into
+applications.
+
  - [Introduction](#intro)
  - [Pre-Processing](#pre)
  - [Error Processing](#error)
@@ -13,11 +26,6 @@ description: "Middleware is a concept of allowing pieces of functionality to be 
 
 <a name="intro"></a>
 ## Introduction
-
-Middleware is a concept of allowing pieces of functionality to be injected
-anywhere at your discretion. Almost like plugins or extensions, the popularity
-of middleware came from third party vendors being able to quickly plug into
-applications.
 
 Routes is a kind of middleware interface because you can add functionality
 using the include method explained before.

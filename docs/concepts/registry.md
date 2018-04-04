@@ -3,17 +3,17 @@ layout: documentation
 class: page-docs page-docs-concepts-registry
 title:  "Registries - Documentation Concepts - Cradle"
 description: "A registry object contains methods to easily manage a multidimensional arrays"
+menu_title: Registry
+menu:
+  api: API (5)
 ---
 # Registry
 
- - [Introduction](#intro)
- - [API (5)](#api)
-
-<a name="intro"></a>
-## Introduction
 A registry object contains methods to easily manage multidimensional arrays.
 Ideally registries are designed to organize all sorts of configurations and
 works well with JSON objects. Implementing this object can be done like so.
+
+ - [API (5)](#api)
 
 ###### Instantiating
 

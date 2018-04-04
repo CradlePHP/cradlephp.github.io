@@ -3,23 +3,27 @@ layout: documentation
 class: page-docs page-docs-extras-storm
 title:  "Storm - Extras - Cradle"
 description: "A different kind of ORM. Complete functionality from low level queries to Search, Collections and Models. Designed for novices and enthusiasts alike."
+menu_title: Storm
+menu:
+  basic: Basic Querying
+  manipulation: Data Manipulation
+  searching: Searching
+  collection: Collections
+  model: Models
+  together: Putting It All Together
 ---
 # Storm
 
- - [Introduction](#intro)
+Welcome to Storm, a different kind of ORM. Complete functionality from low level
+queries to Search, Collections and Models. Designed for novices and enthusiasts
+alike.
+
  - [Basic Querying](#basic)
  - [Data Manipulation](#manipulation)
  - [Searching](#searching)
  - [Collections](#collection)
  - [Models](#model)
  - [Putting It All Together](#together)
-
-<a name="intro"></a>
-## Introduction
-
-Welcome to Storm, a different kind of ORM. Complete functionality from low level
-queries to Search, Collections and Models. Designed for novices and enthusiasts
-alike.
 
 ###### Figure 1. Usage
 ```php

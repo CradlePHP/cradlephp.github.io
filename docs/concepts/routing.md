@@ -3,8 +3,19 @@ layout: documentation
 class: page-docs page-docs-concepts-events
 title:  "Routing - Documentation Concepts - Cradle"
 description: "Routing wraps how event listeners work and designed to resolve request methods and paths."
+menu_title: Routing
+menu:
+  basics: Basics
+  methods: Request Methods
+  paths: Request Paths
+  rnr: Request and Response
+  api: API (7)
 ---
 # Routing
+
+Routing is a subset of [Events](/docs/concepts/events.html). Routing wraps how
+event listeners work and designed to resolve request methods and paths.
+
  - [Basics](#basics)
  - [Request Methods](#methods)
  - [Request Paths](#paths)
@@ -14,9 +25,7 @@ description: "Routing wraps how event listeners work and designed to resolve req
 <a name="basics"></a>
 ## Basics
 
-Routing is a subset of [Events](/docs/concepts/events.html). Routing wraps how
-event listeners work and designed to resolve request methods and paths. The
-basic route listener looks like the following.
+The basic route listener looks like the following.
 
 ###### Basic Routing
 ```php

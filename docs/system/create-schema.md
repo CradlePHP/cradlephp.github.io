@@ -3,6 +3,16 @@ layout: documentation
 class: page-docs page-docs-system-create-schema
 title:  "Creating a Schema - System Documentation - Cradle"
 description: "For this tutorial we will create an article. If you have worked with articles in other systems, you can already visualize how the form should like."
+menu_title: Creating a Schema
+menu:
+  info: Information Fields
+  types: Custom Fields
+  validation: Validation
+  formats: Formats
+  indexes: Indexes
+  relations: Relations
+  suggested: Suggested Format
+  create: Create an Article
 ---
 # Creating a Schema
 

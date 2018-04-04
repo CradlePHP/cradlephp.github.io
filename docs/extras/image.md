@@ -1,13 +1,38 @@
 ---
 layout: documentation
 class: page-docs page-docs-extras-image
-title:  "Image - Extras - Cradle"
+title:  "Images - Extras - Cradle"
 description: "Images"
+menu_title: Images
+menu:
+  usage: Usage
+  blur: blur
+  brightness: brightness
+  colorize: colorize
+  contrast: contrast
+  crop: crop
+  edgedetect: edgedetect
+  emboss: emboss
+  gaussianBlur: gaussianBlur
+  getDimensions: getDimensions
+  getResource: getResource
+  greyscale: greyscale
+  invert: invert
+  meanRemoval: meanRemoval
+  negative: negative
+  resize: resize
+  rotate: rotate
+  scale: scale
+  setTransparency: setTransparency
+  smooth: smooth
+  save: save
 ---
 # Image
 
-- [Usage](#usage)
-- [API](#api)
+Dynamic Image processor
+
+ - [Usage](#usage)
+ - [API](#api)
    - [blur](#blur)
    - [brightness](#brightness)
    - [colorize](#colorize)

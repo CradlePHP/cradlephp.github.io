@@ -3,8 +3,31 @@ layout: documentation
 class: page-docs page-docs-extras-handlebars
 title:  "Handlebars - Extras - Cradle"
 description: "PHP Handlebars and JS interface to match with compile time helper support and super nice compile time error reporting. This version of Handlebars is based on caching the compiled templates and inherently made the overall compile times faster."
+menu_title: Handlebars
+menu:
+  usage: Usage
+  features: Features
+  production: Production
+  compile: compile
+  getCache: getCache
+  getHelper: getHelper
+  getHelpers: getHelpers
+  getPartial: getPartial
+  getPartials: getPartials
+  registerHelper: registerHelper
+  registerPartial: registerPartial
+  setCache: setCache
+  setPrefix: setPrefix
+  unregisterHelper: unregisterHelper
+  unregisterPartial: unregisterPartial
 ---
 # Handlebars
+
+PHP Handlebars matches the [JavaScript Version](http://handlebarsjs.com/) and
+has compile time helper support and super nice compile time error reporting.
+This version of Handlebars is based on caching the compiled templates and
+inherently made the overall compile times faster. Loading at ~50ms uncached
+and ~30ms cached.
 
  - [Introduction](#intro)
  - [Usage](#usage)
@@ -23,15 +46,6 @@ description: "PHP Handlebars and JS interface to match with compile time helper 
    - [setPrefix](#setPrefix)
    - [unregisterHelper](#unregisterHelper)
    - [unregisterPartial](#unregisterPartial)
-
-<a name="intro"></a>
-## Introduction
-
-PHP Handlebars matches the [JavaScript Version](http://handlebarsjs.com/) and
-has compile time helper support and super nice compile time error reporting.
-This version of Handlebars is based on caching the compiled templates and
-inherently made the overall compile times faster. Loading at ~50ms uncached
-and ~30ms cached.
 
 <a name="usage"></a>
 ## Basic Usage

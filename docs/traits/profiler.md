@@ -3,8 +3,16 @@ layout: documentation
 class: page-docs page-docs-traits-resolver
 title:  "Profiler Traits - Cradle"
 description: "Profiler traits help troubleshoot code while writing it."
+menu_title: Profiler Traits
+menu:
+  caller: Caller (2)
+  inspector: Inspector (1)
+  logger: Logger (2)
 ---
 # Profiler Traits
+
+Profiler traits assists with troubleshooting code.
+
  - [Caller (2)](#caller)
  - [Inspector (1)](#inspector)
  - [Logger (2)](#logger)

@@ -3,11 +3,20 @@ layout: documentation
 class: page-docs page-docs-framework-package
 title:  "Packages - Framework Documentation - Cradle"
 description: "The framework of Cradle is all about packages and there are only 3 types of packages"
+menu_title: Packages
+menu:
+  root: Root Packages
+  vendor: Vendor Packages
+  pseudo: Pseudo Packages
+  global: The Global Package
 ---
 
 # Packages
 
- - [Overview](#overview)
+The framework of Cradle is all about packages and there are only 3 types of
+packages *(but they basically can do the same thing, just located in different
+places)*.
+
  - [Root Packages](#root)
  - [Vendor Packages](#vendor)
  - [Pseudo Packages](#pseudo)
@@ -21,13 +30,6 @@ description: "The framework of Cradle is all about packages and there are only 3
    - [translate](#translate)
    - [template](#template)
    - [handlebars](#handlebars)
-
-<a name="overview"></a>
-## Overview
-
-The framework of Cradle is all about packages and there are only 3 types of
-packages *(but they basically can do the same thing, just located in different
-places)*.
 
 <a name="root"></a>
 ## Root Packages

@@ -3,8 +3,30 @@ layout: documentation
 class: page-docs page-docs-framework-server
 title:  "Server Recommendations - Framework Documentation - Cradle"
 description: "Cradle is a feature rich, modern admin builder. Build apps faster. Developer friendly. Open Source."
+menu_title: Deploy Recommendations
+menu:
+  components: Hardware Components
+  app: Application Server
+  database: Database Cluster
+  cache: Cache Server
+  index: Index Server
+  worker: Worker Server
+  queue: Queue Server
+  proxy: Proxy Server
+  logs: Logs Server
+  monitoring: Monitoring Server
+  overview: Architecture Overview
+  app-server: App Server
+  database-server: Database Servers
+  queue-server: Queues
+  s3-server: File uploading and S3
 ---
 # Deploy Recommendations
+
+The following documentation is a recommendation when considering to deploy
+Cradle to the cloud. The main understanding of this server architecture is one
+server per service. We don’t want to put the entire LAMP/LEMP stack in one
+server on purpose to understand how service performs.
 
  - [Hardware Components](#components)
    - [Application Server](#app)
