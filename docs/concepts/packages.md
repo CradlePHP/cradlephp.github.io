@@ -3,6 +3,10 @@ layout: documentation
 class: page-docs page-docs-concepts-packages
 title:  "Writing a Package - Documentation Concepts - Cradle"
 description: "How to write a third party package in Cradle"
+menu_title: Writing a Package
+menu:
+  cradle: .cradle
+  testing: Testing
 ---
 # Writing a Package
 
@@ -12,6 +16,12 @@ this whatever you like, and ideally it should match how you named your
 located at `http://github.com/my/package`, the folder should be `my/package`.
 For this example we will be using `my/package`.
 
+ - [.cradle](#cradle)
+ - [Testing](#testing)
+
+<a name="cradle"></a>
+## .cradle
+
 At the root of your `my/package` folder, create a file called `.cradle`, open
 it up and add the following code.
 
@@ -20,6 +30,7 @@ $cradle->on('Do something', function($req, $res) {
     //Do something
 });
 ```
+
 The importance of this file is that when you register this package, your
 `.cradle` file will be called. This file is suppose to bootstrap everything
 that is needed in order for your package to work. From within your `my/package`
@@ -52,6 +63,9 @@ return cradle()
     //start rendering
     ->render();
 ```
+
+<a name="testing"></a>
+## Testing
 
 If you go to your browser and open up `http://127.0.0.1/something`, you will
 see that your package triggered. From here you can customize your package

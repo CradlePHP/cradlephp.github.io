@@ -3,12 +3,18 @@ layout: documentation
 class: page-docs page-docs-traits-resolver
 title:  "Resolver Traits - Documentation - Cradle"
 description: "A resolver follows a container pattern and is used throughout the framework to manage dependancies within classes."
+menu_title: Resolver
+menu:
+  usage: Usage
 ---
 # Resolver
 
 A resolver follows a container pattern and is used throughout the framework to
 manage dependancies within classes. The main difference between this and
 containers found in other frameworks is that you can mount resolvers via traits.
+
+<a name="usage"></a>
+## Usage
 
 ```php
 use Cradle\Resolver\ResolverTrait;

@@ -3,27 +3,24 @@ layout: documentation
 class: page-docs page-docs-framework-structure
 title:  "File Structure - Framework Documentation - Cradle"
 description: "We try to minimize the file structure to 5 distinct folders"
+menu_title: File Structure
+menu:
+  app: /app/
+  bootstrap: /bootstrap/
+  config: /config/
+  module: /module/
+  public: /public/
 ---
 
 # File Structure
 
- - [Overview](#overview)
+The file structure at best has been minimized to the follow sets of folders.
+
  - [/app/](#app)
  - [/bootstrap/](#bootstrap)
  - [/config/](#config)
  - [/module/](#module)
  - [/public/](#public)
-
-<a name="overview"></a>
-## Overview
-
-Main folders are as follows.
-
- - `/app/` - Main applications used
- - `/bootstrap/` - Preprocessor files
- - `/config/` - Arbitrary configuration
- - `/module/` - Proprietary business logic
- - `/public/` - Demilitarized zone
 
 <a name="app"></a>
 ## /app/

@@ -3,25 +3,22 @@ layout: documentation
 class: page-docs page-docs-concepts-request
 title:  "Request - Documentation Concepts - Cradle"
 description: "A request contains all the data necessary to determine a response."
+menu_title: Request
+menu:
+  methods: Request Methods
+  cli: CliTrait (2)
+  content: ContentTrait (3)
+  cookie: CookieTrait (4)
+  file: FileTrait (4)
+  get: GetTrait (4)
+  post: PostTrait (4)
+  route: RouteTrait (4)
+  server: ServerTrait (10)
+  session: SessionTrait (4)
+  stage: StageTrait (5)
 ---
 # Request
 
- - [Registry](#registry)
- - [Request Methods](#methods)
- - [API (1)](#api)
-    - [CliTrait (2)](#cli)
-    - [ContentTrait (3)](#content)
-    - [CookieTrait (4)](#cookie)
-    - [FileTrait (4)](#file)
-    - [GetTrait (4)](#get)
-    - [PostTrait (4)](#post)
-    - [RouteTrait (4)](#route)
-    - [ServerTrait (10)](#server)
-    - [SessionTrait (4)](#session)
-    - [StageTrait (5)](#stage)
-
-<a name="registry"></a>
-## Registry
 A request is a type of registry and a registry is a type of array object in
 which, we are dealing with one property which is an array. Every method in an
 array object helps interacting with that object like a native array and with a
@@ -147,6 +144,19 @@ $request->isDot('route.variables.0');
  If you have an actual `.` in your path, you can change the delimeter like
  `$request->getDot('route-variables-0', '-');`
 ```
+
+ - [Request Methods](#methods)
+ - [API (1)](#api)
+    - [CliTrait (2)](#cli)
+    - [ContentTrait (3)](#content)
+    - [CookieTrait (4)](#cookie)
+    - [FileTrait (4)](#file)
+    - [GetTrait (4)](#get)
+    - [PostTrait (4)](#post)
+    - [RouteTrait (4)](#route)
+    - [ServerTrait (10)](#server)
+    - [SessionTrait (4)](#session)
+    - [StageTrait (5)](#stage)
 
 <a name="methods"></a>
 ##  Request Methods

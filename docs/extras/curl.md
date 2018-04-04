@@ -3,11 +3,16 @@ layout: documentation
 class: page-docs page-docs-extras-curl
 title:  "cURL - Extras - Cradle"
 description: "Curl is a wrapper for the PHP curl function."
+menu_title: cURL
+menu:
+  usage: Usage
+  api: API
 ---
 # cURL
 
 `Cradle\Curl` is a wrapper for the PHP curl function.
 
+<a name="usage"></a>
 ## Usage
 
 ```php
@@ -29,7 +34,8 @@ $curl->setAutoReferer(true) // Same as CURLOPT_AUTOREFERER
 
 See http://docs.php.net/manual/da/function.curl-setopt.php for all the options
 
-### API
+<a name="api"></a>
+## API
 
 ##### `getDomDocumentResponse()`
 

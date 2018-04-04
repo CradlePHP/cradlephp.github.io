@@ -3,6 +3,44 @@ layout: documentation
 class: page-docs page-docs-framework-helpers
 title:  "Handlebars Helpers - Framework Documentation - Cradle"
 description: "As well as the original Handlebars helpers. Cradle adds over 30 more reusable helpers to use within your templates."
+menu_title: Handlebars Helpers
+menu:
+  capital: capital
+  upper: upper
+  lower: lower
+  chars: chars
+  words: words
+  strip: strip
+  markdown: markdown
+  number: number
+  price: price
+  formula: formula
+  number_format_short: number_format_short
+  date: date
+  relative: relative
+  join: join
+  split: split
+  scope: scope
+  query: query
+  sorturl: sorturl
+  sortcaret: sortcaret
+  redirecturl: redirecturl
+  pager: pager
+  or: or
+  when: when
+  otherwise: otherwise
+  has: has
+  hasnt: hasnt
+  in: in
+  notin: notin
+  compile: compile
+  partial: partial
+  inspect: inspect
+  fileinfo: fileinfo
+  request: request
+  response: response
+  _:  _
+  settings: settings
 ---
 
 # Handlebars Helpers

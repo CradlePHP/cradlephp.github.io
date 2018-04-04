@@ -3,8 +3,20 @@ layout: documentation
 class: page-docs page-docs-traits-helper
 title:  "Helper Traits - Cradle"
 description: "Helper traits is a library of class feature enhancements."
+menu_title: Helper Traits
+menu:
+  binder: Binder (1)
+  condition: Conditional (1)
+  loop: Loop (1)
+  instance: Instance (1)
+  singleton: Singleton (1)
 ---
 # Helper Traits
+
+Helper traits are miscellaneous traits used to add class features and enhance
+your existing classes optionally. This makes it easier to integrate other
+frameworks with these components.
+
  - [Binder (1)](#binder)
  - [Conditional (1)](#condition)
  - [Loop (1)](#loop)

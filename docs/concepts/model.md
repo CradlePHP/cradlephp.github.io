@@ -3,19 +3,19 @@ layout: documentation
 class: page-docs page-docs-concepts-model
 title:  "Models - Documentation Concepts - Cradle"
 description: "A model is a representation of an object; simply deals with key/value pairs."
+menu_title: Models
+menu:
+  usage: Usage
+  api: API (2)
 ---
 # Models
-
- - [Introduction](#intro)
- - [Usage](#usage)
- - [API (2)](#api)
-
-<a name="intro"></a>
-## Introduction
 
 A model is a representation of an object; simply deals with key/value pairs.
 Models become useful when pairing it with a data store, JSON results, services
 etc. Implementing this object can be done like so.
+
+ - [Usage](#usage)
+ - [API (2)](#api)
 
 ###### Instantiating
 

@@ -3,8 +3,18 @@ layout: documentation
 class: page-docs page-docs-concepts-events
 title:  "Events - Documentation Concepts - Cradle"
 description: "Events have two typical parts, which are to listen and to fire."
+menu_title: Events
+menu:
+  basic: Basics
+  advanced: Advanced
+  api: API (4)
 ---
 # Events
+
+In Cradle, [routes](/docs/concepts/routing.html) and
+[middleware](/docs/concepts/middleware.html) are all types of events. If your
+new to events, they have two typical parts, which are to listen and to fire.
+
  - [Basics](#basic)
  - [Advanced](#advanced)
  - [API (4)](#api)
@@ -12,9 +22,6 @@ description: "Events have two typical parts, which are to listen and to fire."
 <a name="basic"></a>
 ## Basics
 
-In Cradle, [routes](/docs/concepts/routing.html) and
-[middleware](/docs/concepts/middleware.html) are all types of events. If your
-new to events, they have two typical parts, which are to listen and to fire.
 A typical listen semantically looks like the following.
 
 ```php

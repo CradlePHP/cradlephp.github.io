@@ -3,8 +3,16 @@ layout: documentation
 class: page-docs page-docs-install
 title:  "Installation - Documentation - Cradle"
 description: "Installing the full stack version of Cradle"
+menu_title: Installation
+menu:
+  requirements: Server Requirements
+  process: Process
+  load: Load the Page
 ---
-# Full Stack Installation
+# Installation
+
+Welcome to **Cradle!** A feature rich, modern admin builder. The following
+instructions will guide you through the installation process.
 
  - [Server Requirements](#requirements)
  - [Installation](#installation)
@@ -32,8 +40,8 @@ the following.
  - [Redis](https://packagist.org/packages/predis/predis)
  - [AWS S3 SDK](https://packagist.org/packages/aws/aws-sdk-php)
 
-<a name="installation"></a>
-## Installation
+<a name="process"></a>
+## Process
 
 Issue the Composer create-project command in your terminal:
 

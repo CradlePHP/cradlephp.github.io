@@ -3,19 +3,16 @@ layout: documentation
 class: page-docs page-docs-concepts-response
 title:  "Response - Documentation Concepts - Cradle"
 description: "A response holds the results of a request and determines the format of the output."
+menu_title: Response
+menu:
+  response: Response Methods
+  content: ContentTrait (3)
+  head: HeaderTrait (3)
+  page: PageTrait (9)
+  rest: RestTrait (15)
+  status: StatusTrait (2)
 ---
 # Response
- - [Registry](#registry)
- - [Response Methods](#response)
- - [API (1)](#api)
-    - [ContentTrait (3)](#content)
-    - [HeaderTrait (3)](#head)
-    - [PageTrait (9)](#page)
-    - [RestTrait (15)](#rest)
-    - [StatusTrait (2)](#status)
-
-<a name="registry"></a>
-## Registry
 
 A response is a type of registry and a registry is a type of array object
 in which, we are dealing with one property which is an array. Every method
@@ -115,6 +112,14 @@ $response->hasResults('menu', '#registry');
 ```info
  If you have an actual `.` in your path, you can change the delimeter like `$response->getDot('body-results-menu-#registry', '-');`
 ```
+
+ - [Response Methods](#response)
+ - [API (1)](#api)
+    - [ContentTrait (3)](#content)
+    - [HeaderTrait (3)](#head)
+    - [PageTrait (9)](#page)
+    - [RestTrait (15)](#rest)
+    - [StatusTrait (2)](#status)
 
 <a name="methods"></a>
 ## Response Methods

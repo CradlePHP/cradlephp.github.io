@@ -3,19 +3,19 @@ layout: documentation
 class: page-docs page-docs-concepts-collection
 title:  "Collections - Documentation Concepts - Cradle"
 description: "A collection manages a list of models."
+menu_title: Collections
+menu:
+  usage: Usage
+  api: API (6)
 ---
 # Collections
-
- - [Introduction](#intro)
- - [Usage](#usage)
- - [API (6)](#api)
-
-<a name="intro"></a>
-## Introduction
 
 A collection manages a list of models. Collections become
 useful when pairing it with a data store, JSON results, services etc.
 Implementing this object can be done like so.
+
+ - [Usage](#usage)
+ - [API (6)](#api)
 
 ###### Instantiating
 

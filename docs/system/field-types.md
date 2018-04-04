@@ -3,6 +3,44 @@ layout: documentation
 class: page-docs page-docs-system-field-types
 title:  "Schema Field Types - System Documentation - Cradle"
 description: "Documentation of system schema field types."
+menu_title: Field Types
+menu:
+  text: Text Field
+  email: Email Field
+  password: Password Field
+  search: Search Field
+  url: URL Field
+  color: Color Field
+  mask: Mask Field
+  slug: Slug Field
+  textarea: Textarea Field
+  wysiwyg: WYSIWYG Field
+  markdown: Markdown Field
+  number: Number Field
+  small: Small Number Field
+  range: Range Field
+  float: Float Field
+  price: Price Field
+  date: Date Field
+  time: Time Field
+  datetime: Date Time Field
+  week: Week Field
+  month: Month Field
+  checkbox: Checkbox Field
+  switch: Switch Field
+  select: Select Field
+  checkboxes: Checkboxes Field
+  file: File Field
+  image: Image Field
+  files: Files Field
+  images: Images Field
+  tag: Tag Field
+  meta: Meta Field
+  multirange: Multi Range Field
+  unique: Unique ID Field
+  active: Active Field
+  created: Created Field
+  updated: Updated Field
 ---
 # Field Types
 

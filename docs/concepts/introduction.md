@@ -3,8 +3,19 @@ layout: documentation
 class: page-docs page-docs-concepts-introduction
 title:  "Introduction - Documentation Concepts - Cradle"
 description: "Events have two typical parts, which are to listen and to fire."
+menu_title: Introduction
+menu:
+  why: Why ?
+  vanilla: Vanilla Version
+  tldr: tl;dr
 ---
 # Introduction
+
+Cradle began as a simple micro framework built on PHP 7. At its core, the main
+feature is simplicity, designed for collaborating with other technologies in
+your stack. Most PHP frameworks are built with a lot in mind, making developing
+complex PHP centric apps much easier, assuming that PHP is the center of
+everyone's world.
 
  - [Why ?](#why)
  - [Vanilla Version](#vanilla)
@@ -12,12 +23,6 @@ description: "Events have two typical parts, which are to listen and to fire."
 
 <a name="why"></a>
 ## Why ?
-
-Cradle began as a simple micro framework built on PHP 7. At its core, the main
-feature is simplicity, designed for collaborating with other technologies in
-your stack. Most PHP frameworks are built with a lot in mind, making developing
-complex PHP centric apps much easier, assuming that PHP is the center of
-everyone's world.
 
 Modern applications these days, however usually do not rely on the LAMP/LEMP
 stack alone. They use services for caching, indexing, file storage, push

@@ -3,6 +3,12 @@ layout: documentation
 class: page-docs page-docs-system-indexes-relations
 title:  "Indexes and Relations - System Documentation - Cradle"
 description: "Though Cradle is powerful tool, there are limitations when it comes to indexes and relationships. This guide is to help you learn about these limitations."
+menu_title: Indexes and Relationships
+menu:
+  searchable: Searchable
+  filterable: Filterable
+  sortable: Sortable
+  relationships: Relationships
 ---
 
 # Indexes and Relationships
