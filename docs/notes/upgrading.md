@@ -43,6 +43,28 @@ All references of `$cradle` in packages have changed to `$this`
 
 ----
 
+Moved from **Bower** to **Yarn**
+
+ - Instead of using `bower install`, use `yarn build`
+
+----
+
+Moved from **Bootstrap 3** to **Bootstrap 4**
+
+ - Some of your templates will most likely break. See the
+ [Bootstrap Migration Guide](https://getbootstrap.com/docs/4.0/migration/)
+ for more information
+
+----
+
+Moved from **FontAwesome 3** to **FontAwesome 5**
+
+ - Some of your icons will most likely break. See the
+ [FontAwesome Migration Guide](https://fontawesome.com/how-to-use/upgrading-from-4)
+ for more information
+
+----
+
 `Module\Profile` has moved to `cradlephp/cradle-profile`
 
  - If you made changes to `Module\Profile` do not use `cradlephp/cradle-profile`
