@@ -53,6 +53,7 @@ Then go cd `<project folder name>` and run the following and and follow the wiza
 
 ```bash
 $ chmod -R 777 config
+$ mkdir public/upload
 $ chmod -R 777 public/upload
 $ bin/cradle install
 $ bin/cradle sql populate
