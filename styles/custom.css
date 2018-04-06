@@ -634,14 +634,14 @@ select.form-control {
 }
 
 .page-home .section-1 .sample {
-    position: relative;
+    overflow: hidden;
 }
 
 .page-home .section-1 .sample .btn {
+    display: block;
+    margin: 10px auto -10px;
     padding: 10px 20px;
-    position: absolute;
-    left: 50%;
-    margin-left: -150px;
+    position: relative;
     top: 30px;
     width: 300px;
 }
@@ -707,6 +707,7 @@ select.form-control {
 
 .page-home .section-3 img {
     border: 1px solid #5FA8D4;
+    max-width: 300px;
     padding: 5px;
     width: 100%;
 }
@@ -728,11 +729,11 @@ select.form-control {
     text-align: center;
 }
 
-.page-home .section-3 .right .col-1 {
+.page-home .section-3 .right .col-text-1 {
     text-align: right;
 }
 
-.page-home .section-3 .left .col-1 {
+.page-home .section-3 .left .col-text-1 {
     text-align: right;
 }
 
@@ -790,6 +791,27 @@ select.form-control {
     margin: auto;
     padding: 10px 20px;
     width: 300px;
+}
+
+@media(max-width: 575px) {
+    .page-home .section-1 {
+        padding: 0 10px;
+    }
+
+    .page-home .section-1 .sample img {
+        width: 100%;
+    }
+
+    .page-home .section-3 .left .col-text-1,
+    .page-home .section-3 .left .col-text-2,
+    .page-home .section-3 .right .col-text-1,
+    .page-home .section-3 .right .col-text-2 {
+        text-align: center;
+    }
+
+    .page-home .section-3 .right .col-text-2 h3 {
+        margin-top: 10px;
+    }
 }
 
 /* Page - Docs
