@@ -86,6 +86,8 @@ Connects to a server. see: `config/deploy.php`
  - `-f | --force` - Installs Cradle force overriding files
  - `--skip-sql` - Installs Cradle, but skips the SQL part
  - `--skip-versioning` - Installs Cradle but skips updating the packages
+ - `--skip-mkdir` - Installs Cradle but skips the making of cache folders
+ - `--skip-chmod` - Installs Cradle but skips the permission settings
  - `-h` - Database Host
  - `-u` - Database user
  - `-p` - Database password
