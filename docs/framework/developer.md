@@ -79,7 +79,7 @@ $ cradle connect app-1
 
 ## install
 
-Connects to a server. see: `config/deploy.php`
+Installs Cradle and its components.
 
 ### Parameters
 
