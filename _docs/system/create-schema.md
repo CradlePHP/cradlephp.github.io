@@ -71,23 +71,32 @@ few options to choose from. You can discover more about these types in
 
 Next let's make the `title` required. Click `Add Validation` and by default
 `Required` will be selected. Leave that the way it is and in the `Error Message`
-field set the value to `Title is Required`. As you can also tell there are a lot
-of validation options. You can discover more about these validations in
+field set the value to `Title is Required`.
+
+![Validation Example](/images/full-14.png)
+
+As you can also tell there are a lot of validation options. You can discover
+more about these validations in
 [Schema Validation Types](/docs/system/validation-types.html).
 
 <a name="formats"></a>
 ## Formats
 
-In the `List Format` and `Detail Format` choose `Capitalize`. List formats
-filters the output in the model search page and Detail formats filters the
-output on update pages in the admin. You can discover more about these formats
-in [Schema Format Types](/docs/system/format-types.html).
+In the `List Format` and `Detail Format` choose `Capitalize`.
+
+![Format Example](/images/full-15.png)
+
+List formats filters the output in the model search page and Detail formats
+filters the output on update pages in the admin. You can discover more about
+these formats in [Schema Format Types](/docs/system/format-types.html).
 
 <a name="indexes"></a>
 ## Indexes
 
 There are 3 index types which are **Searchable**, **Filterable** and
 **Sortable**. For now, set the `Title` to be `Searchable`.
+
+![Index Example](/images/full-16.png)
 
 ### Searchable
 

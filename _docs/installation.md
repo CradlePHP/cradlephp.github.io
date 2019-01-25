@@ -5,11 +5,11 @@ title:  "Installation - Documentation - Cradle"
 description: "Installing the full stack version of Cradle"
 menu_title: Installation
 menu:
-  requirements: 1.1.1. Server Requirements
-  process: 1.1.2. Process
-  load: 1.1.3. Load the Page
+  requirements: Server Requirements
+  process: Process
+  load: Load the Page
 ---
-# 1.1. Installation
+# Installation
 
 Welcome to **Cradle!** A feature rich, modern admin builder. The following
 instructions will guide you through the installation process.
@@ -20,7 +20,7 @@ instructions will guide you through the installation process.
 
 <a name="requirements"></a>
 
-## 1.1.1. Server Requirements
+## Server Requirements
 
 The following are needed in order to successfully install Cradle. Please make
 sure your sever meets the following requirements.
@@ -41,7 +41,7 @@ the following.
  - [AWS S3 SDK](https://packagist.org/packages/aws/aws-sdk-php)
 
 <a name="process"></a>
-## 1.1.2. Process
+## Process
 
 Issue the Composer create-project command in your terminal:
 
@@ -67,13 +67,12 @@ Optionally, you can configure your application's document / web root to the
 public directory.
 
 <a name="load"></a>
-## 1.1.3. Load the Page
+## Load the Page
 
 Open your browser to `http://127.0.0.1:8888` and you should see the application
 running.
 
-### 1.1.3.1. Admin
-
+### Admin
 A default admin login is also generated with the following credentials.
  - Email: `john@doe.com`
  - Password: `123`

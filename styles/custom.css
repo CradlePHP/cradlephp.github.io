@@ -948,28 +948,22 @@ select.form-control {
 }
 
 .page-docs .main img {
+    background-color: #777;
     border: 1px solid #999999;
-    max-width: 100%;
+    padding: 20px;
+    width: 100%;
+}
+
+.page-docs .main ul,
+.page-docs .main ol {
+    padding-top: 15px;
 }
 
 .page-docs .main ul li,
 .page-docs .main ol li {
     line-height: 25px;
+    margin-bottom: 15px;
     position: relative;
-}
-
-.page-docs .middle > ul:first-of-type {
-    display: none;
-    list-style: none;
-    margin-bottom: 20px;
-    padding-left: 20px;
-}
-
-.page-docs .middle > ul:first-of-type > li::before {
-    content: "\f061";
-    display: inline-block;
-    font-family: "FontAwesome";
-    padding-right: 20px;
 }
 
 .page-docs .main p {
