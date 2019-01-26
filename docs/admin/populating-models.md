@@ -2,7 +2,7 @@
 layout: documentation
 class: page-docs page-docs-admin-populating-models
 title:  "Populating Models - Working the Admin - Cradle"
-description: ""
+description: "Models are automatically generated from the result of populating a schema."
 menu_title: 2.2. Populating Models
 menu:
   search: 2.2.1. Article Search
