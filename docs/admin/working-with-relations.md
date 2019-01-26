@@ -22,11 +22,24 @@ related to each other a system.
 <a name="comment_schema"></a>
 ## 2.3.1. Comment Schema
 
+Let's go back to `http://127.0.0.1:8888/admin/system/schema/search`.
+You should populate the **Comment** schema information like the image below.
+
+
 ###### Figure 2.3.1.A. Comment Schema Information
+
+{:.image-container}
 ![Comment Schema Information](/docs/admin/assets/2.3.1.A.png)
 
-###### Figure 2.3.1.B. Comment Fields
-![Comment Fields](/docs/admin/assets/2.3.1.B.png)
+Again I provided a cheat sheet to help populate the fields of the **Comment**
+faster. If any of this doesn't sound familiar please visit
+[2.1. Creating a Schema](/docs/admin/create-schema.html) to get back up to speed.
+
+###### Figure 2.3.1.B. Comment Fields *(click me)*
+[![Comment Fields](/docs/admin/assets/2.3.1.B.png)](/docs/admin/assets/2.3.1.B.png)
+
+If you entered the fields correctly your field table should look exactly like the
+image below.
 
 ###### Figure 2.3.1.C. Comment Field Table
 ![Comment Field Table](/docs/admin/assets/2.3.1.C.png)
