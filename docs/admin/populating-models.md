@@ -30,16 +30,16 @@ below. Alternatively you can manually go to
 
 When we visit this page, we see that the there are zero articles created.
 That is expected since we just finished creating the **Article** schema.
+You will already notice that the **icon**, **singular** and **plural** form in
+the **Article** schema we defined in the last chapter
+[last chapter](/docs/admin/create-schema.html) are used directly on
+this page. Other buttons and actions found here will be covered later in this
+chapter.
+
+On the top right of that screen, click the green `Create Article` button.
 
 ###### Figure 2.2.1.A. Article Search
 ![Article Search](/docs/admin/assets/2.2.1.A.png)
-
-On the top right of that screen, click the `Create Article` button.
-
-```info
-INFO: The singular and plural form of Article defined in the Article schema are
-used directly on this page.
-```
 
 <a name="create"></a>
 ## 2.2.2. Create an Article
@@ -54,8 +54,13 @@ field we covered in the [last chapter](/docs/admin/create-schema.html).
 ###### Figure 2.2.2.A. Article Form
 ![Article Form](/docs/admin/assets/2.2.2.A.png)
 
-Since we only have 1 profile, the obvious choice is `John Doe`. Before we
-continue, let's submit the form to see what happens.
+Since we only have 1 profile, the obvious choice is `John Doe`. The second
+thing you should see is the `eg. Spam is the new Wagyu` as a placeholder in the
+title. This was the same attribute used also in the
+[last chapter](/docs/admin/create-schema.html). More information about field
+types can be found in [2.9. Reference: Field Types](/docs/admin/schema-field-types.html).
+
+Before we continue, let's submit the form to see what happens.
 
 ###### Figure 2.2.2.B. Article Form Errors
 ![Article Form Errors](/docs/admin/assets/2.2.2.B.png)

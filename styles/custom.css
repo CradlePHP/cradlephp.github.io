@@ -947,11 +947,25 @@ select.form-control {
     border-bottom: 0;
 }
 
-.page-docs .main img {
-    background-color: #777;
+.page-docs .main .image-container {
+    background-color: #777777;
     border: 1px solid #999999;
-    padding: 20px;
-    width: 100%;
+    cursor: pointer;
+    display: block;
+    max-height: 370px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.page-docs .main img {
+    max-width: 100%;
+}
+
+.page-docs .main .image-container.mouse-over img {
+    position: absolute;
+    width: auto;
 }
 
 .page-docs .main ul,
@@ -973,6 +987,33 @@ select.form-control {
 
 .page-docs .main p code {
     white-space: nowrap;
+}
+
+.page-docs .main blockquote {
+    background: #F9F9F9;
+    border-left: 10px solid #CCCCCC;
+    font-family: Geneva, Arial;
+    font-size: 14px;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.page-docs .main blockquote:before {
+    color: #CCCCCC;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    vertical-align: -0.4em;
+}
+
+.page-docs .main blockquote p {
+    display: inline;
+}
+
+.page-docs .main blockquote em {
+    display: block;
+    font-size: 12px;
 }
 
 .page-docs .main .alert-info,
