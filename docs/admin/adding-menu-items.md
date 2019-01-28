@@ -2,7 +2,7 @@
 layout: documentation
 class: page-docs page-docs-admin-adding-menu-items
 title:  "Adding Menu Items - Working the Admin - Cradle"
-description: ""
+description: "Adding menu items in the admin"
 ---
 # 2.4. Adding Menu Items
 
