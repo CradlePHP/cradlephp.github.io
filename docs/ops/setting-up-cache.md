@@ -2,10 +2,22 @@
 layout: documentation
 class: page-docs page-docs-admin-adding-setting-cache
 title:  "Setting Up the Cache - Server Operations - Cradle"
-description: ""
+description: "Using a cache is the fastest way to retrieve data none the less because it does not compute anything to return data."
 menu_title: 3.5. Setting Up the Cache
 ---
 # 3.5. Setting Up the Cache
+
+Caching can happen in three flavors.
+
+ 1. Caching a database call or result set
+ 2. Caching a template block
+ 3. Caching an entire page
+
+Cradle uses a cache to deal with *a database call or result set*. Caching is
+usually volatile, in that we cannot rely that the data will always exist
+*(persistent)* in a cache. But overall using a cache is the fastest way to
+retrieve data none the less because it does not compute anything to return data.
+It just looks for a key and returns its value.
 
 ###### Figure 3.5.A. config/services.php
 ```php
@@ -16,4 +28,18 @@ menu_title: 3.5. Setting Up the Cache
     'port' => 6379
 ]
 ...
+```
+
+```info
+INFORMATION: there isn't anything you need to do after a cache is configured. It
+should just work.
+```
+
+If you need to truncate data from Redis you can do so with the following
+commands.
+
+###### Figure 3.6.D. Truncating the cache
+```bash
+$ bin/cradle redis flush
+$ bin/cradle redis flush --schema profile
 ```

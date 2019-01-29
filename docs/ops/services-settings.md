@@ -10,6 +10,10 @@ menu:
 ---
 # 3.1. Services & Settings
 
+Services and settings can both be found in the `config` folder under
+`config/services.php` and `config/settings.php` respectively. These files are
+the starting point for setting up your server/s and customizing your application.
+
 <a name="services"></a>
 ## 3.1.1. Services
 
@@ -73,6 +77,13 @@ return [
 ];
 ```
 
+As a practice, Cradle uses fallback logic when a service is not defined. The
+only service that is truly required is `sql-main`.
+
+```info
+INFORMATION: We will go through each of the services in detail in later chapters.
+```
+
 ```info
 INFORMATION: Any service with a value starting with `<` will not process and be
 ignored using fallback logic.
@@ -82,7 +93,11 @@ ignored using fallback logic.
 DANGER: For security purposes, don't commit your services.php file
 ```
 
+This services file has two kinds of services called generic and special services.
+
 ### 3.1.2.1. Generic Services
+
+Generic services can be defined arbitrarily on the fly.
 
 ###### Figure 3.1.2.1.A. Accessing a Generic Service
 ```php
@@ -93,7 +108,8 @@ $service = cradle('global')->service('captcha-main'); //-> array
 
 Instead of raw arrays, special services like `sql`, `elastc`, `redis`, and
 `rabbitmq` attempt to load up a library that makes using these respective
-services easier.
+services easier. The following code shows how to retrieve these services and the
+classes they respectively return.
 
 ###### Figure 3.1.2.2.A. Accessing Special Service Objects
 ```php
@@ -102,6 +118,9 @@ $index = cradle('global')->service('elastic-main'); //-> Elasticsearch\ClientBui
 $cache = cradle('global')->service('redis-main'); //-> Predis\Client
 $queue = cradle('global')->service('rabbitmq-main'); //-> PhpAmqpLib\Connection\AMQPLazyConnection
 ```
+
+If you need to get the raw array configurations for a service, you can do so
+using the `config` method as shown below.
 
 ###### Figure 3.1.2.2.A. Getting Raw Configuration of Service Objects
 ```php
@@ -129,6 +148,15 @@ bootstrap/services.php manually.
 <a name="settings"></a>
 ## 3.1.2. Settings
 
+Settings are used to control the settings between environments. Specifically,
+it allows to have a setup designed for a developer environment and for production
+*(live)* environments.
+
+```warning
+WARNING: Since production settings can be different from developer settings,
+it is probably not a good idea to commit this file.
+```
+
 ###### Figure 3.1.2.A. config/settings.php
 ```php
 return [
@@ -145,14 +173,16 @@ return [
 ];
 ```
 
+While the above settings are designed for a development setup, the following
+table shows the recommended settings for a production environment.
+
 ###### Figure 3.1.2.B. Production (Live) Settings
 
 **debug_mode** | `0`
 **environment** | `'production'`
 
-#### Theme Colors
-
-The following items are possible theme color options.
+Settings also control the look and the feel of the admin. The admin has six color
+themes you can choose from out of the box.
 
  - `theme-default`
  - `theme-blue`
@@ -161,9 +191,8 @@ The following items are possible theme color options.
  - `theme-purple`
  - `theme-orange`
 
-#### Theme Layouts
-
-The following items are possible theme layout options.
+Additionally, the admin front end code was structured for different layouts out
+of the box. The following items are possible theme layout options.
 
  - `theme-left` - Menu positioned on the left
  - `theme-top` - Menu positioned on the top
