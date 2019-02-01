@@ -4,7 +4,7 @@ html,
 body {
     color: #232323;
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 300;
     height: 100%;
@@ -894,7 +894,9 @@ select.form-control {
 
 .page-docs .main {
     background-color: #EFEFEF;
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.9;
     padding-bottom: 20px;
     padding-top: 20px;
 }
@@ -968,21 +970,23 @@ select.form-control {
     width: auto;
 }
 
+.page-docs .main .middle h1 + ul {
+    display: none;
+}
+
 .page-docs .main ul,
 .page-docs .main ol {
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 .page-docs .main ul li,
 .page-docs .main ol li {
-    line-height: 25px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     position: relative;
 }
 
 .page-docs .main p {
-    line-height: 32px;
-    font-weight: 400;
+
 }
 
 .page-docs .main p code {
